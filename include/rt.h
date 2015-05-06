@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/06 15:49:40 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/06 17:11:50 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct				s_cylinder
 	t_point					coord;
 	t_color					color;
 	t_vec					dir;
-	int						angle;
+	int						radius;
 }							t_cylinder;
 
 typedef struct				s_cone
@@ -62,7 +62,7 @@ typedef struct				s_cone
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
-	int						radius;
+	int						angle;
 	t_vec					dir;
 }							t_cone;
 
