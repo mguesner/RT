@@ -5,8 +5,12 @@ camera {
 	angle 45 // l'angle de la caméra
 }
 
+light_source { <300, 1500,-2500> 
+		color rgb<1,1,1>*0.8
+}
+
 plane { <0,1,0>, 0 
-	texture { Cork }  
+         pigment { color rgb <1,0.6,0> }
 }
 
 sphere { <0,1,0>, 0.5 // coord centre et rayon
