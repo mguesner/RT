@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:12:58 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/06 16:33:17 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/07 14:01:37 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ typedef struct			s_point
 	double				z;
 }						t_point;
 
-double					scalar(t_vec, t_vec);
-double					norme(t_vec);
-t_vec					vector(t_vec, t_vec);
-t_vec					vec_sum(t_vec, t_vec);
-t_vec					vec_coef(t_vec, double);
-t_point					translate(t_point, t_vec);
-t_vec					make_vec(t_point, t_point);
+double					scalar(t_vec a, t_vec a);
+double					norme(t_vec v);
+t_vec					normalize(t_vec v);
+t_vec					vector(t_vec a, t_vec b);
+t_vec					vec_sum(t_vec a, t_vec b);
+t_vec					vec_coef(t_vec v, double r);
+t_point					translate(t_point p, t_vec v);
+t_vec					make_vec(t_point a, t_point b);
 
 #endif

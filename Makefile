@@ -10,7 +10,11 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/vecteur/make_vec.c\
 	  $(SRCDIR)/vecteur/translate.c\
 	  $(SRCDIR)/vecteur/vec_coef.c\
-	  $(SRCDIR)/vecteur/vec_sum.c
+	  $(SRCDIR)/vecteur/vec_sum.c\
+	  $(SRCDIR)/color/brightening.c\
+	  $(SRCDIR)/color/color_diff.c\
+	  $(SRCDIR)/color/color_sum.c\
+	  $(SRCDIR)/color/darkening.c\
 
 OBJ = $(SRC:.c=.o)
 

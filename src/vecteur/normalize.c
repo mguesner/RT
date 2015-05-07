@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   normalize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/06 15:31:26 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/07 13:57:31 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/07 14:01:46 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/07 14:02:53 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#include "../../include/vecteur.h"
 
-typedef struct			s_color
+t_vec					normalize(t_vec v)
 {
-	int					a;
-	int					r;
-	int					g;
-	int					b;
-}						t_color;
+	t_vec	ret;
 
-t_color					color_sum(t_color a, t_color b);
-t_color					color_diff(t_color a, t_color b);
-t_color					darkening(t_color c);
-t_color					brighteing(t_color c);
-
-#endif
+	ret.x = v.x / norme(v);
+	ret.y = v.y / norme(v);
+	ret.z = v.z / norme(v);
+	return (ret);
+}
