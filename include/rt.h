@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 16:43:09 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/08 17:38:29 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ typedef struct				s_cone
 
 typedef struct				s_obj_list
 {
-	t_obj					obj;
+	t_obj					*obj;
 	struct s_obj_list		*next;
 }							t_obj_list;
 
