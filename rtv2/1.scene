@@ -1,0 +1,151 @@
+camera:
+{
+	pos_camera:
+		x_pos:0.0
+		y_pos:0.0
+		z_pos:500.0
+	pos_pix_hg:
+		pix_hg_x:1000.0
+		pix_hg_y:-500.0
+		pix_hg_z:1000.0
+	pos_pix_hd:
+		pix_hd_x:1000.0
+		pis_hd_y:500.0
+		pix_hd_z:1000.0
+	pos_pix_bg:
+		pix_bg_x:1000.0
+		pix_bg_y:-500.0
+		pix_bg_z:0.0
+}
+
+sphere:
+{
+	x_pos:1500.0
+	y_pos:150.0
+	z_pos:0.0
+	x_angle:0.0
+	y_angle:0.0
+	z_angle:0.0
+	other:200
+	blue_color:222
+	green_color:222
+	red_color:255
+}
+
+sphere:
+{
+	x_pos:1500.0
+	y_pos:-150.0
+	z_pos:0.0
+	x_angle:0.0
+	y_angle:0.0
+	z_angle:0.0
+	other:200
+	blue_color:222
+	green_color:222
+	red_color:255
+}
+
+sphere:
+{
+	x_pos:1500.0
+	y_pos:-150.0
+	z_pos:200.0
+	x_angle:0.0
+	y_angle:0.0
+	z_angle:0.0
+	other:10
+	blue_color:52
+	green_color:52
+	red_color:224
+}
+
+sphere:
+{
+	x_pos:1500.0
+	y_pos:150.0
+	z_pos:200.0
+	x_angle:0.0
+	y_angle:0.0
+	z_angle:0.0
+	other:10
+	blue_color:52
+	green_color:52
+	red_color:224
+}
+
+sphere:
+{
+	x_pos:1500.0
+	y_pos:-150.0
+	z_pos:165.0
+	x_angle:0.0
+	y_angle:0.0
+	z_angle:0.0
+	other:40
+	blue_color:102
+	green_color:102
+	red_color:224
+}
+
+sphere:
+{
+	x_pos:1500.0
+	y_pos:150.0
+	z_pos:165.0
+	x_angle:0.0
+	y_angle:0.0
+	z_angle:0.0
+	other:40
+	blue_color:102
+	green_color:102
+	red_color:224
+}
+
+plan:
+{
+	x_pos:-1.0
+	y_pos:0.0
+	z_pos:0.0
+	x_angle:0.0
+	y_angle:0.0
+	z_angle:0.0
+	other:1750
+	blue_color:255
+	green_color:255
+	red_color:255
+}
+
+plan:
+{
+	x_pos:0.0
+	y_pos:0.0
+	z_pos:1.0
+	x_angle:0
+	y_angle:0
+	z_angle:0
+	other:1
+	blue_color:50
+	green_color:255
+	red_color:255
+}
+
+@
+
+spot:
+{
+	x_pos:1000
+	y_pos:-300
+	z_pos:1000
+	light_spot:1800
+}
+
+spot:
+{
+	x_pos:1500
+	y_pos:0
+	z_pos:5000
+	light_spot:1700
+}
+
+*

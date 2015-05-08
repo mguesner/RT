@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 10:47:17 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/08 15:01:41 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <vecteur.h>
 # include <color.h>
 # include <libft.h>
+# include <minilibx_macos/mlx.h>
 # include <parser.h>
 
 typedef enum				e_obj_type
@@ -67,6 +68,17 @@ typedef struct				s_cone
 	int						angle;
 	t_vec					dir;
 }							t_cone;
+
+typedef struct				s_libx
+{
+	void					*window;
+	void					*mlx;
+	void					*img;
+	char					*data;
+	int						bpp;
+	int						size_line;
+	int						endian;
+}							t_libx;
 
 void						error(int errno);
 
