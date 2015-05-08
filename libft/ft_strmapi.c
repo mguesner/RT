@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/11/20 12:46:25 by mguesner          #+#    #+#             */
+/*   Updated: 2013/12/01 10:16:28 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include "libft.h"
 
-void	check_line(char *line, t_pars *e)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char	*tmp;
+	unsigned int	i;
+	char			*res;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	i = 0;
+	if (!s || !f)
+		return (NULL);
+	res = ft_strnew(ft_strlen(s));
+	while (s[i])
+	{
+		res[i] = f(i, s[i]);
+		i++;
+	}
+	return (res);
 }

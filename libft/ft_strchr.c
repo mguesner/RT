@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/11/20 16:39:57 by mguesner          #+#    #+#             */
+/*   Updated: 2013/12/01 13:31:47 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include <string.h>
 
-void	check_line(char *line, t_pars *e)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*tmp;
+	int		i;
+	char	*res;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	res = NULL;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+		{
+			res = (char *)&s[i];
+			return (res);
+		}
+		i++;
+	}
+	if ((char)c == 0)
+		res = (char *)&s[i];
+	return (res);
 }

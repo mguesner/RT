@@ -1,24 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_count_digit.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/12/17 16:59:34 by mguesner          #+#    #+#             */
+/*   Updated: 2014/04/22 18:03:02 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include "ft_printf.h"
 
-void	check_line(char *line, t_pars *e)
+int	ft_count_digit(int n)
 {
-	char	*tmp;
+	int	ret;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	ret = 1;
+	if (n < 0)
+		ret++;
+	while (n > 9 || n < -9)
+	{
+		ret++;
+		n = n / 10;
+	}
+	return (ret);
+}
+
+int	ft_count_odigit(unsigned int o)
+{
+	int	ret;
+
+	ret = 1;
+	while (o > 7)
+	{
+		ret++;
+		o = o / 8;
+	}
+	return (ret);
+}
+
+int	ft_count_xdigit(unsigned long long x)
+{
+	int	ret;
+
+	ret = 1;
+	while (x > 15)
+	{
+		ret++;
+		x = x / 16;
+	}
+	return (ret);
 }

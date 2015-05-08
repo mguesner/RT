@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_skip.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/12/17 15:59:48 by mguesner          #+#    #+#             */
+/*   Updated: 2013/12/20 15:14:31 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include "ft_printf.h"
 
-void	check_line(char *line, t_pars *e)
+int	ft_skip(char **format)
 {
-	char	*tmp;
+	int	i;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	i = 0;
+	while (*(*format + 1) == ' ')
+	{
+		*format = *format + 1;
+		i++;
+	}
+	return (i);
 }

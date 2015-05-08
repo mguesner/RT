@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 11:10:07 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 13:48:53 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/08 14:52:03 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void				init_pars(t_pars *e)
 {
 	e->step = PBEGIN;
+	e->nb_line = 1;
 	e->err_list.begin = NULL;
 	e->err_list.end = NULL;
 	e->err_list.size = 0;

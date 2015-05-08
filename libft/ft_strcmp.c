@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2014/01/26 08:21:00 by mguesner          #+#    #+#             */
+/*   Updated: 2014/05/25 16:08:53 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
-
-void	check_line(char *line, t_pars *e)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	char	*tmp;
+	int	i;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	i = 0;
+	if (!s1 || !s2)
+		return (-1);
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (s1[i] - s2[i]);
 }

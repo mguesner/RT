@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/11/20 17:11:11 by mguesner          #+#    #+#             */
+/*   Updated: 2013/12/01 10:51:42 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include "libft.h"
 
-void	check_line(char *line, t_pars *e)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
-	char	*tmp;
+	char	*res;
+	int		i;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	if (!s1 || !s2)
+		return (NULL);
+	i = n - (int)ft_strlen(s2);
+	res = (char *)s1;
+	if (!*s2)
+		return (res);
+	else if (i < 0)
+		return (NULL);
+	if (!(ft_strncmp(res, s2, n)))
+		return (res);
+	while (*res && i-- >= 0)
+	{
+		if (!(ft_memcmp(res, s2, ft_strlen(s2))))
+			return (res);
+		res++;
+	}
+	return (NULL);
 }

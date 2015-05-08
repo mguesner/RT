@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_nputunbr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/12/17 13:58:08 by mguesner          #+#    #+#             */
+/*   Updated: 2014/04/16 14:47:33 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include "ft_printf.h"
 
-void	check_line(char *line, t_pars *e)
+int	ft_nputunbr(unsigned long n)
 {
-	char	*tmp;
+	int	i;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	i = 0;
+	if (n < 10)
+	{
+		ft_putchar(n + 48);
+		i++;
+	}
+	else
+	{
+		i = 1 + i + ft_nputnbr(n / 10);
+		ft_putchar(n % 10 + 48);
+	}
+	return (i);
 }

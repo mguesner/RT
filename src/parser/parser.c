@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:39:28 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 11:09:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/08 14:52:17 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	parser(char *file_name)
 	{
 		// check_line(line, &e);
 		ft_strdel(&line);
+		e.nb_line++;
 	}
 }

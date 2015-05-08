@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_puto.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/12/17 14:14:03 by mguesner          #+#    #+#             */
+/*   Updated: 2013/12/22 12:22:53 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include "ft_printf.h"
 
-void	check_line(char *line, t_pars *e)
+int			ft_puto(unsigned int n)
 {
-	char	*tmp;
+	int	i;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	i = 0;
+	if (n < 8)
+	{
+		ft_putchar(n + 48);
+		i++;
+	}
+	else
+	{
+		i = 1 + i + ft_puto(n / 8);
+		ft_putchar((n % 8) + 48);
+	}
+	return (i);
 }

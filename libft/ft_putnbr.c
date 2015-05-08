@@ -1,24 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/11/20 15:27:49 by mguesner          #+#    #+#             */
+/*   Updated: 2013/12/01 10:18:52 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include "libft.h"
 
-void	check_line(char *line, t_pars *e)
+static void	ft_putnbr2(int n)
 {
-	char	*tmp;
+	if (n < 10)
+	{
+		ft_putchar(n + 48);
+	}
+	else
+	{
+		ft_putnbr2(n / 10);
+		ft_putchar((n % 10) + 48);
+	}
+}
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+void		ft_putnbr(int n)
+{
+	if (n == -2147483648)
+	{
+		ft_putstr("-2147483648");
+	}
+	else if (n < 0)
+	{
+		ft_putchar('-');
+		ft_putnbr2(n * -1);
+	}
+	else
+	{
+		ft_putnbr2(n);
+	}
 }

@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/11/19 16:32:52 by mguesner          #+#    #+#             */
+/*   Updated: 2013/12/01 10:15:41 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include <string.h>
 
-void	check_line(char *line, t_pars *e)
+void	*ft_memcpy(void *s1, const void *s2, size_t n)
 {
-	char	*tmp;
+	size_t		i;
+	char		*temp1;
+	char		*temp2;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	if (!s1 || !s2 || !n)
+		return (s1);
+	temp1 = (char *)s1;
+	temp2 = (char *)s2;
+	i = 0;
+	while (i < n)
+	{
+		temp1[i] = temp2[i];
+		i++;
+	}
+	return (s1);
 }

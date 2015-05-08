@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/11/20 08:37:21 by mguesner          #+#    #+#             */
+/*   Updated: 2013/12/01 13:28:13 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include "libft.h"
 
-void	check_line(char *line, t_pars *e)
+void	*ft_memmove(void *s1, const void *s2, size_t n)
 {
-	char	*tmp;
+	void	*temp;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	if (!s1 || !s2)
+		return (NULL);
+	if (!(temp = ft_memalloc(n)))
+		return (NULL);
+	ft_memcpy(temp, s2, n);
+	ft_memcpy(s1, temp, n);
+	ft_memdel(&temp);
+	return (s1);
 }

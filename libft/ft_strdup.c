@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/11/20 09:26:46 by mguesner          #+#    #+#             */
+/*   Updated: 2014/03/26 13:17:41 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include "libft.h"
 
-void	check_line(char *line, t_pars *e)
+char	*ft_strdup(const char *s1)
 {
-	char	*tmp;
+	char	*res;
+	size_t	size;
+	size_t	i;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	i = 0;
+	size = ft_strlen(s1);
+	if ((res = ft_strnew(size)))
+	{
+		while (i < size)
+		{
+			res[i] = s1[i];
+			i++;
+		}
+		res[i] = 0;
+		return (res);
+	}
+	return (NULL);
 }

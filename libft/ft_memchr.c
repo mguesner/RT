@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/11/20 08:43:19 by mguesner          #+#    #+#             */
+/*   Updated: 2014/03/26 13:16:33 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include <string.h>
 
-void	check_line(char *line, t_pars *e)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	char	*tmp;
+	size_t			i;
+	unsigned char	*temp;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	if (!s || !n)
+		return (NULL);
+	temp = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (temp[i] == (unsigned char)c)
+			return (&temp[i]);
+		i++;
+	}
+	return (NULL);
 }

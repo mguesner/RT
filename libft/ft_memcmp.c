@@ -1,24 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:51:03 by mguesner         ###   ########.fr       */
+/*   Created: 2013/11/20 09:11:02 by mguesner          #+#    #+#             */
+/*   Updated: 2014/04/20 20:12:45 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
-#include <libft.h>
+#include <string.h>
 
-void	check_line(char *line, t_pars *e)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	char	*tmp;
+	unsigned char	t1;
+	unsigned char	t2;
 
-	if ((tmp = ft_strstr(line, "//")))
-		*tmp = 0;
-	ft_strtrimbadass(line);
-	e->tools[e->step](line, e);
+	if (!s1 || !s2 || !n)
+		return (0);
+	while (n > 0)
+	{
+		t1 = *(unsigned char *)s1;
+		t2 = *(unsigned char *)s2;
+		if (t1 != t2)
+			return (t1 - t2);
+		n--;
+		s1++;
+		s2++;
+	}
+	return (0);
 }
