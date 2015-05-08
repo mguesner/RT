@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:12:58 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/07 14:01:37 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/08 10:38:54 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct			s_point
 	double				z;
 }						t_point;
 
-double					scalar(t_vec a, t_vec a);
+double					scalar(t_vec a, t_vec b);
 double					norme(t_vec v);
 t_vec					normalize(t_vec v);
 t_vec					vector(t_vec a, t_vec b);

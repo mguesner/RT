@@ -6,15 +6,17 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/06 17:11:50 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/08 10:47:17 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
 
-# include "vecteur.h"
-# include "color.h"
+# include <vecteur.h>
+# include <color.h>
+# include <libft.h>
+# include <parser.h>
 
 typedef enum				e_obj_type
 {
@@ -65,5 +67,7 @@ typedef struct				s_cone
 	int						angle;
 	t_vec					dir;
 }							t_cone;
+
+void						error(int errno);
 
 #endif

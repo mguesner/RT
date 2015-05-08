@@ -15,18 +15,30 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/color/color_diff.c\
 	  $(SRCDIR)/color/color_sum.c\
 	  $(SRCDIR)/color/darkening.c\
+	  $(SRCDIR)/parser/parser.c\
+	  $(SRCDIR)/parser/init_pars.c\
+	  $(SRCDIR)/parser/check_line.c\
+	  $(SRCDIR)/parser/add_err.c\
+	  $(SRCDIR)/parser/p_begin.c\
+	  $(SRCDIR)/error.c\
+	  $(SRCDIR)/main.c
+
+LIB =
 
 OBJ = $(SRC:.c=.o)
 
-CC = clang -g -O3 -Wall -Wextra -Werror
+CC = clang -g -O3 -Wall -Wextra -Werror -I include -I libft
 
-all: $(NAME)
+all: lib $(NAME)
+
+lib:
+	make -C libft
 
 .c.o:
 	$(CC) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) libft/libft.a
 
 clean:
 	rm -rf $(OBJ)
