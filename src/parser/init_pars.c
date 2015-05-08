@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 11:10:07 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 14:52:03 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/08 15:25:02 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,6 @@ void				init_pars(t_pars *e)
 	e->err_list.begin = NULL;
 	e->err_list.end = NULL;
 	e->err_list.size = 0;
+	e->scope = CLOSE;
 	e->tools[PBEGIN] = &p_begin;
 }
