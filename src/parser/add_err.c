@@ -6,21 +6,34 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 13:45:19 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 15:18:44 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/08 17:12:52 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include <parser.h>
 #include <errno.h>
+
+static char				*add_err2(char *line)
+{
+	int		i;
+
+	i = 0;
+	while (line[i] && !ft_isblank(line[i]))
+		i++;
+	line[i] = 0;
+	return (ft_strdup(line));
+}
 
 void					add_err(t_pars *e, t_err_type err, char *line)
 {
 	t_err	*node;
 
+	if (e->step != PBEGIN)
+		e->err = 1;
 	if (!(node = ft_memalloc(sizeof(t_err))))
 		error(errno);
 	node->err_type = err;
-	node->where = ft_strdup(line);
+	node->where = add_err2(line);
 	node->line = e->nb_line;
 	if (!e->err_list.size)
 		e->err_list.begin = node;

@@ -20,6 +20,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/check_line.c\
 	  $(SRCDIR)/parser/add_err.c\
 	  $(SRCDIR)/parser/p_begin.c\
+	  $(SRCDIR)/parser/p_camera.c\
 	  $(SRCDIR)/parser/check_pars_err.c\
 	  $(SRCDIR)/error.c\
 	  $(SRCDIR)/main.c

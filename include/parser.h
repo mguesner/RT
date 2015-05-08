@@ -6,15 +6,17 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 15:24:35 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/08 17:37:03 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# define				OPEN 1
-# define				CLOSE 0
+# include <rt.h>
+
+# define OPEN 1
+# define CLOSE 0
 
 typedef struct s_pars	t_pars;
 
@@ -36,7 +38,10 @@ typedef enum			e_step
 
 typedef enum			e_err_type
 {
-	UNKSYMB,
+	UNKOBJ,
+	UNKPARAM,
+	SCOPEMISS,
+	BADARG,
 	NBERR
 }						t_err_type;
 
@@ -58,10 +63,14 @@ typedef struct			s_err_begin
 struct					s_pars
 {
 	t_f_parse			tools[NBSTEP];
+	char				*err_msg[NBERR];
 	t_err_begin			err_list;
 	t_step				step;
 	int					nb_line;
 	int					scope;
+	int					err;
+	t_obj_list_begin	obj_lst;
+	t_obj				*cur;
 };
 
 void					parser(char *file_name);
@@ -72,5 +81,7 @@ void					check_pars_err(t_pars e);
 
 void					p_begin(char *line, t_pars *e);
 void					p_camera(char *line, t_pars *e);
+
+void					cam_loc(char *line, t_pars *e);
 
 #endif
