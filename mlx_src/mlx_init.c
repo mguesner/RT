@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 14:33:58 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/08 15:24:36 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/08 17:48:49 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ t_libx	*mlx_struct_init(int width, int height, char *win_name)
 {
 	t_libx	*m;
 
-	if (!(m->window = (void *)malloc(sizeof(void *)) ||
+	if (!(m = (t_libx *)malloc(sizeof(t_libx))) ||
+		!(m->window = (void *)malloc(sizeof(void *)) ||
 		!(m->mlx = (void *)malloc(sizeof(void *))) ||
 		!(m->img = (void *)malloc(sizeof(void *)))
 		return (NULL);
@@ -37,5 +38,7 @@ t_libx	*mlx_struct_init(int width, int height, char *win_name)
 		!(m->img = mlx_new_image(m->mlx, width, height)) ||
 		!(m->data = mlx_get_data_addr(m->img, &(m->bpp), &(m->size_line), &(m->endian))))
 		return (NULL);
+	m->width = width;
+	m->height = height;
 	return (m);
 }
