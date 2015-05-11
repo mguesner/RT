@@ -6,18 +6,20 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 18:08:47 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/11 16:00:08 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
+# define WIDTH 1920
+# define HEIGHT 1080
+# define TOTAL_PIX WIDTH * HEIGHT
 
 # include <vecteur.h>
 # include <color.h>
 # include <libft.h>
 # include "../minilibx_macos/mlx.h"
-#
 
 typedef enum				e_obj_type
 {
@@ -40,6 +42,9 @@ typedef struct				s_camera
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+	t_point					pix_hg;
+	t_point					pix_bg;
+	t_point					pix_hd;
 }							t_camera;
 
 typedef struct				s_plane
@@ -100,10 +105,15 @@ typedef struct				s_libx
 	int						endian;
 	int						width;
 	int						height;
+	t_obj_list_begin		*obj;
+	t_vec					*pos_all_pix;
 }							t_libx;
 
 void						error(int errno);
 t_libx						*mlx_struct_init(int width, int height, char *win_name);
 void						set_pixel_to_img(t_libx *m, int pix_x, int pix_y, t_color *color);
+void						start(t_libx *mlx);
+t_vec						*precalc_vec_cam(t_camera *cam);
+double						dist_sphere(t_libx *mlx, int pix_x, int pix_y);
 
 #endif

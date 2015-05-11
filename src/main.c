@@ -6,15 +6,14 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 18:07:15 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/11 16:01:15 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 #include <stdlib.h>
-
 //----------------------- parser manuel
-t_obj_list_begin *p(void)
+t_obj_list_begin	*p(void)
 {
 	t_obj_list_begin *o;
 
@@ -23,8 +22,8 @@ t_obj_list_begin *p(void)
 	o->end = NULL;
 	o->size = 1;
 	o->begin->obj = malloc(sizeof(t_obj));
-	o->begin->obj->type = PLANE;
-	o->begin->obj->coord.x = 10.0;
+	o->begin->obj->type = SPHERE;
+	o->begin->obj->coord.x = 5000.0;
 	o->begin->obj->coord.y = 10.0;
 	o->begin->obj->coord.z = 10.0;
 	o->begin->obj->color.a = 0;
@@ -34,6 +33,32 @@ t_obj_list_begin *p(void)
 	return (o);
 }
 //-----------------------
+t_camera			*calc_cam(void)
+{
+	t_camera *o;
+
+	o = malloc(sizeof(t_camera));
+	o->type = NBOBJTYPE;
+	o->coord.x = 10;
+	o->coord.y = 10;
+	o->coord.z = 540;
+	o->pix_hg.x = 1010.0;
+	o->pix_hg.y = -950.0;
+	o->pix_hg.z = 1081.0;
+	o->pix_hd.x = 1010.0;
+	o->pix_hd.y = 970.0;
+	o->pix_hd.z = 1081.0;
+	o->pix_bg.x = 1010.0;
+	o->pix_bg.y = -950.0;
+	o->pix_bg.z = 1.0;
+	return (o);
+}
+
+int expose_hook(t_libx *mlx)
+{
+	start(mlx);
+	return (0);
+}
 
 void	usage(void)
 {
@@ -44,10 +69,17 @@ int		main(int argc, char **argv)
 {
 	t_libx				*mlx;
 	t_obj_list_begin	*obj;
+	t_camera			*cam;
 
 	if (argc != 2)
 		usage();
-	parser(argv[1]);
+	(void)(argv);
+	cam = calc_cam();
+	// parser(argv[1]);
 	obj = p();
-	mlx = mlx_struct_init(1000, 1000, "lol");
+	mlx = mlx_struct_init(1920, 1080, "lol");
+	mlx->obj = obj;
+	mlx->pos_all_pix = precalc_vec_cam(cam);
+	mlx_loop_hook(mlx->mlx, expose_hook, mlx);
+	mlx_loop(mlx->mlx);
 }

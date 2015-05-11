@@ -9,6 +9,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/vecteur/vector.c\
 	  $(SRCDIR)/vecteur/make_vec.c\
 	  $(SRCDIR)/vecteur/translate.c\
+	  $(SRCDIR)/vecteur/normalize.c\
 	  $(SRCDIR)/vecteur/vec_coef.c\
 	  $(SRCDIR)/vecteur/vec_sum.c\
 	  $(SRCDIR)/color/brightening.c\
@@ -25,6 +26,9 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/check_pars_err.c\
 	  $(SRCDIR)/error.c\
 	  $(SRCDIR)/main.c\
+	  $(SRCDIR)/sphere.c\
+	  $(SRCDIR)/boucle_princ.c\
+	  $(SRCDIR)/precalc_vec_cam.c\
 	  mlx_src/mlx_init.c
 
 LIB =
