@@ -6,7 +6,11 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2015/05/11 16:00:08 by eruffieu         ###   ########.fr       */
+=======
+/*   Updated: 2015/05/11 14:24:34 by mguesner         ###   ########.fr       */
+>>>>>>> db58c72cbc1f81cc98458752262fad005ed755d5
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +27,8 @@
 
 typedef enum				e_obj_type
 {
+	CAM,
+	LIGHT,
 	PLANE,
 	SPHERE,
 	CYLINDER,
@@ -42,10 +48,21 @@ typedef struct				s_camera
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+<<<<<<< HEAD
 	t_point					pix_hg;
 	t_point					pix_bg;
 	t_point					pix_hd;
+=======
+	t_vec					dir;
+>>>>>>> db58c72cbc1f81cc98458752262fad005ed755d5
 }							t_camera;
+
+typedef struct				s_light
+{
+	t_obj_type				type;
+	t_point					coord;
+	t_color					color;
+}							t_light;
 
 typedef struct				s_plane
 {

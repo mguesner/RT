@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 13:45:19 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 17:12:52 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/11 15:07:03 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void					add_err(t_pars *e, t_err_type err, char *line)
 {
 	t_err	*node;
 
-	if (e->step != PBEGIN)
-		e->err = 1;
+	e->err = 1;
 	if (!(node = ft_memalloc(sizeof(t_err))))
 		error(errno);
 	node->err_type = err;

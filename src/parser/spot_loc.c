@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cam_loc.c                                          :+:      :+:    :+:   */
+/*   spot_loc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 17:35:26 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/11 15:05:15 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/11 14:59:42 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/11 15:29:58 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int				fill(char **line, double *dst, int *off)
 	return (1);
 }
 
-void					cam_loc(char *line, t_pars *e, int *off)
+void					spot_loc(char *line, t_pars *e, int *off)
 {
 	t_point		p;
 

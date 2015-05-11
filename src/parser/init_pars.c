@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 11:10:07 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 17:19:28 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/11 14:48:22 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void			init_pars2(t_pars *e)
 	e->err_msg[UNKOBJ] = "unknow object";
 	e->err_msg[UNKPARAM] = "bad parameter";
 	e->err_msg[SCOPEMISS] = "'{' missing before";
+	e->err_msg[BADARG] = "bad argument";
 }
 
 void				init_pars(t_pars *e)
@@ -34,5 +35,6 @@ void				init_pars(t_pars *e)
 	e->obj_lst.size = 0;
 	e->tools[PBEGIN] = &p_begin;
 	e->tools[PCAMERA] = &p_camera;
+	e->tools[PSPOT] = &p_spot;
 	init_pars2(e);
 }
