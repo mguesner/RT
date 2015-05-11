@@ -1,4 +1,5 @@
-camera {
+camera
+{
 	location <0,1,-3> // la position de l'observateur
 	look_at <0,1,0>  // le point de vue
 	right x*image_width/image_height	// aspect ratio

@@ -6,37 +6,32 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 12:50:24 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 17:12:04 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/11 15:06:25 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-static void				p_begin2(char *line, t_pars *e)
+void					p_begin(char *line, t_pars *e, int *off)
 {
-	ft_strtrimbadass(line);
-	if (!ft_strcmp(line, "{"))
-		e->scope = OPEN;
-	else if (*(line))
-	{
-		add_err(e, UNKOBJ, line);
-		return ;
-	}
-}
+	int ret;
 
-void					p_begin(char *line, t_pars *e)
-{
-	int		ret;
-
-	if (!ft_strncmp(line, "camera", (ret = 6)))
+	ret = 0;
+	if (e->err)
+		;
+	else if (!ft_strncmp(line + *off, "camera", (ret = 6)))
 	{
 		e->cur = (t_obj*)ft_memalloc(sizeof(t_camera));
+		e->cur->type = CAM;
 		e->step = PCAMERA;
 	}
-	else
+	else if (!ft_strncmp(line + *off, "light_source", (ret = 12)))
 	{
-		add_err(e, UNKOBJ, line);
-		return ;
+		e->cur = (t_obj*)ft_memalloc(sizeof(t_light));
+		e->cur->type = LIGHT;
+		e->step = PSPOT;
 	}
-	p_begin2(line + ret, e);
+	else
+		add_err(e, UNKOBJ, line);
+	*off += ret;
 }

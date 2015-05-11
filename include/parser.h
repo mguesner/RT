@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 17:37:03 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/11 15:13:04 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef struct s_pars	t_pars;
 
-typedef void			(*t_f_parse)(char *line, t_pars *e);
+typedef void			(*t_f_parse)(char *line, t_pars *e, int *off);
 
 typedef enum			e_step
 {
@@ -74,14 +74,22 @@ struct					s_pars
 };
 
 void					parser(char *file_name);
+void					add_obj_lst(t_obj_list_begin *begin, t_obj *elem);
 void					init_pars(t_pars *e);
 void					check_line(char *line, t_pars *e);
 void					add_err(t_pars *e, t_err_type err, char *line);
 void					check_pars_err(t_pars e);
 
-void					p_begin(char *line, t_pars *e);
-void					p_camera(char *line, t_pars *e);
+void					p_begin(char *line, t_pars *e, int *off);
 
-void					cam_loc(char *line, t_pars *e);
+void					p_camera(char *line, t_pars *e, int *off);
+
+void					cam_loc(char *line, t_pars *e, int *off);
+void					cam_look_at(char *line, t_pars *e, int *off);
+
+void					p_spot(char *line, t_pars *e, int *off);
+
+void					spot_loc(char *line, t_pars *e, int *off);
+void					spot_color(char *line, t_pars *e, int *off);
 
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cam_loc.c                                          :+:      :+:    :+:   */
+/*   cam_look_at.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 17:35:26 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/11 15:05:15 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/11 14:00:13 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/11 15:06:08 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ static int				fill(char **line, double *dst, int *off)
 	return (1);
 }
 
-void					cam_loc(char *line, t_pars *e, int *off)
+void					cam_look_at(char *line, t_pars *e, int *off)
 {
-	t_point		p;
+	t_vec		v;
 
 	ft_strtrimbadass(line + *off);
-	if (*(line + *off) != '<')
+	if (*line + *off != '<')
 	{
 		add_err(e, BADARG, line + *off);
 		return ;
 	}
 	(*off)++;
-	if (!fill(&line, &(p.x), off) || !fill(&line, &(p.y), off)
-		|| !fill(&line, &(p.z), off))
+	if (!fill(&line, &(v.x), off) || !fill(&line, &(v.y), off)
+		|| !fill(&line, &(v.z), off))
 	{
 		add_err(e, BADARG, line + *off);
 		return ;
@@ -62,5 +62,5 @@ void					cam_loc(char *line, t_pars *e, int *off)
 	(*off)++;
 	if (*(line + *off))
 		add_err(e, BADARG, line + *off);
-	e->cur->coord = p;
+	((t_camera*)e->cur)->dir = v;
 }
