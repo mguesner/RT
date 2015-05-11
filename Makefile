@@ -21,9 +21,11 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/add_err.c\
 	  $(SRCDIR)/parser/p_begin.c\
 	  $(SRCDIR)/parser/p_camera.c\
+	  $(SRCDIR)/parser/cam_loc.c\
 	  $(SRCDIR)/parser/check_pars_err.c\
 	  $(SRCDIR)/error.c\
-	  $(SRCDIR)/main.c
+	  $(SRCDIR)/main.c\
+	  mlx_src/mlx_init.c
 
 LIB =
 
@@ -40,7 +42,7 @@ lib:
 	$(CC) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) libft/libft.a
+	$(CC) -o $(NAME) $(OBJ) libft/libft.a minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
 
 clean:
 	rm -rf $(OBJ)

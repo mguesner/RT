@@ -6,11 +6,12 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 17:59:21 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/08 18:07:15 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
+#include <stdlib.h>
 
 //----------------------- parser manuel
 t_obj_list_begin *p(void)
@@ -21,7 +22,7 @@ t_obj_list_begin *p(void)
 	o->begin = malloc(sizeof(t_obj_list));
 	o->end = NULL;
 	o->size = 1;
-	o->begin->obj = malloc(sizeof(obj));
+	o->begin->obj = malloc(sizeof(t_obj));
 	o->begin->obj->type = PLANE;
 	o->begin->obj->coord.x = 10.0;
 	o->begin->obj->coord.y = 10.0;
@@ -47,6 +48,6 @@ int		main(int argc, char **argv)
 	if (argc != 2)
 		usage();
 	parser(argv[1]);
-	obj = p()
+	obj = p();
 	mlx = mlx_struct_init(1000, 1000, "lol");
 }

@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 17:41:41 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/08 18:08:47 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <color.h>
 # include <libft.h>
 # include "../minilibx_macos/mlx.h"
+#
 
 typedef enum				e_obj_type
 {
@@ -102,5 +103,7 @@ typedef struct				s_libx
 }							t_libx;
 
 void						error(int errno);
+t_libx						*mlx_struct_init(int width, int height, char *win_name);
+void						set_pixel_to_img(t_libx *m, int pix_x, int pix_y, t_color *color);
 
 #endif
