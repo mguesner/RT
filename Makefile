@@ -31,6 +31,8 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/check_pars_err.c\
 	  $(SRCDIR)/error.c\
 	  $(SRCDIR)/main.c\
+	  $(SRCDIR)/touch.c\
+	  $(SRCDIR)/light.c\
 	  $(SRCDIR)/sphere.c\
 	  $(SRCDIR)/boucle_princ.c\
 	  $(SRCDIR)/precalc_vec_cam.c\

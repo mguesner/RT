@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 10:22:34 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/12 11:03:52 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_obj_list_begin	*p(void)
 	o->begin = malloc(sizeof(t_obj_list));
 	o->end = NULL;
 	o->size = 1;
-	o->begin->obj = malloc(sizeof(t_obj));
+	o->begin->obj = malloc(sizeof(t_sphere));
 	o->begin->obj->type = SPHERE;
 	o->begin->obj->coord.x = 5000.0;
 	o->begin->obj->coord.y = 10.0;
@@ -30,6 +30,7 @@ t_obj_list_begin	*p(void)
 	o->begin->obj->color.r = 100;
 	o->begin->obj->color.g = 40;
 	o->begin->obj->color.b = 20;
+	o->begin->obj->radius = 10.0;
 	return (o);
 }
 //-----------------------
@@ -38,7 +39,7 @@ t_camera			*calc_cam(void)
 	t_camera *o;
 
 	o = malloc(sizeof(t_camera));
-	o->type = NBOBJTYPE;
+	o->type = CAMERA;
 	o->coord.x = 10;
 	o->coord.y = 10;
 	o->coord.z = 540;
