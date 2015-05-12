@@ -6,12 +6,13 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 15:25:00 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 15:31:20 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 #include <stdlib.h>
+#include <stdio.h>
 //----------------------- parser manuel
 // t_obj_list_begin	*p(void)
 // {
@@ -83,11 +84,11 @@
 // 	return (o);
 // }
 
-// int expose_hook(t_libx *mlx)
-// {
-// 	start(mlx);
-// 	return (0);
-// }
+int expose_hook(t_libx *mlx)
+{
+	start(mlx);
+	return (0);
+}
 
 static void	usage(void)
 {
@@ -96,20 +97,55 @@ static void	usage(void)
 
 int			main(int argc, char **argv)
 {
-	// t_libx				*mlx;
+	t_libx				*mlx;
 	t_obj_list_begin	obj;
-	// t_camera			*cam;
+	t_camera			*cam;
 
 	if (argc != 2)
 		usage();
 	// (void)(argv);
 	// cam = calc_cam();
 	obj = parser(argv[1]);
+	t_obj_list *tmp;
+
+	tmp = obj.begin;
+	while (tmp)
+	{
+		if (tmp->obj->type == CAM)
+		{
+
+			cam = (t_camera *)tmp->obj;
+			printf("type : CAMERA, coord : (%f, %f, %f), color : (%d, %d, %d, %d), dir : (%f, %f, %f)\n"
+				, cam->coord.x, cam->coord.y, cam->coord.z, cam->color.a, cam->color.r, cam->color.g, cam->color.b
+				, cam->dir.x, cam->dir.y, cam->dir.z);
+		}
+		else if (tmp->obj->type == LIGHT)
+		{
+			t_light *light = (t_light *)tmp->obj;
+			printf("type : LIGHT, coord : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
+				, light->coord.x, light->coord.y, light->coord.z, light->color.a, light->color.r, light->color.g, light->color.b);
+		}
+		else if (tmp->obj->type == PLANE)
+		{
+			t_plane *plane = (t_plane *)tmp->obj;
+			printf("type : PLANE, coord : (%f, %f, %f), normal : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
+				, plane->coord.x, plane->coord.y, plane->coord.z,
+				plane->norm.x, plane->norm.y, plane->norm.z, plane->color.a, plane->color.r, plane->color.g, plane->color.b);
+		}
+		else if (tmp->obj->type == SPHERE)
+		{
+			t_sphere *sphere = (t_sphere *)tmp->obj;
+			printf("type : SPHERE, coord : (%f, %f, %f), radius : %f, color : (%d, %d, %d, %d)\n"
+				, sphere->coord.x, sphere->coord.y, sphere->coord.z,
+				sphere->radius, sphere->color.a, sphere->color.r, sphere->color.g, sphere->color.b);
+		}
+		tmp = tmp->next;
+	}
 	// obj = p();
-	// mlx = mlx_struct_init(WIDTH, HEIGHT, "lol");
-	// mlx->obj = obj;
-	// mlx->cam = cam;
-	// mlx->pos_all_pix = precalc_vec_cam(cam);
-	// mlx_loop_hook(mlx->mlx, expose_hook, mlx);
-	// mlx_loop(mlx->mlx);
+	mlx = mlx_struct_init(WIDTH, HEIGHT, "lol");
+	mlx->obj = &obj;
+	mlx->cam = cam;
+	mlx->pos_all_pix = precalc_vec_cam(cam);
+	mlx_loop_hook(mlx->mlx, expose_hook, mlx);
+	mlx_loop(mlx->mlx);
 }
