@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 12:13:39 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 13:12:29 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 t_obj_list_begin	*p(void)
 {
 	t_obj_list_begin *o;
-
+	t_obj			*
 	o = malloc(sizeof(t_obj_list_begin));
 	o->begin = malloc(sizeof(t_obj_list));
 	o->end = NULL;
@@ -30,6 +30,7 @@ t_obj_list_begin	*p(void)
 	o->begin->obj->color.r = 150;
 	o->begin->obj->color.g = 0;
 	o->begin->obj->color.b = 150;
+	((t_sphere *)o->begin->obj)->radius = 1000;
 	o->begin->next = NULL;
 	return (o);
 }
