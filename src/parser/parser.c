@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:39:28 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/11 14:54:57 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:25:35 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,24 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <stdio.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
 
 void	parser(char *file_name)
 {
-	int		fd;
+	int			fd;
 	char	*line;
-	t_pars	e;
+	// char		*file;
+	// struct stat	buf;
+	t_pars		e;
 
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		error(errno);
 	init_pars(&e);
+	// if (fstat(fd, &buf))
+	// 	error(errno);
+	// file = mmap(0, buf.st_size, PROT_READ, MAP_FILE, fd, 0);
+	// parse_file(&e, file);
 	while (get_next_line(fd, &line) > 0)
 	{
 		check_line(line, &e);
@@ -53,6 +61,20 @@ void	parser(char *file_name)
 			t_light *light = (t_light *)tmp->obj;
 			printf("type : LIGHT, coord : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
 				, light->coord.x, light->coord.y, light->coord.z, light->color.a, light->color.r, light->color.g, light->color.b);
+		}
+		else if (tmp->obj->type == PLANE)
+		{
+			t_plane *plane = (t_plane *)tmp->obj;
+			printf("type : PLANE, coord : (%f, %f, %f), normal : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
+				, plane->coord.x, plane->coord.y, plane->coord.z,
+				plane->norm.x, plane->norm.y, plane->norm.z, plane->color.a, plane->color.r, plane->color.g, plane->color.b);
+		}
+		else if (tmp->obj->type == SPHERE)
+		{
+			t_sphere *sphere = (t_sphere *)tmp->obj;
+			printf("type : SPHERE, coord : (%f, %f, %f), radius : %f, color : (%d, %d, %d, %d)\n"
+				, sphere->coord.x, sphere->coord.y, sphere->coord.z,
+				sphere->radius, sphere->color.a, sphere->color.r, sphere->color.g, sphere->color.b);
 		}
 		tmp = tmp->next;
 	}

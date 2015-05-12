@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 15:03:52 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 15:22:54 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct				s_sphere
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
-	int						radius;
+	double					radius;
 }							t_sphere;
 
 typedef struct				s_cylinder
@@ -79,7 +79,7 @@ typedef struct				s_cylinder
 	t_point					coord;
 	t_color					color;
 	t_vec					dir;
-	int						radius;
+	double					radius;
 }							t_cylinder;
 
 typedef struct				s_cone

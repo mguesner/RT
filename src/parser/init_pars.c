@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 11:10:07 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/11 14:48:22 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:37:56 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void			init_pars2(t_pars *e)
 void				init_pars(t_pars *e)
 {
 	e->step = PBEGIN;
+	e->substep = SSBEGIN;
 	e->nb_line = 1;
 	e->err_list.begin = NULL;
 	e->err_list.end = NULL;
@@ -36,5 +37,7 @@ void				init_pars(t_pars *e)
 	e->tools[PBEGIN] = &p_begin;
 	e->tools[PCAMERA] = &p_camera;
 	e->tools[PSPOT] = &p_spot;
+	e->tools[PPLANE] = &p_plane;
+	e->tools[PSPHERE] = &p_sphere;
 	init_pars2(e);
 }
