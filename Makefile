@@ -9,6 +9,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/vecteur/vector.c\
 	  $(SRCDIR)/vecteur/make_vec.c\
 	  $(SRCDIR)/vecteur/translate.c\
+	  $(SRCDIR)/vecteur/normalize.c\
 	  $(SRCDIR)/vecteur/vec_coef.c\
 	  $(SRCDIR)/vecteur/vec_sum.c\
 	  $(SRCDIR)/color/brightening.c\
@@ -34,7 +35,15 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/sphere_loc.c\
 	  $(SRCDIR)/parser/check_pars_err.c\
 	  $(SRCDIR)/error.c\
-	  $(SRCDIR)/main.c
+	  $(SRCDIR)/main.c\
+	  $(SRCDIR)/touch.c\
+	  $(SRCDIR)/light.c\
+	  $(SRCDIR)/sphere.c\
+	  $(SRCDIR)/plane.c\
+	  $(SRCDIR)/antialiasing.c\
+	  $(SRCDIR)/boucle_princ.c\
+	  $(SRCDIR)/precalc_vec_cam.c\
+	  mlx_src/mlx_init.c
 
 LIB =
 
@@ -51,7 +60,7 @@ lib:
 	$(CC) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) libft/libft.a
+	$(CC) -o $(NAME) $(OBJ) libft/libft.a minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
 
 clean:
 	rm -rf $(OBJ)

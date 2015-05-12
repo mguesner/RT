@@ -6,12 +6,15 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:22:36 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:52:47 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
+# define WIDTH 1920
+# define HEIGHT 1080
+# define TOTAL_PIX WIDTH * HEIGHT
 
 # include <vecteur.h>
 # include <color.h>
@@ -41,6 +44,9 @@ typedef struct				s_camera
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+	t_point					pix_hg;
+	t_point					pix_bg;
+	t_point					pix_hd;
 	t_vec					dir;
 }							t_camera;
 
@@ -107,8 +113,23 @@ typedef struct				s_libx
 	int						bpp;
 	int						size_line;
 	int						endian;
+	int						width;
+	int						height;
+	t_obj_list_begin		*obj;
+	t_vec					*pos_all_pix;
+	t_camera				*cam;
 }							t_libx;
 
 void						error(int errno);
+t_libx						*mlx_struct_init(int width, int height, char *win_name);
+void						set_pixel_to_img(t_libx *m, int pix_x, int pix_y, t_color *color);
+void						start(t_libx *mlx);
+t_vec						*precalc_vec_cam(t_camera *cam);
+double						touch(t_obj *obj, t_vec *vec, t_point *origine);
+double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
+int							is_in_light(t_point *p, t_obj_list *list);
+void						antialiasing(t_libx *m);
+double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
+
 
 #endif
