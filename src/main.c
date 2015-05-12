@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:54:13 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:59:15 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@
 // t_camera			*calc_cam(void)
 // {
 // 	t_camera *o;
+
 
 // 	o = malloc(sizeof(t_camera));
 // 	o->type = NBOBJTYPE;

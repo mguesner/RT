@@ -6,12 +6,13 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 14:17:19 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:50:30 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <vecteur.h>
+#include <stdio.h>
 
 int		is_in_light(t_point *p, t_obj_list *list)
 {
