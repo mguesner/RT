@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 11:25:02 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 12:13:39 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_obj_list_begin	*p(void)
 	o->begin->obj->coord.y = 10.0;
 	o->begin->obj->coord.z = 500.0;
 	o->begin->obj->color.a = 0;
-	o->begin->obj->color.r = 100;
-	o->begin->obj->color.g = 40;
-	o->begin->obj->color.b = 20;
+	o->begin->obj->color.r = 150;
+	o->begin->obj->color.g = 0;
+	o->begin->obj->color.b = 150;
 	o->begin->next = NULL;
 	return (o);
 }

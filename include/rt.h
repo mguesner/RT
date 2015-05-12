@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 10:50:18 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 12:08:32 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ t_vec						*precalc_vec_cam(t_camera *cam);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
 int							is_in_light(t_point *p, t_obj_list *list, t_point *origine);
+void						antialiasing(t_libx *m);
 
 
 #endif

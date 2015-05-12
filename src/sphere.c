@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 15:47:03 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 11:23:54 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 12:11:54 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ double	dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o)
 	b = 2.0 * (vec->x * (o->x - sphere->coord.x) + vec->y * (o->y - sphere->coord.y)
 			+ vec->z * (o->z - sphere->coord.z));
 	c = (pow((o->x - sphere->coord.x), 2) + pow((o->y - sphere->coord.y), 2)
-		+ pow(((o->z - sphere->coord.z)), 2)) - pow(1000, 2);
+		+ pow(((o->z - sphere->coord.z)), 2)) - pow(2000, 2);
 	det = pow(b, 2) - 4.0 * a * c;
 	if (det > 0)
 		return (-b + sqrt(det) / (2.0 * a));
