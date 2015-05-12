@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 11:12:03 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:23:50 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct				s_plane
 	t_point					coord;
 	t_color					color;
 	t_vec					norm;
-	int						d;
 }							t_plane;
 
 typedef struct				s_sphere
@@ -128,7 +127,9 @@ void						start(t_libx *mlx);
 t_vec						*precalc_vec_cam(t_camera *cam);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
-int							is_in_light(t_point *p, t_obj_list *list, t_point *origine);
+int							is_in_light(t_point *p, t_obj_list *list);
+void						antialiasing(t_libx *m);
+double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
 
 
 #endif

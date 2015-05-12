@@ -34,6 +34,8 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/touch.c\
 	  $(SRCDIR)/light.c\
 	  $(SRCDIR)/sphere.c\
+	  $(SRCDIR)/plane.c\
+	  $(SRCDIR)/antialiasing.c\
 	  $(SRCDIR)/boucle_princ.c\
 	  $(SRCDIR)/precalc_vec_cam.c\
 	  mlx_src/mlx_init.c
