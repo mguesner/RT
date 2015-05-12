@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 11:03:52 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 11:25:02 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ t_obj_list_begin	*p(void)
 	o->begin->obj->type = SPHERE;
 	o->begin->obj->coord.x = 5000.0;
 	o->begin->obj->coord.y = 10.0;
-	o->begin->obj->coord.z = 10.0;
+	o->begin->obj->coord.z = 500.0;
 	o->begin->obj->color.a = 0;
 	o->begin->obj->color.r = 100;
 	o->begin->obj->color.g = 40;
 	o->begin->obj->color.b = 20;
-	o->begin->obj->radius = 10.0;
+	o->begin->next = NULL;
 	return (o);
 }
 //-----------------------
@@ -39,7 +39,7 @@ t_camera			*calc_cam(void)
 	t_camera *o;
 
 	o = malloc(sizeof(t_camera));
-	o->type = CAMERA;
+	o->type = NBOBJTYPE;
 	o->coord.x = 10;
 	o->coord.y = 10;
 	o->coord.z = 540;
@@ -78,7 +78,7 @@ int		main(int argc, char **argv)
 	cam = calc_cam();
 	// parser(argv[1]);
 	obj = p();
-	mlx = mlx_struct_init(1920, 1080, "lol");
+	mlx = mlx_struct_init(WIDTH, HEIGHT, "lol");
 	mlx->obj = obj;
 	mlx->cam = cam;
 	mlx->pos_all_pix = precalc_vec_cam(cam);

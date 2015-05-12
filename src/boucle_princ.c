@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 10:55:28 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 11:38:55 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void		start(t_libx *mlx)
 		pix_x = 0;
 		while (pix_x < mlx->width)
 		{
-			printf("ok\n");
 			go(mlx, (pix_x + pix_y * WIDTH), pix_x, pix_y);
 			pix_x++;
 		}
