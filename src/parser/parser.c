@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:39:28 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:25:35 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 15:24:31 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <sys/mman.h>
 #include <sys/stat.h>
 
-void	parser(char *file_name)
+t_obj_list_begin	parser(char *file_name)
 {
 	int			fd;
 	char	*line;
@@ -78,4 +78,5 @@ void	parser(char *file_name)
 		}
 		tmp = tmp->next;
 	}
+	return (e.obj_lst);
 }
