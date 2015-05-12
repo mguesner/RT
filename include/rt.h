@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:23:50 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:54:31 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ typedef struct				s_libx
 
 void						error(int errno);
 t_libx						*mlx_struct_init(int width, int height, char *win_name);
-void						set_pixel_to_img(t_libx *m, int pix_x, int pix_y, t_color *color);
+void						set_pixel_to_img(t_libx *m, int pix_x, int pix_y, t_color *color, double dist);
 void						start(t_libx *mlx);
 t_vec						*precalc_vec_cam(t_camera *cam);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);

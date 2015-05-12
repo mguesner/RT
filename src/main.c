@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:21:44 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:27:07 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_obj_list_begin	*p(void)
 	plan->color.r = 0;
 	plan->color.g = 100;
 	plan->color.b = 255;
-	((t_plane *)plan)->d = -1;
+	((t_plane *)plan)->coord.z = -1;
 	((t_plane *)plan)->norm.x = -1;
 	((t_plane *)plan)->norm.y = 0;
 	((t_plane *)plan)->norm.z = 0;
