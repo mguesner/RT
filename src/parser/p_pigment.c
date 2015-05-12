@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 14:41:19 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:45:23 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 15:20:19 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void					p_pigment(char *line, t_pars *e, int *off)
 
 	if (!ft_strncmp(line + *off, "}", (ret = 1)))
 	{
-		e->scope = CLOSE;
 		e->err = 0;
 		e->substep = SSBEGIN;
 	}

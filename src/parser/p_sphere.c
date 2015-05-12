@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 14:18:00 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:18:57 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 15:20:00 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@ void					p_sphere(char *line, t_pars *e, int *off)
 {
 	int		ret;
 
-	if (!ft_strncmp(line + *off, "}", (ret = 1)))
+	if (e->substep == SSPIGMENT)
+	{
+		ret = 0;
+		p_pigment(line, e, off);
+	}
+	else if (!ft_strncmp(line + *off, "}", (ret = 1)))
 	{
 		e->scope = CLOSE;
 		e->err = 0;
@@ -31,6 +36,11 @@ void					p_sphere(char *line, t_pars *e, int *off)
 		add_err(e, SCOPEMISS, line + *off);
 	else if (*(line + *off) == '<')
 		sphere_loc(line, e, off);
+	else if (!ft_strncmp(line + *off, "pigment", (ret = 7)))
+	{
+		e->scope = CLOSE;
+		e->substep = SSPIGMENT;
+	}
 	else
 		add_err(e, UNKPARAM, line + *off);
 	*off += ret;

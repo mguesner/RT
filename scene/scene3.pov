@@ -2,8 +2,8 @@ camera
 {
 	location <0,0,1> // la position de l'observateur
 	look_at <1,0,1>  // le point de vue
-	right x*image_width/image_height	// aspect ratio
-	angle 45 // l'angle de la caméra
+	//right x*image_width/image_height	// aspect ratio
+	//angle 45 // l'angle de la caméra
 }
 
 light_source { <3,-2,4>

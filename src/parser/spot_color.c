@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 15:14:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:51:36 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 15:20:40 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,5 @@ void					spot_color(char *line, t_pars *e, int *off)
 	// if (*(line + *off))
 	// 	add_err(e, BADARG, line + *off);
 	// else
-		e->cur->color = p;
+	e->cur->color = p;
 }
