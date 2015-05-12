@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 12:16:30 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:22:17 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,18 @@ void		go(t_libx *mlx, int pix, int pix_x, int pix_y)
 	while (tmp)
 	{
 		if ((res = touch(tmp->obj, &mlx->pos_all_pix[pix], &mlx->cam->coord) > 0))
+		{
+			if (dist != 0)
+			{
+				if (res < dist)
+					set_pixel_to_img(mlx, pix_x, pix_y, &tmp->obj->color);
+			}
+			else
+				set_pixel_to_img(mlx, pix_x, pix_y, &tmp->obj->color);
 			dist = res;
+		}
 		tmp = tmp->next;
 	}
-	if (dist > 0)
-		set_pixel_to_img(mlx, pix_x, pix_y, &mlx->obj->begin->obj->color);
 }
 
 void		start(t_libx *mlx)
@@ -46,7 +53,7 @@ void		start(t_libx *mlx)
 		}
 		pix_y++;
 	}
-	antialiasing(mlx);
+	// antialiasing(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 	ft_bzero(mlx->data, ((1079) * (mlx->size_line) + 1919 * (mlx->bpp / 8)));
 }

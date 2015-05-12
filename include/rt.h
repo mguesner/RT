@@ -6,11 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2015/05/12 12:08:32 by eruffieu         ###   ########.fr       */
-=======
-/*   Updated: 2015/05/12 11:12:03 by bsourd-b         ###   ########.fr       */
->>>>>>> 3d537b84c6b200a9ac28b52bfb26c042bef06b16
+/*   Updated: 2015/05/12 14:22:27 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +128,9 @@ void						start(t_libx *mlx);
 t_vec						*precalc_vec_cam(t_camera *cam);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
-int							is_in_light(t_point *p, t_obj_list *list, t_point *origine);
+int							is_in_light(t_point *p, t_obj_list *list);
 void						antialiasing(t_libx *m);
+double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
 
 
 #endif

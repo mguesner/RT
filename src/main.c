@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 13:12:29 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:21:44 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@
 t_obj_list_begin	*p(void)
 {
 	t_obj_list_begin *o;
-	t_obj			*
+	t_obj_list		*p;
+	t_obj			*plan;
+	t_obj_list		*pl;
+	t_obj			*planl;
+	plan = malloc(sizeof(t_plane));
+	p = malloc(sizeof(t_obj_list));
+	planl = malloc(sizeof(t_plane));
+	pl = malloc(sizeof(t_obj_list));
 	o = malloc(sizeof(t_obj_list_begin));
 	o->begin = malloc(sizeof(t_obj_list));
 	o->end = NULL;
@@ -30,8 +37,27 @@ t_obj_list_begin	*p(void)
 	o->begin->obj->color.r = 150;
 	o->begin->obj->color.g = 0;
 	o->begin->obj->color.b = 150;
-	((t_sphere *)o->begin->obj)->radius = 1000;
-	o->begin->next = NULL;
+	((t_sphere *)o->begin->obj)->radius = 2000;
+	plan->type = PLANE;
+	plan->coord.x = 7000;
+	plan->coord.y = 10;
+	plan->coord.z = 500;
+	planl->type = LIGHT;
+	planl->coord.x = 3000;
+	planl->coord.y = -1000;
+	planl->coord.z = 500;
+	plan->color.r = 0;
+	plan->color.g = 100;
+	plan->color.b = 255;
+	((t_plane *)plan)->d = -1;
+	((t_plane *)plan)->norm.x = -1;
+	((t_plane *)plan)->norm.y = 0;
+	((t_plane *)plan)->norm.z = 0;
+	p->obj = plan;
+	pl->obj = planl;
+	o->begin->next = p;
+	p->next = pl;
+	pl->next = NULL;
 	return (o);
 }
 //-----------------------
