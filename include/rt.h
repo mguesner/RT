@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:22:27 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:23:50 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct				s_plane
 	t_point					coord;
 	t_color					color;
 	t_vec					norm;
-	int						d;
 }							t_plane;
 
 typedef struct				s_sphere
