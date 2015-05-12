@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:59:15 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 15:25:00 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,14 @@ static void	usage(void)
 int			main(int argc, char **argv)
 {
 	// t_libx				*mlx;
-	// t_obj_list_begin	*obj;
+	t_obj_list_begin	obj;
 	// t_camera			*cam;
 
 	if (argc != 2)
 		usage();
 	// (void)(argv);
 	// cam = calc_cam();
-	parser(argv[1]);
+	obj = parser(argv[1]);
 	// obj = p();
 	// mlx = mlx_struct_init(WIDTH, HEIGHT, "lol");
 	// mlx->obj = obj;

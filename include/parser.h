@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:41:10 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 15:24:38 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ struct					s_pars
 	t_obj				*cur;
 };
 
-void					parser(char *file_name);
+t_obj_list_begin		parser(char *file_name);
 void					add_obj_lst(t_obj_list_begin *begin, t_obj *elem);
 void					init_pars(t_pars *e);
 void					check_line(char *line, t_pars *e);
