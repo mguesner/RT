@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/11 16:01:15 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 10:22:34 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int		main(int argc, char **argv)
 	obj = p();
 	mlx = mlx_struct_init(1920, 1080, "lol");
 	mlx->obj = obj;
+	mlx->cam = cam;
 	mlx->pos_all_pix = precalc_vec_cam(cam);
 	mlx_loop_hook(mlx->mlx, expose_hook, mlx);
 	mlx_loop(mlx->mlx);

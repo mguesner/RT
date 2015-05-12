@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/11 16:15:07 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 10:22:16 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ typedef struct				s_libx
 	int						height;
 	t_obj_list_begin		*obj;
 	t_vec					*pos_all_pix;
+	t_cam					*cam;
 }							t_libx;
 
 void						error(int errno);
