@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/11 15:13:04 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/12 14:41:10 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ typedef enum			e_step
 	PCONNE42,
 	NBSTEP
 }						t_step;
+
+typedef enum			e_substep
+{
+	SSBEGIN,
+	SSPIGMENT,
+	NBSUBSTEP
+}						t_substep;
 
 typedef enum			e_err_type
 {
@@ -66,6 +73,7 @@ struct					s_pars
 	char				*err_msg[NBERR];
 	t_err_begin			err_list;
 	t_step				step;
+	t_substep			substep;
 	int					nb_line;
 	int					scope;
 	int					err;
@@ -80,6 +88,8 @@ void					check_line(char *line, t_pars *e);
 void					add_err(t_pars *e, t_err_type err, char *line);
 void					check_pars_err(t_pars e);
 
+void					p_pigment(char *line, t_pars *e, int *off);
+
 void					p_begin(char *line, t_pars *e, int *off);
 
 void					p_camera(char *line, t_pars *e, int *off);
@@ -91,5 +101,13 @@ void					p_spot(char *line, t_pars *e, int *off);
 
 void					spot_loc(char *line, t_pars *e, int *off);
 void					spot_color(char *line, t_pars *e, int *off);
+
+void					p_plane(char *line, t_pars *e, int *off);
+
+void					plane_loc(char *line, t_pars *e, int *off);
+
+void					p_sphere(char *line, t_pars *e, int *off);
+
+void					sphere_loc(char *line, t_pars *e, int *off);
 
 #endif

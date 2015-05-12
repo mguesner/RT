@@ -20,6 +20,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/init_pars.c\
 	  $(SRCDIR)/parser/check_line.c\
 	  $(SRCDIR)/parser/add_err.c\
+	  $(SRCDIR)/parser/p_pigment.c\
 	  $(SRCDIR)/parser/p_begin.c\
 	  $(SRCDIR)/parser/p_camera.c\
 	  $(SRCDIR)/parser/cam_loc.c\
@@ -27,6 +28,10 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/p_spot.c\
 	  $(SRCDIR)/parser/spot_loc.c\
 	  $(SRCDIR)/parser/spot_color.c\
+	  $(SRCDIR)/parser/p_plane.c\
+	  $(SRCDIR)/parser/plane_loc.c\
+	  $(SRCDIR)/parser/p_sphere.c\
+	  $(SRCDIR)/parser/sphere_loc.c\
 	  $(SRCDIR)/parser/check_pars_err.c\
 	  $(SRCDIR)/error.c\
 	  $(SRCDIR)/main.c
