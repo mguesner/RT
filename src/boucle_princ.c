@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 14:54:10 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 15:04:00 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void		go(t_libx *mlx, int pix, int pix_x, int pix_y)
 			if (dist != 0)
 			{
 				if (res < dist)
-					set_pixel_to_img(mlx, pix_x, pix_y, &tmp->obj->color, res);
+					set_pixel_to_img(mlx, pix_x, pix_y, &tmp->obj->color);
 			}
 			else
-					set_pixel_to_img(mlx, pix_x, pix_y, &tmp->obj->color, res);
+					set_pixel_to_img(mlx, pix_x, pix_y, &tmp->obj->color);
 			dist = res;
 		}
 		tmp = tmp->next;
