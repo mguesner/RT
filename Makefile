@@ -43,6 +43,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/antialiasing.c\
 	  $(SRCDIR)/boucle_princ.c\
 	  $(SRCDIR)/precalc_vec_cam.c\
+	  $(SRCDIR)/cone.c\
 	  mlx_src/mlx_init.c
 
 LIB =

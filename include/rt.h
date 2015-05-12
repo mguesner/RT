@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 15:22:54 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 17:01:42 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,6 @@ double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
 int							is_in_light(t_point *p, t_obj_list *list);
 void						antialiasing(t_libx *m);
 double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
-
+double						dist_cone(t_cone *cone, t_vec *vec, t_point *o);
 
 #endif

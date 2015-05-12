@@ -25,3 +25,7 @@ sphere { <5000,10,1000>, 400 // coord centre et rayon
 sphere { <5000,810,1000>, 400 // coord centre et rayon
          pigment { color rgb <1,0,0> }
 }
+
+cone { <4000,810,1000>, 45, <1,0,0> // coord, angle, direction
+         pigment { color rgb <1,0,0> }
+}
