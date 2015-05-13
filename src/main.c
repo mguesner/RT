@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 17:18:57 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/13 13:01:22 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ int			main(int argc, char **argv)
 	mlx->cam->pix_hd.x = 1010;
 	mlx->cam->pix_hd.y = 970;
 	mlx->cam->pix_hd.z = 1090;
-	mlx->pos_all_pix = precalc_vec_cam(cam);
+	mlx->pix = precalc_vec_cam(cam);
 	mlx_loop_hook(mlx->mlx, expose_hook, mlx);
 	mlx_loop(mlx->mlx);
 }
