@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 13:00:09 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/13 13:07:38 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define TOTAL_PIX WIDTH * HEIGHT
+# define EPSILON 0.1E-7
 
 # include <vecteur.h>
 # include <color.h>
@@ -87,7 +88,7 @@ typedef struct				s_cone
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
-	int						angle;
+	double					angle;
 	t_vec					dir;
 }							t_cone;
 
