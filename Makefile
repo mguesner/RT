@@ -40,6 +40,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/light.c\
 	  $(SRCDIR)/sphere.c\
 	  $(SRCDIR)/plane.c\
+	  $(SRCDIR)/inters.c\
 	  $(SRCDIR)/antialiasing.c\
 	  $(SRCDIR)/boucle_princ.c\
 	  $(SRCDIR)/precalc_vec_cam.c\
