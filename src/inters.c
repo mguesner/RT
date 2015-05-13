@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/13 14:36:15 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/13 16:51:15 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,10 @@ double	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 	mlx->pix[pix]->pix_y = pix_y;
 	while (tmp)
 	{
-		if ((res = touch(tmp->obj, &mlx->pix[pix]->pos_pix_vec,
-			&mlx->cam->coord) > 0.0001))
+		res = touch(tmp->obj, &(mlx->pix[pix]->pos_pix_vec), &(mlx->cam->coord));
+		if ((res) > 0.0001)
 		{
+			res /= 2.0;
 			if (dist == -1.0)
 			{
 				mlx->pix[pix]->cur_obj = tmp->obj;

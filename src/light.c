@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/13 15:08:41 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/13 17:00:46 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static void		set_color(t_libx *m, t_pix *pix)
 	m->data[pos + 2] = pix->cur_obj->color.r;
 }
 
-static t_point	intersection_point(double r, t_vec a)
+static t_point	intersection_point(double r, t_vec a, t_point coord)
 {
 	t_point		ret;
 
-	ret.x = r * a.x;
-	ret.y = r * a.y;
-	ret.z = r * a.z;
+	ret.x = r * a.x + coord.x;
+	ret.y = r * a.y + coord.y;
+	ret.z = r * a.z + coord.z;
 	return (ret);
 }
 
@@ -62,7 +62,8 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 
 	if (vec_dir->cur_obj == NULL)
 		return ;
-	inter_point = intersection_point(vec_dir->dist, vec_dir->pos_pix_vec);
+
+	inter_point = intersection_point(vec_dir->dist, vec_dir->pos_pix_vec, mlx->cam->coord);
 	tmp = mlx->obj->begin;
 	while (tmp)
 	{
