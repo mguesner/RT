@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 15:58:00 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/12 17:18:57 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,13 @@ int			main(int argc, char **argv)
 			printf("type : SPHERE, coord : (%f, %f, %f), radius : %f, color : (%d, %d, %d, %d)\n"
 				, sphere->coord.x, sphere->coord.y, sphere->coord.z,
 				sphere->radius, sphere->color.a, sphere->color.r, sphere->color.g, sphere->color.b);
+		}
+		else if (tmp->obj->type == CONE)
+		{
+			t_cone *cone = (t_cone *)tmp->obj;
+			printf("type : CONE, coord : (%f, %f, %f), angle : %d, color : (%d, %d, %d, %d)\n"
+				, cone->coord.x, cone->coord.y, cone->coord.z,
+				cone->angle, cone->color.a, cone->color.r, cone->color.g, cone->color.b);
 		}
 		tmp = tmp->next;
 	}

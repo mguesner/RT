@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   touch.c                                            :+:      :+:    :+:   */
+/*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/12 10:32:06 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 16:20:35 by aleung-c         ###   ########.fr       */
+/*   Created: 2015/05/12 16:17:32 by aleung-c          #+#    #+#             */
+/*   Updated: 2015/05/12 17:25:42 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
-#include <vecteur.h>
 #include <stdio.h>
 
-double	touch(t_obj *obj, t_vec *vec, t_point *origine)
+double	dist_cone(t_cone *cone, t_vec *vec, t_point *o)
 {
-	if (obj->type == SPHERE)
-		return (dist_sphere((t_sphere *)obj, vec, origine));
-	else if (obj->type == PLANE)
-		return (dist_plane((t_plane *)obj, vec, origine));
-	else if (obj->type == CONE)
-		return (dist_cone((t_cone *)obj, vec, origine));
-	else
-		return (-1);
+	double dist;
+
+	dist = 0.0;
+	if (cone && vec && o)
+	{}
+	// printf("vec x = %lf, vec y = %lf, vec z = %lf", vec->x, vec->y, vec->z);
+	
+	
+
+
+	return (dist);
 }
