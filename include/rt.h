@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 17:01:42 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/13 13:07:38 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define TOTAL_PIX WIDTH * HEIGHT
+# define EPSILON 0.1E-7
 
 # include <vecteur.h>
 # include <color.h>
@@ -87,7 +88,7 @@ typedef struct				s_cone
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
-	int						angle;
+	double					angle;
 	t_vec					dir;
 }							t_cone;
 
@@ -104,6 +105,13 @@ typedef struct				s_obj_list_begin
 	int						size;
 }							t_obj_list_begin;
 
+typedef struct				s_pix
+{
+	t_obj					*cur_obj;
+	double					dist;
+	t_vec					*pos_pix_vec;
+}							t_pix;
+
 typedef struct				s_libx
 {
 	void					*window;
@@ -116,8 +124,8 @@ typedef struct				s_libx
 	int						width;
 	int						height;
 	t_obj_list_begin		*obj;
-	t_vec					*pos_all_pix;
 	t_camera				*cam;
+	t_pix					*pix;
 }							t_libx;
 
 void						error(int errno);
@@ -127,7 +135,6 @@ void						start(t_libx *mlx);
 t_vec						*precalc_vec_cam(t_camera *cam);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
-int							is_in_light(t_point *p, t_obj_list *list);
 void						antialiasing(t_libx *m);
 double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
 double						dist_cone(t_cone *cone, t_vec *vec, t_point *o);
