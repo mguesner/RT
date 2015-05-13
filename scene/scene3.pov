@@ -22,6 +22,6 @@ sphere { <5000,10,1000>, 400 // coord centre et rayon
          pigment { color rgb <1,0,0> }
 }
 
-sphere { <5000,810,1000>, 400 // coord centre et rayon
-         pigment { color rgb <1,0,0> }
+plane { <-1,0,1>, 1 // coord centre et rayon
+         pigment { color rgb <1,1,0> }
 }
