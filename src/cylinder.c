@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsourd-b <bsourd-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:20:04 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/12 13:48:17 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/13 10:42:02 by nguezell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ double	dist_cylinder(t_cylinder *cylinder, t_vec *vec, t_point *o)
 	double	c;
 	double	det;
 
-	a= ;
-	b= 2.0 * (v->x * (o->x - c->x) + );
-	c=;
+	a = pow(vec->x, 2) + pow(vec->y, 2);
+	b = 2.0 * (vec->x * (o->x - cylinder->coord.x) + vec->y * (o->y - cylinder->coord.y);
+	c = pow((o->x - cylinder->coord.x), 2) + pow((o->y - cylinder->coord.y), 2) - pow(cylinder->radius, 2);;
 	det = pow(b, 2) - 4.0 * a * c;
 	if (det > 0)
 		return (-b + sqrt(det) / (2.0 * a));

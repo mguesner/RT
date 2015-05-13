@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   boucle_princ.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/13 09:32:37 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/13 10:46:11 by nguezell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,5 @@ void		start(t_libx *mlx)
 		pix_y++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
-<<<<<<< HEAD
-=======
-	// printf("put\n");
->>>>>>> 38035632c242b60205964bfaeef5d4d064898a0d
 	ft_bzero(mlx->data, ((1079) * (mlx->size_line) + 1919 * (mlx->bpp / 8)));
 }
