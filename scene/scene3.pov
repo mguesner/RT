@@ -10,12 +10,20 @@ light_source { <2030,510,1000>
       color rgb<1,1,1>
 }
 
-light_source { <2030,-200,1000>
+light_source { <2030,-600,1000>
       color rgb<1,1,1>
 }
 
-sphere { <2030,10,0>, 200 // coord centre et rayon
+sphere { <2030,10,400>, 200 // coord centre et rayon
          pigment { color rgb <1,0,0> }
+}
+
+sphere { <2030,-250,400>, 100 // coord centre et rayon
+         pigment { color rgb <0,1,0> }
+}
+
+plane { <0,1.5,1>,  1// coord centre et rayon
+         pigment { color rgb <0,0.5,1> }
 }
 
 plane { <0,0,1>, 1 // coord centre et rayon

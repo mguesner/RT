@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 15:11:08 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 16:16:03 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <color.h>
 # include <libft.h>
 # include "../minilibx_macos/mlx.h"
+
+# include <stdio.h>
 
 typedef enum				e_obj_type
 {
