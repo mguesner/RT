@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 14:14:43 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:20:02 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,17 @@
 // 	return (o);
 // }
 
-int expose_hook(t_libx *mlx)
+int		expose_hook(t_libx *mlx)
 {
 	start(mlx);
+	return (0);
+}
+
+int		key_hook( int keycode, t_libx *mlx)
+{
+	(void)(mlx);
+	(void)(keycode);
+	exit(0);
 	return (0);
 }
 
@@ -163,5 +171,6 @@ int			main(int argc, char **argv)
 	mlx->cam->pix_hd.z = 1090;
 	mlx->pix = precalc_vec_cam(cam);
 	mlx_loop_hook(mlx->mlx, expose_hook, mlx);
+	mlx_key_hook(mlx->window, key_hook, mlx);
 	mlx_loop(mlx->mlx);
 }

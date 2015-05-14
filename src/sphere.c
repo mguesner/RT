@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 15:47:03 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 11:48:49 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 13:41:37 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ double	dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o)
 	{
 		double ret = (-(b) + sqrt(det)) / 2.0 * a;
 		double ret2 = (-(b) - sqrt(det)) / 2.0 * a;
-		printf("%f, %f\n", ret, ret2);
 		return (ret2 > 0.0001 ? ret2 : ret);
 	}
 	return (-1);
