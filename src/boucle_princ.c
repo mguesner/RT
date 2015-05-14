@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 10:00:29 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:00:26 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		start(t_libx *mlx)
 		while (pix_x < mlx->width)
 		{
 			(mlx->pix[(pix_x + pix_y * WIDTH)])->dist =
-			inters(mlx, (pix_x + pix_y * WIDTH), pix_x, pix_y);
+				inters(mlx, (pix_x + pix_y * WIDTH), pix_x, pix_y);
 			calc_lum(mlx, mlx->pix[(pix_x + pix_y * WIDTH)]);
 			pix_x++;
 		}

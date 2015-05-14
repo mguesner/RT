@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 11:46:57 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:30:05 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,23 @@ double	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 		res = touch(tmp->obj, &(mlx->pix[pix]->pos_pix_vec), &(mlx->cam->coord));
 		if ((res) > 0.0001)
 		{
-			res /= 2.0;
 			if (dist == -1.0)
 			{
 				mlx->pix[pix]->cur_obj = tmp->obj;
 				dist = res;
+				mlx->pix[pix]->color->a = 0;
+				mlx->pix[pix]->color->b = 0;
+				mlx->pix[pix]->color->g = 0;
+				mlx->pix[pix]->color->r = 0;
 			}
 			else if (res < dist)
 			{
 				mlx->pix[pix]->cur_obj = tmp->obj;
 				dist = res;
+				mlx->pix[pix]->color->a = 0;
+				mlx->pix[pix]->color->b = 0;
+				mlx->pix[pix]->color->g = 0;
+				mlx->pix[pix]->color->r = 0;
 			}
 		}
 		tmp = tmp->next;
