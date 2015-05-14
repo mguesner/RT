@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:52:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 15:20:25 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/13 10:32:42 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_line(char *line, t_pars *e)
 	while (*(line + off))
 	{
 		// ft_printf("%d__%s__ -> %d\n", e->nb_line, line + off, e->step);
-		e->tools[e->step](line, e, &off);
+		// e->tools[e->step](line, e, &off);
 		if (e->err)
 			break ;
 		ft_strtrimbadass(line + off);

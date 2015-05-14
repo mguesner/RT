@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 13:34:36 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:21:08 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,12 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 		return ;
 	inter_point = translate(mlx->cam->coord,
 							vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
-	tmp = mlx->obj->begin;
+	tmp = mlx->spots.begin;
 	while (tmp)
 	{
-		if (tmp->obj->type == LIGHT)
-		{
-			light_dist = shadow(tmp->obj, mlx->obj->begin, inter_point);
-			if (!light_dist)
-				set_color(mlx, vec_dir);
-		}
+		light_dist = shadow(tmp->obj, mlx->obj.begin, inter_point);
+		if (!light_dist)
+			set_color(mlx, vec_dir);
 		tmp = tmp->next;
 	}
 }

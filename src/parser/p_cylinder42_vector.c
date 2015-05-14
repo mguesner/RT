@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cam_look_at.c                                      :+:      :+:    :+:   */
+/*   p_cylinder42_vector.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/11 14:00:13 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 16:08:35 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/14 12:48:51 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/14 12:54:22 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-#include <stdlib.h>
 
-void					cam_look_at(t_pars *e, t_lex **node)
+void					p_cylinder42_vector(t_pars *e, t_lex **node)
 {
-	t_lex		*tmp;
-	t_vec		dir;
+	t_vec	v;
 
-	ft_printf("cam_look_at->");
-	tmp = (*node)->next;
-	if (!tmp || tmp->token_type != VECTOR)
-		add_err(e, BADARG, tmp->value);
-	else
-	{
-		*node = (*node)->next;
-		fill_vector(e, tmp->value, &dir);
-		((t_camera *)e->cur)->dir = dir;
-	}
+	fill_vector(e, (*node)->value, &v);
+	if (!e->nb_vector && e->cur)
+		e->cur->coord = *((t_point *)&v);
+	else if (e->cur)
+		((t_cylinder *)e->cur)->dir = v;
+	e->nb_vector++;
 }

@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 11:10:07 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 14:37:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 13:04:32 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ static void			init_pars2(t_pars *e)
 
 void				init_pars(t_pars *e)
 {
+	ft_bzero(e, sizeof(t_pars));
 	e->step = PBEGIN;
 	e->substep = SSBEGIN;
+	e->scope = 0;
 	e->nb_line = 1;
 	e->err_list.begin = NULL;
 	e->err_list.end = NULL;
 	e->err_list.size = 0;
-	e->scope = CLOSE;
 	e->cur = NULL;
 	e->err = 0;
 	e->obj_lst.begin = NULL;
@@ -39,5 +40,7 @@ void				init_pars(t_pars *e)
 	e->tools[PSPOT] = &p_spot;
 	e->tools[PPLANE] = &p_plane;
 	e->tools[PSPHERE] = &p_sphere;
+	e->tools[PCYLINDER42] = &p_cylinder42;
+	e->tools[PCONE42] = &p_cone42;
 	init_pars2(e);
 }

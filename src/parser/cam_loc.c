@@ -5,62 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 17:35:26 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/11 15:05:15 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/13 15:37:12 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/13 16:29:54 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-#include <stdlib.h>
 
-static int				fill(char **line, double *dst, int *off)
+void					cam_loc(t_pars *e, t_lex **node)
 {
-	int			i;
-	int			dot;
+	t_lex		*tmp;
+	t_point		loc;
 
-	ft_strtrimbadass(*line + *off);
-	*dst = atof(*line + *off);
-	i = 0;
-	dot = 0;
-	while ((*line + *off)[i] && (ft_isdigit((*line + *off)[i])
-		|| (*line + *off)[i] == '.' || (*line + *off)[i] == '-'))
+	ft_printf("cam_loc->");
+	tmp = (*node)->next;
+	if (!tmp || tmp->token_type != VECTOR)
+		add_err(e, BADARG, tmp->value);
+	else
 	{
-		dot += (*line + *off)[i] == '.' ? 1 : 0;
-		i++;
+		*node = (*node)->next;
+		fill_vector(e, tmp->value, (t_vec *)&loc);
+		if (e->cur)
+			e->cur->coord = loc;
 	}
-	if (dot > 1 || !i)
-		return (0);
-	*off += i;
-	ft_strtrimbadass(*line + *off);
-	if (*(*line + *off) == ',')
-		(*off)++;
-	return (1);
-}
-
-void					cam_loc(char *line, t_pars *e, int *off)
-{
-	t_point		p;
-
-	ft_strtrimbadass(line + *off);
-	if (*(line + *off) != '<')
-	{
-		add_err(e, BADARG, line + *off);
-		return ;
-	}
-	(*off)++;
-	if (!fill(&line, &(p.x), off) || !fill(&line, &(p.y), off)
-		|| !fill(&line, &(p.z), off))
-	{
-		add_err(e, BADARG, line + *off);
-		return ;
-	}
-	if (*(line + *off) != '>')
-	{
-		add_err(e, BADARG, line + *off);
-		return ;
-	}
-	(*off)++;
-	if (*(line + *off))
-		add_err(e, BADARG, line + *off);
-	e->cur->coord = p;
 }

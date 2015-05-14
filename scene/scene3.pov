@@ -7,14 +7,13 @@ camera
 }
 
 light_source { <2030,1010,510>
-      color rgb<1,1,1>*0.8
+      color rgb<1,1,1>
 }
 
 sphere { <2030,10,0>, 200 // coord centre et rayon
          pigment { color rgb <1,0,0> }
 }
 
-plane { <0,0,1>, 1000 // coord centre et rayon
+plane { <0,0,1>, 1 // coord centre et rayon
          pigment { color rgb <1,1,0> }
 }
-
