@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 14:32:16 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/13 14:35:25 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 11:26:02 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_pix			**precalc_vec_cam(t_camera *cam)
 	int			pix_y;
 	t_pix		**vec_tab;
 	t_point		pos_pix;
+	t_vec		test;
 
 	vec_tab = (t_pix **)malloc(TOTAL_PIX * sizeof(t_pix *));
 	pix_y = 0;
@@ -52,7 +53,8 @@ t_pix			**precalc_vec_cam(t_camera *cam)
 		{
 			vec_tab[pix_x + pix_y * WIDTH] = malloc(sizeof(t_pix));
 			pos_pix = calc_pos_pix(cam, pix_x, pix_y);
-			vec_tab[pix_x + pix_y * WIDTH]->pos_pix_vec = normalize((make_vec(pos_pix, cam->coord)));
+			test = (make_vec(pos_pix, cam->coord));
+			vec_tab[pix_x + pix_y * WIDTH]->pos_pix_vec = normalize(test);
 			pix_x++;
 		}
 		pix_y++;

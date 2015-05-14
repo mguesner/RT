@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/24 13:29:38 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/02/27 14:40:17 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 11:50:45 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ double	dist_sphere(t_all *c, t_lst *temp)
 	double	sa;
 	double	sb;
 	double	sc;
+	double det;
 
 	distrotion_vector(c, temp);
 	sa = (c->rotation->x * c->rotation->x) +
@@ -52,10 +53,14 @@ double	dist_sphere(t_all *c, t_lst *temp)
 		temp->obj->pos->y * c->camera->pos->y +
 		temp->obj->pos->z * c->camera->pos->z) -
 		(temp->obj->other * temp->obj->other);
-		if ((sb * sb - 4.0 * sa * sc) > 0)
-			return (((-(sb)-sqrt((sb * sb) - 4.0 * sa * sc))) / 2.0 * sa);
-		else
-			return (-1);
+	det = pow(sb, 2) - 4.0 * sa * sc;
+	if (det > 0)
+	{
+		double ret = (-(sb) + sqrt(det)) / 2.0 * sa;
+		double ret2 = (-(sb) - sqrt(det)) / 2.0 * sa;
+		return (ret2 > 0.0001 ? ret2 : ret);
+	}
+	return (-1);
 }
 
 double	dist_plan(t_all *c, t_lst *temp)
