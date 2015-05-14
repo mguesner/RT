@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 13:25:10 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:09:19 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ typedef struct			s_err
 
 typedef struct			s_err_begin
 {
-	t_err		*begin;
-	t_err		*end;
+	t_err				*begin;
+	t_err				*end;
 	int					size;
 }						t_err_begin;
 
@@ -97,6 +97,7 @@ struct					s_pars
 	char				*err_msg[NBERR];
 	t_err_begin			err_list;
 	t_lex_begin			lex_lst;
+	t_obj_list_begin	obj_lst;
 	t_step				step;
 	t_substep			substep;
 	int					nb_line;
@@ -104,12 +105,12 @@ struct					s_pars
 	int					err;
 	int					nb_vector;
 	int					nb_value;
-	t_obj_list_begin	obj_lst;
 	t_obj				*cur;
 };
 
 void					lex_pars(char *file_name, t_libx *mlx);
 void					init_pars(t_pars *e);
+void					clean_pars(t_pars *e);
 
 void					lexer(int fd, t_pars *e);
 void					add_lex_node(t_lex_begin *begin, t_token token, char *value);

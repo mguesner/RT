@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   darkening.c                                        :+:      :+:    :+:   */
+/*   difference.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bsourd-b <bsourd-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/07 13:52:04 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 11:25:57 by bsourd-b         ###   ########.fr       */
+/*   Created: 2015/05/13 11:13:42 by bsourd-b          #+#    #+#             */
+/*   Updated: 2015/05/13 12:36:36 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/color.h"
+#include <rt.h>
 
-t_color					darkening(t_color c)
+double	dist_difference(t_obj *obj1, t_obj *obj2, t_vec *vec, t_point *o)
 {
-	t_color		ret;
+	double	dist1;
+	double	dist2;
 
-	ret.r = c.r - 10;
-	if (ret.r < 0)
-		ret.r = 0;
-	ret.g = c.g - 10;
-	if (ret.g < 0)
-		ret.g = 0;
-	ret.b = c.b - 10;
-	if (ret.b < 0)
-		ret.b = 0;
-	return (ret);
+	dist1 = touch(obj1, vec, o);
+	dist2 = touch(obj2, vec, o);
+
+	if (dist2 > 0 || dist1 < 0)
+		return (-1);
+	return (dist1);
 }

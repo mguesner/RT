@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 13:39:25 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:20:20 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,20 +100,19 @@ int			main(int argc, char **argv)
 	t_libx				mlx;
 	// t_obj_list_begin	obj;
 	// t_camera			*cam;
-
+	ft_bzero(&mlx, sizeof(t_libx));
 	if (argc != 2)
 		usage();
-	mlx.spots = ft_memalloc(sizeof(t_obj_list_begin));
-	mlx.obj = ft_memalloc(sizeof(t_obj_list_begin));
 	lex_pars(argv[1], &mlx);
 
 	// DEBUG
 
 	t_camera *cam = mlx.cam;
-	printf("type : CAMERA, coord : (%f, %f, %f), color : (%d, %d, %d, %d), dir : (%f, %f, %f)\n"
+	if (cam)
+		printf("type : CAMERA, coord : (%f, %f, %f), color : (%d, %d, %d, %d), dir : (%f, %f, %f)\n"
 				, cam->coord.x, cam->coord.y, cam->coord.z, cam->color.a, cam->color.r, cam->color.g, cam->color.b
 				, cam->dir.x, cam->dir.y, cam->dir.z);
-	t_obj_list	*spots = mlx.spots->begin;
+	t_obj_list	*spots = mlx.spots.begin;
 	while (spots)
 	{
 		t_light *light = (t_light *)spots->obj;
@@ -121,7 +120,7 @@ int			main(int argc, char **argv)
 			, light->coord.x, light->coord.y, light->coord.z, light->color.a, light->color.r, light->color.g, light->color.b);
 		spots = spots->next;
 	}
-	t_obj_list	*obj = mlx.obj->begin;
+	t_obj_list	*obj = mlx.obj.begin;
 	while (obj)
 	{
 		if (obj->obj->type == PLANE)

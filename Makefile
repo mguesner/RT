@@ -47,6 +47,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/p_spot_word.c\
 	  $(SRCDIR)/parser/add_obj_lst.c\
 	  $(SRCDIR)/parser/init_pars.c\
+	  $(SRCDIR)/parser/clean_parse.c\
 	  $(SRCDIR)/parser/check_line.c\
 	  $(SRCDIR)/parser/add_err.c\
 	  $(SRCDIR)/parser/p_cylinder42.c\

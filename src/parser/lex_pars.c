@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 09:19:21 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 13:32:39 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:19:20 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void					lex_pars(char *file_name, t_libx *mlx)
 {
 	int			fd;
 	t_obj_list	*lst;
+	t_obj_list	*next;
 	t_pars		e;
 
 	init_pars(&e);
@@ -26,18 +27,18 @@ void					lex_pars(char *file_name, t_libx *mlx)
 	lexer(fd, &e);
 
 	//DEBUG
-	t_lex *tmp;
-	tmp = e.lex_lst.begin;
-	while (tmp)
-	{
-		ft_printf("type : %s, value : %s\n", tmp->token_type == 0 ? "WORD"
-			: tmp->token_type == 1 ? "VALUE"
-			: tmp->token_type == 2 ? "OPENSCOPE"
-			: tmp->token_type == 3 ? "CLOSESCOPE"
-			: "VECTOR"
-			,tmp->value);
-		tmp = tmp->next;
-	}
+	// t_lex *tmp;
+	// tmp = e.lex_lst.begin;
+	// while (tmp)
+	// {
+	// 	ft_printf("type : %s, value : %s\n", tmp->token_type == 0 ? "WORD"
+	// 		: tmp->token_type == 1 ? "VALUE"
+	// 		: tmp->token_type == 2 ? "OPENSCOPE"
+	// 		: tmp->token_type == 3 ? "CLOSESCOPE"
+	// 		: "VECTOR"
+	// 		,tmp->value);
+	// 	tmp = tmp->next;
+	// }
 	//END DEBUG
 
 	parser(&e);
@@ -101,14 +102,36 @@ void					lex_pars(char *file_name, t_libx *mlx)
 	//END DEBUG
 
 	lst = e.obj_lst.begin;
-	while (lst)
+	next = lst;
+	while (next)
 	{
+		next = next->next;
 		if (lst->obj->type == CAM)
+		{
 			mlx->cam = (t_camera *)lst->obj;
+			ft_memdel((void **)&lst);
+		}
 		else if (lst->obj->type == LIGHT)
-			add_obj_lst(mlx->spots, lst->obj);
+		{
+			if (!mlx->spots.size)
+				mlx->spots.begin = lst;
+			else
+				mlx->spots.end->next = lst;
+			mlx->spots.size++;
+			mlx->spots.end = lst;
+			lst->next = NULL;
+		}
 		else
-			add_obj_lst(mlx->obj, lst->obj);
-		lst = lst->next;
+		{
+			if (!mlx->obj.size)
+				mlx->obj.begin = lst;
+			else
+				mlx->obj.end->next = lst;
+			mlx->obj.size++;
+			mlx->obj.end = lst;
+			lst->next = NULL;
+		}
+		lst = next;
 	}
+	clean_pars(&e);
 }
