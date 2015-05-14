@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 15:00:57 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/14 15:07:51 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 	{
 		if (tmp->obj->type == LIGHT)
 		{
-			light_dist = shadow(tmp->obj, mlx->obj->begin, inter_point);
+			light_dist = shadow(tmp->obj, mlx->obj.begin, inter_point);
 			if (!light_dist)
 			{
 				set_color_light(tmp->obj, vec_dir, inter_point);
