@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 15:02:36 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/14 15:11:08 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ typedef struct				s_libx
 }							t_libx;
 
 void						error(int errno);
-t_libx						*mlx_struct_init(int width, int height, char *win_name);
+void						mlx_struct_init(int width, int height, char *win_name, t_libx *mlx);
 void						start(t_libx *mlx);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);

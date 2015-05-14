@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 14:20:20 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:26:01 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,17 @@
 // 	return (o);
 // }
 
-int expose_hook(t_libx *mlx)
+int		expose_hook(t_libx *mlx)
 {
 	start(mlx);
+	return (0);
+}
+
+int		key_hook( int keycode, t_libx *mlx)
+{
+	(void)(mlx);
+	(void)(keycode);
+	exit(0);
 	return (0);
 }
 
@@ -155,6 +163,20 @@ int			main(int argc, char **argv)
 		}
 		obj = obj->next;
 	}
+	mlx_struct_init(WIDTH, HEIGHT, "lol", &mlx);
+	mlx.cam->pix_bg.x = 1010;
+	mlx.cam->pix_bg.y = -950.0;
+	mlx.cam->pix_bg.z = 10;
+	mlx.cam->pix_hg.x = 1010;
+	mlx.cam->pix_hg.y = -950.0;
+	mlx.cam->pix_hg.z = 1090;
+	mlx.cam->pix_hd.x = 1010;
+	mlx.cam->pix_hd.y = 970;
+	mlx.cam->pix_hd.z = 1090;
+	mlx.pix = precalc_vec_cam(cam);
+	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);
+	mlx_key_hook(mlx.window, key_hook, &mlx);
+	mlx_loop(mlx.mlx);
 	// END DEBUG
 	// cam = calc_cam();
 	// obj = parser(argv[1]);
