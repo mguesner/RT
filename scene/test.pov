@@ -2,12 +2,12 @@ camera
 {
 	location <0,1,-3> // la position de l'observateur
 	look_at <0,1,0>  // le point de vue
-	right x*image_width/image_height	// aspect ratio
-	angle 45 // l'angle de la caméra
+	//right x*image_width/image_height	// aspect ratio
+	//angle 45 // l'angle de la caméra
 }
 
 light_source { <300, 1500,-2500>
-		color rgb<1,1,1>*0.8
+		color rgb<1,1,1>
 }
 
 plane { <0,1,0>, 0

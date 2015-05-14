@@ -6,34 +6,20 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 14:48:49 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/11 15:20:03 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/13 16:37:37 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-void					p_spot(char *line, t_pars *e, int *off)
+void					p_spot(t_pars *e, t_lex **node)
 {
-	int		ret;
+	t_fptoken		tools[NBTOKEN];
 
-	if (!ft_strncmp(line + *off, "}", (ret = 1)))
-	{
-		e->scope = CLOSE;
-		e->err = 0;
-		e->step = PBEGIN;
-		add_obj_lst(&e->obj_lst, e->cur);
-	}
-	else if (e->err)
-		;
-	else if (!ft_strncmp(line + *off, "{", (ret = 1)))
-		e->scope = OPEN;
-	else if (e->scope == CLOSE)
-		add_err(e, SCOPEMISS, line + *off);
-	else if (*(line + *off) == '<')
-		spot_loc(line, e, off);
-	else if (!ft_strncmp(line + *off, "color rgb", (ret = 9)))
-		spot_color(line + ret, e, off);
-	else
-		add_err(e, UNKPARAM, line + *off);
-	*off += ret;
+	tools[WORD] = &p_spot_word;
+	tools[VALUE] = &add_error_begin;
+	tools[OPENSCOPE] = &p_openscope;
+	tools[CLOSESCOPE] = &p_closescope;
+	tools[VECTOR] = &p_sphere_vector;
+	tools[(*node)->token_type](e, node);
 }

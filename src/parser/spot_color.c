@@ -6,94 +6,70 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 15:14:23 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 15:20:40 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/13 16:49:25 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 #include <stdlib.h>
 
-static int				fill(char **line, int *dst, int *off)
+static void				next(t_pars *e, char *value, int *i)
 {
-	int			i;
-	int			dot;
+	int		dot;
+	int		sign;
 
-	ft_strtrimbadass(*line + *off);
-	*dst = atof(*line + *off) * 255;
-	i = 0;
 	dot = 0;
-	while ((*line + *off)[i] && (ft_isdigit((*line + *off)[i]) || (*line + *off)[i] == '.'))
+	sign = 0;
+	while (ft_isdigit(value[*i]) || value[*i] == '.')
 	{
-		dot += (*line + *off)[i] == '.' ? 1 : 0;
-		i++;
+		if (value[*i] == '.')
+			dot++;
+		(*i)++;
 	}
-	if (!i)
-		return (0);
-	*off += i;
-	ft_strtrimbadass(*line + *off);
-	if (*(*line + *off) == ',')
-		(*off)++;
-	return (1);
+	if (!*i || dot > 1)
+	{
+		ft_printf("(i = %d, dot = %d)", *i, dot);
+		add_err(e, BADARG, value);
+	}
+	while (value[*i] == ' ' || value[*i] == '\t')
+		(*i)++;
+	if (value[*i] == ',')
+		(*i)++;
+	while (value[*i] == ' ' || value[*i] == '\t')
+		(*i)++;
 }
 
-static int				get_alpha(char *line, int *dst, int *off)
+void					color(t_pars *e, t_lex **node)
 {
-	int			i;
-	int			dot;
+	t_color	c;
+	int		i;
+	char	*value;
+	t_lex	*tmp;
 
-	ft_strtrimbadass(line + *off);
-	if (*(line + *off) != '*')
+	ft_printf("color->");
+	tmp = (*node)->next;
+	if (!tmp || tmp->token_type != VECTOR)
 	{
-		*dst = 255;
-		return (1);
+		ft_printf("(fail next)");
+		add_err(e, BADARG, tmp->value);
+		return ;
 	}
-	(*off)++;
-	ft_strtrimbadass(line + *off);
-	*dst = atof(line + *off) * 255;
-	i = 0;
-	dot = 0;
-	while ((line + *off)[i] && (ft_isdigit((line + *off)[i])
-		|| (line + *off)[i] == '.'))
-	{
-		dot += (line + *off)[i] == '.' ? 1 : 0;
+	*node = (*node)->next;
+	value = (tmp)->value;
+	i = 1;
+	c.r = atof(value + i) * 255;
+	next(e, value, &i);
+	c.g = atof(value + i) * 255;
+	next(e, value, &i);
+	c.b = atof(value + i) * 255;
+	next(e, value, &i);
+	while (value[i] == ' ' || value[i] == '\t')
 		i++;
-	}
-	if (dot > 1 || !i)
-		return (0);
-	*off += i;
-	return (1);
-}
-
-void					spot_color(char *line, t_pars *e, int *off)
-{
-	t_color		p;
-
-	ft_strtrimbadass(line + *off);
-	if (*(line + *off) != '<')
+	if (value[i] != '>')
 	{
-		add_err(e, BADARG, line + *off);
-		return ;
+		ft_printf("(value[i] = %c)", value[i]);
+		add_err(e, BADARG, value);
 	}
-	(*off)++;
-	if (!fill(&line, &(p.r), off) || !fill(&line, &(p.g), off)
-		|| !fill(&line, &(p.b), off))
-	{
-		add_err(e, BADARG, line + *off);
-		return ;
-	}
-	if (*(line + *off) != '>')
-	{
-		add_err(e, BADARG, line + *off);
-		return ;
-	}
-	(*off)++;
-	if (!get_alpha(line, &p.a, off))
-	{
-		add_err(e, BADARG, line + *off);
-		return ;
-	}
-	// if (*(line + *off))
-	// 	add_err(e, BADARG, line + *off);
-	// else
-	e->cur->color = p;
+	if (e->cur)
+		e->cur->color = c;
 }
