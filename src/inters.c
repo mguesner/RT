@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 14:21:47 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 15:10:32 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,19 @@ double	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 			{
 				mlx->pix[pix]->cur_obj = tmp->obj;
 				dist = res;
+				mlx->pix[pix]->color->a = 0;
+				mlx->pix[pix]->color->b = 0;
+				mlx->pix[pix]->color->g = 0;
+				mlx->pix[pix]->color->r = 0;
 			}
 			else if (res < dist)
 			{
 				mlx->pix[pix]->cur_obj = tmp->obj;
 				dist = res;
+				mlx->pix[pix]->color->a = 0;
+				mlx->pix[pix]->color->b = 0;
+				mlx->pix[pix]->color->g = 0;
+				mlx->pix[pix]->color->r = 0;
 			}
 		}
 		tmp = tmp->next;
