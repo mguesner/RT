@@ -6,12 +6,11 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/13 17:00:46 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 11:58:32 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
-#include <vecteur.h>
 #include <stdio.h>
 
 static void		set_color(t_libx *m, t_pix *pix)
@@ -24,32 +23,20 @@ static void		set_color(t_libx *m, t_pix *pix)
 	m->data[pos + 2] = pix->cur_obj->color.r;
 }
 
-static t_point	intersection_point(double r, t_vec a, t_point coord)
-{
-	t_point		ret;
-
-	ret.x = r * a.x + coord.x;
-	ret.y = r * a.y + coord.y;
-	ret.z = r * a.z + coord.z;
-	return (ret);
-}
-
-static int		shadow(t_obj *obj, t_obj_list *list, t_point inter)
+static double	shadow(t_obj *obj, t_obj_list *tmp, t_point inter)
 {
 	double		res;
-	t_obj_list	*tmp;
 	t_vec		vec;
 	double		norm;
 
-	tmp = list;
 	vec = make_vec(obj->coord, inter);
 	norm = norme(vec);
 	vec = normalize(vec);
 	while (tmp)
 	{
 		res = touch(tmp->obj, &vec, &inter);
-		if (tmp->obj != obj && res > 0.001 && res < norm)
-			return (1);
+		if (res > 0.001 && res < norm)
+			return (res);
 		tmp = tmp->next;
 	}
 	return (0);
@@ -59,17 +46,19 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 {
 	t_point		inter_point;
 	t_obj_list	*tmp;
+	double		light_dist;
 
 	if (vec_dir->cur_obj == NULL)
 		return ;
-
-	inter_point = intersection_point(vec_dir->dist, vec_dir->pos_pix_vec, mlx->cam->coord);
+	inter_point = translate(mlx->cam->coord,
+							vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
 	tmp = mlx->obj->begin;
 	while (tmp)
 	{
 		if (tmp->obj->type == LIGHT)
 		{
-			if (!shadow(tmp->obj, mlx->obj->begin, inter_point))
+			light_dist = shadow(tmp->obj, mlx->obj->begin, inter_point);
+			if (!light_dist)
 				set_color(mlx, vec_dir);
 		}
 		tmp = tmp->next;
