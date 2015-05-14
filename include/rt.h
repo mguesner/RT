@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 14:00:01 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/14 15:02:36 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ typedef struct				s_cylinder
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
-	t_vec					dir;
 	double					radius;
+	t_vec					dir;
 }							t_cylinder;
 
 typedef struct				s_cone
@@ -126,8 +126,9 @@ typedef struct				s_libx
 	int						endian;
 	int						width;
 	int						height;
-	t_obj_list_begin		*obj;
 	t_camera				*cam;
+	t_obj_list_begin		spots;
+	t_obj_list_begin		obj;
 	t_pix					**pix;
 }							t_libx;
 

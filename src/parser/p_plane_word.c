@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cam_look_at.c                                      :+:      :+:    :+:   */
+/*   p_plane_word.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/11 14:00:13 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 16:08:35 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/13 14:25:29 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/13 16:45:24 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-#include <stdlib.h>
 
-void					cam_look_at(t_pars *e, t_lex **node)
+void					p_plane_word(t_pars *e, t_lex **node)
 {
-	t_lex		*tmp;
-	t_vec		dir;
+	char		*tmp;
+	t_f_parse	tools[NBSUBSTEP];
 
-	ft_printf("cam_look_at->");
-	tmp = (*node)->next;
-	if (!tmp || tmp->token_type != VECTOR)
-		add_err(e, BADARG, tmp->value);
-	else
+	tools[SSPIGMENT] = &p_pigment;
+	if (e->substep != SSBEGIN)
 	{
-		*node = (*node)->next;
-		fill_vector(e, tmp->value, &dir);
-		((t_camera *)e->cur)->dir = dir;
+		tools[e->substep](e, node);
+		return ;
 	}
+	tmp = (*node)->value;
+	if (!strcmp(tmp, "pigment"))
+		e->substep = SSPIGMENT;
+	else
+		add_err(e, UNKOBJ, (*node)->value);
 }

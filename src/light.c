@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 14:10:04 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/14 15:00:57 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 		return ;
 	inter_point = translate(mlx->cam->coord,
 							vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
-	tmp = mlx->obj->begin;
+	tmp = mlx->spots.begin;
 	while (tmp)
 	{
 		if (tmp->obj->type == LIGHT)

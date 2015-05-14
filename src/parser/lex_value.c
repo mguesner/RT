@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cam_look_at.c                                      :+:      :+:    :+:   */
+/*   lex_value.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/11 14:00:13 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 16:08:35 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/13 12:34:32 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/13 12:35:51 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-#include <stdlib.h>
+#include <errno.h>
 
-void					cam_look_at(t_pars *e, t_lex **node)
+void					lex_value(char *line, t_pars *e, int *offset, int size)
 {
-	t_lex		*tmp;
-	t_vec		dir;
+	int		i;
+	char	*value;
 
-	ft_printf("cam_look_at->");
-	tmp = (*node)->next;
-	if (!tmp || tmp->token_type != VECTOR)
-		add_err(e, BADARG, tmp->value);
-	else
-	{
-		*node = (*node)->next;
-		fill_vector(e, tmp->value, &dir);
-		((t_camera *)e->cur)->dir = dir;
-	}
+	i = 0;
+	while (*offset + i < size && (ft_isdigit(*(line + *offset + i)) || *(line + *offset + i) == '.'))
+		i++;
+	if (!(value = ft_memalloc(i + 1)))
+		error(errno);
+	ft_strncpy(value, line + *offset, i);
+	add_lex_node(&e->lex_lst, VALUE, value);
+	*offset += i;
+
 }

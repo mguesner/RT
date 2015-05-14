@@ -6,30 +6,27 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 14:41:19 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/12 15:20:19 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/13 16:48:52 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-void					p_pigment(char *line, t_pars *e, int *off)
+void					p_pigment(t_pars *e, t_lex **node)
 {
-	int		ret;
+	char	*tmp;
+	t_lex	*tmp_node;
 
-	if (!ft_strncmp(line + *off, "}", (ret = 1)))
+	tmp_node = *node;
+	tmp = tmp_node->value;
+	if (!strcmp(tmp, "color") && tmp_node->next)
 	{
-		e->err = 0;
-		e->substep = SSBEGIN;
+		*node = (*node)->next;
+		tmp_node = tmp_node->next;
+		tmp = tmp_node->value;
 	}
-	else if (e->err)
-		;
-	else if (!ft_strncmp(line + *off, "{", (ret = 1)))
-		e->scope = OPEN;
-	else if (e->scope == CLOSE)
-		add_err(e, SCOPEMISS, line + *off);
-	else if (!ft_strncmp(line + *off, "color rgb", (ret = 9)))
-		spot_color(line + ret, e, off);
+	if (!strcmp(tmp, "rgb"))
+		color(e, node);
 	else
-		add_err(e, UNKPARAM, line + *off);
-	*off += ret;
+		add_err(e, UNKOBJ, tmp);
 }

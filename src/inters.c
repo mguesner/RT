@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inters.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 14:30:05 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/14 15:01:14 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ double	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 	double		dist;
 	double		res;
 
-	tmp = mlx->obj->begin;
+	tmp = mlx->obj.begin;
 	dist = -1.0;
 	mlx->pix[pix]->pix_x = pix_x;
 	mlx->pix[pix]->pix_y = pix_y;
