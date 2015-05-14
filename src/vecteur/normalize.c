@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normalize.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/07 14:01:46 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/07 14:02:53 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/13 16:17:47 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 t_vec					normalize(t_vec v)
 {
 	t_vec	ret;
+	double normel;
 
-	ret.x = v.x / norme(v);
-	ret.y = v.y / norme(v);
-	ret.z = v.z / norme(v);
+	normel = norme(v);
+	ret.x = v.x / normel;
+	ret.y = v.y / normel;
+	ret.z = v.z / normel;
 	return (ret);
 }

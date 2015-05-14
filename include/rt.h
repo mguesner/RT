@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 13:07:38 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/13 15:23:35 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,10 @@ typedef struct				s_obj_list_begin
 typedef struct				s_pix
 {
 	t_obj					*cur_obj;
+	int						pix_x;
+	int						pix_y;
 	double					dist;
-	t_vec					*pos_pix_vec;
+	t_vec					pos_pix_vec;
 }							t_pix;
 
 typedef struct				s_libx
@@ -125,18 +127,18 @@ typedef struct				s_libx
 	int						height;
 	t_obj_list_begin		*obj;
 	t_camera				*cam;
-	t_pix					*pix;
+	t_pix					**pix;
 }							t_libx;
 
 void						error(int errno);
 t_libx						*mlx_struct_init(int width, int height, char *win_name);
-void						set_pixel_to_img(t_libx *m, int pix_x, int pix_y, t_color *color);
 void						start(t_libx *mlx);
-t_vec						*precalc_vec_cam(t_camera *cam);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
-void						antialiasing(t_libx *m);
 double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
 double						dist_cone(t_cone *cone, t_vec *vec, t_point *o);
+void						calc_lum(t_libx *mlx, t_pix *vec_dir);
+t_pix						**precalc_vec_cam(t_camera *cam);
+double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
 
 #endif

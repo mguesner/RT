@@ -6,13 +6,14 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 14:32:16 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/13 13:01:29 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/13 14:35:25 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <stdlib.h>
 #include <vecteur.h>
+#include <stdio.h>
 
 static t_point	calc_pos_pix(t_camera *cam, int posx, int posy)
 {
@@ -35,20 +36,21 @@ static t_point	calc_pos_pix(t_camera *cam, int posx, int posy)
 	return (current_pix);
 }
 
-t_pix			*precalc_vec_cam(t_camera *cam)
+t_pix			**precalc_vec_cam(t_camera *cam)
 {
 	int			pix_x;
 	int			pix_y;
-	t_info_pix	*vec_tab;
+	t_pix		**vec_tab;
 	t_point		pos_pix;
 
-	vec_tab = (t_info_pix *)malloc(TOTAL_PIX * sizeof(t_info_pix));
+	vec_tab = (t_pix **)malloc(TOTAL_PIX * sizeof(t_pix *));
 	pix_y = 0;
 	while (pix_y < HEIGHT)
 	{
 		pix_x = 0;
 		while (pix_x < WIDTH)
 		{
+			vec_tab[pix_x + pix_y * WIDTH] = malloc(sizeof(t_pix));
 			pos_pix = calc_pos_pix(cam, pix_x, pix_y);
 			vec_tab[pix_x + pix_y * WIDTH]->pos_pix_vec = normalize((make_vec(pos_pix, cam->coord)));
 			pix_x++;

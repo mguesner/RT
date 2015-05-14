@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 15:47:03 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/13 10:06:53 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/13 16:50:43 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ double	dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o)
 		+ pow(((o->z - sphere->coord.z)), 2)) - pow(sphere->radius, 2);
 	det = pow(b, 2) - 4.0 * a * c;
 	if (det > 0)
-		return (-b + sqrt(det) / (2.0 * a));
+	{
+		double delt = sqrt(det);
+		double ret = -b + delt / (2.0 * a);
+		double ret2 = -b - delt / (2.0 * a);
+		return (ret2 > 0.0001 ? ret2 : ret);
+	}
 	return (-1);
 }

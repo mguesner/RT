@@ -6,22 +6,15 @@ camera
 	//angle 45 // l'angle de la caméra
 }
 
-light_source { <1500,-550,500>
+light_source { <2030,10,510>
       color rgb<1,1,1>*0.8
 }
 
-sphere { <2000,-410,500>, 200 // coord centre et rayon
+sphere { <2030,1510,510>, 200 // coord centre et rayon
          pigment { color rgb <1,0,0> }
 }
 
-sphere { <5000,10,10>, 2000 // coord centre et rayon
+plane { <0,0,1>, 1000 // coord centre et rayon
          pigment { color rgb <1,1,0> }
 }
 
-sphere { <1500,10,800>, 200 // coord centre et rayon
-         pigment { color rgb <1,0,1> }
-}
-
-sphere { <1500,-310,800>, 200 // coord centre et rayon
-         pigment { color rgb <1,0,1> }
-}
