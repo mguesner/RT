@@ -6,11 +6,12 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 15:47:03 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 13:09:14 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/14 11:48:49 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
+#include <math.h>
 #include <stdio.h>
 
 double	dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o)
@@ -21,13 +22,21 @@ double	dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o)
 	double	det;
 
 	a = pow(vec->x, 2) + pow(vec->y, 2)  + pow(vec->z, 2);
-	b = 2.0 * (vec->x * (o->x - sphere->coord.x) + vec->y * (o->y - sphere->coord.y)
-			+ vec->z * (o->z - sphere->coord.z));
-	c = (pow((o->x - sphere->coord.x), 2) + pow((o->y - sphere->coord.y), 2)
-		+ pow(((o->z - sphere->coord.z)), 2)) - pow(sphere->radius, 2);
+	b = 2.0 * vec->x * (o->x - sphere->coord.x) +  2.0 *
+		vec->y * (o->y - sphere->coord.y) + 2.0 *
+		vec->z * (o->z - sphere->coord.z);
+	c = pow(sphere->coord.x, 2) + pow(sphere->coord.y, 2) +
+		pow(sphere->coord.z, 2) + pow(o->x, 2) + pow(o->y, 2) +
+		pow(o->z, 2) + -2.0 * (sphere->coord.x * o->x +
+			sphere->coord.y * o->y + sphere->coord.z * o->z) -
+		pow(sphere->radius, 2);
 	det = pow(b, 2) - 4.0 * a * c;
 	if (det > 0)
-		return (-b + sqrt(det) / (2.0 * a));
-	else
-		return (-1);
+	{
+		double ret = (-(b) + sqrt(det)) / 2.0 * a;
+		double ret2 = (-(b) - sqrt(det)) / 2.0 * a;
+		printf("%f, %f\n", ret, ret2);
+		return (ret2 > 0.0001 ? ret2 : ret);
+	}
+	return (-1);
 }

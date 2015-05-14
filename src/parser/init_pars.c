@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 11:10:07 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 13:28:19 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 13:04:32 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ void				init_pars(t_pars *e)
 	e->tools[PSPOT] = &p_spot;
 	e->tools[PPLANE] = &p_plane;
 	e->tools[PSPHERE] = &p_sphere;
+	e->tools[PCYLINDER42] = &p_cylinder42;
+	e->tools[PCONE42] = &p_cone42;
 	init_pars2(e);
 }

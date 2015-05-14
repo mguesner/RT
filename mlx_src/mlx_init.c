@@ -3,28 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 14:33:58 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 15:32:15 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/13 13:18:34 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
 #include "../include/color.h"
 #include <stdlib.h>
-
-
-void	set_pixel_to_img(t_libx *m, int pix_x, int pix_y, t_color *color, double dist)
-{
-	int		pos;
-
-	(void) dist;
-	pos = ((pix_y) * (m->size_line) + pix_x * (m->bpp / 8));
-	m->data[pos] = color->b;
-	m->data[pos + 1] = color->g;
-	m->data[pos + 2] = color->r;
-}
 
 t_libx	*mlx_struct_init(int width, int height, char *win_name)
 {

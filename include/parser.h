@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 16:45:46 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 13:25:10 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef enum			e_step
 	PCYLINDER,
 	PCYLINDER42,
 	PCONE,
-	PCONNE42,
+	PCONE42,
 	NBSTEP
 }						t_step;
 
@@ -102,11 +102,13 @@ struct					s_pars
 	int					nb_line;
 	int					scope;
 	int					err;
+	int					nb_vector;
+	int					nb_value;
 	t_obj_list_begin	obj_lst;
 	t_obj				*cur;
 };
 
-void					lex_pars(char *file_name);
+void					lex_pars(char *file_name, t_libx *mlx);
 void					init_pars(t_pars *e);
 
 void					lexer(int fd, t_pars *e);
@@ -141,7 +143,6 @@ void					p_spot(t_pars *e, t_lex **node);
 
 void					p_spot_word(t_pars *e, t_lex **node);
 
-// void					spot_loc(char *line, t_pars *e, int *off);
 void					color(t_pars *e, t_lex **node);
 
 void					p_plane(t_pars *e, t_lex **node);
@@ -150,14 +151,16 @@ void					p_plane_word(t_pars *e, t_lex **node);
 void					p_plane_value(t_pars *e, t_lex **node);
 void					p_plane_vector(t_pars *e, t_lex **node);
 
-// void					plane_loc(char *line, t_pars *e, int *off);
-
 void					p_sphere(t_pars *e, t_lex **node);
 
 void					p_sphere_value(t_pars *e, t_lex **node);
 void					p_sphere_vector(t_pars *e, t_lex **node);
 
-// void					sphere_loc(char *line, t_pars *e, int *off);
+void					p_cylinder42(t_pars *e, t_lex **node);
+
+void					p_cylinder42_vector(t_pars *e, t_lex **node);
+
+void					p_cone42(t_pars *e, t_lex **node);
 
 void					check_pars_err(t_pars e);
 

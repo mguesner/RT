@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normalize.c                                        :+:      :+:    :+:   */
+/*   add_error_begin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/07 14:01:46 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 16:17:47 by eruffieu         ###   ########.fr       */
+/*   Created: 2015/05/13 13:29:25 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/13 13:30:58 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/vecteur.h"
+#include <parser.h>
 
-t_vec					normalize(t_vec v)
+void					add_error_begin(t_pars *e, t_lex **node)
 {
-	t_vec	ret;
-	double normel;
-
-	normel = norme(v);
-	ret.x = v.x / normel;
-	ret.y = v.y / normel;
-	ret.z = v.z / normel;
-	return (ret);
+	add_err(e, UNKOBJ, (*node)->value);
 }

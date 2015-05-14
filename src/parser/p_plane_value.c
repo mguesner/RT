@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   normalize.c                                        :+:      :+:    :+:   */
+/*   p_plane_value.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/07 14:01:46 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 16:17:47 by eruffieu         ###   ########.fr       */
+/*   Created: 2015/05/13 13:43:31 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/13 13:46:39 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/vecteur.h"
+#include <parser.h>
+#include <stdlib.h>
 
-t_vec					normalize(t_vec v)
+void					p_plane_value(t_pars *e, t_lex **node)
 {
-	t_vec	ret;
-	double normel;
+	t_point	p;
 
-	normel = norme(v);
-	ret.x = v.x / normel;
-	ret.y = v.y / normel;
-	ret.z = v.z / normel;
-	return (ret);
+	p.z = atof((*node)->value);
+	e->cur->coord = p;
 }

@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   p_spot_word.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:39:28 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 12:38:17 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/13 14:34:07 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/13 16:35:32 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <sys/mman.h>
-#include <sys/stat.h>
 
-void	parser(t_pars *e)
+void					p_spot_word(t_pars *e, t_lex **node)
 {
-	t_lex		*tmp;
+	char	*tmp;
+	t_lex	*tmp_node;
 
-	tmp = e->lex_lst.begin;
-	while (tmp)
+	tmp_node = *node;
+	tmp = tmp_node->value;
+	if (!strcmp(tmp, "color") && tmp_node->next)
 	{
-		ft_printf("%s(%d) -> ", tmp->value, e->step);
-		e->tools[e->step](e, &tmp);
-		ft_putendl("");
-		tmp = tmp->next;
+		*node = (*node)->next;
+		tmp_node = tmp_node->next;
+		tmp = tmp_node->value;
 	}
+	if (!strcmp(tmp, "rgb"))
+		color(e, node);
+	else
+		add_err(e, UNKOBJ, tmp);
 }

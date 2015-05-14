@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 16:23:14 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 13:40:29 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define TOTAL_PIX WIDTH * HEIGHT
+# define EPSILON 0.1E-7
 
 # include <vecteur.h>
 # include <color.h>
@@ -78,8 +79,8 @@ typedef struct				s_cylinder
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
-	t_vec					dir;
 	double					radius;
+	t_vec					dir;
 }							t_cylinder;
 
 typedef struct				s_cone
@@ -87,7 +88,7 @@ typedef struct				s_cone
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
-	int						angle;
+	double					angle;
 	t_vec					dir;
 }							t_cone;
 
@@ -104,6 +105,15 @@ typedef struct				s_obj_list_begin
 	int						size;
 }							t_obj_list_begin;
 
+typedef struct				s_pix
+{
+	t_obj					*cur_obj;
+	int						pix_x;
+	int						pix_y;
+	double					dist;
+	t_vec					pos_pix_vec;
+}							t_pix;
+
 typedef struct				s_libx
 {
 	void					*window;
@@ -115,21 +125,21 @@ typedef struct				s_libx
 	int						endian;
 	int						width;
 	int						height;
-	t_obj_list_begin		*obj;
-	t_vec					*pos_all_pix;
 	t_camera				*cam;
+	t_obj_list_begin		spots;
+	t_obj_list_begin		obj;
+	t_pix					**pix;
 }							t_libx;
 
 void						error(int errno);
 t_libx						*mlx_struct_init(int width, int height, char *win_name);
-void						set_pixel_to_img(t_libx *m, int pix_x, int pix_y, t_color *color, double dist);
 void						start(t_libx *mlx);
-t_vec						*precalc_vec_cam(t_camera *cam);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
-int							is_in_light(t_point *p, t_obj_list *list);
-void						antialiasing(t_libx *m);
 double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
-
+double						dist_cone(t_cone *cone, t_vec *vec, t_point *o);
+void						calc_lum(t_libx *mlx, t_pix *vec_dir);
+t_pix						**precalc_vec_cam(t_camera *cam);
+double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
 
 #endif

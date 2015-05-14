@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   p_plane_word.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/08 10:39:28 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 12:38:17 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/13 14:25:29 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/13 16:45:24 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <sys/mman.h>
-#include <sys/stat.h>
 
-void	parser(t_pars *e)
+void					p_plane_word(t_pars *e, t_lex **node)
 {
-	t_lex		*tmp;
+	char		*tmp;
+	t_f_parse	tools[NBSUBSTEP];
 
-	tmp = e->lex_lst.begin;
-	while (tmp)
+	tools[SSPIGMENT] = &p_pigment;
+	if (e->substep != SSBEGIN)
 	{
-		ft_printf("%s(%d) -> ", tmp->value, e->step);
-		e->tools[e->step](e, &tmp);
-		ft_putendl("");
-		tmp = tmp->next;
+		tools[e->substep](e, node);
+		return ;
 	}
+	tmp = (*node)->value;
+	if (!strcmp(tmp, "pigment"))
+		e->substep = SSPIGMENT;
+	else
+		add_err(e, UNKOBJ, (*node)->value);
 }

@@ -6,37 +6,13 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 14:54:10 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/13 16:01:58 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <stdio.h>
 #include <stdlib.h>
-void		go(t_libx *mlx, int pix, int pix_x, int pix_y)
-{
-	t_obj_list	*tmp;
-	double		dist;
-	double		res;
-
-	tmp = mlx->obj->begin;
-	dist = 0.0;
-	while (tmp)
-	{
-		if ((res = touch(tmp->obj, &mlx->pos_all_pix[pix], &mlx->cam->coord) > 0))
-		{
-			if (dist != 0)
-			{
-				if (res < dist)
-					set_pixel_to_img(mlx, pix_x, pix_y, &tmp->obj->color, res);
-			}
-			else
-					set_pixel_to_img(mlx, pix_x, pix_y, &tmp->obj->color, res);
-			dist = res;
-		}
-		tmp = tmp->next;
-	}
-}
 
 void		start(t_libx *mlx)
 {
@@ -49,12 +25,13 @@ void		start(t_libx *mlx)
 		pix_x = 0;
 		while (pix_x < mlx->width)
 		{
-			go(mlx, (pix_x + pix_y * WIDTH), pix_x, pix_y);
+			(mlx->pix[(pix_x + pix_y * WIDTH)])->dist =
+			inters(mlx, (pix_x + pix_y * WIDTH), pix_x, pix_y);
+			calc_lum(mlx, mlx->pix[(pix_x + pix_y * WIDTH)]);
 			pix_x++;
 		}
 		pix_y++;
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
-	printf("put\n");
 	ft_bzero(mlx->data, ((1079) * (mlx->size_line) + 1919 * (mlx->bpp / 8)));
 }
