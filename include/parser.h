@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 14:09:19 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 14:08:56 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct			s_lex
 {
 	t_token				token_type;
 	char				*value;
+	int					line;
 	struct s_lex		*next;
 }						t_lex;
 
@@ -113,7 +114,7 @@ void					init_pars(t_pars *e);
 void					clean_pars(t_pars *e);
 
 void					lexer(int fd, t_pars *e);
-void					add_lex_node(t_lex_begin *begin, t_token token, char *value);
+void					add_lex_node(t_lex_begin *begin, t_token token, char *value, int line);
 void					lex_word(char *line, t_pars *e, int *offset, int size);
 void					lex_value(char *line, t_pars *e, int *offset, int size);
 void					lex_vec(char *line, t_pars *e, int *offset, int size);
