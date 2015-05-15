@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 11:29:23 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/15 16:35:34 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,66 @@ int			main(int argc, char **argv)
 		obj = obj->next;
 	}
 	mlx_struct_init(WIDTH, HEIGHT, "lol", &mlx);
+
+	t_camera	*cam_tmp;
+	cam_tmp = mlx.cam;
+	t_point	ori = cam_tmp->coord;
+	t_vec	dir = make_vec(cam_tmp->dir, ori);
+	t_vec	norm = {0, 0, 1};
+	double	rot[3][3];
+	double	cos = scalar(dir, norm);
+
+	printf("scalaire : %f\n", cos);
+
+	double	sin = sqrt(1 - pow(cos, 2));
+	t_vec	axe = vector(dir, norm);
+
+	printf("(%f, %f, %f) ^ (%f, %f, %f) -> (%f, %f, %f)\n"
+		, dir.x, dir.y, dir.z, norm.x, norm.y, norm.z, axe.x, axe.y, axe.z);
+
+	axe = normalize(axe);
+
+	printf("axe(normalize) -> (%f, %f, %f)\n", axe.x, axe.y, axe.z);
+
+	double	ux = axe.x;
+	double	uy = axe.y;
+	double	uz = axe.z;
+
+	double	ux_2 = pow(ux, 2);
+	double	uy_2 = pow(uy, 2);
+	double	uz_2 = pow(uz, 2);
+
+	rot[0][0] = ux_2 + (1 - ux_2) * cos;
+	rot[1][0] = ux * uy * (1 - cos) - uz * sin;
+	rot[2][0] = ux * uz * (1 - cos) + uy * sin;
+
+	rot[0][1] = ux * uy * (1 - cos) + uz * sin;
+	rot[1][1] = uy_2 + (1 - uy_2) * cos;
+	rot[2][1] = uy * uz * (1 - cos) - ux * sin;
+
+	rot[0][2] = ux * uz * (1 - cos) - uy * sin;
+	rot[1][2] = uy * uz * (1 - cos) + ux * sin;
+	rot[2][2] = uz_2 + (1 - uz_2) * cos;
+
+	printf("Rot :\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n"
+		, rot[0][0], rot[1][0], rot[2][0], rot[0][1], rot[1][1], rot[2][1], rot[0][2], rot[1][2], rot[2][2]);
+
+	cam_tmp->pix_bg.x = -(WIDTH / 2) * rot[0][0] + -(HEIGHT / 2) * rot[0][1] + rot[0][2];
+	cam_tmp->pix_bg.y = -(WIDTH / 2) * rot[1][0] + -(HEIGHT / 2) * rot[1][1] + rot[1][2];
+	cam_tmp->pix_bg.z = -(WIDTH / 2) * rot[2][0] + -(HEIGHT / 2) * rot[2][1] + rot[2][2];
+
+	cam_tmp->pix_hg.x = -(WIDTH / 2) * rot[0][0] + (HEIGHT / 2) * rot[0][1] + rot[0][2];
+	cam_tmp->pix_hg.y = -(WIDTH / 2) * rot[1][0] + (HEIGHT / 2) * rot[1][1] + rot[1][2];
+	cam_tmp->pix_hg.z = -(WIDTH / 2) * rot[2][0] + (HEIGHT / 2) * rot[2][1] + rot[2][2];
+
+	cam_tmp->pix_hd.x = (WIDTH / 2) * rot[0][0] + (HEIGHT / 2) * rot[0][1] + rot[0][2];
+	cam_tmp->pix_hd.y = (WIDTH / 2) * rot[1][0] + (HEIGHT / 2) * rot[1][1] + rot[1][2];
+	cam_tmp->pix_hd.z = (WIDTH / 2) * rot[2][0] + (HEIGHT / 2) * rot[2][1] + rot[2][2];
+
+	printf("bas gauche -> (%f, %f, %f)\n", cam_tmp->pix_bg.x, cam_tmp->pix_bg.y,cam_tmp->pix_bg.z);
+	printf("haut gauche -> (%f, %f, %f)\n", cam_tmp->pix_hg.x, cam_tmp->pix_hg.y,cam_tmp->pix_hg.z);
+	printf("haut droit -> (%f, %f, %f)\n", cam_tmp->pix_hd.x, cam_tmp->pix_hd.y,cam_tmp->pix_hd.z);
+
 	mlx.cam->pix_bg.x = 1010;
 	mlx.cam->pix_bg.y = -950.0;
 	mlx.cam->pix_bg.z = 10;
