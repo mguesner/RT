@@ -6,7 +6,7 @@
 /*   By: bsourd-b <bsourd-b@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/14 16:59:07 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/15 14:23:13 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ static int		up_color_angle(int obj_color, int cur_color, double scalar)
 	new = cur_color + new;
 	if (new > obj_color)
 		return (obj_color);
-	return (new);
+	if (new < 0)
+		return (0);
+	return (obj_color);
 }
 
 void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
@@ -64,9 +66,7 @@ void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
 	double	scal;
 
 	normale = get_norm(pix->cur_obj, inter);
-	scal = scalar(normale, dir);
-	if (scal < 0)
-		scal = -scal;
+	scal = fabs(scalar(normale, dir));
 
 	pix->color->b = up_color_angle(pix->cur_obj->color.b, pix->color->b, scal);
 	pix->color->g = up_color_angle(pix->cur_obj->color.g, pix->color->g, scal);

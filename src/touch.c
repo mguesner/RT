@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:32:06 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/12 16:20:35 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/15 11:47:20 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ double	touch(t_obj *obj, t_vec *vec, t_point *origine)
 		return (dist_plane((t_plane *)obj, vec, origine));
 	else if (obj->type == CONE)
 		return (dist_cone((t_cone *)obj, vec, origine));
+	else if (obj->type == CYLINDER)
+		return (dist_cylinder((t_cylinder *)obj, vec, origine));
+
 	else
 		return (-1);
 }

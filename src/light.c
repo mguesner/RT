@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 15:12:15 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/15 13:48:26 by bsourd-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static double	shadow(t_obj *obj, t_obj_list *tmp, t_point inter)
 	{
 		res = touch(tmp->obj, &vec, &inter);
 		if (res > 0.001 && res < norm)
-			return (res);
+			return (1);
 		tmp = tmp->next;
 	}
 	return (0);
