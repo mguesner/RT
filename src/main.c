@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 11:29:23 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/15 15:33:23 by nguezell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,29 @@
 // 	o->pix_bg.z = 1.0;
 // 	return (o);
 // }
+int	mouse_press(int code, int x, int y, t_libx *mlx)
+{
+
+	t_pix *current = mlx->pix[x + y * WIDTH];
+	if (current->cur_obj && current->in_shadow)
+		printf("Distance is %f,   you touch a %d , and you are in shadow of %d\n", current->dist, current->cur_obj->type, current->in_shadow->type);
+	else if (current->cur_obj)
+		printf("Distance is %f,   you touch a %d , and you are not in shadow\n", current->dist, current->cur_obj->type);
+	else if (current->cur_obj)
+		printf("Distance is %f,   you touch nothing , and you are in shadow  WTFFFFFF   %d\n", current->dist, current->in_shadow->type);
+
+	printf("%d\n", code);
+	return (0);
+}
+
+int	mouse_motion(int x, int y, t_libx *mlx)
+{
+	(void)x;
+	(void)y;
+	(void)mlx;
+	return (0);
+}
+
 
 int		expose_hook(t_libx *mlx)
 {
@@ -177,6 +200,8 @@ int			main(int argc, char **argv)
 	mlx.pix = rotate_cam(&mlx);
 	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
+	mlx_hook(mlx.window, 4, (1L << 2), mouse_press, &mlx);
+	mlx_hook(mlx.window, 6, (1L << 6), mouse_motion, &mlx);
 	mlx_loop(mlx.mlx);
 	// END DEBUG
 	// cam = calc_cam();
