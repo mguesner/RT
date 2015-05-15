@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsourd-b <bsourd-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/14 14:45:40 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/14 15:28:24 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void		set_color_light(t_obj *light, t_pix *pix, t_point inter)
 	dir = normalize(dir);
 	pix->color->b = up_color(pix->cur_obj->color.b, pix->color->b, light_dist, 1000);
 	pix->color->g = up_color(pix->cur_obj->color.g, pix->color->g, light_dist, 1000);
-	pix->color->r = up_color(pix->cur_obj->color.r, pix->color->r, light_dist, 1000);
+	pix->color->r = up_color(pix->cur_obj->color.r, pix->color->r, light_dist, 1800);
 }
