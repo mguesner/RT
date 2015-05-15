@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 09:15:08 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 12:41:23 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 15:38:49 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void		lexer(int fd, t_pars *e)
 	offset = 0;
 	while (offset < size)
 	{
-		while (offset < size && (*(file + offset) == ' ' || *(file + offset) == '\t'))
+		while (offset < size && (*(file + offset) == ' '
+			|| *(file + offset) == '\t'))
 			offset++;
 		if (offset < size && *(file + offset) == '\n' && ++offset)
 			e->nb_line++;
@@ -46,13 +47,14 @@ void		lexer(int fd, t_pars *e)
 			lex_vec(file, e, &offset, size);
 		else if (offset < size && *(file + offset) == ',')
 			offset++;
-		else if (offset + 1 < size && !ft_strncmp(file + offset, "//", 2) && (offset += 2))
+		else if (offset + 1 < size && !ft_strncmp(file + offset, "\57\57", 2)
+			&& (offset += 2))
 			while (offset < size && *(file + offset) != '\n')
 				offset++;
 		else
 		{
-			ft_printf("error : %c\n", *(file + offset));
-			break ;
+			add_err(e, UNKOBJ, ft_strdup("prout"));
+			offset++;
 		}
 	}
 	if (munmap(file, buf.st_size + 1) == -1 || close(fd))

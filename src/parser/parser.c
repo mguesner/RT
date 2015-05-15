@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:39:28 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 12:38:17 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:59:22 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ void	parser(t_pars *e)
 	tmp = e->lex_lst.begin;
 	while (tmp)
 	{
-		ft_printf("%s(%d) -> ", tmp->value, e->step);
 		e->tools[e->step](e, &tmp);
-		ft_putendl("");
 		tmp = tmp->next;
 	}
 }
