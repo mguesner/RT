@@ -6,9 +6,10 @@
 /*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/15 16:30:28 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/15 17:41:49 by nguezell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <rt.h>
 
@@ -46,7 +47,7 @@ static int		up_color_angle(int obj_color, int cur_color, double scalar)
 		return (obj_color);
 	if (new < 0)
 		return (0);
-	return (obj_color);
+	return (new);
 }
 
 void			set_color_light(t_obj *light, t_pix *pix, t_point inter)

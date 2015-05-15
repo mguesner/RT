@@ -6,7 +6,7 @@
 /*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 16:05:11 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/15 17:43:33 by nguezell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct				s_camera
 	t_point					pix_hg;
 	t_point					pix_bg;
 	t_point					pix_hd;
-	t_vec					dir;
+	t_point					dir;
 }							t_camera;
 
 typedef struct				s_light
@@ -148,7 +148,6 @@ double						dist_cylinder(t_cylinder *cylinder, t_vec *vec, t_point *o);
 void						set_color_light(t_obj *light, t_pix *pix, t_point inter);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
-t_pix						**rotate_cam(t_libx	*mlx);
 double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
 
 #endif

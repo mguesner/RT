@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 11:10:07 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 13:04:32 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 14:26:16 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 static void			init_pars2(t_pars *e)
 {
+	e->err_msg[UNKSYMB] = "unknow symbol";
 	e->err_msg[UNKOBJ] = "unknow object";
 	e->err_msg[UNKPARAM] = "bad parameter";
-	e->err_msg[SCOPEMISS] = "'{' missing before";
+	e->err_msg[SCOPEMISS] = "unexpected scope";
 	e->err_msg[BADARG] = "bad argument";
 }
 

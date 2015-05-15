@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 14:00:13 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 15:00:12 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 15:07:23 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void					cam_look_at(t_pars *e, t_lex **node)
 {
 	t_lex		*tmp;
-	t_vec		dir;
+	t_point		dir;
 
 	tmp = (*node)->next;
 	if (!tmp || tmp->token_type != VECTOR)
@@ -24,7 +24,7 @@ void					cam_look_at(t_pars *e, t_lex **node)
 	else
 	{
 		*node = (*node)->next;
-		fill_vector(e, tmp->value, &dir);
+		fill_vector(e, tmp->value, (t_vec *)&dir);
 		((t_camera *)e->cur)->dir = dir;
 	}
 }

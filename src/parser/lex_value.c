@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:34:32 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 14:51:39 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 14:10:30 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void					lex_value(char *line, t_pars *e, int *offset, int size)
 	if (!(value = ft_memalloc(i + 1)))
 		error(errno);
 	ft_strncpy(value, line + *offset, i);
-	add_lex_node(&e->lex_lst, VALUE, value);
+	add_lex_node(&e->lex_lst, VALUE, value, e->nb_line);
 	*offset += i;
 }

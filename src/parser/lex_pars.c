@@ -6,13 +6,13 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 09:19:21 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 15:05:48 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 14:05:57 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 #include <errno.h>
-#include <stdio.h>
+#include <stdlib.h>
 
 static void				lex_pars2(t_obj_list *lst, t_libx *mlx)
 {
@@ -56,6 +56,8 @@ void					lex_pars(char *file_name, t_libx *mlx)
 	lexer(fd, &e);
 	parser(&e);
 	check_pars_err(e);
+	if (e.err_list.size)
+		exit(-1);
 	lst = e.obj_lst.begin;
 	next = lst;
 	while (next)
