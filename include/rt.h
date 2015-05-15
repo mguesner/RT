@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 13:44:58 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 11:28:52 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <color.h>
 # include <libft.h>
 # include "../minilibx_macos/mlx.h"
+
+# include <stdio.h>
 
 typedef enum				e_obj_type
 {
@@ -112,7 +114,7 @@ typedef struct				s_pix
 	int						pix_y;
 	double					dist;
 	t_vec					pos_pix_vec;
-	t_color					color;
+	t_color					*color;
 }							t_pix;
 
 typedef struct				s_libx
@@ -133,14 +135,16 @@ typedef struct				s_libx
 }							t_libx;
 
 void						error(int errno);
-t_libx						*mlx_struct_init(int width, int height, char *win_name);
+void						mlx_struct_init(int width, int height, char *win_name, t_libx *mlx);
 void						start(t_libx *mlx);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
 double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
 double						dist_cone(t_cone *cone, t_vec *vec, t_point *o);
+void						 set_color_light(t_obj *light, t_pix *pix, t_point inter);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
+t_pix						**rotate_cam(t_libx	*mlx);
 double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
 
 #endif
