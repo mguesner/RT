@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/15 13:48:26 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/15 15:51:54 by nguezell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void		set_color(t_libx *m, t_pix *pix)
 		m->data[pos + 2] = pix->color->r;
 }
 
-static double	shadow(t_obj *obj, t_obj_list *tmp, t_point inter)
+static t_obj_list	*shadow(t_obj *obj, t_obj_list *tmp, t_point inter)
 {
 	double		res;
 	t_vec		vec;
@@ -36,17 +36,17 @@ static double	shadow(t_obj *obj, t_obj_list *tmp, t_point inter)
 	{
 		res = touch(tmp->obj, &vec, &inter);
 		if (res > 0.001 && res < norm)
-			return (1);
+			return (tmp);
 		tmp = tmp->next;
 	}
-	return (0);
+	return (NULL);
 }
 
 void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 {
 	t_point		inter_point;
 	t_obj_list	*tmp;
-	double		light_dist;
+	t_obj_list	*light_dist;
 
 	if (vec_dir->cur_obj == NULL)
 		return ;
@@ -63,6 +63,8 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 				set_color_light(tmp->obj, vec_dir, inter_point);
 				set_color(mlx, vec_dir);
 			}
+			else
+				vec_dir->in_shadow = light_dist->obj;
 		}
 		tmp = tmp->next;
 	}

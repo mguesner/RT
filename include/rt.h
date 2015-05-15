@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 15:06:48 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 16:48:11 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct				s_pix
 	double					dist;
 	t_vec					pos_pix_vec;
 	t_color					*color;
+	t_obj					*in_shadow;
 }							t_pix;
 
 typedef struct				s_libx
