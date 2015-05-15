@@ -66,6 +66,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/precalc_vec_cam.c\
 	  $(SRCDIR)/cone.c\
 	  $(SRCDIR)/set_color_light.c\
+	  $(SRCDIR)/cam_rotation.c\
 	  mlx_src/mlx_init.c
 	  # $(SRCDIR)/parser/spot_loc.c\
 	  # $(SRCDIR)/parser/plane_loc.c\
