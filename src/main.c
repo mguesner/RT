@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 17:22:53 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 17:35:14 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,6 @@ int			main(int argc, char **argv)
 	// mlx.cam->pix_hd.y = 970;
 	// mlx.cam->pix_hd.z = 1090;
 	mlx.pix = precalc_vec_cam(cam);
-	mlx.pix = rotate_cam(&mlx);
 	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
 	mlx_hook(mlx.window, 4, (1L << 2), mouse_press, &mlx);

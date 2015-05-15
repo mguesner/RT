@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 16:48:11 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 16:49:22 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,6 @@ double						dist_cylinder(t_cylinder *cylinder, t_vec *vec, t_point *o);
 void						set_color_light(t_obj *light, t_pix *pix, t_point inter);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
-t_pix						**rotate_cam(t_libx	*mlx);
 double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
 
 #endif
