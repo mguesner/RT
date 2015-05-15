@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 16:48:34 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 17:22:53 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -231,17 +231,19 @@ int			main(int argc, char **argv)
 	printf("Rot :\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n"
 		, rot[0][0], rot[1][0], rot[2][0], rot[0][1], rot[1][1], rot[2][1], rot[0][2], rot[1][2], rot[2][2]);
 
-	cam_tmp->pix_bg.x = -(WIDTH / 2) * rot[0][0] + -(HEIGHT / 2) * rot[0][1] + rot[0][2];
-	cam_tmp->pix_bg.y = -(WIDTH / 2) * rot[1][0] + -(HEIGHT / 2) * rot[1][1] + rot[1][2];
-	cam_tmp->pix_bg.z = -(WIDTH / 2) * rot[2][0] + -(HEIGHT / 2) * rot[2][1] + rot[2][2];
+	double	dist = norme(dir);
 
-	cam_tmp->pix_hg.x = -(WIDTH / 2) * rot[0][0] + (HEIGHT / 2) * rot[0][1] + rot[0][2];
-	cam_tmp->pix_hg.y = -(WIDTH / 2) * rot[1][0] + (HEIGHT / 2) * rot[1][1] + rot[1][2];
-	cam_tmp->pix_hg.z = -(WIDTH / 2) * rot[2][0] + (HEIGHT / 2) * rot[2][1] + rot[2][2];
+	cam_tmp->pix_bg.x = -(WIDTH / 2) * rot[0][0] + -(HEIGHT / 2) * rot[0][1] + dist * rot[0][2] + cam_tmp->coord.x;
+	cam_tmp->pix_bg.y = -(WIDTH / 2) * rot[1][0] + -(HEIGHT / 2) * rot[1][1] + dist * rot[1][2] + cam_tmp->coord.y;
+	cam_tmp->pix_bg.z = -(WIDTH / 2) * rot[2][0] + -(HEIGHT / 2) * rot[2][1] + dist * rot[2][2] + cam_tmp->coord.z;
 
-	cam_tmp->pix_hd.x = (WIDTH / 2) * rot[0][0] + (HEIGHT / 2) * rot[0][1] + rot[0][2];
-	cam_tmp->pix_hd.y = (WIDTH / 2) * rot[1][0] + (HEIGHT / 2) * rot[1][1] + rot[1][2];
-	cam_tmp->pix_hd.z = (WIDTH / 2) * rot[2][0] + (HEIGHT / 2) * rot[2][1] + rot[2][2];
+	cam_tmp->pix_hg.x = -(WIDTH / 2) * rot[0][0] + (HEIGHT / 2) * rot[0][1] + dist * rot[0][2] + cam_tmp->coord.x;
+	cam_tmp->pix_hg.y = -(WIDTH / 2) * rot[1][0] + (HEIGHT / 2) * rot[1][1] + dist * rot[1][2] + cam_tmp->coord.y;
+	cam_tmp->pix_hg.z = -(WIDTH / 2) * rot[2][0] + (HEIGHT / 2) * rot[2][1] + dist * rot[2][2] + cam_tmp->coord.z;
+
+	cam_tmp->pix_hd.x = (WIDTH / 2) * rot[0][0] + (HEIGHT / 2) * rot[0][1] + dist * rot[0][2] + cam_tmp->coord.x;
+	cam_tmp->pix_hd.y = (WIDTH / 2) * rot[1][0] + (HEIGHT / 2) * rot[1][1] + dist * rot[1][2] + cam_tmp->coord.y;
+	cam_tmp->pix_hd.z = (WIDTH / 2) * rot[2][0] + (HEIGHT / 2) * rot[2][1] + dist * rot[2][2] + cam_tmp->coord.z;
 
 	printf("bas gauche -> (%f, %f, %f)\n", cam_tmp->pix_bg.x, cam_tmp->pix_bg.y,cam_tmp->pix_bg.z);
 	printf("haut gauche -> (%f, %f, %f)\n", cam_tmp->pix_hg.x, cam_tmp->pix_hg.y,cam_tmp->pix_hg.z);

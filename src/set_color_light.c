@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsourd-b <bsourd-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/15 14:23:13 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/15 17:25:14 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int		up_color_angle(int obj_color, int cur_color, double scalar)
 		return (obj_color);
 	if (new < 0)
 		return (0);
-	return (obj_color);
+	return (new);
 }
 
 void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
