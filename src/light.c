@@ -6,7 +6,7 @@
 /*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/15 15:51:54 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/15 16:56:57 by nguezell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,25 @@ static void		set_color(t_libx *m, t_pix *pix)
 		m->data[pos + 2] = pix->color->r;
 }
 
-static t_obj_list	*shadow(t_obj *obj, t_obj_list *tmp, t_point inter)
+static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *vec_dir)
 {
 	double		res;
 	t_vec		vec;
-	double		norm;
+	double		dist_to_light;
 
-	vec = make_vec(obj->coord, inter);
-	norm = norme(vec);
+	vec = make_vec(light->coord, inter);
+	dist_to_light = norme(vec);
 	vec = normalize(vec);
 	while (tmp)
 	{
 		res = touch(tmp->obj, &vec, &inter);
-		if (res > 0.001 && res < norm)
+		if (res > 0.001 && res < dist_to_light)
+		{
+			vec_dir->in_shadow = tmp->obj;
+			vec_dir->shadow_dist = res;
+			vec_dir->light_dist = dist_to_light;
 			return (tmp);
+		}
 		tmp = tmp->next;
 	}
 	return (NULL);
@@ -55,16 +60,11 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 	tmp = mlx->spots.begin;
 	while (tmp)
 	{
-		if (tmp->obj->type == LIGHT)
+		light_dist = shadow(tmp->obj, mlx->obj.begin, inter_point, vec_dir);
+		if (!light_dist)
 		{
-			light_dist = shadow(tmp->obj, mlx->obj.begin, inter_point);
-			if (!light_dist)
-			{
-				set_color_light(tmp->obj, vec_dir, inter_point);
-				set_color(mlx, vec_dir);
-			}
-			else
-				vec_dir->in_shadow = light_dist->obj;
+			set_color_light(tmp->obj, vec_dir, inter_point);
+			set_color(mlx, vec_dir);
 		}
 		tmp = tmp->next;
 	}

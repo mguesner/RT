@@ -6,7 +6,7 @@
 /*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 16:17:32 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/15 14:01:43 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/15 17:36:58 by nguezell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ double	dist_cone(t_cone *cone, t_vec *vec, t_point *o)
 	if (det > 0)
 		return (-b + sqrt(det) / (2.0 * a));
 */
-    if (det > 0)
-    {
-        double ret = (-b + sqrt(det)) / 2.0 * a;
-        double ret2 = (-b - sqrt(det)) / 2.0 * a;
-        return (ret2 > 0.0001 ? ret2 : ret);
-    }
+	if (det > 0)
+	{
+		double ret = (-b + sqrt(det)) / (2.0 * a);
+		 double ret2 = (-b - sqrt(det)) / (2.0 * a);
+		return (ret2 > 0.0001 ? ret2 : ret);
+	}
 	return (-1);
 }

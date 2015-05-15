@@ -6,7 +6,7 @@
 /*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 15:15:09 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/15 16:05:11 by nguezell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ typedef struct				s_pix
 	int						pix_x;
 	int						pix_y;
 	double					dist;
+	double					light_dist;
+	double					shadow_dist;
 	t_vec					pos_pix_vec;
 	t_color					*color;
 	t_obj					*in_shadow;
