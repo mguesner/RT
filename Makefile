@@ -48,7 +48,6 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/add_obj_lst.c\
 	  $(SRCDIR)/parser/init_pars.c\
 	  $(SRCDIR)/parser/clean_parse.c\
-	  $(SRCDIR)/parser/check_line.c\
 	  $(SRCDIR)/parser/add_err.c\
 	  $(SRCDIR)/parser/p_cylinder42.c\
 	  $(SRCDIR)/parser/p_cylinder42_vector.c\
@@ -67,10 +66,8 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/cone.c\
 	  $(SRCDIR)/cylinder.c\
 	  $(SRCDIR)/set_color_light.c\
+	  $(SRCDIR)/cam_rotation.c\
 	  mlx_src/mlx_init.c
-	  # $(SRCDIR)/parser/spot_loc.c\
-	  # $(SRCDIR)/parser/plane_loc.c\
-	  # $(SRCDIR)/parser/sphere_loc.c\
 
 LIB =
 

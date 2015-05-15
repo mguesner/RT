@@ -17,7 +17,6 @@ void					cam_loc(t_pars *e, t_lex **node)
 	t_lex		*tmp;
 	t_point		loc;
 
-	ft_printf("cam_loc->");
 	tmp = (*node)->next;
 	if (!tmp || tmp->token_type != VECTOR)
 		add_err(e, BADARG, tmp->value);

@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 15:32:16 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 13:26:10 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/14 14:58:42 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void					p_camera(t_pars *e, t_lex **node)
 {
-
 	t_fptoken		tools[NBTOKEN];
 
 	tools[WORD] = &p_camera_word;
