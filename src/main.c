@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 17:42:30 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/16 06:53:13 by matthieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <matrice.h>
 //----------------------- parser manuel
 // t_obj_list_begin	*p(void)
 // {
@@ -131,133 +132,101 @@ int			main(int argc, char **argv)
 	t_libx				mlx;
 	// t_obj_list_begin	obj;
 	// t_camera			*cam;
+	t_camera *cam;
 	ft_bzero(&mlx, sizeof(t_libx));
 	if (argc != 2)
 		usage();
 	lex_pars(argv[1], &mlx);
-
+	cam = mlx.cam;
 	// DEBUG
 
-	t_camera *cam = mlx.cam;
-	if (cam)
-		printf("type : CAMERA, coord : (%f, %f, %f), color : (%d, %d, %d, %d), dir : (%f, %f, %f)\n"
-				, cam->coord.x, cam->coord.y, cam->coord.z, cam->color.a, cam->color.r, cam->color.g, cam->color.b
-				, cam->dir.x, cam->dir.y, cam->dir.z);
-	t_obj_list	*spots = mlx.spots.begin;
-	while (spots)
-	{
-		t_light *light = (t_light *)spots->obj;
-		printf("type : LIGHT, coord : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
-			, light->coord.x, light->coord.y, light->coord.z, light->color.a, light->color.r, light->color.g, light->color.b);
-		spots = spots->next;
-	}
-	t_obj_list	*obj = mlx.obj.begin;
-	while (obj)
-	{
-		if (obj->obj->type == PLANE)
-		{
-			t_plane *plane = (t_plane *)obj->obj;
-			printf("type : PLANE, coord : (%f, %f, %f), normal : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
-				, plane->coord.x, plane->coord.y, plane->coord.z,
-				plane->norm.x, plane->norm.y, plane->norm.z, plane->color.a, plane->color.r, plane->color.g, plane->color.b);
-		}
-		else if (obj->obj->type == SPHERE)
-		{
-			t_sphere *sphere = (t_sphere *)obj->obj;
-			printf("type : SPHERE, coord : (%f, %f, %f), radius : %f, color : (%d, %d, %d, %d)\n"
-				, sphere->coord.x, sphere->coord.y, sphere->coord.z,
-				sphere->radius, sphere->color.a, sphere->color.r, sphere->color.g, sphere->color.b);
-		}
-		else if (obj->obj->type == CYLINDER)
-		{
-			t_cylinder *cylinder = (t_cylinder *)obj->obj;
-			printf("type : CYLINDER, coord : (%f, %f, %f), radius : %f, direction : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
-				, cylinder->coord.x, cylinder->coord.y, cylinder->coord.z,
-				cylinder->radius, cylinder->dir.x, cylinder->dir.y, cylinder->dir.z
-				, cylinder->color.a, cylinder->color.r, cylinder->color.g, cylinder->color.b);
-		}
-		else if (obj->obj->type == CONE)
-		{
-			t_cone *cone = (t_cone *)obj->obj;
-			printf("type : CONE, coord : (%f, %f, %f), angle : %f, direction : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
-				, cone->coord.x, cone->coord.y, cone->coord.z,
-				cone->angle, cone->dir.x, cone->dir.y, cone->dir.z
-				, cone->color.a, cone->color.r, cone->color.g, cone->color.b);
-		}
-		obj = obj->next;
-	}
+	// if (cam)
+	// 	printf("type : CAMERA, coord : (%f, %f, %f), color : (%d, %d, %d, %d), dir : (%f, %f, %f)\n"
+	// 			, cam->coord.x, cam->coord.y, cam->coord.z, cam->color.a, cam->color.r, cam->color.g, cam->color.b
+	// 			, cam->dir.x, cam->dir.y, cam->dir.z);
+	// t_obj_list	*spots = mlx.spots.begin;
+	// while (spots)
+	// {
+	// 	t_light *light = (t_light *)spots->obj;
+	// 	printf("type : LIGHT, coord : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
+	// 		, light->coord.x, light->coord.y, light->coord.z, light->color.a, light->color.r, light->color.g, light->color.b);
+	// 	spots = spots->next;
+	// }
+	// t_obj_list	*obj = mlx.obj.begin;
+	// while (obj)
+	// {
+	// 	if (obj->obj->type == PLANE)
+	// 	{
+	// 		t_plane *plane = (t_plane *)obj->obj;
+	// 		printf("type : PLANE, coord : (%f, %f, %f), normal : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
+	// 			, plane->coord.x, plane->coord.y, plane->coord.z,
+	// 			plane->norm.x, plane->norm.y, plane->norm.z, plane->color.a, plane->color.r, plane->color.g, plane->color.b);
+	// 	}
+	// 	else if (obj->obj->type == SPHERE)
+	// 	{
+	// 		t_sphere *sphere = (t_sphere *)obj->obj;
+	// 		printf("type : SPHERE, coord : (%f, %f, %f), radius : %f, color : (%d, %d, %d, %d)\n"
+	// 			, sphere->coord.x, sphere->coord.y, sphere->coord.z,
+	// 			sphere->radius, sphere->color.a, sphere->color.r, sphere->color.g, sphere->color.b);
+	// 	}
+	// 	else if (obj->obj->type == CYLINDER)
+	// 	{
+	// 		t_cylinder *cylinder = (t_cylinder *)obj->obj;
+	// 		printf("type : CYLINDER, coord : (%f, %f, %f), radius : %f, direction : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
+	// 			, cylinder->coord.x, cylinder->coord.y, cylinder->coord.z,
+	// 			cylinder->radius, cylinder->dir.x, cylinder->dir.y, cylinder->dir.z
+	// 			, cylinder->color.a, cylinder->color.r, cylinder->color.g, cylinder->color.b);
+	// 	}
+	// 	else if (obj->obj->type == CONE)
+	// 	{
+	// 		t_cone *cone = (t_cone *)obj->obj;
+	// 		printf("type : CONE, coord : (%f, %f, %f), angle : %f, direction : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
+	// 			, cone->coord.x, cone->coord.y, cone->coord.z,
+	// 			cone->angle, cone->dir.x, cone->dir.y, cone->dir.z
+	// 			, cone->color.a, cone->color.r, cone->color.g, cone->color.b);
+	// 	}
+	// 	obj = obj->next;
+	// }
 	mlx_struct_init(WIDTH, HEIGHT, "lol", &mlx);
 
-	t_camera	*cam_tmp;
-	cam_tmp = mlx.cam;
-	t_point	ori = cam_tmp->coord;
-	t_vec	dir = make_vec(cam_tmp->dir, ori);
-	t_vec	norm = {0, 0, 1};
-	double	rot[3][3];
-	double	cos = scalar(dir, norm);
-
-	printf("scalaire : %f\n", cos);
-
-	double	sin = sqrt(1 - pow(cos, 2));
-	t_vec	axe = vector(dir, norm);
-
-	printf("(%f, %f, %f) ^ (%f, %f, %f) -> (%f, %f, %f)\n"
-		, dir.x, dir.y, dir.z, norm.x, norm.y, norm.z, axe.x, axe.y, axe.z);
-
-	axe = normalize(axe);
-
-	printf("axe(normalize) -> (%f, %f, %f)\n", axe.x, axe.y, axe.z);
-
-	double	ux = axe.x;
-	double	uy = axe.y;
-	double	uz = axe.z;
-
-	double	ux_2 = pow(ux, 2);
-	double	uy_2 = pow(uy, 2);
-	double	uz_2 = pow(uz, 2);
-
-	rot[0][0] = ux_2 + (1 - ux_2) * cos;
-	rot[1][0] = ux * uy * (1 - cos) - uz * sin;
-	rot[2][0] = ux * uz * (1 - cos) + uy * sin;
-
-	rot[0][1] = ux * uy * (1 - cos) + uz * sin;
-	rot[1][1] = uy_2 + (1 - uy_2) * cos;
-	rot[2][1] = uy * uz * (1 - cos) - ux * sin;
-
-	rot[0][2] = ux * uz * (1 - cos) - uy * sin;
-	rot[1][2] = uy * uz * (1 - cos) + ux * sin;
-	rot[2][2] = uz_2 + (1 - uz_2) * cos;
-
-	printf("Rot :\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n"
-		, rot[0][0], rot[1][0], rot[2][0], rot[0][1], rot[1][1], rot[2][1], rot[0][2], rot[1][2], rot[2][2]);
-
+	t_point	ori = cam->coord;
+	t_vec	dir = make_vec(cam->dir, ori);
 	double	dist = norme(dir);
+	t_vec	norm = {0, 0, 1};
+	t_vec	axe = vector(dir, norm);
+	t_point	pix_bg = {-(WIDTH / 2), -(HEIGHT / 2), dist};
+	t_point	pix_hg = {-(WIDTH / 2), (HEIGHT / 2), dist};
+	t_point	pix_hd = {(WIDTH / 2), (HEIGHT / 2), dist};
+	if (!axe.x && !axe.y && !axe.z)
+	{
+		cam->pix_bg = pix_bg;
+		cam->pix_hg = pix_hg;
+		cam->pix_hd = pix_hd;
+	}
+	else
+	{
+	double	rot[3][3];
 
-	cam_tmp->pix_bg.x = -(WIDTH / 2) * rot[0][0] + -(HEIGHT / 2) * rot[0][1] + dist * rot[0][2] + cam_tmp->coord.x;
-	cam_tmp->pix_bg.y = -(WIDTH / 2) * rot[1][0] + -(HEIGHT / 2) * rot[1][1] + dist * rot[1][2] + cam_tmp->coord.y;
-	cam_tmp->pix_bg.z = -(WIDTH / 2) * rot[2][0] + -(HEIGHT / 2) * rot[2][1] + dist * rot[2][2] + cam_tmp->coord.z;
+	get_rotate(axe, scalar(dir, norm), rot);
 
-	cam_tmp->pix_hg.x = -(WIDTH / 2) * rot[0][0] + (HEIGHT / 2) * rot[0][1] + dist * rot[0][2] + cam_tmp->coord.x;
-	cam_tmp->pix_hg.y = -(WIDTH / 2) * rot[1][0] + (HEIGHT / 2) * rot[1][1] + dist * rot[1][2] + cam_tmp->coord.y;
-	cam_tmp->pix_hg.z = -(WIDTH / 2) * rot[2][0] + (HEIGHT / 2) * rot[2][1] + dist * rot[2][2] + cam_tmp->coord.z;
+	// printf("Rot :\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n"
+	// 	, rot[0][0], rot[1][0], rot[2][0], rot[0][1], rot[1][1], rot[2][1], rot[0][2], rot[1][2], rot[2][2]);
 
-	cam_tmp->pix_hd.x = (WIDTH / 2) * rot[0][0] + (HEIGHT / 2) * rot[0][1] + dist * rot[0][2] + cam_tmp->coord.x;
-	cam_tmp->pix_hd.y = (WIDTH / 2) * rot[1][0] + (HEIGHT / 2) * rot[1][1] + dist * rot[1][2] + cam_tmp->coord.y;
-	cam_tmp->pix_hd.z = (WIDTH / 2) * rot[2][0] + (HEIGHT / 2) * rot[2][1] + dist * rot[2][2] + cam_tmp->coord.z;
 
-	printf("bas gauche -> (%f, %f, %f)\n", cam_tmp->pix_bg.x, cam_tmp->pix_bg.y,cam_tmp->pix_bg.z);
-	printf("haut gauche -> (%f, %f, %f)\n", cam_tmp->pix_hg.x, cam_tmp->pix_hg.y,cam_tmp->pix_hg.z);
-	printf("haut droit -> (%f, %f, %f)\n", cam_tmp->pix_hd.x, cam_tmp->pix_hd.y,cam_tmp->pix_hd.z);
+	
 
-	// mlx.cam->pix_bg.x = 1010;
-	// mlx.cam->pix_bg.y = -950.0;
-	// mlx.cam->pix_bg.z = 10;
-	// mlx.cam->pix_hg.x = 1010;
-	// mlx.cam->pix_hg.y = -950.0;
-	// mlx.cam->pix_hg.z = 1090;
-	// mlx.cam->pix_hd.x = 1010;
-	// mlx.cam->pix_hd.y = 970;
-	// mlx.cam->pix_hd.z = 1090;
+	cam->pix_bg = do_rotate(rot, pix_bg);
+	cam->pix_bg = translate(cam->pix_bg, *(t_vec *)(&cam->coord));
+	cam->pix_hg = do_rotate(rot, pix_hg);
+	cam->pix_hg = translate(cam->pix_hg, *(t_vec *)(&cam->coord));
+	cam->pix_hd = do_rotate(rot, pix_hd);
+	cam->pix_hd = translate(cam->pix_hd, *(t_vec *)(&cam->coord));
+	}
+
+	// printf("bas gauche -> (%f, %f, %f)\n", cam_tmp->pix_bg.x, cam_tmp->pix_bg.y,cam_tmp->pix_bg.z);
+	// printf("haut gauche -> (%f, %f, %f)\n", cam_tmp->pix_hg.x, cam_tmp->pix_hg.y,cam_tmp->pix_hg.z);
+	// printf("haut droit -> (%f, %f, %f)\n", cam_tmp->pix_hd.x, cam_tmp->pix_hd.y,cam_tmp->pix_hd.z);
+
 	mlx.pix = precalc_vec_cam(cam);
 	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
