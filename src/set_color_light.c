@@ -6,9 +6,10 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/15 12:43:49 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/16 10:06:05 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <rt.h>
 
@@ -64,9 +65,13 @@ void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
 	double	scal;
 
 	normale = get_norm(pix->cur_obj, inter);
-	scal = scalar(normale, dir);
-	if (scal < 0.0)
-		scal = -scal;
+// <<<<<<< HEAD
+// 	scal = scalar(normale, dir);
+// 	if (scal < 0.0)
+// 		scal = -scal;
+// =======
+	scal = fabs(scalar(normale, dir));
+
 
 	pix->color->b = up_color_angle(pix->cur_obj->color.b, pix->color->b, scal);
 	pix->color->g = up_color_angle(pix->cur_obj->color.g, pix->color->g, scal);

@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 15:47:03 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/15 14:00:25 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/16 10:05:31 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ double	dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o)
 	det = pow(b, 2) - 4.0 * a * c;
 	if (det > 0)
 	{
-		double ret = (-(b) + sqrt(det)) / 2.0 * a;
-		double ret2 = (-(b) - sqrt(det)) / 2.0 * a;
+		double ret = (-(b) + sqrt(det)) / (2.0 * a);
+		double ret2 = (-(b) - sqrt(det)) / (2.0 * a);
 		return (ret2 > 0.0001 ? ret2 : ret);
 	}
 	return (-1);

@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 13:45:19 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 16:09:21 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/15 14:06:49 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void					add_err(t_pars *e, t_err_type err, char *line)
 {
 	t_err	*node;
 
-	ft_printf("ERROR -> %d", err);
 	if (e->err)
 		return ;
 	e->err = 1;
