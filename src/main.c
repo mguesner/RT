@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/16 06:53:13 by matthieu         ###   ########.fr       */
+/*   Updated: 2015/05/18 13:55:07 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,11 +192,11 @@ int			main(int argc, char **argv)
 	t_point	ori = cam->coord;
 	t_vec	dir = make_vec(cam->dir, ori);
 	double	dist = norme(dir);
-	t_vec	norm = {0, 0, 1};
+	t_vec	norm = {1, 0, 0};
 	t_vec	axe = vector(dir, norm);
-	t_point	pix_bg = {-(WIDTH / 2), -(HEIGHT / 2), dist};
-	t_point	pix_hg = {-(WIDTH / 2), (HEIGHT / 2), dist};
-	t_point	pix_hd = {(WIDTH / 2), (HEIGHT / 2), dist};
+	t_point	pix_bg = {dist, -(WIDTH / 2), (HEIGHT / 2)};
+	t_point	pix_hg = {dist, -(WIDTH / 2), -(HEIGHT / 2)};
+	t_point	pix_hd = {dist, (WIDTH / 2), -(HEIGHT / 2)};
 	if (!axe.x && !axe.y && !axe.z)
 	{
 		cam->pix_bg = pix_bg;
@@ -205,22 +205,22 @@ int			main(int argc, char **argv)
 	}
 	else
 	{
-	double	rot[3][3];
+		double	rot[3][3];
 
-	get_rotate(axe, scalar(dir, norm), rot);
+		get_rotate(axe, scalar(dir, norm), rot);
 
 	// printf("Rot :\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n"
 	// 	, rot[0][0], rot[1][0], rot[2][0], rot[0][1], rot[1][1], rot[2][1], rot[0][2], rot[1][2], rot[2][2]);
 
 
-	
 
-	cam->pix_bg = do_rotate(rot, pix_bg);
-	cam->pix_bg = translate(cam->pix_bg, *(t_vec *)(&cam->coord));
-	cam->pix_hg = do_rotate(rot, pix_hg);
-	cam->pix_hg = translate(cam->pix_hg, *(t_vec *)(&cam->coord));
-	cam->pix_hd = do_rotate(rot, pix_hd);
-	cam->pix_hd = translate(cam->pix_hd, *(t_vec *)(&cam->coord));
+
+		cam->pix_bg = do_rotate(rot, pix_bg);
+		cam->pix_bg = translate(cam->pix_bg, *(t_vec *)(&cam->coord));
+		cam->pix_hg = do_rotate(rot, pix_hg);
+		cam->pix_hg = translate(cam->pix_hg, *(t_vec *)(&cam->coord));
+		cam->pix_hd = do_rotate(rot, pix_hd);
+		cam->pix_hd = translate(cam->pix_hd, *(t_vec *)(&cam->coord));
 	}
 
 	// printf("bas gauche -> (%f, %f, %f)\n", cam_tmp->pix_bg.x, cam_tmp->pix_bg.y,cam_tmp->pix_bg.z);

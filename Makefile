@@ -69,6 +69,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/cylinder.c\
 	  $(SRCDIR)/set_color_light.c\
 	  $(SRCDIR)/cam_rotation.c\
+	  $(SRCDIR)/get_normale.c\
 	  mlx_src/mlx_init.c
 
 LIB =
@@ -86,7 +87,7 @@ lib:
 	$(CC) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) libft/libft.a minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
+	$(CC) -o $(NAME) $(OBJ) libft/libft.a -lmlx -framework OpenGL -framework AppKit
 
 clean:
 	rm -rf $(OBJ)
