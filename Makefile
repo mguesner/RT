@@ -67,6 +67,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/cylinder.c\
 	  $(SRCDIR)/set_color_light.c\
 	  $(SRCDIR)/cam_rotation.c\
+	  $(SRCDIR)/textures.c\
 	  mlx_src/mlx_init.c
 
 LIB =
