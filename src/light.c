@@ -6,12 +6,13 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/18 13:56:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/18 16:39:19 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <stdio.h>
+#include <matrice.h>
 
 static void		set_color(t_libx *m, t_pix *pix)
 {
@@ -56,7 +57,7 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 	if (vec_dir->cur_obj == NULL)
 		return ;
 	inter_point = translate(mlx->cam->coord,
-							vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
+		vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
 	tmp = mlx->spots.begin;
 	while (tmp)
 	{

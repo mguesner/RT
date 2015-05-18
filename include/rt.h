@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 17:43:33 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/18 16:35:37 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct				s_obj
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+	double					rot[3][3];
 }							t_obj;
 
 typedef struct				s_camera
@@ -47,6 +48,7 @@ typedef struct				s_camera
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+	double					rot[3][3];
 	t_point					pix_hg;
 	t_point					pix_bg;
 	t_point					pix_hd;
@@ -58,6 +60,7 @@ typedef struct				s_light
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+	double					rot[3][3];
 }							t_light;
 
 typedef struct				s_plane
@@ -65,6 +68,7 @@ typedef struct				s_plane
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+	double					rot[3][3];
 	t_vec					norm;
 }							t_plane;
 
@@ -73,6 +77,7 @@ typedef struct				s_sphere
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+	double					rot[3][3];
 	double					radius;
 }							t_sphere;
 
@@ -81,6 +86,7 @@ typedef struct				s_cylinder
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+	double					rot[3][3];
 	double					radius;
 	t_vec					dir;
 }							t_cylinder;
@@ -90,6 +96,7 @@ typedef struct				s_cone
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
+	double					rot[3][3];
 	double					angle;
 	t_vec					dir;
 }							t_cone;
