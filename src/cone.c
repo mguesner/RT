@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 16:17:32 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/15 17:36:58 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/18 14:11:18 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ double	dist_cone(t_cone *cone, t_vec *vec, t_point *o)
 	c = (pow((o->x - cone->coord.x), 2) + pow((o->y - cone->coord.y), 2)
 		- pow(((o->z - cone->coord.z)), 2)) * cone->angle;
 	det = pow(b, 2) - 4.0 * a * c;
-/*
-	if (det > 0)
-		return (-b + sqrt(det) / (2.0 * a));
-*/
 	if (det > 0)
 	{
 		double ret = (-b + sqrt(det)) / (2.0 * a);

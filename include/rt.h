@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 17:43:33 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/18 16:12:31 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ typedef struct				s_pix
 	t_vec					pos_pix_vec;
 	t_color					*color;
 	t_obj					*in_shadow;
+	t_vec					normale;
 }							t_pix;
 
 typedef struct				s_libx
@@ -149,5 +150,6 @@ void						set_color_light(t_obj *light, t_pix *pix, t_point inter);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
 double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
+t_vec						get_normale(t_pix *pix, t_point inter);
 
 #endif

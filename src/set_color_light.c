@@ -3,27 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/15 17:41:49 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/18 16:28:46 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <rt.h>
-
-static t_vec	get_norm(t_obj *obj, t_point inter)
-{
-	if (obj->type == PLANE)
-		return (((t_plane *)obj)->norm);
-	if (obj->type == CONE)
-		return (((t_cone *)obj)->dir);
-	if (obj->type == CYLINDER)
-		return (((t_cylinder *)obj)->dir);
-	else // if (obj->type == SPHERE)
-		return (normalize(make_vec(obj->coord, inter)));
-}
+#include <stdio.h>
 /*
 static int		up_color(int obj_color, int cur_color, double dist, double power)
 {
@@ -48,6 +37,9 @@ static int		up_color_angle(int obj_color, int cur_color, double scalar)
 	if (new < 0)
 		return (0);
 	return (new);
+	// (void)cur_color;
+	// (void)scalar;
+	// return (obj_color);
 }
 
 void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
@@ -58,19 +50,20 @@ void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
 	dir = make_vec(light->coord, inter);
 	light_dist = norme(dir);
 	dir = normalize(dir);
-
 //	pix->color->b = up_color(pix->cur_obj->color.b, pix->color->b, light_dist, 1000);
 //	pix->color->g = up_color(pix->cur_obj->color.g, pix->color->g, light_dist, 1000);
 //	pix->color->r = up_color(pix->cur_obj->color.r, pix->color->r, light_dist, 1000);
-
-	t_vec	normale;
+	// t_vec	normale;
 	double	scal;
 
-	normale = get_norm(pix->cur_obj, inter);
-	scal = fabs(scalar(normale, dir));
+	pix->normale = get_normale(pix, inter);
+	// scal = scalar(pix->normale, dir);
+	// if (scal < 0.0)
+	// 	scal = -scal;
+	scal = fabs(scalar(pix->normale, dir));
+	// printf("%f\n", scal);
 
 	pix->color->b = up_color_angle(pix->cur_obj->color.b, pix->color->b, scal);
 	pix->color->g = up_color_angle(pix->cur_obj->color.g, pix->color->g, scal);
 	pix->color->r = up_color_angle(pix->cur_obj->color.r, pix->color->r, scal);
-
 }
