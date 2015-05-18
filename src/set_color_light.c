@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguezell <nguezell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/15 17:41:49 by nguezell         ###   ########.fr       */
+/*   Updated: 2015/05/18 13:58:21 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,18 @@ static int		up_color(int obj_color, int cur_color, double dist, double power)
 */
 static int		up_color_angle(int obj_color, int cur_color, double scalar)
 {
-	int new;
+	// int new;
 
-	new = obj_color * scalar;
-	new = cur_color + new;
-	if (new > obj_color)
-		return (obj_color);
-	if (new < 0)
-		return (0);
-	return (new);
+	// new = obj_color * scalar;
+	// new = cur_color + new;
+	// if (new > obj_color)
+	// 	return (obj_color);
+	// if (new < 0)
+	// 	return (0);
+	// return (new);
+	(void)cur_color;
+	(void)scalar;
+	return (obj_color);
 }
 
 void			set_color_light(t_obj *light, t_pix *pix, t_point inter)

@@ -86,7 +86,7 @@ lib:
 	$(CC) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) libft/libft.a minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
+	$(CC) -o $(NAME) $(OBJ) libft/libft.a -lmlx -framework OpenGL -framework AppKit
 
 clean:
 	rm -rf $(OBJ)
