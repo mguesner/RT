@@ -53,6 +53,8 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/p_cylinder42_vector.c\
 	  $(SRCDIR)/parser/p_cone42.c\
 	  $(SRCDIR)/parser/check_pars_err.c\
+	  $(SRCDIR)/matrice/get_rotate.c\
+	  $(SRCDIR)/matrice/do_rotate.c\
 	  $(SRCDIR)/error.c\
 	  $(SRCDIR)/main.c\
 	  $(SRCDIR)/touch.c\
@@ -85,7 +87,7 @@ lib:
 	$(CC) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) libft/libft.a -lmlx -framework OpenGL -framework AppKit
+	$(CC) -o $(NAME) $(OBJ) libft/libft.a minilibx_macos/libmlx.a -framework OpenGL -framework AppKit
 
 clean:
 	rm -rf $(OBJ)
