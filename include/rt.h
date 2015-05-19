@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/18 16:12:31 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:04:47 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,17 @@ typedef struct				s_cone
 	t_vec					dir;
 }							t_cone;
 
+typedef struct				s_texture
+{
+	void					*imgv;
+	char					*data;
+	int						width;
+	int						height;
+	int						bpp;
+	int						size_line;
+	int						endian;
+}							t_texture;
+
 typedef struct				s_obj_list
 {
 	t_obj					*obj;
@@ -136,10 +147,13 @@ typedef struct				s_libx
 	t_obj_list_begin		spots;
 	t_obj_list_begin		obj;
 	t_pix					**pix;
+	t_texture				texture;
 }							t_libx;
 
 void						error(int errno);
 void						mlx_struct_init(int width, int height, char *win_name, t_libx *mlx);
+void						textures_init(t_libx *mlx);
+void						texture_func(t_libx *mlx, t_pix *vec_dir);
 void						start(t_libx *mlx);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
@@ -151,5 +165,6 @@ void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
 double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
 t_vec						get_normale(t_pix *pix, t_point inter);
+
 
 #endif
