@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 14:04:47 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:08:41 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,7 @@ void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
 double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
 t_vec						get_normale(t_pix *pix, t_point inter);
+void						set_color(t_libx *m, t_pix *pix);
 
 
 #endif
