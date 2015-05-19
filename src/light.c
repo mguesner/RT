@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 14:13:13 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:11:24 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@ void		set_color(t_libx *m, t_pix *pix)
 static void	set_color_shad(t_libx *m, t_pix *pix)
 {
 	int		pos;
+	int		white;
+	double	coef;
 
+	white = 255 * 3;
+	coef = 0.2 - (double)((pix->cur_obj->color.b + pix->cur_obj->color.g + pix->cur_obj->color.r) / white);
 	pos = ((pix->pix_y) * (m->size_line) + pix->pix_x * (m->bpp / 8));
-	m->data[pos] = pix->cur_obj->color.b * LIGHT_IN_SHADOW;
-	m->data[pos + 1] = pix->cur_obj->color.g * LIGHT_IN_SHADOW;
-	m->data[pos + 2] = pix->cur_obj->color.r * LIGHT_IN_SHADOW;
+	m->data[pos] = pix->cur_obj->color.b * coef;
+	m->data[pos + 1] = pix->cur_obj->color.g * coef;
+	m->data[pos + 2] = pix->cur_obj->color.r * coef;
 }
 
 static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *vec_dir)
