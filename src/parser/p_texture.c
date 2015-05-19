@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 14:28:42 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 14:41:08 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:09:01 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void					p_texture(t_pars *e, t_lex **node)
 {
 	if (e->cur)
-		e->cur->texture = ft_strdup((*node)->value);
+		e->cur->texture = texture_init(e, (*node)->value);
 }

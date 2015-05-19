@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 14:29:18 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:09:51 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef void			(*t_fptoken)(t_pars *e, t_lex **node);
 
 struct					s_pars
 {
+	void				*mlx;
 	t_f_parse			tools[NBSTEP];
 	char				*err_msg[NBERR];
 	t_err_begin			err_list;
@@ -130,6 +131,7 @@ void					p_openscope(t_pars *e, t_lex **node);
 void					p_closescope(t_pars *e, t_lex **node);
 void					p_pigment(t_pars *e, t_lex **node);
 void					p_texture(t_pars *e, t_lex **node);
+t_texture				texture_init(t_pars *e, char *name);
 
 void					p_begin(t_pars *e, t_lex **node);
 
