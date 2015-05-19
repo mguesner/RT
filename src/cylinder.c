@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:20:04 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/19 14:05:44 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:55:13 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ double	dist_cylinder(t_cylinder *cylinder, t_vec *v, t_point *ori)
 
 	vec = do_rotate(cylinder->rot, *(t_point *)v);
 	o = do_rotate(cylinder->rot, *ori);
-	// o = *ori;
-	// vec = *(t_point *)v;
 	a = pow(vec.x, 2) + pow(vec.y, 2);
 	b = 2.0 * (vec.x * (o.x - cylinder->coord.x) + vec.y * (o.y - cylinder->coord.y));
 	c = pow((o.x - cylinder->coord.x), 2) + pow((o.y - cylinder->coord.y), 2) - pow(cylinder->radius, 2);;
@@ -36,17 +34,6 @@ double	dist_cylinder(t_cylinder *cylinder, t_vec *v, t_point *ori)
         double ret2 = (-b - sqrt(det)) / (2.0 * a);
         return (ret2 > 0.0001 ? ret2 : ret);
     }
-/*
-	if (det > 0)
-<<<<<<< HEAD
-	{
-		double ret = (-(b) + sqrt(det)) / 2.0 * a;
-		double ret2 = (-(b) - sqrt(det)) / 2.0 * a;
-		return (ret2 > 0.0001 ? ret2 : ret);
-	}
-=======
-		return (-b + sqrt(det) / (2.0 * a));
-*/
 	else
 		return (-1);
 }
