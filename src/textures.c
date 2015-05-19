@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 10:42:10 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/19 15:22:24 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/19 16:32:44 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 void	texture_func(t_pix *vec_dir) // norme a faire.
 {
@@ -37,5 +38,8 @@ void	texture_func(t_pix *vec_dir) // norme a faire.
 		* vec_dir->cur_obj->texture.bpp + (int)(v * vec_dir->cur_obj->texture.height) *
 		vec_dir->cur_obj->texture.size_line + 2];
 		// set_color(mlx, vec_dir);
+		vec_dir->color->b = vec_dir->color->b < 0 ? 255 + vec_dir->color->b : vec_dir->color->b;
+		vec_dir->color->r = vec_dir->color->r < 0 ? 255 + vec_dir->color->r : vec_dir->color->r;
+		vec_dir->color->g = vec_dir->color->g < 0 ? 255 + vec_dir->color->g : vec_dir->color->g;
 	}
 }

@@ -21,7 +21,7 @@ light_source { <0,0,1500>
 
 sphere { <250,250,1500>, 100 // coord centre et rayon
          pigment { color rgb <0,1,0> }
-         texture { texture_jupiter }
+         texture { jupitermap }
 }
 
 plane { <1,0,0>,2000 // coord centre et rayon

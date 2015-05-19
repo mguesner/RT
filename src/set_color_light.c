@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/19 14:13:26 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 16:01:33 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,15 @@ static int		up_color(int obj_color, int cur_color, double dist, double power)
 	return (cur_color + ret);
 }
 */
-static int		up_color_angle(int obj_color, int cur_color, double scalar)
+static int		up_color_angle(int cur_color, double scalar)
 {
 	int new;
 
-	new = obj_color * scalar;
-	new = cur_color + new;
-	if (new > obj_color)
-		return (obj_color);
-	if (new < obj_color * LIGHT_IN_SHADOW)
-		return (obj_color * LIGHT_IN_SHADOW);
+	new = cur_color * scalar;
+	if (new > cur_color)
+		return (cur_color);
+	if (new < cur_color * LIGHT_IN_SHADOW)
+		return (cur_color * LIGHT_IN_SHADOW);
 	return (new);
 	// (void)cur_color;
 	// (void)scalar;
@@ -64,7 +63,7 @@ void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
 	scal = fabs(scalar(pix->normale, dir));
 	// printf("%f\n", scal);
 
-	pix->color->b = up_color_angle(pix->cur_obj->color.b, pix->color->b, scal);
-	pix->color->g = up_color_angle(pix->cur_obj->color.g, pix->color->g, scal);
-	pix->color->r = up_color_angle(pix->cur_obj->color.r, pix->color->r, scal);
+	pix->color->b = up_color_angle(pix->color->b, scal);
+	pix->color->g = up_color_angle(pix->color->g, scal);
+	pix->color->r = up_color_angle(pix->color->r, scal);
 }
