@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:20:04 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/18 16:37:41 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/18 17:01:03 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ double	dist_cylinder(t_cylinder *cylinder, t_vec *v, t_point *ori)
     }
 /*
 	if (det > 0)
+<<<<<<< HEAD
+	{
+		double ret = (-(b) + sqrt(det)) / 2.0 * a;
+		double ret2 = (-(b) - sqrt(det)) / 2.0 * a;
+		return (ret2 > 0.0001 ? ret2 : ret);
+	}
+=======
 		return (-b + sqrt(det) / (2.0 * a));
 */
 	else
