@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 13:07:19 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/19 15:13:12 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:18:17 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_texture texture_init(t_pars *e, char *name)
 	t_texture	ret;
 	char		*file_name;
 
+	ret.exist = 1;
 	file_name = ft_strtrijoin("./textures/", name, ".xpm");
 	ret.imgv = mlx_xpm_file_to_image(e->mlx,
 		file_name,

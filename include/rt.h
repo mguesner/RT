@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 15:08:27 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:18:48 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum				e_obj_type
 
 typedef struct				s_texture
 {
+	int						exist;
 	void					*imgv;
 	char					*data;
 	int						width;
