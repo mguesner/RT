@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/19 13:07:05 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:13:26 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static int		up_color_angle(int obj_color, int cur_color, double scalar)
 	new = cur_color + new;
 	if (new > obj_color)
 		return (obj_color);
-	if (new < 0)
-		return (0);
+	if (new < obj_color * LIGHT_IN_SHADOW)
+		return (obj_color * LIGHT_IN_SHADOW);
 	return (new);
 	// (void)cur_color;
 	// (void)scalar;

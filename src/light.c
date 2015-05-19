@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 14:06:08 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:13:13 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <matrice.h>
 
-static void		set_color(t_libx *m, t_pix *pix)
+void		set_color(t_libx *m, t_pix *pix)
 {
 	int		pos;
 
@@ -22,6 +22,16 @@ static void		set_color(t_libx *m, t_pix *pix)
 		m->data[pos] = pix->color->b;
 		m->data[pos + 1] = pix->color->g;
 		m->data[pos + 2] = pix->color->r;
+}
+
+static void	set_color_shad(t_libx *m, t_pix *pix)
+{
+	int		pos;
+
+	pos = ((pix->pix_y) * (m->size_line) + pix->pix_x * (m->bpp / 8));
+	m->data[pos] = pix->cur_obj->color.b * LIGHT_IN_SHADOW;
+	m->data[pos + 1] = pix->cur_obj->color.g * LIGHT_IN_SHADOW;
+	m->data[pos + 2] = pix->cur_obj->color.r * LIGHT_IN_SHADOW;
 }
 
 static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *vec_dir)
@@ -75,6 +85,8 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 			set_color_light(tmp->obj, vec_dir, vec_dir->inter);
 			set_color(mlx, vec_dir);
 		}
+		else
+			set_color_shad(mlx, vec_dir);
 		tmp = tmp->next;
 	}
 }

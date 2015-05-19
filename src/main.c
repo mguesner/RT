@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/18 13:55:07 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 13:32:30 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,6 @@ int			main(int argc, char **argv)
 
 
 
-
 		cam->pix_bg = do_rotate(rot, pix_bg);
 		cam->pix_bg = translate(cam->pix_bg, *(t_vec *)(&cam->coord));
 		cam->pix_hg = do_rotate(rot, pix_hg);
@@ -222,7 +221,7 @@ int			main(int argc, char **argv)
 		cam->pix_hd = do_rotate(rot, pix_hd);
 		cam->pix_hd = translate(cam->pix_hd, *(t_vec *)(&cam->coord));
 	}
-
+		textures_init(&mlx);
 	// printf("bas gauche -> (%f, %f, %f)\n", cam_tmp->pix_bg.x, cam_tmp->pix_bg.y,cam_tmp->pix_bg.z);
 	// printf("haut gauche -> (%f, %f, %f)\n", cam_tmp->pix_hg.x, cam_tmp->pix_hg.y,cam_tmp->pix_hg.z);
 	// printf("haut droit -> (%f, %f, %f)\n", cam_tmp->pix_hd.x, cam_tmp->pix_hd.y,cam_tmp->pix_hd.z);
