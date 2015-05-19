@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/19 14:13:26 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:19:52 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,12 @@ void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
 	// 	scal = -scal;
 	scal = fabs(scalar(pix->normale, dir));
 	// printf("%f\n", scal);
-
-	pix->color->b = up_color_angle(pix->cur_obj->color.b, pix->color->b, scal);
-	pix->color->g = up_color_angle(pix->cur_obj->color.g, pix->color->g, scal);
-	pix->color->r = up_color_angle(pix->cur_obj->color.r, pix->color->r, scal);
+	if (pix->cur_obj->type == SPHERE && pix->cur_obj->texture.exist == 1)
+		texture_func(pix);
+	else
+	{
+		pix->color->b = up_color_angle(pix->cur_obj->color.b, pix->color->b, scal);
+		pix->color->g = up_color_angle(pix->cur_obj->color.g, pix->color->g, scal);
+		pix->color->r = up_color_angle(pix->cur_obj->color.r, pix->color->r, scal);
+	}
 }
