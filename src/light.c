@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 14:13:13 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:30:57 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,19 +73,9 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 	while (tmp)
 	{
 		light_dist = shadow(tmp->obj, mlx->obj.begin, inter_point, vec_dir);
-		if (!light_dist)
-		{
-			// printf("inter : (%f, %f, %f) ->", inter_point.x, inter_point.y, inter_point.z);
-			// inter_point = do_rotate(vec_dir->cur_obj->rot, inter_point);
-			// printf(" (%f, %f, %f)", inter_point.x, inter_point.y, inter_point.z);
-			// printf("\n(%f, %f, %f)\n(%f, %f, %f)\n(%f, %f, %f)\n"
-			// 	, vec_dir->cur_obj->rot[0][0], vec_dir->cur_obj->rot[0][1], vec_dir->cur_obj->rot[0][2]
-			// 	, vec_dir->cur_obj->rot[1][0], vec_dir->cur_obj->rot[1][1], vec_dir->cur_obj->rot[1][2]
-			// 	, vec_dir->cur_obj->rot[2][0], vec_dir->cur_obj->rot[2][1], vec_dir->cur_obj->rot[2][2]);
-			set_color_light(tmp->obj, vec_dir, vec_dir->inter);
-			set_color(mlx, vec_dir);
-		}
-		else
+		set_color_light(tmp->obj, vec_dir, vec_dir->inter);
+		set_color(mlx, vec_dir);
+		if (light_dist)
 			set_color_shad(mlx, vec_dir);
 		tmp = tmp->next;
 	}
