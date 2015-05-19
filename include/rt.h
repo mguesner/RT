@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 15:18:48 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:35:22 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,7 +169,7 @@ typedef struct				s_libx
 
 void						error(int errno);
 void						mlx_struct_init(int width, int height, char *win_name, t_libx *mlx);
-void						texture_func(t_libx *mlx, t_pix *vec_dir);
+void						texture_func(t_pix *vec_dir);
 void						start(t_libx *mlx);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
