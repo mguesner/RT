@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normale.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/18 14:34:10 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/18 17:54:58 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:14:07 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,7 @@ t_vec	get_normale(t_pix *pix, t_point inter)
 	if (pix->cur_obj->type == SPHERE)
 		return (normalize(make_vec(inter, pix->cur_obj->coord)));
 	else if (pix->cur_obj->type == PLANE)
-	{
-
-		return (*((t_vec *)&(pix->cur_obj->coord)));
-	}
+		return (((t_plane *)pix->cur_obj)->norm);
 	else if (pix->cur_obj->type == CYLINDER)
 		return(cylinder_norm(pix, inter));
 	else

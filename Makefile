@@ -55,6 +55,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/check_pars_err.c\
 	  $(SRCDIR)/matrice/get_rotate.c\
 	  $(SRCDIR)/matrice/do_rotate.c\
+	  $(SRCDIR)/matrice/do_rotate_vec.c\
 	  $(SRCDIR)/error.c\
 	  $(SRCDIR)/main.c\
 	  $(SRCDIR)/touch.c\

@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 13:32:35 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 14:53:11 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 13:45:17 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ static void				p_begin_word2(t_pars *e, t_lex **node)
 	{
 		e->cur = ft_memalloc(sizeof(t_plane));
 		e->cur->type = PLANE;
+		e->cur->rot[0][0] = 1;
+		e->cur->rot[1][1] = 1;
+		e->cur->rot[2][2] = 1;
 		e->step = PPLANE;
 	}
 	else if (!strcmp(tmp, "cylinder_42"))
@@ -60,6 +63,9 @@ void					p_begin_word(t_pars *e, t_lex **node)
 	{
 		e->cur = ft_memalloc(sizeof(t_sphere));
 		e->cur->type = SPHERE;
+		e->cur->rot[0][0] = 1;
+		e->cur->rot[1][1] = 1;
+		e->cur->rot[2][2] = 1;
 		e->step = PSPHERE;
 	}
 	else

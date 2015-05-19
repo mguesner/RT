@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 14:10:52 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:13:13 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <stdio.h>
+#include <matrice.h>
 
 void		set_color(t_libx *m, t_pix *pix)
 {
@@ -59,6 +60,7 @@ static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *v
 
 void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 {
+
 	t_point		inter_point;
 	t_obj_list	*tmp;
 	t_obj_list	*light_dist;
@@ -66,14 +68,21 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 	if (vec_dir->cur_obj == NULL)
 		return ;
 	inter_point = translate(mlx->cam->coord,
-							vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
+		vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
 	tmp = mlx->spots.begin;
 	while (tmp)
 	{
 		light_dist = shadow(tmp->obj, mlx->obj.begin, inter_point, vec_dir);
 		if (!light_dist)
 		{
-			set_color_light(tmp->obj, vec_dir, inter_point);
+			// printf("inter : (%f, %f, %f) ->", inter_point.x, inter_point.y, inter_point.z);
+			// inter_point = do_rotate(vec_dir->cur_obj->rot, inter_point);
+			// printf(" (%f, %f, %f)", inter_point.x, inter_point.y, inter_point.z);
+			// printf("\n(%f, %f, %f)\n(%f, %f, %f)\n(%f, %f, %f)\n"
+			// 	, vec_dir->cur_obj->rot[0][0], vec_dir->cur_obj->rot[0][1], vec_dir->cur_obj->rot[0][2]
+			// 	, vec_dir->cur_obj->rot[1][0], vec_dir->cur_obj->rot[1][1], vec_dir->cur_obj->rot[1][2]
+			// 	, vec_dir->cur_obj->rot[2][0], vec_dir->cur_obj->rot[2][1], vec_dir->cur_obj->rot[2][2]);
+			set_color_light(tmp->obj, vec_dir, vec_dir->inter);
 			set_color(mlx, vec_dir);
 		}
 		else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 10:42:10 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/19 14:01:06 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:13:50 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	texture_func(t_libx *mlx, t_pix *vec_dir) // norme a faire.
 		normale = normalize(make_vec(inter_point, vec_dir->cur_obj->coord));
 		u = 0.5 + (atan2((-normale.x), (-normale.z)) / M_PI);
 		v = 0.5 - asin((normale.y)) / M_PI;
-
 		vec_dir->color->b = mlx->texture.data[(int)(u * mlx->texture.width)
 		* mlx->texture.bpp + (int)(v * mlx->texture.height)
 		* mlx->texture.size_line];

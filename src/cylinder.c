@@ -3,25 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:20:04 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/16 10:04:15 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:05:44 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
+#include <matrice.h>
 
-double	dist_cylinder(t_cylinder *cylinder, t_vec *vec, t_point *o)
+double	dist_cylinder(t_cylinder *cylinder, t_vec *v, t_point *ori)
 {
 	double	a;
 	double	b;
 	double	c;
 	double	det;
+	t_point	vec;
+	t_point	o;
 
-	a = pow(vec->x, 2) + pow(vec->y, 2);
-	b = 2.0 * (vec->x * (o->x - cylinder->coord.x) + vec->y * (o->y - cylinder->coord.y));
-	c = pow((o->x - cylinder->coord.x), 2) + pow((o->y - cylinder->coord.y), 2) - pow(cylinder->radius, 2);;
+	vec = do_rotate(cylinder->rot, *(t_point *)v);
+	o = do_rotate(cylinder->rot, *ori);
+	// o = *ori;
+	// vec = *(t_point *)v;
+	a = pow(vec.x, 2) + pow(vec.y, 2);
+	b = 2.0 * (vec.x * (o.x - cylinder->coord.x) + vec.y * (o.y - cylinder->coord.y));
+	c = pow((o.x - cylinder->coord.x), 2) + pow((o.y - cylinder->coord.y), 2) - pow(cylinder->radius, 2);;
 	det = pow(b, 2) - 4.0 * a * c;
     if (det > 0)
     {
