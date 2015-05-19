@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 16:32:44 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 16:41:19 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,21 @@ void		set_color(t_libx *m, t_pix *pix)
 	m->data[pos + 2] = pix->color->r;
 }
 
-static void	set_color_shad(t_pix *pix)
+static void	set_color_shad(t_libx *m, t_pix *pix)
 {
-	pix->color->b = pix->color->b * LIGHT_IN_SHADOW;
-	pix->color->r = pix->color->r * LIGHT_IN_SHADOW;
-	pix->color->g = pix->color->g * LIGHT_IN_SHADOW;
+	// pix->color->b = pix->color->b * LIGHT_IN_SHADOW;
+	// pix->color->r = pix->color->r * LIGHT_IN_SHADOW;
+	// pix->color->g = pix->color->g * LIGHT_IN_SHADOW;
+	int		pos;
+	int		white;
+	double	coef;
+
+	white = 255 * 3;
+	coef = 0.2 - (double)((pix->cur_obj->color.b + pix->cur_obj->color.g + pix->cur_obj->color.r) / white);
+	pos = ((pix->pix_y) * (m->size_line) + pix->pix_x * (m->bpp / 8));
+	pix->color->b = pix->color->b * coef;
+	pix->color->g = pix->color->g * coef;
+	pix->color->r = pix->color->r * coef;
 }
 
 static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *vec_dir)
@@ -80,7 +90,7 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 		}
 		if (light_dist)
 			// ;
-			set_color_shad(vec_dir);
+			set_color_shad(mlx, vec_dir);
 		else
 			set_color_light(tmp->obj, vec_dir, vec_dir->inter);
 		set_color(mlx, vec_dir);

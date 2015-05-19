@@ -6,7 +6,7 @@ camera
 	//angle 45 // l'angle de la caméra
 }
 
-light_source { <1000,0,0>
+light_source { <1000,500,0>
       color rgb<1,1,1>
 }
 
@@ -14,7 +14,7 @@ light_source { <1000,0,0>
 //     color rgb<1,1,1>
 //}
 
-sphere { <2000,0,0>, 500 // coord centre et rayon
+sphere { <2000,0,0>, 300 // coord centre et rayon
          pigment { color rgb <1,0,0> }
 }
 
@@ -28,12 +28,12 @@ sphere { <2000,0,0>, 500 // coord centre et rayon
 //}
 
 plane { <-1,0,0>,6000 // coord centre et rayon
-         pigment { color rgb <0.5,0.5,0> }
+         pigment { color rgb <1,0,0> }
 }
 
-cylinder_42 { <1500,0,0>, <0,1,0>, 100 // coord, direction, rayon
-         pigment { color rgb <1,0.6,0> }
-}
+//cylinder_42 { <1500,0,0>, <0,1,0>, 100 // coord, direction, rayon
+//         pigment { color rgb <1,0.6,0> }
+//}
 
 //cone_42 { <5000, 0, 0>, 1, <0,1,0>   // coord, angle, direction
 //     pigment { color rgb <0.4,0.7,0> }

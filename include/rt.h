@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 15:35:22 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 16:33:41 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define HEIGHT 1080
 # define TOTAL_PIX WIDTH * HEIGHT
 # define EPSILON 0.1E-7
-# define LIGHT_IN_SHADOW 0.12
 
 # include <vecteur.h>
 # include <color.h>
@@ -182,5 +181,6 @@ t_pix						**precalc_vec_cam(t_camera *cam);
 double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
 t_vec						get_normale(t_pix *pix, t_point inter);
 void						set_color(t_libx *m, t_pix *pix);
+void						antialiasing(t_libx *m);
 
 #endif
