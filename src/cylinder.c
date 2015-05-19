@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:20:04 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/18 17:01:03 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:05:44 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ double	dist_cylinder(t_cylinder *cylinder, t_vec *v, t_point *ori)
 
 	vec = do_rotate(cylinder->rot, *(t_point *)v);
 	o = do_rotate(cylinder->rot, *ori);
+	// o = *ori;
 	// vec = *(t_point *)v;
 	a = pow(vec.x, 2) + pow(vec.y, 2);
 	b = 2.0 * (vec.x * (o.x - cylinder->coord.x) + vec.y * (o.y - cylinder->coord.y));

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 10:42:10 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/18 17:47:12 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/19 13:04:15 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <stdio.h>
 
-void	texture_func(t_libx *mlx, t_pix *vec_dir, char *texture, int width, int height, 
+void	texture_func(t_libx *mlx, t_pix *vec_dir, char *texture, int width, int height,
 						int bpp, int size_line) // norme a faire.
 {
 	t_point		inter_point;
@@ -37,6 +37,6 @@ void	texture_func(t_libx *mlx, t_pix *vec_dir, char *texture, int width, int hei
 			(int)(v * height) * size_line + 1];
 		vec_dir->color->r = texture[(int)(u * width) * bpp +
 			(int)(v * height) * size_line + 2];
-		set_color(mlx, vec_dir);
+		// set_color(mlx, vec_dir);
 	}
 }

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/18 16:28:46 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/19 13:07:05 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include <rt.h>
 #include <stdio.h>
+#include <matrice.h>
 /*
 static int		up_color(int obj_color, int cur_color, double dist, double power)
 {

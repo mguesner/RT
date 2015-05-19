@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/18 17:00:36 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 13:32:36 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ typedef struct				s_pix
 	double					light_dist;
 	double					shadow_dist;
 	t_vec					pos_pix_vec;
+	t_point					inter;
 	t_color					*color;
 	t_obj					*in_shadow;
 	t_vec					normale;
