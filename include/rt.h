@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 14:11:00 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/19 14:12:54 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,5 @@ t_pix						**precalc_vec_cam(t_camera *cam);
 double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
 t_vec						get_normale(t_pix *pix, t_point inter);
 void						set_color(t_libx *m, t_pix *pix);
-<<<<<<< HEAD
-=======
-
->>>>>>> 5e811b9b7cf11153707fd3ae424ba80d562e6280
 
 #endif
