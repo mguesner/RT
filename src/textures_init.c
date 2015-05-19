@@ -3,27 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   textures_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 13:07:19 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/19 14:04:57 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:18:17 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <rt.h>
+#include <parser.h>
 #include <stdlib.h>
 
-void textures_init(t_libx *mlx)
+t_texture texture_init(t_pars *e, char *name)
 {
-	mlx->texture.imgv = mlx_xpm_file_to_image(mlx->mlx,
-		"./textures/texture_jupiter.xpm",
-		&(mlx->texture.width), &(mlx->texture.height));
-	if (mlx->texture.imgv == NULL)
-	{
-		ft_putendl("error: texture file not found");
-		exit(0);
-	}
-	mlx->texture.data = mlx_get_data_addr(mlx->texture.imgv,
-		&(mlx->texture.bpp), &(mlx->texture.size_line),
-		&(mlx->texture.endian));
+	t_texture	ret;
+	char		*file_name;
+
+	ret.exist = 1;
+	file_name = ft_strtrijoin("./textures/", name, ".xpm");
+	ret.imgv = mlx_xpm_file_to_image(e->mlx,
+		file_name,
+		&(ret.width), &(ret.height));
+	if (ret.imgv == NULL)
+		add_err(e, UNKOBJ, name);
+	ret.data = mlx_get_data_addr(ret.imgv,
+		&(ret.bpp), &(ret.size_line),
+		&(ret.endian));
+	return (ret);
 }

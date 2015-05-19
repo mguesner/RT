@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/19 15:11:34 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:45:30 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
 	dir = normalize(dir);
 	pix->normale = get_normale(pix, inter);
 	scal = fabs(scalar(pix->normale, dir));
+	if (pix->cur_obj->type == SPHERE && pix->cur_obj->texture.exist == 1)
+		texture_func(pix);
 	coef = 0.2 - ((pix->cur_obj->color.b + pix->cur_obj->color.g + pix->cur_obj->color.r) / (255 * 3));
 	pix->color->b = up_color_angle(pix->cur_obj->color.b, pix->color->b, scal, coef);
 	pix->color->g = up_color_angle(pix->cur_obj->color.g, pix->color->g, scal, coef);

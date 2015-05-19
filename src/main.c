@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 13:32:30 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/19 15:09:11 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,65 +130,14 @@ static void	usage(void)
 int			main(int argc, char **argv)
 {
 	t_libx				mlx;
-	// t_obj_list_begin	obj;
-	// t_camera			*cam;
 	t_camera *cam;
+
 	ft_bzero(&mlx, sizeof(t_libx));
 	if (argc != 2)
 		usage();
+	mlx_struct_init(WIDTH, HEIGHT, "lol", &mlx);
 	lex_pars(argv[1], &mlx);
 	cam = mlx.cam;
-	// DEBUG
-
-	// if (cam)
-	// 	printf("type : CAMERA, coord : (%f, %f, %f), color : (%d, %d, %d, %d), dir : (%f, %f, %f)\n"
-	// 			, cam->coord.x, cam->coord.y, cam->coord.z, cam->color.a, cam->color.r, cam->color.g, cam->color.b
-	// 			, cam->dir.x, cam->dir.y, cam->dir.z);
-	// t_obj_list	*spots = mlx.spots.begin;
-	// while (spots)
-	// {
-	// 	t_light *light = (t_light *)spots->obj;
-	// 	printf("type : LIGHT, coord : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
-	// 		, light->coord.x, light->coord.y, light->coord.z, light->color.a, light->color.r, light->color.g, light->color.b);
-	// 	spots = spots->next;
-	// }
-	// t_obj_list	*obj = mlx.obj.begin;
-	// while (obj)
-	// {
-	// 	if (obj->obj->type == PLANE)
-	// 	{
-	// 		t_plane *plane = (t_plane *)obj->obj;
-	// 		printf("type : PLANE, coord : (%f, %f, %f), normal : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
-	// 			, plane->coord.x, plane->coord.y, plane->coord.z,
-	// 			plane->norm.x, plane->norm.y, plane->norm.z, plane->color.a, plane->color.r, plane->color.g, plane->color.b);
-	// 	}
-	// 	else if (obj->obj->type == SPHERE)
-	// 	{
-	// 		t_sphere *sphere = (t_sphere *)obj->obj;
-	// 		printf("type : SPHERE, coord : (%f, %f, %f), radius : %f, color : (%d, %d, %d, %d)\n"
-	// 			, sphere->coord.x, sphere->coord.y, sphere->coord.z,
-	// 			sphere->radius, sphere->color.a, sphere->color.r, sphere->color.g, sphere->color.b);
-	// 	}
-	// 	else if (obj->obj->type == CYLINDER)
-	// 	{
-	// 		t_cylinder *cylinder = (t_cylinder *)obj->obj;
-	// 		printf("type : CYLINDER, coord : (%f, %f, %f), radius : %f, direction : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
-	// 			, cylinder->coord.x, cylinder->coord.y, cylinder->coord.z,
-	// 			cylinder->radius, cylinder->dir.x, cylinder->dir.y, cylinder->dir.z
-	// 			, cylinder->color.a, cylinder->color.r, cylinder->color.g, cylinder->color.b);
-	// 	}
-	// 	else if (obj->obj->type == CONE)
-	// 	{
-	// 		t_cone *cone = (t_cone *)obj->obj;
-	// 		printf("type : CONE, coord : (%f, %f, %f), angle : %f, direction : (%f, %f, %f), color : (%d, %d, %d, %d)\n"
-	// 			, cone->coord.x, cone->coord.y, cone->coord.z,
-	// 			cone->angle, cone->dir.x, cone->dir.y, cone->dir.z
-	// 			, cone->color.a, cone->color.r, cone->color.g, cone->color.b);
-	// 	}
-	// 	obj = obj->next;
-	// }
-	mlx_struct_init(WIDTH, HEIGHT, "lol", &mlx);
-
 	t_point	ori = cam->coord;
 	t_vec	dir = make_vec(cam->dir, ori);
 	double	dist = norme(dir);
@@ -206,14 +155,7 @@ int			main(int argc, char **argv)
 	else
 	{
 		double	rot[3][3];
-
 		get_rotate(axe, scalar(dir, norm), rot);
-
-	// printf("Rot :\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n\t(%f, %f, %f)\n"
-	// 	, rot[0][0], rot[1][0], rot[2][0], rot[0][1], rot[1][1], rot[2][1], rot[0][2], rot[1][2], rot[2][2]);
-
-
-
 		cam->pix_bg = do_rotate(rot, pix_bg);
 		cam->pix_bg = translate(cam->pix_bg, *(t_vec *)(&cam->coord));
 		cam->pix_hg = do_rotate(rot, pix_hg);
@@ -221,18 +163,11 @@ int			main(int argc, char **argv)
 		cam->pix_hd = do_rotate(rot, pix_hd);
 		cam->pix_hd = translate(cam->pix_hd, *(t_vec *)(&cam->coord));
 	}
-		textures_init(&mlx);
-	// printf("bas gauche -> (%f, %f, %f)\n", cam_tmp->pix_bg.x, cam_tmp->pix_bg.y,cam_tmp->pix_bg.z);
-	// printf("haut gauche -> (%f, %f, %f)\n", cam_tmp->pix_hg.x, cam_tmp->pix_hg.y,cam_tmp->pix_hg.z);
-	// printf("haut droit -> (%f, %f, %f)\n", cam_tmp->pix_hd.x, cam_tmp->pix_hd.y,cam_tmp->pix_hd.z);
-
+	// textures_init(&mlx);
 	mlx.pix = precalc_vec_cam(cam);
 	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
 	mlx_hook(mlx.window, 4, (1L << 2), mouse_press, &mlx);
 	mlx_hook(mlx.window, 6, (1L << 6), mouse_motion, &mlx);
 	mlx_loop(mlx.mlx);
-	// END DEBUG
-	// cam = calc_cam();
-	// obj = parser(argv[1]);
 }
