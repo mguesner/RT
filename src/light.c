@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 15:55:36 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/19 17:17:32 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,17 @@ void		set_color(t_libx *m, t_pix *pix)
 {
 	int		pos;
 
-		pos = ((pix->pix_y) * (m->size_line) + pix->pix_x * (m->bpp / 8));
-		m->data[pos] = pix->color->b;
-		m->data[pos + 1] = pix->color->g;
-		m->data[pos + 2] = pix->color->r;
+	pos = ((pix->pix_y) * (m->size_line) + pix->pix_x * (m->bpp / 8));
+	m->data[pos] = pix->color->b;
+	m->data[pos + 1] = pix->color->g;
+	m->data[pos + 2] = pix->color->r;
 }
 
 static void	set_color_shad(t_libx *m, t_pix *pix)
 {
+	// pix->color->b = pix->color->b * LIGHT_IN_SHADOW;
+	// pix->color->r = pix->color->r * LIGHT_IN_SHADOW;
+	// pix->color->g = pix->color->g * LIGHT_IN_SHADOW;
 	int		pos;
 	int		white;
 	double	coef;
@@ -33,9 +36,9 @@ static void	set_color_shad(t_libx *m, t_pix *pix)
 	white = 255 * 3;
 	coef = 0.2 - (double)((pix->cur_obj->color.b + pix->cur_obj->color.g + pix->cur_obj->color.r) / white);
 	pos = ((pix->pix_y) * (m->size_line) + pix->pix_x * (m->bpp / 8));
-	m->data[pos] = pix->cur_obj->color.b * coef;
-	m->data[pos + 1] = pix->cur_obj->color.g * coef;
-	m->data[pos + 2] = pix->cur_obj->color.r * coef;
+	pix->color->b = pix->color->b * coef;
+	pix->color->g = pix->color->g * coef;
+	pix->color->r = pix->color->r * coef;
 }
 
 static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *vec_dir)
@@ -77,13 +80,20 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 	while (tmp)
 	{
 		light_dist = shadow(tmp->obj, mlx->obj.begin, inter_point, vec_dir);
-		if (!light_dist)
-		{
-			set_color_light(tmp->obj, vec_dir, vec_dir->inter);
-			set_color(mlx, vec_dir);
-		}
+		if (vec_dir->cur_obj->type == SPHERE && vec_dir->cur_obj->texture.exist == 1)
+			texture_func(vec_dir);
 		else
+		{
+			vec_dir->color->b = vec_dir->cur_obj->color.b;
+			vec_dir->color->g = vec_dir->cur_obj->color.g;
+			vec_dir->color->r = vec_dir->cur_obj->color.r;
+		}
+		if (light_dist)
+			// ;
 			set_color_shad(mlx, vec_dir);
+		else
+			set_color_light(tmp->obj, vec_dir, vec_dir->inter);
+		set_color(mlx, vec_dir);
 		tmp = tmp->next;
 	}
 }

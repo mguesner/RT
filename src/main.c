@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 15:57:52 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/19 17:16:53 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,10 @@ int			main(int argc, char **argv)
 	t_point	ori = cam->coord;
 	t_vec	dir = make_vec(cam->dir, ori);
 	double	dist = norme(dir);
+	dir = normalize(dir);
 	t_vec	norm = {1, 0, 0};
 	t_vec	axe = vector(dir, norm);
+	printf("axe (%f, %f, %f)\ncos -> %f\n", axe.x, axe.y, axe.z, scalar(dir, norm));
 	t_point	pix_bg = {dist, -(WIDTH / 2), (HEIGHT / 2)};
 	t_point	pix_hg = {dist, -(WIDTH / 2), -(HEIGHT / 2)};
 	t_point	pix_hd = {dist, (WIDTH / 2), -(HEIGHT / 2)};
@@ -87,6 +89,10 @@ int			main(int argc, char **argv)
 	{
 		double	rot[3][3];
 		get_rotate(axe, scalar(dir, norm), rot);
+		printf("(%f, %f, %f)\n(%f, %f, %f)\n(%f, %f, %f)\n"
+			,rot[0][0], rot[0][1], rot[0][2]
+			,rot[1][0], rot[1][1], rot[1][2]
+			,rot[2][0], rot[2][1], rot[2][2]);
 		cam->pix_bg = do_rotate(rot, pix_bg);
 		cam->pix_bg = translate(cam->pix_bg, *(t_vec *)(&cam->coord));
 		cam->pix_hg = do_rotate(rot, pix_hg);
