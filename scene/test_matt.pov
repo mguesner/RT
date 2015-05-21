@@ -6,7 +6,7 @@ camera
    //angle 45 // l'angle de la caméra
 }
 
-light_source { <0,0,-1000>
+light_source { <0,0,1000>
       color rgb<1,1,1>
 }
 
