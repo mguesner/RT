@@ -1,10 +1,10 @@
 camera
 {
-	location <0,0,500> // la position de l'observateur
-	look_at <1000,0,500>  // le point de vue
+	location <0,0,0> // la position de l'observateur
+	look_at <1000,0,0>  // le point de vue
 }
 
-light_source { <0,1000,0>
+light_source { <0,0,0>
 		color rgb<1,1,1>
 }
 
