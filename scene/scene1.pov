@@ -4,7 +4,7 @@ camera
 	look_at <1000,0,500>  // le point de vue
 }
 
-light_source { <1500,1000,0>
+light_source { <0,1000,0>
 		color rgb<1,1,1>
 }
 

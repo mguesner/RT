@@ -10,6 +10,10 @@ light_source { <0,0,1500>
       color rgb<1,1,1>
 }
 
+light_source { <0,-1500,1500>
+      color rgb<1,1,1>
+}
+
 //light_source { <-2000,600,1000>
 //     color rgb<1,1,1>
 //}

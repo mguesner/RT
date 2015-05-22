@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/19 17:16:41 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/22 15:25:49 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
 	light_dist = norme(dir);
 	dir = normalize(dir);
 	pix->normale = get_normale(pix, inter);
+	vec_reflex(pix);
 	scal = fabs(scalar(pix->normale, dir));
 	coef = 0.2 - ((pix->cur_obj->color.b + pix->cur_obj->color.g + pix->cur_obj->color.r) / (255 * 3));
 	pix->color->b = up_color_angle(pix->color->b, scal, coef);

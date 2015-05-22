@@ -29,9 +29,9 @@ cylinder_42{ <-250,-250,1500>, <1,0,0>, 100 // coord centre et rayon
 }
 
 plane { <1,0,0>,1000 // coord centre et rayon
-         pigment { color rgb <0.5,0.5,0> }
+         pigment { color rgb <1,1,0> }
 }
 
 plane { <0,0,-1>,10000 // coord centre et rayon
-         pigment { color rgb <0.5,0.5,0> }
+         pigment { color rgb <1,1,0> }
 }
