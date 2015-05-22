@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 16:41:19 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/22 13:32:57 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ void		set_color(t_libx *m, t_pix *pix)
 
 static void	set_color_shad(t_libx *m, t_pix *pix)
 {
-	// pix->color->b = pix->color->b * LIGHT_IN_SHADOW;
-	// pix->color->r = pix->color->r * LIGHT_IN_SHADOW;
-	// pix->color->g = pix->color->g * LIGHT_IN_SHADOW;
 	int		pos;
 	int		white;
 	double	coef;
