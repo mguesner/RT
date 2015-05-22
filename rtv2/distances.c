@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/24 13:29:38 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/14 11:50:45 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/21 13:58:51 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ double	dist_sphere(t_all *c, t_lst *temp)
 	det = pow(sb, 2) - 4.0 * sa * sc;
 	if (det > 0)
 	{
-		double ret = (-(sb) + sqrt(det)) / 2.0 * sa;
-		double ret2 = (-(sb) - sqrt(det)) / 2.0 * sa;
+		double ret = (-(sb) + sqrt(det)) / (2.0 * sa);
+		double ret2 = (-(sb) - sqrt(det)) / (2.0 * sa);
 		return (ret2 > 0.0001 ? ret2 : ret);
 	}
 	return (-1);
@@ -93,7 +93,11 @@ double	dist_cylinder(t_all *c, t_lst *temp)
 		(c->camera->pos->y - temp->obj->pos->y)) -
 		(temp->obj->other * temp->obj->other));
 	if ((sb * sb - 4.0 * sa * sc) > 0)
-		return (((-(sb)-sqrt((sb * sb - 4.0 * sa * sc))) / 2.0 * sa));
+	{
+		double ret = (-(sb) + sqrt((sb * sb - 4.0 * sa * sc))) / (2.0 * sa);
+		double ret2 = (-(sb) - sqrt((sb * sb - 4.0 * sa * sc))) / (2.0 * sa);
+		return (ret2 > 0.0001 ? ret2 : ret);
+	}
 	else
 		return (-1);
 }
@@ -118,7 +122,11 @@ double	dist_cone(t_all *c, t_lst *temp)
 			((c->camera->pos->y - temp->obj->pos->y) * (c->camera->pos->y - temp->obj->pos->y)) -
 			((c->camera->pos->z - temp->obj->pos->z) * (c->camera->pos->z - temp->obj->pos->z)) * res_angle);
 	if ((sb * sb - 4.0 * sa * sc) > 0)
-		return (((-(sb)-sqrt((sb * sb) - 4.0 * sa * sc))) / 2.0 * sa);
+	{
+		double ret = (-(sb) + sqrt((sb * sb - 4.0 * sa * sc))) / (2.0 * sa);
+		double ret2 = (-(sb) - sqrt((sb * sb - 4.0 * sa * sc))) / (2.0 * sa);
+		return (ret2 > 0.0001 ? ret2 : ret);
+	}
 	else
 		return (-1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 10:42:10 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/19 16:32:44 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/19 17:17:51 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	texture_func(t_pix *vec_dir) // norme a faire.
+void	texture_func(t_pix *vec_dir)
 {
-	// t_point		inter_point;
 	t_vec		normale;
 	float		u;
 	float		v;
 
-	// inter_point = translate(mlx->cam->coord,
-	// 						vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
 	if (vec_dir->cur_obj->type == SPHERE)
 	{
 		normale = normalize(make_vec(vec_dir->inter, vec_dir->cur_obj->coord));

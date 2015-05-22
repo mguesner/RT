@@ -74,6 +74,8 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/textures_init.c\
 	  $(SRCDIR)/textures.c\
 	  $(SRCDIR)/get_normale.c\
+	  $(SRCDIR)/specular.c\
+	  $(SRCDIR)/vec_reflex.c\
 	  mlx_src/mlx_init.c
 
 LIB =

@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/22 13:32:57 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/22 15:46:32 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,10 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 			// ;
 			set_color_shad(mlx, vec_dir);
 		else
+		{
 			set_color_light(tmp->obj, vec_dir, vec_dir->inter);
+			apply_specular(mlx, vec_dir);
+		}
 		set_color(mlx, vec_dir);
 		tmp = tmp->next;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   reflection.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 13:34:42 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/15 10:24:19 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/21 14:15:16 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,28 @@ t_vec find_normal_obj(t_point inter_point, 	t_obj *obj)
 	return (normale);
 }
 
-void reflection(t_libx *mlx, double dist, t_pix *pix)
+void reflection(t_libx *mlx, t_pix *pix)
 {
 	t_point		inter_point;
 	t_vec		normale;
-	t_vec		intp_cam;
-	t_vec 
+	t_vec		R1;
 	double		dot;
-	double		angle;
 
 	// d'abord, check si obj est reflectif.
-	if (pix->cur_obj->reflect == 1) // var reflect a rajouter dans le h.
-	{
+	// if (pix->cur_obj->reflect == 1) // var reflect a rajouter dans le h.
+	// {
 		// pour faire la reflexion, trouver le point d'intersection avec l'obj.
-		inter_point = intersection_point(dist, pix->pos_pix_vec);
+		inter_point = translate(mlx->cam->coord,
+		vec_coef(pix->pos_pix_vec, pix->dist));
 
 		// trouver le vecteur du pt d'inter et de la cam.
-		intp_cam = make_vec(inter_point, mlx->cam->coord);
+		// intp_cam = make_vec(inter_point, mlx->cam->coord);
 		// puis, trouver la normale de l'objet touché.
-		normale = find_normal_obj(inter_point, pix->cur_obj->type)
-
-
+		normale = get_normale(pix, inter_point);
 		// faire multiplication des vecteurs pour trouveur l'angle entre eux.
-		dot = scalar(intp_cam, normale);
-		angle = acos(dot); // angle de rotation a effectuer.
+		dot = -(scalar(normale, pix->pos_pix_vec)); // angle de rotation a effectuer.
 		// faire rotation de la normale avec l'angle trouvé;
 
 		// avec ce vecteur, check pour chaque obj si touch =>  recursive debut de RT.
-
-	}
-	else
 		return ;
 }

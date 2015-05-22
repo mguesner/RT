@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 15:36:48 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/21 14:28:31 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void		start(t_libx *mlx)
 		}
 		pix_y++;
 	}
-	antialiasing(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 	ft_bzero(mlx->data, ((1079) * (mlx->size_line) + 1919 * (mlx->bpp / 8)));
 }
