@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/25 15:13:35 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/25 16:11:39 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *v
 	vec = normalize(vec);
 	while (tmp)
 	{
-		res = touch(tmp->obj, &vec, &inter);
+		res = touch2(tmp->obj, vec, inter);
 		if (res > 0.001 && res < dist_to_light)
 		{
 			vec_dir->in_shadow = tmp->obj;
@@ -77,11 +77,14 @@ static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *v
 
 void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 {
+	t_point		inter_point;
 	t_obj_list	*lights;
 	t_obj_list	*light_dist;
 
 	if (vec_dir->cur_obj == NULL)
 		return ;
+	inter_point = translate(mlx->cam->coord,
+		vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
 	if (vec_dir->cur_obj->type == SPHERE && vec_dir->cur_obj->texture.exist == 1)
 			texture_func(vec_dir);
 	else

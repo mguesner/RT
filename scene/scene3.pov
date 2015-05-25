@@ -36,6 +36,6 @@ light_source { <3000,500,0>
 //         pigment { color rgb <1,0.6,0> }
 //}
 
-cone_42 { <10000, 0, 0>, 1, <0,-1,1>   // coord, angle, direction
+cone_42 { <10000, 1000, 1000>, 1, <0,-1,1>   // coord, angle, direction
      pigment { color rgb <0.4,0.7,0> }
 }
