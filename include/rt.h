@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/25 16:11:53 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/25 16:22:50 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ typedef struct				s_libx
 	int						endian;
 	int						width;
 	int						height;
+	int						superint;
 	t_camera				*cam;
 	t_obj_list_begin		spots;
 	t_obj_list_begin		obj;
@@ -180,6 +181,7 @@ double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
 double						dist_cone(t_cone *cone, t_vec *vec, t_point *o);
 double						dist_cone2(t_cone *cone, t_vec vec, t_point o);
 double						dist_cylinder(t_cylinder *cylinder, t_vec *vec, t_point *o);
+double						dist_cylinder2(t_cylinder *cylinder, t_vec vec, t_point o);
 void						set_color_light(t_obj *light, t_pix *pix, t_point inter, int nb_spots);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
@@ -189,5 +191,7 @@ void						set_color(t_libx *m, t_pix *pix, int spec_or_not);
 void						antialiasing(t_libx *m);
 void						apply_specular(t_libx *mlx, t_pix *pix);
 void						vec_reflex(t_pix *pix);
+void						key_rotate_cam(int keycode, t_libx *mlx);
+void						key_translate_cam(int keycode, t_libx *mlx);
 
 #endif
