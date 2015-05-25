@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 16:17:32 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/25 14:37:20 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/25 16:02:25 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ double	dist_cone(t_cone *cone, t_vec *v, t_point *ori)
 	t_point	o;
 
 	vec = do_rotate(cone->rot, *(t_point *)v);
-	// o = do_rotate(cone->rot, *ori);
-	o = *ori;
+	o = do_rotate(cone->rot, *ori);
 	a = pow(vec.x, 2) + pow(vec.y, 2)  - cone->angle * pow(vec.z, 2);
 	b = 2.0 * (vec.x * (o.x - cone->coord.x) + vec.y * (o.y - cone->coord.y)
 			- vec.z * (o.z - cone->coord.z) * cone->angle);
