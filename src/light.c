@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/25 11:53:32 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/25 14:10:47 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ static void	set_color_shad(t_libx *m, t_pix *pix)
 
 	white = 255 * 3;
 	coef = 0.2 - (double)((pix->cur_obj->color.b + pix->cur_obj->color.g + pix->cur_obj->color.r) / white);
+	coef *=  m->spots.size;
+	if (coef > 0.9)
+		coef = 0.9;
 	pos = ((pix->pix_y) * (m->size_line) + pix->pix_x * (m->bpp / 8));
 	pix->color->b = pix->color->b * coef;
 	pix->color->g = pix->color->g * coef;
@@ -78,17 +81,28 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 			vec_dir->color->r = vec_dir->cur_obj->color.r;
 		}
 	lights = mlx->spots.begin;
+	vec_dir->is_in_shadow = 0;
 	while (lights)
 	{
 		light_dist = shadow(lights->obj, mlx->obj.begin, vec_dir->inter, vec_dir);
 		if (light_dist)
-			set_color_shad(mlx, vec_dir);
-		else
 		{
-			set_color_light(lights->obj, vec_dir, vec_dir->inter);
-			apply_specular(mlx, vec_dir);
+			vec_dir->is_in_shadow = 1;
+			set_color_shad(mlx, vec_dir);
 		}
-		set_color(mlx, vec_dir);
 		lights = lights->next;
 	}
+	lights = mlx->spots.begin;
+		while (lights)
+		{
+			light_dist = shadow(lights->obj, mlx->obj.begin, vec_dir->inter, vec_dir);
+			if (!light_dist)
+			{
+				set_color_light(lights->obj, vec_dir, vec_dir->inter, mlx->spots.size);
+				if (!vec_dir->is_in_shadow)
+					apply_specular(mlx, vec_dir);
+			}
+			lights = lights->next;
+		}
+	set_color(mlx, vec_dir);
 }

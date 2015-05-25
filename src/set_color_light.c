@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/22 15:25:49 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/25 14:10:57 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int		up_color_angle(int cur_color, double scalar, double coef)
 	return (new);
 }
 
-void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
+void			set_color_light(t_obj *light, t_pix *pix, t_point inter, int nb_spots)
 {
 	t_vec	dir;
 	double	light_dist;
@@ -40,6 +40,9 @@ void			set_color_light(t_obj *light, t_pix *pix, t_point inter)
 	vec_reflex(pix);
 	scal = fabs(scalar(pix->normale, dir));
 	coef = 0.2 - ((pix->cur_obj->color.b + pix->cur_obj->color.g + pix->cur_obj->color.r) / (255 * 3));
+	coef *= nb_spots;
+	if (coef > 0.9)
+		coef = 0.9;
 	pix->color->b = up_color_angle(pix->color->b, scal, coef);
 	pix->color->g = up_color_angle(pix->color->g, scal, coef);
 	pix->color->r = up_color_angle(pix->color->r, scal, coef);
