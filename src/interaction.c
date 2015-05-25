@@ -35,13 +35,17 @@ static	void	rot_all_vec(double rot[3][3], t_libx *mlx)
 void	key_translate_cam(int keycode, t_libx *mlx)
 {
 	if (keycode == 126)
-		mlx->cam->coord.x += 10;
+		mlx->cam->coord.z += 20;
 	else if (keycode == 125)
-		mlx->cam->coord.x -= 10;
+		mlx->cam->coord.z -= 20;
 	else if (keycode == 123)
-		mlx->cam->coord.y += 10;
+		mlx->cam->coord.y += 20;
 	else if (keycode == 124)
-		mlx->cam->coord.y -= 10;
+		mlx->cam->coord.y -= 20;
+	else if (keycode == 78)
+		mlx->cam->coord.x += 20;
+	else if (keycode == 69)
+		mlx->cam->coord.x -= 20;
 }
 
 void	key_rotate_cam(int keycode, t_libx *mlx)

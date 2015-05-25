@@ -56,7 +56,8 @@ int		key_hook( int keycode, t_libx *mlx)
 {
 	if (keycode == 53)
 		exit (0);
-	else if (keycode == 126 || keycode == 125 || keycode == 123 || keycode == 124)
+	else if (keycode == 126 || keycode == 125 || keycode == 123 ||
+		keycode == 124 || keycode == 69 || keycode == 78)
 		key_translate_cam(keycode, mlx);
 	else if (keycode == 0 || keycode == 2)
 		key_rotate_cam(keycode, mlx);
