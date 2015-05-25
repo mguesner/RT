@@ -54,9 +54,6 @@ int		expose_hook(t_libx *mlx)
 
 int		key_hook( int keycode, t_libx *mlx)
 {
-	// 0 13 2 1
-
-	(void)(mlx);
 	if (keycode == 53)
 		exit (0);
 	else if (keycode == 126 || keycode == 125 || keycode == 123 || keycode == 124)
@@ -64,8 +61,8 @@ int		key_hook( int keycode, t_libx *mlx)
 	else if (keycode == 0 || keycode == 2)
 		key_rotate_cam(keycode, mlx);
 	mlx->superint = 1;
-	ft_putnbr(keycode);
-	ft_putstr(" ");
+	// ft_putnbr(keycode);
+	// ft_putstr(" ");
 	return (0);
 }
 
