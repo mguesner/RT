@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/25 16:22:50 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/25 16:51:09 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
 double						dist_cone(t_cone *cone, t_vec *vec, t_point *o);
 double						dist_cone2(t_cone *cone, t_vec vec, t_point o);
 double						dist_cylinder(t_cylinder *cylinder, t_vec *vec, t_point *o);
-double						dist_cylinder2(t_cylinder *cylinder, t_vec vec, t_point o);
+double						dist_cylinder2(t_cylinder *cylinder, t_vec *vec, t_point o);
 void						set_color_light(t_obj *light, t_pix *pix, t_point inter, int nb_spots);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);

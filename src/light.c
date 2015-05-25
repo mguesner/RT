@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/25 16:11:39 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/25 17:30:32 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,19 @@ static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *v
 {
 	double		res;
 	t_vec		vec;
+	t_vec		vec2;
 	double		dist_to_light;
 
 	vec = make_vec(light->coord, inter);
+	vec2 = make_vec(light->coord, vec_dir->inter);
 	dist_to_light = norme(vec);
 	vec = normalize(vec);
 	while (tmp)
 	{
-		res = touch2(tmp->obj, vec, inter);
+		if (tmp->obj == vec_dir->cur_obj)
+			res = touch2(tmp->obj, vec2, vec_dir->inter);
+		else
+			res = touch(tmp->obj, &vec, &inter);
 		if (res > 0.001 && res < dist_to_light)
 		{
 			vec_dir->in_shadow = tmp->obj;
@@ -97,7 +102,7 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 	vec_dir->is_in_shadow = 0;
 	while (lights)
 	{
-		light_dist = shadow(lights->obj, mlx->obj.begin, vec_dir->inter, vec_dir);
+		light_dist = shadow(lights->obj, mlx->obj.begin, inter_point, vec_dir);
 		if (light_dist)
 			set_color_shad(mlx, vec_dir);
 		else
