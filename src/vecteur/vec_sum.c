@@ -6,11 +6,11 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 16:22:07 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/06 16:23:10 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/25 11:27:19 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/vecteur.h"
+#include <vecteur.h>
 
 t_vec					vec_sum(t_vec a, t_vec b)
 {

@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/22 13:49:57 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/22 16:51:27 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/25 11:09:15 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,6 @@ void	apply_specular(t_libx *mlx, t_pix *pix)
 			int		tmp_g = 255 - pix->color->g;
 			int		tmp_b = 255 - pix->color->b;
 			double prout = (1 - (0.99 - myDot) * (1 / 0.09));
-			printf("dot : %f, prout : %f\n", myDot, prout);
-
 			pix->color->r += tmp_r * prout;
 			pix->color->b += tmp_b * prout;
 			pix->color->g += tmp_g * prout;
