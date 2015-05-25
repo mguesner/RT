@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_normale.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/18 14:34:10 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 15:54:47 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/25 13:45:52 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@ static t_vec	cylinder_norm(t_pix *pix, t_point inter)
 
 static t_vec	cone_norm(t_pix *pix, t_point inter)
 {
-    float x;
-    float y;
-    float z;
-    float size;
+    float	x;
+    float	y;
+    float	z;
+    float	size;
     t_vec	vec;
 
     x = inter.x - pix->cur_obj->coord.x;
     y = inter.y - pix->cur_obj->coord.y;
-    z = -pix->cur_obj->coord.z * (inter.z - pix->cur_obj->coord.y);
+    z = -((t_cone *)pix->cur_obj)->angle * (inter.z - pix->cur_obj->coord.z);
     size = sqrt(x * x + y * y + z * z);
     vec.x = x / size;
     vec.y = y / size;
