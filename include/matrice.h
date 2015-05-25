@@ -14,6 +14,7 @@
 # define MATRICE_H
 
 void	get_rotate(t_vec axe, double scalaire, double rot[3][3]);
+void	get_rotate_angle(t_vec axe, double angle, double rot[3][3]);
 t_point	do_rotate(double rot[3][3], t_point p);
 t_vec	do_rotate_vec(double rot[3][3], t_vec p);
 

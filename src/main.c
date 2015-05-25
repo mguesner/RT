@@ -59,11 +59,12 @@ int		key_hook( int keycode, t_libx *mlx)
 	else if (keycode == 126 || keycode == 125 || keycode == 123 ||
 		keycode == 124 || keycode == 69 || keycode == 78)
 		key_translate_cam(keycode, mlx);
-	else if (keycode == 0 || keycode == 2)
+	else if (keycode == 0 || keycode == 2 || keycode == 1 ||
+		keycode == 12 || keycode == 13 || keycode == 14)
 		key_rotate_cam(keycode, mlx);
 	mlx->superint = 1;
-	// ft_putnbr(keycode);
-	// ft_putstr(" ");
+ 	ft_putnbr(keycode);
+	ft_putstr(" ");
 	return (0);
 }
 
