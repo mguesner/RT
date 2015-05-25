@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/25 14:13:21 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/25 14:57:43 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *v
 {
 	double		res;
 	t_vec		vec;
+	// t_point		inter2;
 	double		dist_to_light;
 
+	// inter2 = do_rotate(tmp->obj->rot, inter);
 	vec = make_vec(light->coord, inter);
 	dist_to_light = norme(vec);
 	vec = normalize(vec);
@@ -67,24 +69,27 @@ static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *v
 
 void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 {
+	t_point		inter_point;
 	t_obj_list	*lights;
 	t_obj_list	*light_dist;
 
 	if (vec_dir->cur_obj == NULL)
 		return ;
+	inter_point = translate(mlx->cam->coord,
+		vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
 	if (vec_dir->cur_obj->type == SPHERE && vec_dir->cur_obj->texture.exist == 1)
-			texture_func(vec_dir);
-		else
-		{
-			vec_dir->color->b = vec_dir->cur_obj->color.b;
-			vec_dir->color->g = vec_dir->cur_obj->color.g;
-			vec_dir->color->r = vec_dir->cur_obj->color.r;
-		}
+		texture_func(vec_dir);
+	else
+	{
+		vec_dir->color->b = vec_dir->cur_obj->color.b;
+		vec_dir->color->g = vec_dir->cur_obj->color.g;
+		vec_dir->color->r = vec_dir->cur_obj->color.r;
+	}
 	lights = mlx->spots.begin;
 	vec_dir->is_in_shadow = 0;
 	while (lights)
 	{
-		light_dist = shadow(lights->obj, mlx->obj.begin, vec_dir->inter, vec_dir);
+		light_dist = shadow(lights->obj, mlx->obj.begin, inter_point, vec_dir);
 		if (light_dist)
 		{
 			vec_dir->is_in_shadow = 1;
@@ -93,16 +98,16 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 		lights = lights->next;
 	}
 	lights = mlx->spots.begin;
-		while (lights)
+	while (lights)
+	{
+		light_dist = shadow(lights->obj, mlx->obj.begin, inter_point, vec_dir);
+		if (!light_dist)
 		{
-			light_dist = shadow(lights->obj, mlx->obj.begin, vec_dir->inter, vec_dir);
-			if (!light_dist)
-			{
-				set_color_light(lights->obj, vec_dir, vec_dir->inter, mlx->spots.size);
-				if (!vec_dir->is_in_shadow)
-					apply_specular(mlx, vec_dir);
-			}
-			lights = lights->next;
+			set_color_light(lights->obj, vec_dir, vec_dir->inter, mlx->spots.size);
+			if (!vec_dir->is_in_shadow)
+				apply_specular(mlx, vec_dir);
 		}
+		lights = lights->next;
+	}
 	set_color(mlx, vec_dir);
 }
