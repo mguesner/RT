@@ -14,6 +14,14 @@ light_source { <1500,-600,500>
       color rgb<1,1,1>
 }
 
+light_source { <1500,0,-500>
+      color rgb<1,1,1>
+}
+
+cylinder_42{ <5000,0,1500>, <0,0,1>, 100 // coord centre et rayon
+         pigment { color rgb <1,0,0> }
+}
+
 //light_source { <-2000,600,1000>
 //     color rgb<1,1,1>
 //}
@@ -27,6 +35,6 @@ sphere { <3000,0,0>, 100 // coord centre et rayon
          pigment { color rgb <0,1,0> }
 }
 
-plane { <-1,0,0>,3200 // coord centre et rayon
-         pigment { color rgb <0.5,0.5,0> }
+plane { <-1,0,0>,5500 // coord centre et rayon
+         pigment { color rgb <1,0,0> }
 }

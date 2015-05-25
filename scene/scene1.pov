@@ -11,3 +11,7 @@ light_source { <0,0,0>
 sphere { <2000,0,0>, 200 // coord centre et rayon
          pigment { color rgb <1,0.6,0> }
 }
+
+cylinder_42 { <5000,1000,100>, <1,1,1>, 100 // coord, direction, rayon
+         pigment { color rgb <1,0.6,0> }
+}

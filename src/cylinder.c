@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cylinder.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:20:04 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/19 15:55:13 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/25 14:00:38 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ double	dist_cylinder(t_cylinder *cylinder, t_vec *v, t_point *ori)
         double ret2 = (-b - sqrt(det)) / (2.0 * a);
         return (ret2 > 0.0001 ? ret2 : ret);
     }
-	else
-		return (-1);
+	return (-1);
 }
