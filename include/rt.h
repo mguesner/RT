@@ -160,6 +160,7 @@ typedef struct				s_libx
 	int						endian;
 	int						width;
 	int						height;
+	int						superint;
 	t_camera				*cam;
 	t_obj_list_begin		spots;
 	t_obj_list_begin		obj;
@@ -185,5 +186,7 @@ void						set_color(t_libx *m, t_pix *pix);
 void						antialiasing(t_libx *m);
 void						apply_specular(t_libx *mlx, t_pix *pix);
 void						vec_reflex(t_pix *pix);
+void						key_rotate_cam(int keycode, t_libx *mlx);
+void						key_translate_cam(int keycode, t_libx *mlx);
 
 #endif

@@ -18,6 +18,8 @@
 int	mouse_press(int code, int x, int y, t_libx *mlx)
 {
 
+	if (x >= 0 && x < WIDTH && y>= 0  && y < HEIGHT)
+	{
 	t_pix *current = mlx->pix[x + y * WIDTH];
 	if (current->cur_obj && current->in_shadow)
 		printf("Distance is %f,   you touch a %d dist to light = %f, and you are in shadow of %d at %f mm.\n", current->dist,current->cur_obj->type, current->light_dist ,current->in_shadow->type, current->shadow_dist);
@@ -27,6 +29,7 @@ int	mouse_press(int code, int x, int y, t_libx *mlx)
 		printf("Distance is %f,   you touch nothing , and you are in shadow  WTFFFFFF   \n", current->dist);
 
 	printf("%d\n", code);
+}
 	return (0);
 }
 
@@ -41,15 +44,28 @@ int	mouse_motion(int x, int y, t_libx *mlx)
 
 int		expose_hook(t_libx *mlx)
 {
-	start(mlx);
+	if (mlx->superint)
+	{
+		start(mlx);
+		mlx->superint = 0;
+	}
 	return (0);
 }
 
 int		key_hook( int keycode, t_libx *mlx)
 {
+	// 0 13 2 1
+
 	(void)(mlx);
-	(void)(keycode);
-	exit(0);
+	if (keycode == 53)
+		exit (0);
+	else if (keycode == 126 || keycode == 125 || keycode == 123 || keycode == 124)
+		key_translate_cam(keycode, mlx);
+	else if (keycode == 0 || keycode == 2)
+		key_rotate_cam(keycode, mlx);
+	mlx->superint = 1;
+	ft_putnbr(keycode);
+	ft_putstr(" ");
 	return (0);
 }
 
@@ -100,6 +116,7 @@ int			main(int argc, char **argv)
 		cam->pix_hd = do_rotate(rot, pix_hd);
 		cam->pix_hd = translate(cam->pix_hd, *(t_vec *)(&cam->coord));
 	}
+	mlx.superint = 1;
 	mlx.pix = precalc_vec_cam(cam);
 	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
