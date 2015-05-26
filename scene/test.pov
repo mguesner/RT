@@ -12,20 +12,16 @@ light_source { <0,0,0>
 
 plane { <-1,0,0>,3500 // coord centre et rayon
          pigment { color rgb <1,1,1> }
-         finish {reflection 1}
+         finish {reflection 0.5}
 }
 
 sphere { <-1000,-1000,-1000>, 500 // coord centre et rayon
          pigment { color rgb <0,0,1> }
+         finish {reflection 0.5}
 }
 
 plane { <1,0,0>,4500 // coord centre et rayon
          pigment { color rgb <1,1,1> }
-         finish {reflection 0.1}
-}
-
-cylinder_42{ <-2000,1250,1500>, <0,0,1>, 100 // coord centre et rayon
-         pigment { color rgb <1,0,0> }
-         finish {specular 1}
+         finish {reflection 0.5}
 }
 
