@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:32:06 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/25 16:30:02 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/25 17:12:44 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ double	touch2(t_obj *obj, t_vec vec, t_point origine)
 	else if (obj->type == CONE)
 		return (dist_cone2((t_cone *)obj, vec, origine));
 	else if (obj->type == CYLINDER)
-		return (dist_cylinder((t_cylinder *)obj, &vec, &origine));
+		return (dist_cylinder2((t_cylinder *)obj, &vec, origine));
 	else
 		return (-1);
 }

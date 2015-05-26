@@ -6,20 +6,22 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:20:04 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/25 16:23:06 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 11:22:12 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <matrice.h>
 
-double	dist_cylinder2(t_cylinder *cylinder, t_vec vec, t_point o)
+double	dist_cylinder2(t_cylinder *cylinder, t_vec *v, t_point o)
 {
 	double	a;
 	double	b;
 	double	c;
 	double	det;
+	t_point	vec;
 
+	vec = *(t_point *)v;
 	a = pow(vec.x, 2) + pow(vec.y, 2);
 	b = 2.0 * (vec.x * (o.x - cylinder->coord.x) + vec.y * (o.y - cylinder->coord.y));
 	c = pow((o.x - cylinder->coord.x), 2) + pow((o.y - cylinder->coord.y), 2) - pow(cylinder->radius, 2);;

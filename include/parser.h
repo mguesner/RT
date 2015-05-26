@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 15:09:51 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 12:31:36 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef enum			e_substep
 	SSBEGIN,
 	SSPIGMENT,
 	SSTEXTURE,
+	SSFINISH,
 	NBSUBSTEP
 }						t_substep;
 
@@ -131,6 +132,9 @@ void					p_openscope(t_pars *e, t_lex **node);
 void					p_closescope(t_pars *e, t_lex **node);
 void					p_pigment(t_pars *e, t_lex **node);
 void					p_texture(t_pars *e, t_lex **node);
+void					p_finish(t_pars *e, t_lex **node);
+void					p_specular(t_pars *e, t_lex **node);
+void					p_reflection(t_pars *e, t_lex **node);
 t_texture				texture_init(t_pars *e, char *name);
 
 void					p_begin(t_pars *e, t_lex **node);

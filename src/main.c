@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 17:16:53 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 11:34:45 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,16 @@ int		expose_hook(t_libx *mlx)
 
 int		key_hook( int keycode, t_libx *mlx)
 {
-	// 0 13 2 1
-
-	(void)(mlx);
 	if (keycode == 53)
 		exit (0);
-	else if (keycode == 126 || keycode == 125 || keycode == 123 || keycode == 124)
+	else if (keycode == 126 || keycode == 125 || keycode == 123 ||
+		keycode == 124 || keycode == 69 || keycode == 78)
 		key_translate_cam(keycode, mlx);
-	else if (keycode == 0 || keycode == 2)
+	else if (keycode == 0 || keycode == 2 || keycode == 1 ||
+		keycode == 12 || keycode == 13 || keycode == 14)
 		key_rotate_cam(keycode, mlx);
 	mlx->superint = 1;
-	ft_putnbr(keycode);
+ 	ft_putnbr(keycode);
 	ft_putstr(" ");
 	return (0);
 }
@@ -82,7 +81,7 @@ int			main(int argc, char **argv)
 	ft_bzero(&mlx, sizeof(t_libx));
 	if (argc != 2)
 		usage();
-	mlx_struct_init(WIDTH, HEIGHT, "lol", &mlx);
+	mlx_struct_init(WIDTH, HEIGHT, argv[1], &mlx);
 	lex_pars(argv[1], &mlx);
 	cam = mlx.cam;
 	t_point	ori = cam->coord;
@@ -91,7 +90,6 @@ int			main(int argc, char **argv)
 	dir = normalize(dir);
 	t_vec	norm = {1, 0, 0};
 	t_vec	axe = vector(dir, norm);
-	printf("axe (%f, %f, %f)\ncos -> %f\n", axe.x, axe.y, axe.z, scalar(dir, norm));
 	t_point	pix_bg = {dist, -(WIDTH / 2), (HEIGHT / 2)};
 	t_point	pix_hg = {dist, -(WIDTH / 2), -(HEIGHT / 2)};
 	t_point	pix_hd = {dist, (WIDTH / 2), -(HEIGHT / 2)};
@@ -105,10 +103,6 @@ int			main(int argc, char **argv)
 	{
 		double	rot[3][3];
 		get_rotate(axe, scalar(dir, norm), rot);
-		printf("(%f, %f, %f)\n(%f, %f, %f)\n(%f, %f, %f)\n"
-			,rot[0][0], rot[0][1], rot[0][2]
-			,rot[1][0], rot[1][1], rot[1][2]
-			,rot[2][0], rot[2][1], rot[2][2]);
 		cam->pix_bg = do_rotate(rot, pix_bg);
 		cam->pix_bg = translate(cam->pix_bg, *(t_vec *)(&cam->coord));
 		cam->pix_hg = do_rotate(rot, pix_hg);

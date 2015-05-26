@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrice.h                                          :+:      :+:    :+:   */
+/*   p_reflection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/16 06:18:39 by matthieu          #+#    #+#             */
-/*   Updated: 2015/05/25 16:58:48 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/26 12:31:49 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/26 12:33:44 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATRICE_H
-# define MATRICE_H
+#include <parser.h>
+#include <stdlib.h>
 
-void	get_rotate(t_vec axe, double scalaire, double rot[3][3]);
-void	get_rotate_angle(t_vec axe, double angle, double rot[3][3]);
-t_point	do_rotate(double rot[3][3], t_point p);
-t_vec	do_rotate_vec(double rot[3][3], t_vec p);
-void	inverse_rot(double dst[3][3], double src[3][3]);
+void					p_reflection(t_pars *e, t_lex **node)
+{
+	double		reflection;
 
-#endif
+	*node = (*node)->next;
+	if (!*node)
+		add_err(e, BADARG, "");
+	else
+	{
+		reflection = atof((*node)->value);
+		if (reflection < 0 || reflection > 1)
+			add_err(e, BADARG, (*node)->value);
+		else
+			e->cur->reflection = reflection;
+	}
+}

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   matrice.h                                          :+:      :+:    :+:   */
+/*   inverse_rot.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/16 06:18:39 by matthieu          #+#    #+#             */
-/*   Updated: 2015/05/25 16:58:48 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/25 16:57:14 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/25 16:58:55 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MATRICE_H
-# define MATRICE_H
-
-void	get_rotate(t_vec axe, double scalaire, double rot[3][3]);
-void	get_rotate_angle(t_vec axe, double angle, double rot[3][3]);
-t_point	do_rotate(double rot[3][3], t_point p);
-t_vec	do_rotate_vec(double rot[3][3], t_vec p);
-void	inverse_rot(double dst[3][3], double src[3][3]);
-
-#endif
+void	inverse_rot(double dst[3][3], double src[3][3])
+{
+	dst[0][0] = -src[0][0];
+	dst[0][1] = -src[0][1];
+	dst[0][2] = -src[0][2];
+	dst[1][0] = -src[1][0];
+	dst[1][1] = -src[1][1];
+	dst[1][2] = -src[1][2];
+	dst[2][0] = -src[2][0];
+	dst[2][1] = -src[2][1];
+	dst[2][2] = -src[2][2];
+}

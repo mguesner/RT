@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/22 13:49:57 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 10:29:06 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 13:14:20 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	apply_specular(t_libx *mlx, t_pix *pix)
 	{
 		incomVector = normalize(make_vec(lights->obj->coord, pix->inter));
 		myDot = scalar(incomVector, pix->reflex_vec);
-		if (myDot > 0.9 && myDot <= 0.99)
+		if (myDot > 0.95 && myDot <= 0.99)
 		{
 			int		tmp_r = 255 - pix->color_specular->r;
 			int		tmp_g = 255 - pix->color_specular->g;
 			int		tmp_b = 255 - pix->color_specular->b;
-			double prout = (1 - (0.99 - myDot) * (1 / 0.09));
+			double prout = (1 - (0.99 - myDot) * (1 / 0.04));
 			pix->color_specular->r += tmp_r * prout;
 			pix->color_specular->b += tmp_b * prout;
 			pix->color_specular->g += tmp_g * prout;
