@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/25 16:51:09 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 11:23:45 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct				s_obj
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 }							t_obj;
 
 typedef struct				s_camera
@@ -63,6 +65,8 @@ typedef struct				s_camera
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	t_point					pix_hg;
 	t_point					pix_bg;
 	t_point					pix_hd;
@@ -76,6 +80,8 @@ typedef struct				s_light
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 }							t_light;
 
 typedef struct				s_plane
@@ -85,6 +91,8 @@ typedef struct				s_plane
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	t_vec					norm;
 }							t_plane;
 
@@ -95,6 +103,8 @@ typedef struct				s_sphere
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	double					radius;
 }							t_sphere;
 
@@ -105,6 +115,8 @@ typedef struct				s_cylinder
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	double					radius;
 	t_vec					dir;
 }							t_cylinder;
@@ -116,6 +128,8 @@ typedef struct				s_cone
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	double					angle;
 	t_vec					dir;
 }							t_cone;

@@ -34,6 +34,9 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/cam_loc.c\
 	  $(SRCDIR)/parser/p_pigment.c\
 	  $(SRCDIR)/parser/p_texture.c\
+	  $(SRCDIR)/parser/p_finish.c\
+	  $(SRCDIR)/parser/p_specular.c\
+	  $(SRCDIR)/parser/p_reflection.c\
 	  $(SRCDIR)/parser/cam_look_at.c\
 	  $(SRCDIR)/parser/add_error_camera.c\
 	  $(SRCDIR)/parser/p_plane.c\

@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 14:25:29 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 14:28:33 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 11:22:06 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void					p_plane_word(t_pars *e, t_lex **node)
 
 	tools[SSPIGMENT] = &p_pigment;
 	tools[SSTEXTURE] = &p_texture;
+	tools[SSFINISH] = &p_finish;
 	if (e->substep != SSBEGIN)
 	{
 		tools[e->substep](e, node);
@@ -29,6 +30,8 @@ void					p_plane_word(t_pars *e, t_lex **node)
 		e->substep = SSPIGMENT;
 	else if (!strcmp(tmp, "texture"))
 		e->substep = SSTEXTURE;
+	else if (!strcmp(tmp, "finish"))
+		e->substep = SSFINISH;
 	else
-		add_err(e, UNKOBJ, (*node)->value);
+		add_err(e, UNKOBJ, tmp);
 }

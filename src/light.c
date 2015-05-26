@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/25 17:30:32 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 11:38:59 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,12 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 		else
 		{
 			set_color_light(lights->obj, vec_dir, vec_dir->inter, mlx->spots.size);
-			if (!vec_dir->is_in_shadow)
+			if (!vec_dir->is_in_shadow && vec_dir->cur_obj->specular)
 				apply_specular(mlx, vec_dir);
 		}
 		lights = lights->next;
 	}
-	if (vec_dir->is_in_shadow)
+	if (vec_dir->is_in_shadow || !vec_dir->cur_obj->specular)
 		set_color(mlx, vec_dir, 0);
 	else
 		set_color(mlx, vec_dir, 1);
