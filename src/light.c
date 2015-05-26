@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 14:01:34 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 15:38:06 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,48 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 			texture_func(vec_dir);
 	else
 	{
-		vec_dir->color->b = vec_dir->cur_obj->color.b;
-		vec_dir->color->g = vec_dir->cur_obj->color.g;
-		vec_dir->color->r = vec_dir->cur_obj->color.r;
+		if (vec_dir->first_obj != NULL && vec_dir->first_obj == vec_dir->cur_obj)
+		{
+			vec_dir->color->b = vec_dir->cur_obj->color.b *  (1.0 - vec_dir->first_obj->reflection);
+			if (vec_dir->color->b > 255)
+				vec_dir->color->b = 255;
+			else if (vec_dir->color->b < 0)
+				vec_dir->color->b = 0;
+			vec_dir->color->g =  vec_dir->cur_obj->color.g * (1.0 - vec_dir->first_obj->reflection);
+			if (vec_dir->color->g > 255)
+				vec_dir->color->g = 255;
+			else if (vec_dir->color->g < 0)
+				vec_dir->color->g = 0;
+			vec_dir->color->r =  vec_dir->cur_obj->color.r * (1.0 - vec_dir->first_obj->reflection);
+			if (vec_dir->color->r > 255)
+				vec_dir->color->r = 255;
+			else if (vec_dir->color->r < 0)
+				vec_dir->color->r = 0;
+		}
+		else if (vec_dir->first_obj != NULL)
+		{
+			vec_dir->color->b = vec_dir->cur_obj->color.b + vec_dir->first_obj->color.b * (1.0 - vec_dir->first_obj->reflection);
+			if (vec_dir->color->b > 255)
+				vec_dir->color->b = 255;
+			else if (vec_dir->color->b < 0)
+				vec_dir->color->b = 0;
+			vec_dir->color->g = vec_dir->cur_obj->color.g + vec_dir->first_obj->color.g * (1.0 - vec_dir->first_obj->reflection);
+			if (vec_dir->color->g > 255)
+				vec_dir->color->g = 255;
+			else if (vec_dir->color->g < 0)
+				vec_dir->color->g = 0;
+			vec_dir->color->r = vec_dir->cur_obj->color.r + vec_dir->first_obj->color.r * (1.0 - vec_dir->first_obj->reflection);
+			if (vec_dir->color->r > 255)
+				vec_dir->color->r = 255;
+			else if (vec_dir->color->r < 0)
+				vec_dir->color->r = 0;
+		}
+		else
+		{
+			vec_dir->color->b = vec_dir->cur_obj->color.b;
+			vec_dir->color->g = vec_dir->cur_obj->color.g;
+			vec_dir->color->r = vec_dir->cur_obj->color.r;
+		}
 	}
 	lights = mlx->spots.begin;
 	vec_dir->is_in_shadow = 0;
