@@ -15,37 +15,15 @@
 
 static void	rot_all_vec(double rot[3][3], t_libx *mlx)
 {
-	int	pix_x;
-	int pix_y;
+	int	i;
 
-	pix_y = 0;
-	while (pix_y < mlx->height)
+	i = 0;
+	while (i < TOTAL_PIX)
 	{
-		pix_x = 0;
-		while (pix_x < mlx->width)
-		{
-			*(t_point *)(&mlx->pix[pix_x + pix_y * WIDTH]->pos_pix_vec) =
-				do_rotate(rot, *(t_point *)(&mlx->pix[pix_x + pix_y * WIDTH]->pos_pix_vec));
-			pix_x++;
-		}
-		pix_y++;
+		*(t_point *)(&mlx->pix[i]->pos_pix_vec) =
+			do_rotate(rot, *(t_point *)(&mlx->pix[i]->pos_pix_vec));
+		i++;
 	}
-}
-
-void		key_translate_cam(int keycode, t_libx *mlx)
-{
-	if (keycode == 126)
-		mlx->cam->coord.z += 20;
-	else if (keycode == 125)
-		mlx->cam->coord.z -= 20;
-	else if (keycode == 123)
-		mlx->cam->coord.y += 20;
-	else if (keycode == 124)
-		mlx->cam->coord.y -= 20;
-	else if (keycode == 78)
-		mlx->cam->coord.x += 20;
-	else if (keycode == 69)
-		mlx->cam->coord.x -= 20;
 }
 
 static void	rot_cam_axe(t_vec axe, int keycode, t_libx *mlx)
@@ -84,4 +62,20 @@ void		key_rotate_cam(int keycode, t_libx *mlx)
 		axe.z = 1;
 	}
 	rot_cam_axe(axe, keycode, mlx);
+}
+
+void		key_translate_cam(int keycode, t_libx *mlx)
+{
+	if (keycode == 126)
+		mlx->cam->coord.z += 20;
+	else if (keycode == 125)
+		mlx->cam->coord.z -= 20;
+	else if (keycode == 123)
+		mlx->cam->coord.y += 20;
+	else if (keycode == 124)
+		mlx->cam->coord.y -= 20;
+	else if (keycode == 78)
+		mlx->cam->coord.x += 20;
+	else if (keycode == 69)
+		mlx->cam->coord.x -= 20;
 }

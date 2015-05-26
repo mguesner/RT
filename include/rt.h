@@ -162,6 +162,8 @@ typedef struct				s_libx
 	int						endian;
 	int						width;
 	int						height;
+	int						current_pix;
+	pthread_mutex_t			mutex;
 	int						superint;
 	t_camera				*cam;
 	t_obj_list_begin		spots;
