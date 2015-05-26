@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/26 11:29:47 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/26 11:33:58 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 13:29:12 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void					p_specular(t_pars *e, t_lex **node)
 {
 	double		specular;
 
-	*node = (*node)->next;
-	if (!*node)
+	if (!((*node)->next))
 		add_err(e, BADARG, "");
 	else
 	{
+		*node = (*node)->next;
 		specular = atof((*node)->value);
 		if (specular < 0 || specular > 1)
 			add_err(e, BADARG, (*node)->value);

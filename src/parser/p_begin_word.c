@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 13:32:35 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/19 13:45:17 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 14:04:17 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 static void				p_begin_word2(t_pars *e, t_lex **node)
 {
-	char	*tmp;
-
-	tmp = (*node)->value;
-	if (!strcmp(tmp, "plane"))
+	if (!strcmp((*node)->value, "plane"))
 	{
 		e->cur = ft_memalloc(sizeof(t_plane));
 		e->cur->type = PLANE;
@@ -26,40 +23,37 @@ static void				p_begin_word2(t_pars *e, t_lex **node)
 		e->cur->rot[2][2] = 1;
 		e->step = PPLANE;
 	}
-	else if (!strcmp(tmp, "cylinder_42"))
+	else if (!strcmp((*node)->value, "cylinder_42"))
 	{
 		e->cur = ft_memalloc(sizeof(t_cylinder));
 		e->cur->type = CYLINDER;
 		e->step = PCYLINDER42;
 	}
-	else if (!strcmp(tmp, "cone_42"))
+	else if (!strcmp((*node)->value, "cone_42"))
 	{
 		e->cur = ft_memalloc(sizeof(t_cone));
 		e->cur->type = CONE;
 		e->step = PCONE42;
 	}
 	else
-		add_err(e, UNKOBJ, tmp);
+		add_err(e, UNKOBJ, (*node)->value);
 }
 
 void					p_begin_word(t_pars *e, t_lex **node)
 {
-	char	*tmp;
-
-	tmp = (*node)->value;
-	if (!strcmp(tmp, "camera"))
+	if (!strcmp((*node)->value, "camera"))
 	{
 		e->cur = ft_memalloc(sizeof(t_camera));
 		e->cur->type = CAM;
 		e->step = PCAMERA;
 	}
-	else if (!strcmp(tmp, "light_source"))
+	else if (!strcmp((*node)->value, "light_source"))
 	{
 		e->cur = ft_memalloc(sizeof(t_light));
 		e->cur->type = LIGHT;
 		e->step = PSPOT;
 	}
-	else if (!strcmp(tmp, "sphere"))
+	else if (!strcmp((*node)->value, "sphere"))
 	{
 		e->cur = ft_memalloc(sizeof(t_sphere));
 		e->cur->type = SPHERE;

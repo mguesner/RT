@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/25 14:13:15 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 13:17:32 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <rt.h>
 #include <stdio.h>
@@ -26,7 +25,8 @@ static int		up_color_angle(int cur_color, double scalar, double coef)
 	return (new);
 }
 
-void			set_color_light(t_obj *light, t_pix *pix, t_point inter, int nb_spots)
+void			set_color_light(t_obj *light, t_pix *pix
+	, t_point inter, int nb_spots)
 {
 	t_vec	dir;
 	double	light_dist;
@@ -39,7 +39,8 @@ void			set_color_light(t_obj *light, t_pix *pix, t_point inter, int nb_spots)
 	pix->normale = get_normale(pix, inter);
 	vec_reflex(pix);
 	scal = fabs(scalar(pix->normale, dir));
-	coef = 0.2 - ((pix->cur_obj->color.b + pix->cur_obj->color.g + pix->cur_obj->color.r) / (255 * 3));
+	coef = 0.2 - ((pix->cur_obj->color.b + pix->cur_obj->color.g
+		+ pix->cur_obj->color.r) / (255 * 3));
 	coef *= nb_spots;
 	if (coef > 0.9)
 		coef = 0.9;

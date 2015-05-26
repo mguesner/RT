@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 10:42:10 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/19 17:17:51 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 13:15:39 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	texture_func(t_pix *vec_dir)
 		vec_dir->color->r = vec_dir->cur_obj->texture.data[(int)(u * vec_dir->cur_obj->texture.width)
 		* vec_dir->cur_obj->texture.bpp + (int)(v * vec_dir->cur_obj->texture.height) *
 		vec_dir->cur_obj->texture.size_line + 2];
-		// set_color(mlx, vec_dir);
 		vec_dir->color->b = vec_dir->color->b < 0 ? 255 + vec_dir->color->b : vec_dir->color->b;
 		vec_dir->color->r = vec_dir->color->r < 0 ? 255 + vec_dir->color->r : vec_dir->color->r;
 		vec_dir->color->g = vec_dir->color->g < 0 ? 255 + vec_dir->color->g : vec_dir->color->g;

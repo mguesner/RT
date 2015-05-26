@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/26 11:23:45 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 13:14:49 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <vecteur.h>
 # include <color.h>
 # include <libft.h>
-# include "../minilibx_macos/mlx.h"
+# include <mlx.h>
 
 # include <stdio.h>
 
