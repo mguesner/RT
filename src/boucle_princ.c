@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 13:15:16 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 13:16:25 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	*loop(void *arg)
 	pthread_mutex_unlock(&(mlx->mutex));
 	while (i < TOTAL_PIX)
 	{
-		mlx->pix[i]->dist = inters(mlx, i, i % WIDTH, i / WIDTH);
+		inters(mlx, i, i % WIDTH, i / WIDTH);
  		calc_lum(mlx, mlx->pix[i]);
  		i += 8;
 	}

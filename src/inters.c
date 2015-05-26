@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 12:54:02 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 14:10:25 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	touch_in(t_obj_list *tmp, t_vec *current_vec, t_point origin, t_libx *mlx,
 	while (tmp)
 	{
 		res = touch(tmp->obj, current_vec, &origin);
-		if ((res) > 0.0001)
+		if ((res) > 0.001)
 		{
 			if (res < dist || dist == -1)
 			{
@@ -44,15 +44,18 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 	t_point		cam_ori;
 	t_vec		current_vec;
 	int			reflect;
+	int			nb_reflex;
 
 	reflect = -1;
+	nb_reflex = 0;
 	cam_ori = mlx->cam->coord;
 	current_vec = mlx->pix[pix]->pos_pix_vec;
 	dist = -1.0;
 	mlx->pix[pix]->pix_x = pix_x;
 	mlx->pix[pix]->pix_y = pix_y;
-	while(reflect < 1)
+	while((reflect == 1 || reflect == -1) && nb_reflex < 10)
 	{
+		nb_reflex++;
 		tmp = mlx->obj.begin;
 		if (reflect != -1)
 		{
@@ -76,8 +79,12 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 				vec_coef(current_vec, dist)));
 			mlx->pix[pix]->dist = dist;
 		}
-		// reflect = mlx->pix[pix]->cur_obj->reflect;
-		reflect++;
+		if (dist == -1.0)
+			reflect = 0;
+		else if (mlx->pix[pix]->cur_obj->reflection > 0.0)
+			reflect = 1;
+		else
+			reflect = 0;
 	}
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 13:14:41 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 14:01:34 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,11 @@ static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *v
 
 void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 {
-	t_point		inter_point;
 	t_obj_list	*lights;
 	t_obj_list	*light_dist;
 
 	if (vec_dir->cur_obj == NULL)
 		return ;
-	inter_point = translate(mlx->cam->coord,
-		vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
 	if (vec_dir->cur_obj->type == SPHERE && vec_dir->cur_obj->texture.exist == 1)
 			texture_func(vec_dir);
 	else
@@ -102,7 +99,10 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 	vec_dir->is_in_shadow = 0;
 	while (lights)
 	{
-		light_dist = shadow(lights->obj, mlx->obj.begin, inter_point, vec_dir);
+		if (vec_dir->cur_obj->reflection <= 0.0)
+			light_dist = shadow(lights->obj, mlx->obj.begin, vec_dir->inter, vec_dir);
+		else
+			light_dist = 0;
 		if (light_dist)
 			set_color_shad(mlx, vec_dir);
 		else
