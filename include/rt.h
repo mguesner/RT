@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/25 16:22:50 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 11:23:45 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct				s_obj
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 }							t_obj;
 
 typedef struct				s_camera
@@ -63,6 +65,8 @@ typedef struct				s_camera
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	t_point					pix_hg;
 	t_point					pix_bg;
 	t_point					pix_hd;
@@ -76,6 +80,8 @@ typedef struct				s_light
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 }							t_light;
 
 typedef struct				s_plane
@@ -85,6 +91,8 @@ typedef struct				s_plane
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	t_vec					norm;
 }							t_plane;
 
@@ -95,6 +103,8 @@ typedef struct				s_sphere
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	double					radius;
 }							t_sphere;
 
@@ -105,6 +115,8 @@ typedef struct				s_cylinder
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	double					radius;
 	t_vec					dir;
 }							t_cylinder;
@@ -116,6 +128,8 @@ typedef struct				s_cone
 	t_color					color;
 	double					rot[3][3];
 	t_texture				texture;
+	double					specular;
+	double					reflection;
 	double					angle;
 	t_vec					dir;
 }							t_cone;
@@ -183,7 +197,7 @@ double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
 double						dist_cone(t_cone *cone, t_vec *vec, t_point *o);
 double						dist_cone2(t_cone *cone, t_vec vec, t_point o);
 double						dist_cylinder(t_cylinder *cylinder, t_vec *vec, t_point *o);
-double						dist_cylinder2(t_cylinder *cylinder, t_vec vec, t_point o);
+double						dist_cylinder2(t_cylinder *cylinder, t_vec *vec, t_point o);
 void						set_color_light(t_obj *light, t_pix *pix, t_point inter, int nb_spots);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
