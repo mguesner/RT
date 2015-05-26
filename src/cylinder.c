@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:20:04 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/26 11:22:12 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 14:26:09 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,17 @@ double	dist_cylinder2(t_cylinder *cylinder, t_vec *v, t_point o)
 
 	vec = *(t_point *)v;
 	a = pow(vec.x, 2) + pow(vec.y, 2);
-	b = 2.0 * (vec.x * (o.x - cylinder->coord.x) + vec.y * (o.y - cylinder->coord.y));
-	c = pow((o.x - cylinder->coord.x), 2) + pow((o.y - cylinder->coord.y), 2) - pow(cylinder->radius, 2);;
+	b = 2.0 * (vec.x * (o.x - cylinder->coord.x) + vec.y
+		* (o.y - cylinder->coord.y));
+	c = pow((o.x - cylinder->coord.x), 2) + pow((o.y - cylinder->coord.y)
+		, 2) - pow(cylinder->radius, 2);
 	det = pow(b, 2) - 4.0 * a * c;
-    if (det > 0)
-    {
-        double ret = (-b + sqrt(det)) / (2.0 * a);
-        double ret2 = (-b - sqrt(det)) / (2.0 * a);
-        return (ret2 > 0.0001 ? ret2 : ret);
-    }
+	if (det > 0)
+	{
+		double ret = (-b + sqrt(det)) / (2.0 * a);
+		double ret2 = (-b - sqrt(det)) / (2.0 * a);
+		return (ret2 > 0.0001 ? ret2 : ret);
+	}
 	return (-1);
 }
 
@@ -48,13 +50,13 @@ double	dist_cylinder(t_cylinder *cylinder, t_vec *v, t_point *ori)
 	o = do_rotate(cylinder->rot, *ori);
 	a = pow(vec.x, 2) + pow(vec.y, 2);
 	b = 2.0 * (vec.x * (o.x - cylinder->coord.x) + vec.y * (o.y - cylinder->coord.y));
-	c = pow((o.x - cylinder->coord.x), 2) + pow((o.y - cylinder->coord.y), 2) - pow(cylinder->radius, 2);;
+	c = pow((o.x - cylinder->coord.x), 2) + pow((o.y - cylinder->coord.y), 2) - pow(cylinder->radius, 2);
 	det = pow(b, 2) - 4.0 * a * c;
-    if (det > 0)
-    {
-        double ret = (-b + sqrt(det)) / (2.0 * a);
-        double ret2 = (-b - sqrt(det)) / (2.0 * a);
-        return (ret2 > 0.0001 ? ret2 : ret);
-    }
+	if (det > 0)
+	{
+		double ret = (-b + sqrt(det)) / (2.0 * a);
+		double ret2 = (-b - sqrt(det)) / (2.0 * a);
+		return (ret2 > 0.0001 ? ret2 : ret);
+	}
 	return (-1);
 }

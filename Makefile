@@ -74,7 +74,6 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/cone.c\
 	  $(SRCDIR)/cylinder.c\
 	  $(SRCDIR)/set_color_light.c\
-	  $(SRCDIR)/cam_rotation.c\
 	  $(SRCDIR)/textures_init.c\
 	  $(SRCDIR)/textures.c\
 	  $(SRCDIR)/get_normale.c\

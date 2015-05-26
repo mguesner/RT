@@ -3,20 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   antialiasing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:56:57 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/19 15:44:29 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 15:22:49 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <stdlib.h>
 
-
 void	antialiasing(t_libx *m)
 {
 	(void)(m);
 	return ;
 }
-

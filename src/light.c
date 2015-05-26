@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 11:38:59 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 15:19:30 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <matrice.h>
 
-void		set_color(t_libx *m, t_pix *pix, int spec_or_not)
+void				set_color(t_libx *m, t_pix *pix, int spec_or_not)
 {
 	int		pos;
 
@@ -33,7 +33,7 @@ void		set_color(t_libx *m, t_pix *pix, int spec_or_not)
 	}
 }
 
-static void	set_color_shad(t_libx *m, t_pix *pix)
+static void			set_color_shad(t_libx *m, t_pix *pix)
 {
 	int		pos;
 	int		white;
@@ -41,8 +41,9 @@ static void	set_color_shad(t_libx *m, t_pix *pix)
 
 	white = 255 * 3;
 	pix->is_in_shadow = 1;
-	coef = 0.2 - (double)((pix->cur_obj->color.b + pix->cur_obj->color.g + pix->cur_obj->color.r) / white);
-	coef *=  m->spots.size;
+	coef = 0.2 - (double)((pix->cur_obj->color.b
+		+ pix->cur_obj->color.g + pix->cur_obj->color.r) / white);
+	coef *= m->spots.size;
 	if (coef > 0.9)
 		coef = 0.9;
 	pos = ((pix->pix_y) * (m->size_line) + pix->pix_x * (m->bpp / 8));
@@ -51,7 +52,8 @@ static void	set_color_shad(t_libx *m, t_pix *pix)
 	pix->color->r = pix->color->r * coef;
 }
 
-static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *vec_dir)
+static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp
+	, t_point inter, t_pix *vec_dir)
 {
 	double		res;
 	t_vec		vec;
@@ -80,34 +82,24 @@ static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp, t_point inter, t_pix *v
 	return (NULL);
 }
 
-void			calc_lum(t_libx *mlx, t_pix *vec_dir)
+void				calc_lum2(t_libx *mlx, t_pix *vec_dir)
 {
-	t_point		inter_point;
 	t_obj_list	*lights;
 	t_obj_list	*light_dist;
 
-	if (vec_dir->cur_obj == NULL)
-		return ;
-	inter_point = translate(mlx->cam->coord,
-		vec_coef(vec_dir->pos_pix_vec, vec_dir->dist));
-	if (vec_dir->cur_obj->type == SPHERE && vec_dir->cur_obj->texture.exist == 1)
-			texture_func(vec_dir);
-	else
-	{
-		vec_dir->color->b = vec_dir->cur_obj->color.b;
-		vec_dir->color->g = vec_dir->cur_obj->color.g;
-		vec_dir->color->r = vec_dir->cur_obj->color.r;
-	}
 	lights = mlx->spots.begin;
-	vec_dir->is_in_shadow = 0;
 	while (lights)
 	{
-		light_dist = shadow(lights->obj, mlx->obj.begin, inter_point, vec_dir);
+		light_dist = 0;
+		if (vec_dir->cur_obj->reflection <= 0.0)
+			light_dist = shadow(lights->obj, mlx->obj.begin
+				, vec_dir->inter, vec_dir);
 		if (light_dist)
 			set_color_shad(mlx, vec_dir);
 		else
 		{
-			set_color_light(lights->obj, vec_dir, vec_dir->inter, mlx->spots.size);
+			set_color_light(lights->obj, vec_dir
+				, vec_dir->inter, mlx->spots.size);
 			if (!vec_dir->is_in_shadow && vec_dir->cur_obj->specular)
 				apply_specular(mlx, vec_dir);
 		}
@@ -117,4 +109,21 @@ void			calc_lum(t_libx *mlx, t_pix *vec_dir)
 		set_color(mlx, vec_dir, 0);
 	else
 		set_color(mlx, vec_dir, 1);
+}
+
+void				calc_lum(t_libx *mlx, t_pix *vec_dir)
+{
+	if (vec_dir->cur_obj == NULL)
+		return ;
+	if (vec_dir->cur_obj->type == SPHERE
+		&& vec_dir->cur_obj->texture.exist == 1)
+		texture_func(vec_dir);
+	else
+	{
+		vec_dir->color->b = vec_dir->cur_obj->color.b;
+		vec_dir->color->g = vec_dir->cur_obj->color.g;
+		vec_dir->color->r = vec_dir->cur_obj->color.r;
+	}
+	vec_dir->is_in_shadow = 0;
+	calc_lum2(mlx, vec_dir);
 }
