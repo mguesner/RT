@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/26 13:14:49 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 14:15:13 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,18 +187,23 @@ typedef struct				s_libx
 }							t_libx;
 
 void						error(int errno);
-void						mlx_struct_init(int width, int height, char *win_name, t_libx *mlx);
+void						mlx_struct_init(int width, int height
+	, char *win_name, t_libx *mlx);
 void						texture_func(t_pix *vec_dir);
 void						start(t_libx *mlx);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						touch2(t_obj *obj, t_vec vec, t_point origine);
-double						dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o);
+double						dist_sphere(t_sphere *sphere
+	, t_vec *vec, t_point *o);
 double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
 double						dist_cone(t_cone *cone, t_vec *vec, t_point *o);
 double						dist_cone2(t_cone *cone, t_vec vec, t_point o);
-double						dist_cylinder(t_cylinder *cylinder, t_vec *vec, t_point *o);
-double						dist_cylinder2(t_cylinder *cylinder, t_vec *vec, t_point o);
-void						set_color_light(t_obj *light, t_pix *pix, t_point inter, int nb_spots);
+double						dist_cylinder(t_cylinder *cylinder
+	, t_vec *vec, t_point *o);
+double						dist_cylinder2(t_cylinder *cylinder
+	, t_vec *vec, t_point o);
+void						set_color_light(t_obj *light, t_pix *pix
+	, t_point inter, int nb_spots);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
 double						inters(t_libx *mlx, int pix, int pix_x, int pix_y);

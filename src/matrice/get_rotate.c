@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   get_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/16 06:11:00 by matthieu          #+#    #+#             */
-/*   Updated: 2015/05/16 06:23:12 by matthieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 14:12:10 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <RT.h>
 #define RAD(x) ((x / 180.0) * M_PI)
 
-void	get_rotate(t_vec axe, double scalaire, double rot[3][3])
+void	get_rotate(t_vec axe, double cos, double rot[3][3])
 {
-	double	cos;
 	double	sin;
 	double	ux;
 	double	uy;
@@ -24,7 +23,6 @@ void	get_rotate(t_vec axe, double scalaire, double rot[3][3])
 	double	uy_2;
 	double	uz_2;
 
-	cos = scalaire;
 	sin = sqrt(1 - pow(cos, 2));
 	axe = normalize(axe);
 	ux = axe.x;

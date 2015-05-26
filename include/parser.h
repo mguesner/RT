@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/26 12:31:36 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 14:14:57 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <rt.h>
 
 typedef struct s_pars	t_pars;
-
 
 typedef enum			e_token
 {
@@ -117,8 +116,10 @@ void					init_pars(t_pars *e);
 void					clean_pars(t_pars *e);
 
 void					lexer(int fd, t_pars *e);
-void					add_lex_node(t_lex_begin *begin, t_token token, char *value, int line);
-void					lex_word(char *line, t_pars *e, int *offset, int size);
+void					add_lex_node(t_lex_begin *begin, t_token token
+	, char *value, int line);
+void					lex_word(char *line, t_pars *e, int *offset
+	, int size);
 void					lex_value(char *line, t_pars *e, int *offset, int size);
 void					lex_vec(char *line, t_pars *e, int *offset, int size);
 
