@@ -3,74 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   get_rotate.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: matthieu <matthieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/16 06:11:00 by matthieu          #+#    #+#             */
-/*   Updated: 2015/05/16 06:23:12 by matthieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 15:16:39 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <RT.h>
 #define RAD(x) ((x / 180.0) * M_PI)
 
-void	get_rotate(t_vec axe, double scalaire, double rot[3][3])
+void	get_rotate(t_vec axe, double cos, double rot[3][3])
 {
-	double	cos;
 	double	sin;
-	double	ux;
-	double	uy;
-	double	uz;
-	double	ux_2;
-	double	uy_2;
-	double	uz_2;
 
-	cos = scalaire;
 	sin = sqrt(1 - pow(cos, 2));
 	axe = normalize(axe);
-	ux = axe.x;
-	uy = axe.y;
-	uz = axe.z;
-	ux_2 = pow(ux, 2);
-	uy_2 = pow(uy, 2);
-	uz_2 = pow(uz, 2);
-	rot[0][0] = ux_2 + (1 - ux_2) * cos;
-	rot[1][0] = ux * uy * (1 - cos) - uz * sin;
-	rot[2][0] = ux * uz * (1 - cos) + uy * sin;
-	rot[0][1] = ux * uy * (1 - cos) + uz * sin;
-	rot[1][1] = uy_2 + (1 - uy_2) * cos;
-	rot[2][1] = uy * uz * (1 - cos) - ux * sin;
-	rot[0][2] = ux * uz * (1 - cos) - uy * sin;
-	rot[1][2] = uy * uz * (1 - cos) + ux * sin;
-	rot[2][2] = uz_2 + (1 - uz_2) * cos;
+	rot[0][0] = pow(axe.x, 2) + (1 - pow(axe.x, 2)) * cos;
+	rot[1][0] = axe.x * axe.y * (1 - cos) - axe.z * sin;
+	rot[2][0] = axe.x * axe.z * (1 - cos) + axe.y * sin;
+	rot[0][1] = axe.x * axe.y * (1 - cos) + axe.z * sin;
+	rot[1][1] = pow(axe.y, 2) + (1 - pow(axe.y, 2)) * cos;
+	rot[2][1] = axe.y * axe.z * (1 - cos) - axe.x * sin;
+	rot[0][2] = axe.x * axe.z * (1 - cos) - axe.y * sin;
+	rot[1][2] = axe.y * axe.z * (1 - cos) + axe.x * sin;
+	rot[2][2] = pow(axe.z, 2) + (1 - pow(axe.z, 2)) * cos;
 }
 
 void	get_rotate_angle(t_vec axe, double angle, double rot[3][3])
 {
-	double	__cos;
-	double	__sin;
-	double	ux;
-	double	uy;
-	double	uz;
-	double	ux_2;
-	double	uy_2;
-	double	uz_2;
+	double	v_cos;
+	double	v_sin;
 
-	__cos = cos(RAD(angle));
-	__sin = sin(RAD(angle));
+	v_cos = cos(RAD(angle));
+	v_sin = sin(RAD(angle));
 	axe = normalize(axe);
-	ux = axe.x;
-	uy = axe.y;
-	uz = axe.z;
-	ux_2 = pow(ux, 2);
-	uy_2 = pow(uy, 2);
-	uz_2 = pow(uz, 2);
-	rot[0][0] = ux_2 + (1 - ux_2) * __cos;
-	rot[1][0] = ux * uy * (1 - __cos) - uz * __sin;
-	rot[2][0] = ux * uz * (1 - __cos) + uy * __sin;
-	rot[0][1] = ux * uy * (1 - __cos) + uz * __sin;
-	rot[1][1] = uy_2 + (1 - uy_2) * __cos;
-	rot[2][1] = uy * uz * (1 - __cos) - ux * __sin;
-	rot[0][2] = ux * uz * (1 - __cos) - uy * __sin;
-	rot[1][2] = uy * uz * (1 - __cos) + ux * __sin;
-	rot[2][2] = uz_2 + (1 - uz_2) * __cos;
+	rot[0][0] = pow(axe.x, 2) + (1 - pow(axe.x, 2)) * v_cos;
+	rot[1][0] = axe.x * axe.y * (1 - v_cos) - axe.z * v_sin;
+	rot[2][0] = axe.x * axe.z * (1 - v_cos) + axe.y * v_sin;
+	rot[0][1] = axe.x * axe.y * (1 - v_cos) + axe.z * v_sin;
+	rot[1][1] = pow(axe.y, 2) + (1 - pow(axe.y, 2)) * v_cos;
+	rot[2][1] = axe.y * axe.z * (1 - v_cos) - axe.x * v_sin;
+	rot[0][2] = axe.x * axe.z * (1 - v_cos) - axe.y * v_sin;
+	rot[1][2] = axe.y * axe.z * (1 - v_cos) + axe.x * v_sin;
+	rot[2][2] = pow(axe.z, 2) + (1 - pow(axe.z, 2)) * v_cos;
 }

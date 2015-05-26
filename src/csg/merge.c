@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   merge.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsourd-b <bsourd-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 13:01:44 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/13 13:06:58 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/26 15:21:12 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,4 @@ double	dist_merge(t_obj *obj1, t_obj *obj2, t_vec *vec, t_point *o)
 	if (dist2 > 0 && dist1 < 0)
 		return (dist2);
 	return (-1);
-
 }

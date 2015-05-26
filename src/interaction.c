@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interaction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bsourd-b <bsourd-b@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/25 13:44:46 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/25 13:44:47 by bsourd-b         ###   ########.fr       */
+/*   Updated: 2015/05/26 15:20:20 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	rot_all_vec(double rot[3][3], t_libx *mlx)
 
 static void	rot_cam_axe(t_vec axe, int keycode, t_libx *mlx)
 {
-	double angle;
+	double	angle;
 	double	rot[3][3];
 
 	if (keycode == 12 || keycode == 13 || keycode == 14)

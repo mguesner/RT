@@ -6,19 +6,27 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:48:51 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/26 14:07:14 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 14:09:35 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 #include <matrice.h>
 
+void					create_norm(t_vec *norm)
+{
+	norm->x = 0;
+	norm->y = 0;
+	norm->z = 1;
+}
+
 void					p_cylinder42_vector(t_pars *e, t_lex **node)
 {
 	t_vec	v;
-	t_vec	norm = {0, 0, 1};
+	t_vec	norm;
 	t_vec	axe;
 
+	create_norm(&norm);
 	fill_vector(e, (*node)->value, &v);
 	if (!e->nb_vector && e->cur)
 		e->cur->coord = *((t_point *)&v);
