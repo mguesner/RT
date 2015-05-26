@@ -6,13 +6,12 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/22 13:49:57 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/25 15:04:16 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 10:29:06 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
 #include <stdio.h>
-
 
 void	apply_specular(t_libx *mlx, t_pix *pix)
 {

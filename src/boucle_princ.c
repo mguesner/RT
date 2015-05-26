@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   boucle_princ.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/25 16:33:31 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 12:27:57 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ void		start(t_libx *mlx)
 	j = 0;
 	while (j < TOTAL_PIX)
 	{
-		mlx->pix[j]->dist =
-			inters(mlx, j, j % WIDTH, j / WIDTH);
+		inters(mlx, j, j % WIDTH, j / WIDTH);
 		calc_lum(mlx, mlx->pix[j]);
 		j++;
 	}
