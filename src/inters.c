@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 15:47:36 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/27 13:46:07 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 	while (tmp)
 	{
 		res = touch(tmp->obj, current_vec, &origin);
-		if ((res) > 0.001)
+		if ((res) > 0.0001)
 		{
 			if (res < dist || dist == -1)
 			{
@@ -37,6 +37,23 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 		tmp = tmp->next;
 	}
 	return (dist);
+}
+
+void	init_next_ray(t_vec *vec, t_point *p, t_pix *pix)
+{
+	p->x = pix->inter.x;
+	p->y = pix->inter.y;
+	p->z = pix->inter.z;
+	*vec = vec_sum(*vec, get_normale(pix, *p));
+	*vec = normalize(vec_sum(get_normale(pix, *p), *vec));
+}
+
+void	set_all_null(t_pix *pix, int *reflect)
+{
+	pix->dist = -1.0;
+	pix->cur_obj = NULL;
+	pix->first_obj = NULL;
+	*reflect = 0;
 }
 
 void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
@@ -55,26 +72,16 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 	mlx->pix[pix]->pix_x = pix_x;
 	mlx->pix[pix]->pix_y = pix_y;
 	mlx->pix[pix]->first_obj = NULL;
-	while((reflect == 1 || reflect == -1) && nb_reflex < 10)
+	while((reflect == 1 || reflect == -1) && nb_reflex < 15)
 	{
 		nb_reflex++;
 		if (reflect != -1)
-		{
-			cam_ori.x = mlx->pix[pix]->inter.x;
-			cam_ori.y = mlx->pix[pix]->inter.y;
-			cam_ori.z = mlx->pix[pix]->inter.z;
-			current_vec = vec_sum(current_vec, get_normale(mlx->pix[pix], cam_ori));
-			current_vec = normalize(vec_sum(get_normale(mlx->pix[pix], cam_ori), current_vec));
-		}
+			init_next_ray(&current_vec, &cam_ori, mlx->pix[pix]);
 		dist = touch_in(&current_vec, cam_ori, mlx, pix);
 		if (dist == -1.0 && reflect != -1)
 			return ;
 		if (dist == -1.0)
-		{
-			mlx->pix[pix]->dist = -1.0;
-			mlx->pix[pix]->cur_obj = NULL;
-			mlx->pix[pix]->first_obj = NULL;
-		}
+			set_all_null(mlx->pix[pix], &reflect);
 		else
 		{
 			mlx->pix[pix]->inter = do_rotate(mlx->pix[pix]->cur_obj->rot, translate(cam_ori,
@@ -82,11 +89,8 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 			mlx->pix[pix]->dist = dist;
 			if (reflect == -1 && mlx->pix[pix]->cur_obj->reflection > 0.0)
 				mlx->pix[pix]->first_obj = mlx->pix[pix]->cur_obj;
-
 		}
-		if (dist == -1.0)
-			reflect = 0;
-		else if (mlx->pix[pix]->cur_obj->reflection > 0.0)
+		if (mlx->pix[pix]->cur_obj->reflection > 0.0)
 			reflect = 1;
 		else
 			reflect = 0;
