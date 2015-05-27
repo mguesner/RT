@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 15:48:18 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/27 13:56:36 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,24 @@ void				calc_lum(t_libx *mlx, t_pix *vec_dir)
 			else if (vec_dir->color->g < 0)
 				vec_dir->color->g = 0;
 			vec_dir->color->r =  vec_dir->cur_obj->color.r * (1.0 - vec_dir->first_obj->reflection);
+			if (vec_dir->color->r > 255)
+				vec_dir->color->r = 255;
+			else if (vec_dir->color->r < 0)
+				vec_dir->color->r = 0;
+		}
+		else if (vec_dir->first_obj != NULL && vec_dir->first_obj->refraction > 0.0)
+		{
+			vec_dir->color->b = vec_dir->cur_obj->color.b + vec_dir->first_obj->color.b * (vec_dir->first_obj->transparence);
+			if (vec_dir->color->b > 255)
+				vec_dir->color->b = 255;
+			else if (vec_dir->color->b < 0)
+				vec_dir->color->b = 0;
+			vec_dir->color->g = vec_dir->cur_obj->color.g + vec_dir->first_obj->color.g * (vec_dir->first_obj->transparence);
+			if (vec_dir->color->g > 255)
+				vec_dir->color->g = 255;
+			else if (vec_dir->color->g < 0)
+				vec_dir->color->g = 0;
+			vec_dir->color->r = vec_dir->cur_obj->color.r + vec_dir->first_obj->color.r * (vec_dir->first_obj->transparence);
 			if (vec_dir->color->r > 255)
 				vec_dir->color->r = 255;
 			else if (vec_dir->color->r < 0)

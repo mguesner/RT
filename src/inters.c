@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/27 13:46:07 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:09:29 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,27 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 	return (dist);
 }
 
-void	init_next_ray(t_vec *vec, t_point *p, t_pix *pix)
+void	init_next_ray_reflect(t_vec *vec, t_point *p, t_pix *pix)
 {
 	p->x = pix->inter.x;
 	p->y = pix->inter.y;
 	p->z = pix->inter.z;
 	*vec = vec_sum(*vec, get_normale(pix, *p));
 	*vec = normalize(vec_sum(get_normale(pix, *p), *vec));
+}
+
+void	init_next_ray_refract(t_vec *vec, t_point *p, t_pix *pix)
+{
+	t_vec	tmp;
+	double	angle;
+
+	p->x = pix->inter.x;
+	p->y = pix->inter.y;
+	p->z = pix->inter.z;
+	tmp = get_normale(pix, *p);
+	angle = arccos(scalar(tmp, vec));
+	angle = arcsin((n1 /n2) * sin(angle));
+	*vec = -tmp * (cos(angle));
 }
 
 void	set_all_null(t_pix *pix, int *reflect)
@@ -75,8 +89,10 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 	while((reflect == 1 || reflect == -1) && nb_reflex < 15)
 	{
 		nb_reflex++;
-		if (reflect != -1)
-			init_next_ray(&current_vec, &cam_ori, mlx->pix[pix]);
+		if (reflect != -1 && mlx->pix[pix]->cur_obj->reflection > 0.0)
+			init_next_ray_reflect(&current_vec, &cam_ori, mlx->pix[pix]);
+		else if (reflect != -1 && mlx->pix[pix]->cur_obj->refraction > 0.0)
+			init_next_ray_refract(&current_vec, &cam_ori, mlx->pix[pix]);
 		dist = touch_in(&current_vec, cam_ori, mlx, pix);
 		if (dist == -1.0 && reflect != -1)
 			return ;
@@ -87,7 +103,7 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 			mlx->pix[pix]->inter = do_rotate(mlx->pix[pix]->cur_obj->rot, translate(cam_ori,
 				vec_coef(current_vec, dist)));
 			mlx->pix[pix]->dist = dist;
-			if (reflect == -1 && mlx->pix[pix]->cur_obj->reflection > 0.0)
+			if (reflect == -1 && mlx->pix[pix]->cur_obj->reflection > 0.0 || mlx->pix[pix]->cur_obj->refraction > 0.0)
 				mlx->pix[pix]->first_obj = mlx->pix[pix]->cur_obj;
 		}
 		if (mlx->pix[pix]->cur_obj->reflection > 0.0)
