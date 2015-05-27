@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:11:50 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:12:27 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,8 @@ typedef struct				s_pix
 	t_vec					reflex_vec;
 	int						is_in_shadow;
 	t_obj					*first_obj;
+	double					refraction;
+	double					transparence;
 }							t_pix;
 
 typedef struct				s_libx
