@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 14:05:22 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:43:03 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/27 15:16:16 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void					p_sssphere(t_pars *e, t_lex **node)
 {
 	t_sphere	sphere;
 
-	ft_printf("inter sphere\n");
+	*node = (*node)->next;
 	if ((*node)->token_type != OPENSCOPE)
 		return ;
 	*node = (*node)->next;

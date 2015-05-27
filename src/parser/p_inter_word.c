@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 14:01:21 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 15:02:35 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/27 15:15:35 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,19 @@
 
 void					p_inter_word(t_pars *e, t_lex **node)
 {
-	char		*tmp;
 
+	char		*tmp;
+	t_f_parse	tools[NBSUBSTEP];
+
+	tools[SSPIGMENT] = &p_pigment;
+	if (e->substep != SSBEGIN)
+	{
+		tools[e->substep](e, node);
+		return ;
+	}
 	tmp = (*node)->value;
 	if (!strcmp(tmp, "pigment"))
-		p_pigment(e, node);
+		e->substep = SSPIGMENT;
 	else if (!strcmp(tmp, "sphere"))
 		p_sssphere(e, node);
 	else
