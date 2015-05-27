@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:13:47 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:16:54 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 # define HEIGHT 1080
 # define TOTAL_PIX WIDTH * HEIGHT
 # define EPSILON 0.1E-7
+# define N1 1.0
 
 # include <vecteur.h>
 # include <color.h>
 # include <libft.h>
 # include <mlx.h>
+# include <math.h>
 
 # include <stdio.h>
 
