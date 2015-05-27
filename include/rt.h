@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/26 15:47:55 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:11:50 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef enum				e_obj_type
 	SPHERE,
 	CYLINDER,
 	CONE,
+	INTERSECTION,
 	NBOBJTYPE
 }							t_obj_type;
 
@@ -146,6 +147,19 @@ typedef struct				s_obj_list_begin
 	t_obj_list				*end;
 	int						size;
 }							t_obj_list_begin;
+
+typedef struct				s_intersection
+{
+	t_obj_type				type;
+	t_point					coord;
+	t_color					color;
+	double					rot[3][3];
+	t_texture				texture;
+	double					specular;
+	double					reflection;
+	int						nb_obj;
+	t_obj_list_begin		*objs;
+}							t_intersection;
 
 typedef struct				s_pix
 {

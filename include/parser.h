@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/26 14:14:57 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:04:56 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef enum			e_step
 	PCYLINDER42,
 	PCONE,
 	PCONE42,
+	PINTERSECTION,
 	NBSTEP
 }						t_step;
 
@@ -47,6 +48,7 @@ typedef enum			e_substep
 	SSPIGMENT,
 	SSTEXTURE,
 	SSFINISH,
+	SSSPHERE,
 	NBSUBSTEP
 }						t_substep;
 
@@ -172,6 +174,10 @@ void					p_cylinder42(t_pars *e, t_lex **node);
 void					p_cylinder42_vector(t_pars *e, t_lex **node);
 
 void					p_cone42(t_pars *e, t_lex **node);
+
+void					p_intersection(t_pars *e, t_lex **node);
+void					p_inter_word(t_pars *e, t_lex **node);
+void					p_sssphere(t_pars *e, t_lex **node);
 
 void					check_pars_err(t_pars e);
 
