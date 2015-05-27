@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:04:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:20:32 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void					p_texture(t_pars *e, t_lex **node);
 void					p_finish(t_pars *e, t_lex **node);
 void					p_specular(t_pars *e, t_lex **node);
 void					p_reflection(t_pars *e, t_lex **node);
+void					p_transparence(t_pars *e, t_lex **node);
 t_texture				texture_init(t_pars *e, char *name);
 
 void					p_begin(t_pars *e, t_lex **node);

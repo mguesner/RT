@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:12:27 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:14:14 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ typedef struct				s_obj
 	t_texture				texture;
 	double					specular;
 	double					reflection;
+	double					transparence;
+	double					refraction;
 }							t_obj;
 
 typedef struct				s_camera
@@ -68,6 +70,8 @@ typedef struct				s_camera
 	t_texture				texture;
 	double					specular;
 	double					reflection;
+	double					transparence;
+	double					refraction;
 	t_point					pix_hg;
 	t_point					pix_bg;
 	t_point					pix_hd;
@@ -83,6 +87,8 @@ typedef struct				s_light
 	t_texture				texture;
 	double					specular;
 	double					reflection;
+	double					transparence;
+	double					refraction;
 }							t_light;
 
 typedef struct				s_plane
@@ -94,6 +100,8 @@ typedef struct				s_plane
 	t_texture				texture;
 	double					specular;
 	double					reflection;
+	double					transparence;
+	double					refraction;
 	t_vec					norm;
 }							t_plane;
 
@@ -106,6 +114,8 @@ typedef struct				s_sphere
 	t_texture				texture;
 	double					specular;
 	double					reflection;
+	double					transparence;
+	double					refraction;
 	double					radius;
 }							t_sphere;
 
@@ -118,6 +128,8 @@ typedef struct				s_cylinder
 	t_texture				texture;
 	double					specular;
 	double					reflection;
+	double					transparence;
+	double					refraction;
 	double					radius;
 	t_vec					dir;
 }							t_cylinder;
@@ -131,6 +143,8 @@ typedef struct				s_cone
 	t_texture				texture;
 	double					specular;
 	double					reflection;
+	double					transparence;
+	double					refraction;
 	double					angle;
 	t_vec					dir;
 }							t_cone;
@@ -178,8 +192,6 @@ typedef struct				s_pix
 	t_vec					reflex_vec;
 	int						is_in_shadow;
 	t_obj					*first_obj;
-	double					refraction;
-	double					transparence;
 }							t_pix;
 
 typedef struct				s_libx
