@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/27 13:56:36 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/27 15:05:35 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp
 	vec = normalize(vec);
 	while (tmp)
 	{
-		if (tmp->obj == vec_dir->cur_obj)
+		if (tmp->obj == vec_dir->cur_obj && tmp->obj->transparence < 1.0)
 			res = touch2(tmp->obj, vec2, vec_dir->inter);
-		else
+		else if (tmp->obj->transparence < 1.0)
 			res = touch(tmp->obj, &vec, &inter);
 		if (res > 0.001 && res < dist_to_light)
 		{
@@ -138,19 +138,19 @@ void				calc_lum(t_libx *mlx, t_pix *vec_dir)
 			else if (vec_dir->color->r < 0)
 				vec_dir->color->r = 0;
 		}
-		else if (vec_dir->first_obj != NULL && vec_dir->first_obj->refraction > 0.0)
+		else if (vec_dir->first_obj != NULL && vec_dir->first_obj->transparence > 0.0)
 		{
-			vec_dir->color->b = vec_dir->cur_obj->color.b + vec_dir->first_obj->color.b * (vec_dir->first_obj->transparence);
+			vec_dir->color->b = vec_dir->cur_obj->color.b * (1 -vec_dir->first_obj->transparence) + vec_dir->first_obj->color.b * (1 -vec_dir->first_obj->transparence);
 			if (vec_dir->color->b > 255)
 				vec_dir->color->b = 255;
 			else if (vec_dir->color->b < 0)
 				vec_dir->color->b = 0;
-			vec_dir->color->g = vec_dir->cur_obj->color.g + vec_dir->first_obj->color.g * (vec_dir->first_obj->transparence);
+			vec_dir->color->g = vec_dir->cur_obj->color.g * (1 -vec_dir->first_obj->transparence) + vec_dir->first_obj->color.g * (1 -vec_dir->first_obj->transparence);
 			if (vec_dir->color->g > 255)
 				vec_dir->color->g = 255;
 			else if (vec_dir->color->g < 0)
 				vec_dir->color->g = 0;
-			vec_dir->color->r = vec_dir->cur_obj->color.r + vec_dir->first_obj->color.r * (vec_dir->first_obj->transparence);
+			vec_dir->color->r = vec_dir->cur_obj->color.r * (1 -vec_dir->first_obj->transparence) + vec_dir->first_obj->color.r * (1 -vec_dir->first_obj->transparence);
 			if (vec_dir->color->r > 255)
 				vec_dir->color->r = 255;
 			else if (vec_dir->color->r < 0)

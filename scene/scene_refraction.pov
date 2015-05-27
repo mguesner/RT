@@ -9,8 +9,8 @@ light_source { <1000,0,0>
 }
 
 sphere { <1500,0,0>, 200 // coord centre et rayon
-         pigment { color rgb <1,0.6,0> }
-         finish {transparence 0.5}
+         pigment { color rgb <0,0,1> }
+         finish {transparence 0.3}
 }
 
 cylinder_42 { <2500,0,0>, <0,1,0>, 100 // coord, direction, rayon
@@ -18,5 +18,5 @@ cylinder_42 { <2500,0,0>, <0,1,0>, 100 // coord, direction, rayon
 }
 
 plane { <-1,0,0>,6000 // coord centre et rayon
-         pigment { color rgb <1,0,0> }
+         pigment { color rgb <1,1,1> }
 }
