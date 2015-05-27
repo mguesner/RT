@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 13:07:19 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/19 15:18:17 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/26 15:42:10 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ t_texture texture_init(t_pars *e, char *name)
 		file_name,
 		&(ret.width), &(ret.height));
 	if (ret.imgv == NULL)
+	{
 		add_err(e, UNKOBJ, name);
+		return ret;
+	}
 	ret.data = mlx_get_data_addr(ret.imgv,
 		&(ret.bpp), &(ret.size_line),
 		&(ret.endian));
