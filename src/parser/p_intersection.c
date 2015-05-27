@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_finish.c                                         :+:      :+:    :+:   */
+/*   p_intersection.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/26 11:24:50 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:37:37 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/27 13:57:53 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/27 14:00:28 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
 
-void					p_finish(t_pars *e, t_lex **node)
+void					p_intersection(t_pars *e, t_lex **node)
 {
-	char	*tmp;
+	t_fptoken		tools[NBTOKEN];
 
-	tmp = (*node)->value;
-	if (!ft_strcmp(tmp, "specular"))
-		p_specular(e, node);
-	else if (!ft_strcmp(tmp, "reflection"))
-		p_reflection(e, node);
-	else if (!ft_strcmp(tmp, "transparence"))
-		p_transparence(e, node);
-	else if (!ft_strcmp(tmp, "refraction"))
-		p_refraction(e, node);
-	else
-		add_err(e, UNKOBJ, tmp);
+	tools[WORD] = &p_inter_word;
+	tools[VALUE] = &add_error_camera;
+	tools[OPENSCOPE] = &p_openscope;
+	tools[CLOSESCOPE] = &p_closescope;
+	tools[VECTOR] = &add_error_camera;
+	tools[(*node)->token_type](e, node);
 }

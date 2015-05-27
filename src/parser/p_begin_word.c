@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 13:32:35 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/26 14:04:17 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:34:15 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ static void				p_begin_word2(t_pars *e, t_lex **node)
 		e->cur = ft_memalloc(sizeof(t_cone));
 		e->cur->type = CONE;
 		e->step = PCONE42;
+	}
+	else if (!strcmp((*node)->value, "intersection"))
+	{
+		e->cur = ft_memalloc(sizeof(t_intersection));
+		e->cur->type = INTERSECTION;
+		e->step = PINTERSECTION;
 	}
 	else
 		add_err(e, UNKOBJ, (*node)->value);

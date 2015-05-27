@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_finish.c                                         :+:      :+:    :+:   */
+/*   p_refraction.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/26 11:24:50 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:37:37 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/27 14:37:47 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/27 14:39:18 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
+#include <stdlib.h>
 
-void					p_finish(t_pars *e, t_lex **node)
+void					p_refraction(t_pars *e, t_lex **node)
 {
-	char	*tmp;
+	double		refraction;
 
-	tmp = (*node)->value;
-	if (!ft_strcmp(tmp, "specular"))
-		p_specular(e, node);
-	else if (!ft_strcmp(tmp, "reflection"))
-		p_reflection(e, node);
-	else if (!ft_strcmp(tmp, "transparence"))
-		p_transparence(e, node);
-	else if (!ft_strcmp(tmp, "refraction"))
-		p_refraction(e, node);
+	if (!(*node)->next)
+		add_err(e, BADARG, "");
 	else
-		add_err(e, UNKOBJ, tmp);
+		*node = (*node)->next;
+	refraction = atof((*node)->value);
+	if (refraction < 0 || refraction > 1)
+		add_err(e, BADARG, (*node)->value);
+	else
+		e->cur->refraction = refraction;
 }
