@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 14:20:47 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:23:05 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:48:14 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,4 @@ void					p_transparence(t_pars *e, t_lex **node)
 		add_err(e, BADARG, (*node)->value);
 	else
 		e->cur->transparence = transparence;
-
 }
