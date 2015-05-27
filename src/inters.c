@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/27 14:20:34 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/27 14:37:48 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 		res = touch(tmp->obj, current_vec, &origin);
 		if ((res) > 0.0001)
 		{
-			if (res < dist || dist == -1)
+			if ((res < dist || dist == -1) && tmp->obj->transparence == 0.0)
 			{
 				mlx->pix[pix]->cur_obj = tmp->obj;
 				dist = res;
@@ -106,7 +106,7 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 			if (reflect == -1 && (mlx->pix[pix]->cur_obj->reflection > 0.0 || mlx->pix[pix]->cur_obj->refraction > 0.0))
 				mlx->pix[pix]->first_obj = mlx->pix[pix]->cur_obj;
 		}
-		if (mlx->pix[pix]->cur_obj->reflection > 0.0)
+		if (dist != -1.0 && mlx->pix[pix]->cur_obj->reflection > 0.0)
 			reflect = 1;
 		else
 			reflect = 0;
