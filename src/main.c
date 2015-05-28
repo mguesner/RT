@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/28 16:23:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/28 16:36:56 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ int		key_hook(int keycode, t_libx *mlx)
 			key_rotate_cam(keycode, mlx);
 			mlx->superint = 1;
 		}
-		// ft_putnbr(keycode);
-		// ft_putstr(" ");
 	}
 	return (0);
 }
