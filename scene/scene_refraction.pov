@@ -21,3 +21,4 @@ cylinder_42 { <4000,0,0>, <0,1,0>, 100 // coord, direction, rayon
 plane { <-1,0,0>,6000 // coord centre et rayon
          pigment { color rgb <1,1,1> }
 }
+

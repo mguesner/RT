@@ -24,6 +24,12 @@ sphere { <250,250,1500>, 100 // coord centre et rayon
          texture { jupitermap }
 }
 
+sphere { <0,500,1300>, 200 // coord centre et rayon
+         pigment { color rgb <1,0,0> }
+         finish {transparence 0.5
+         refraction 2.0}
+}
+
 cylinder_42{ <-250,-250,1500>, <1,0,0>, 100 // coord centre et rayon
          pigment { color rgb <1,0,0> }
          finish {specular 1}
