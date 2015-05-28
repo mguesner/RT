@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_sssphere.c                                       :+:      :+:    :+:   */
+/*   cd_custom.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/27 14:05:22 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 15:18:51 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/28 13:17:45 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/28 13:48:42 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
+#include <rt.h>
 
-void					p_sssphere(t_pars *e, t_lex **node)
+void						cd_custom(t_libx *mlx, char *file)
 {
-	t_sphere	sphere;
+	int		size;
+	int		i;
 
-	*node = (*node)->next;
-	if ((*node)->token_type != OPENSCOPE)
+	size = ft_strlen(mlx->current_dir);
+	if (!ft_strcmp(file, "."))
 		return ;
-	*node = (*node)->next;
-	while (*node && (*node)->token_type != CLOSESCOPE)
+	else if (!ft_strcmp(file, ".."))
 	{
-		if ((*node)->token_type == VECTOR)
-			fill_vector(e, (*node)->value, (t_vec *)&sphere.coord);
-		*node = (*node)->next;
+		i = size - 1;
+		while (i > 0 && mlx->current_dir[i] != '/')
+			i--;
+		if (i)
+			mlx->current_dir[i] = 0;
 	}
-
+	else if (size + ft_strlen(file) + 1 < PATH_MAX)
+	{
+		ft_strcat(mlx->current_dir, "/");
+		ft_strcat(mlx->current_dir, file);
+	}
 }
