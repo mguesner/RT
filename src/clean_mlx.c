@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   p_sssphere.c                                       :+:      :+:    :+:   */
+/*   clean_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/27 14:05:22 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 15:18:51 by mguesner         ###   ########.fr       */
+/*   Created: 2015/05/28 14:09:09 by mguesner          #+#    #+#             */
+/*   Updated: 2015/05/28 14:21:58 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <parser.h>
+#include <rt.h>
 
-void					p_sssphere(t_pars *e, t_lex **node)
+void						clean_mlx(t_libx *mlx)
 {
-	t_sphere	sphere;
-
-	*node = (*node)->next;
-	if ((*node)->token_type != OPENSCOPE)
-		return ;
-	*node = (*node)->next;
-	while (*node && (*node)->token_type != CLOSESCOPE)
-	{
-		if ((*node)->token_type == VECTOR)
-			fill_vector(e, (*node)->value, (t_vec *)&sphere.coord);
-		*node = (*node)->next;
-	}
-
+	mlx->cam = NULL;
+	ft_bzero(&(mlx->spots), sizeof(t_obj_list_begin));
+	ft_bzero(&(mlx->obj), sizeof(t_obj_list_begin));
 }

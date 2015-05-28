@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:21:17 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/28 14:18:56 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <libft.h>
 # include <mlx.h>
 # include <math.h>
+# include <limits.h>
 
 # include <stdio.h>
 
@@ -196,8 +197,18 @@ typedef struct				s_pix
 	t_obj					*first_obj;
 }							t_pix;
 
+typedef struct				s_list
+{
+	char					*file;
+	int						type;
+	struct s_list			*next;
+}							t_list;
+
 typedef struct				s_libx
 {
+	int						state;
+	t_list					*files;
+	char					current_dir[PATH_MAX];
 	void					*window;
 	void					*mlx;
 	void					*img;
@@ -217,6 +228,9 @@ typedef struct				s_libx
 	t_texture				texture;
 }							t_libx;
 
+void						menu_rt(t_libx *mlx);
+void						cd_custom(t_libx *mlx, char *file);
+void						clean_mlx(t_libx *mlx);
 void						error(int errno);
 void						mlx_struct_init(int width, int height
 	, char *win_name, t_libx *mlx);
