@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 16:39:54 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/28 14:04:18 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/28 16:39:49 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void		menu_rt(t_libx *mlx)
 	t_list			*files;
 	t_list			*tmp;
 
-	ft_printf("menu\n");
 	y = 0;
 	root = opendir(mlx->current_dir);
 	files = NULL;
