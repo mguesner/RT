@@ -36,6 +36,7 @@ typedef enum				e_obj_type
 	CYLINDER,
 	CONE,
 	INTERSECTION,
+	TRIANGLE,
 	NBOBJTYPE
 }							t_obj_type;
 

@@ -39,6 +39,7 @@ typedef enum			e_step
 	PCONE,
 	PCONE42,
 	PINTERSECTION,
+	PTRIANGLE,
 	NBSTEP
 }						t_step;
 
