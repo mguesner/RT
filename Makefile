@@ -68,6 +68,9 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/matrice/do_rotate_vec.c\
 	  $(SRCDIR)/error.c\
 	  $(SRCDIR)/main.c\
+	  $(SRCDIR)/menu_rt.c\
+	  $(SRCDIR)/cd_custom.c\
+	  $(SRCDIR)/clean_mlx.c\
 	  $(SRCDIR)/touch.c\
 	  $(SRCDIR)/light.c\
 	  $(SRCDIR)/sphere.c\

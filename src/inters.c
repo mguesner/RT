@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/27 15:15:23 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/28 16:25:12 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 	while (tmp)
 	{
 		res = touch(tmp->obj, current_vec, &origin);
-		if ((res) > 0.0001)
+		if ((res) > 0.001)
 		{
-			if ((res < dist || dist == -1) && tmp->obj->transparence < 1.0)
+			if ((res < dist || dist == -1))
 			{
 				mlx->pix[pix]->cur_obj = tmp->obj;
 				dist = res;
@@ -50,17 +50,24 @@ void	init_next_ray_reflect(t_vec *vec, t_point *p, t_pix *pix)
 
 void	init_next_ray_refract(t_vec *vec, t_point *p, t_pix *pix)
 {
-	// t_vec	tmp;
+	t_vec	tmp;
+	// t_vec	prod_vec;
 	// double	angle;
-	(void)(pix);
-	(void)(vec);
+	// double	angle2;
+	// double	tab[3][3];
+
 	p->x = pix->inter.x;
 	p->y = pix->inter.y;
 	p->z = pix->inter.z;
-	// tmp = get_normale(pix, *p);
+	tmp = get_normale(pix, *p);
+	vec->x += -tmp.x / pix->cur_obj->refraction;
+	vec->y += -tmp.y / pix->cur_obj->refraction;
+	vec->z += -tmp.z / pix->cur_obj->refraction;
 	// angle = acos(scalar(tmp, *vec));
-	// angle = asin((N1 / pix->cur_obj->refraction) * sin(angle));
-	// *vec = vec_coef(vec_coef(tmp, -1.0), (cos(angle)));
+	// angle2 = asin((N1 / pix->cur_obj->refraction) * sin(angle));
+	// prod_vec = vector(tmp, *vec);
+	// get_rotate_angle(prod_vec, angle2 - angle, tab);
+	// *vec = normalize(do_rotate_vec(tab, prod_vec));
 }
 
 void	init_next_ray_transparence(t_point *p, t_pix *pix)

@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/28 13:57:07 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/05/29 13:47:34 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,51 +41,60 @@ static void			set_color_shad(t_libx *m, t_pix *pix)
 
 	white = 255 * 3;
 	pix->is_in_shadow = 1;
-	coef = 0.2 - (double)((pix->cur_obj->color.b
-		+ pix->cur_obj->color.g + pix->cur_obj->color.r) / white);
+	coef = 0.2;//1.2 - (double)((pix->cur_obj->color.b
+		//+ pix->cur_obj->color.g + pix->cur_obj->color.r) / white);
 	coef *= m->spots.size;
+	coef += pix->shadow_obj->transparence;
 	if (coef > 0.9)
 		coef = 0.9;
+	if (pix->shadow_obj->transparence == 1.0)
+		coef = 1.0;
 	pos = ((pix->pix_y) * (m->size_line) + pix->pix_x * (m->bpp / 8));
 	pix->color->b = pix->color->b * coef;
 	pix->color->g = pix->color->g * coef;
 	pix->color->r = pix->color->r * coef;
 }
 
-static t_obj_list	*shadow(t_obj *light, t_obj_list *tmp
+static int	shadow(t_obj *light, t_obj_list *tmp
 	, t_point inter, t_pix *vec_dir)
 {
 	double		res;
 	t_vec		vec;
 	t_vec		vec2;
 	double		dist_to_light;
+	double		dist;
 
 	vec = make_vec(light->coord, inter);
 	vec2 = make_vec(light->coord, vec_dir->inter);
 	dist_to_light = norme(vec);
 	vec = normalize(vec);
+	dist = -1.0;
 	while (tmp)
 	{
-		if (tmp->obj == vec_dir->cur_obj && tmp->obj->transparence < 1.0)
+		if (tmp->obj == vec_dir->cur_obj)
 			res = touch2(tmp->obj, vec2, vec_dir->inter);
-		else if (tmp->obj->transparence < 1.0)
+		else
 			res = touch(tmp->obj, &vec, &inter);
-		if (res > 0.001 && res < dist_to_light)
+		if (res > 0.001 && res < dist_to_light && ((dist == -1) || ((tmp->obj->transparence < vec_dir->shadow_obj->transparence))))
 		{
 			vec_dir->in_shadow = tmp->obj;
 			vec_dir->shadow_dist = res;
 			vec_dir->light_dist = dist_to_light;
-			return (tmp);
+			vec_dir->shadow_obj = tmp->obj;
+			dist = res;
 		}
 		tmp = tmp->next;
 	}
-	return (NULL);
+	if (dist != -1)
+		return (1);
+	vec_dir->shadow_obj = NULL;
+	return (0);
 }
 
 void				calc_lum2(t_libx *mlx, t_pix *vec_dir)
 {
 	t_obj_list	*lights;
-	t_obj_list	*light_dist;
+	int	light_dist;
 
 	lights = mlx->spots.begin;
 	while (lights)
@@ -96,7 +105,7 @@ void				calc_lum2(t_libx *mlx, t_pix *vec_dir)
 				, vec_dir->inter, vec_dir);
 		if (light_dist)
 			set_color_shad(mlx, vec_dir);
-		else
+		if (!light_dist || (vec_dir->shadow_obj && vec_dir->shadow_obj->transparence != 0.0))
 		{
 			set_color_light(lights->obj, vec_dir
 				, vec_dir->inter, mlx->spots.size);
@@ -142,17 +151,17 @@ void				calc_lum(t_libx *mlx, t_pix *vec_dir)
 		}
 		else if (vec_dir->first_obj != NULL && vec_dir->first_obj->transparence > 0.0)
 		{
-			vec_dir->color->b = vec_dir->cur_obj->color.b + vec_dir->first_obj->color.b * (1 -vec_dir->first_obj->transparence);
+			vec_dir->color->b = vec_dir->cur_obj->color.b * (vec_dir->first_obj->transparence) + vec_dir->first_obj->color.b * (1.0 - vec_dir->first_obj->transparence);
 			if (vec_dir->color->b > 255)
 				vec_dir->color->b = 255;
 			else if (vec_dir->color->b < 0)
 				vec_dir->color->b = 0;
-			vec_dir->color->g = vec_dir->cur_obj->color.g + vec_dir->first_obj->color.g * (1 -vec_dir->first_obj->transparence);
+			vec_dir->color->g = vec_dir->cur_obj->color.g * (vec_dir->first_obj->transparence) + vec_dir->first_obj->color.g * (1.0 - vec_dir->first_obj->transparence);
 			if (vec_dir->color->g > 255)
 				vec_dir->color->g = 255;
 			else if (vec_dir->color->g < 0)
 				vec_dir->color->g = 0;
-			vec_dir->color->r = vec_dir->cur_obj->color.r * + vec_dir->first_obj->color.r * (1 -vec_dir->first_obj->transparence);
+			vec_dir->color->r = vec_dir->cur_obj->color.r * (vec_dir->first_obj->transparence) + vec_dir->first_obj->color.r * (1.0 - vec_dir->first_obj->transparence);
 			if (vec_dir->color->r > 255)
 				vec_dir->color->r = 255;
 			else if (vec_dir->color->r < 0)
