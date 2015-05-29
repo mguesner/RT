@@ -152,6 +152,22 @@ typedef struct				s_cone
 	t_vec					dir;
 }							t_cone;
 
+typedef struct				s_triangle
+{
+	t_obj_type				type;
+	t_point					coord;
+	t_color					color;
+	double					rot[3][3];
+	t_texture				texture;
+	double					specular;
+	double					reflection;
+	double					transparence;
+	double					refraction;
+	t_vec					u;
+	t_vec					v;
+
+}							t_triangle;
+
 typedef struct				s_obj_list
 {
 	t_obj					*obj;
@@ -250,6 +266,9 @@ double						dist_cylinder2(t_cylinder *cylinder
 	, t_vec *vec, t_point o);
 void						set_color_light(t_obj *light, t_pix *pix
 	, t_point inter, int nb_spots);
+
+double						dist_triangle(t_triangle *triangle, t_vec *vec
+	, t_point *o);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
 void						inters(t_libx *mlx, int pix, int pix_x, int pix_y);
