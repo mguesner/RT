@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 16:39:54 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/28 16:39:49 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/30 13:20:12 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,21 @@ static int	endsWith (char* base, char* str)
 	int blen = strlen(base);
 	int slen = strlen(str);
 	return (blen >= slen) && (0 == strcmp(base + blen - slen, str));
+}
+
+static void	clean_files(t_libx *mlx)
+{
+	t_list			*cur;
+	t_list			*next;
+
+	cur = mlx->files;
+	while (cur)
+	{
+		next = cur->next;
+		ft_memdel((void **)&(cur->file));
+		ft_memdel((void **)&(cur));
+		cur = next;
+	}
 }
 
 void		menu_rt(t_libx *mlx)
@@ -62,6 +77,8 @@ void		menu_rt(t_libx *mlx)
 			y += 20;
 		}
 	}
+	if (mlx->files)
+		clean_files(mlx);
 	mlx->files = files;
 	closedir(root);
 }
