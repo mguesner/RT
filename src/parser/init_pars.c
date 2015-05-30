@@ -44,5 +44,6 @@ void				init_pars(t_pars *e)
 	e->tools[PCYLINDER42] = &p_cylinder42;
 	e->tools[PCONE42] = &p_cone42;
 	e->tools[PINTERSECTION] = &p_intersection;
+	e->tools[PTRIANGLE] = &p_triangle;
 	init_pars2(e);
 }

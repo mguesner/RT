@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/28 16:29:01 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/30 13:43:17 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef enum				e_obj_type
 	CYLINDER,
 	CONE,
 	INTERSECTION,
+	TRIANGLE,
 	NBOBJTYPE
 }							t_obj_type;
 
@@ -152,6 +153,22 @@ typedef struct				s_cone
 	t_vec					dir;
 }							t_cone;
 
+typedef struct				s_triangle
+{
+	t_obj_type				type;
+	t_point					coord;
+	t_color					color;
+	double					rot[3][3];
+	t_texture				texture;
+	double					specular;
+	double					reflection;
+	double					transparence;
+	double					refraction;
+	t_vec					u;
+	t_vec					v;
+
+}							t_triangle;
+
 typedef struct				s_obj_list
 {
 	t_obj					*obj;
@@ -226,7 +243,6 @@ typedef struct				s_libx
 	t_obj_list_begin		spots;
 	t_obj_list_begin		obj;
 	t_pix					**pix;
-	t_texture				texture;
 }							t_libx;
 
 void						menu_rt(t_libx *mlx);
@@ -250,6 +266,9 @@ double						dist_cylinder2(t_cylinder *cylinder
 	, t_vec *vec, t_point o);
 void						set_color_light(t_obj *light, t_pix *pix
 	, t_point inter, int nb_spots);
+
+double						dist_triangle(t_triangle *triangle, t_vec *vec
+	, t_point *o);
 void						calc_lum(t_libx *mlx, t_pix *vec_dir);
 t_pix						**precalc_vec_cam(t_camera *cam);
 void						inters(t_libx *mlx, int pix, int pix_x, int pix_y);

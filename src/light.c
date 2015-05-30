@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/30 13:42:20 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/30 13:59:46 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,8 +124,7 @@ void				calc_lum(t_libx *mlx, t_pix *vec_dir)
 {
 	if (vec_dir->cur_obj == NULL)
 		return ;
-	if (vec_dir->cur_obj->type == SPHERE
-		&& vec_dir->cur_obj->texture.exist == 1)
+	if (vec_dir->cur_obj->texture.exist == 1)
 		texture_func(vec_dir);
 	else
 	{

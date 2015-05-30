@@ -39,6 +39,7 @@ typedef enum			e_step
 	PCONE,
 	PCONE42,
 	PINTERSECTION,
+	PTRIANGLE,
 	NBSTEP
 }						t_step;
 
@@ -176,6 +177,9 @@ void					p_cylinder42(t_pars *e, t_lex **node);
 void					p_cylinder42_vector(t_pars *e, t_lex **node);
 
 void					p_cone42(t_pars *e, t_lex **node);
+
+void					p_triangle(t_pars *e, t_lex **node);
+void					p_triangle_vector(t_pars *e, t_lex **node);
 
 void					p_intersection(t_pars *e, t_lex **node);
 void					p_inter_word(t_pars *e, t_lex **node);
