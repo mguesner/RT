@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/28 16:36:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/30 13:44:16 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int		expose_hook(t_libx *mlx)
 		mlx->superint = 1;
 		mlx->state = 2;
 		mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
-	mlx_string_put(mlx->mlx, mlx->window, 0, 540, 0xffffff, "LOADING...");
+		mlx_string_put(mlx->mlx, mlx->window, 0, 540, 0xffffff, "LOADING...");
 	}
 	else if (mlx->superint)
 	{
@@ -75,8 +75,9 @@ int		key_hook(int keycode, t_libx *mlx)
 
 int	mouse_press(int code, int x, int y, t_libx *mlx)
 {
-	t_list		*tmp;
+	t_list				*tmp;
 	t_camera			*cam;
+	char				*name;
 
 	if (mlx->state == 0)
 	{
@@ -100,7 +101,9 @@ int	mouse_press(int code, int x, int y, t_libx *mlx)
 				else
 				{
 					mlx->state = 1;
-					lex_pars(ft_strtrijoin(mlx->current_dir, "/", tmp->file), mlx);
+					name = ft_strtrijoin(mlx->current_dir, "/", tmp->file);
+					lex_pars(name, mlx);
+					ft_memdel((void **)&name);
 					cam = mlx->cam;
 					t_point	ori = cam->coord;
 					t_vec	dir = make_vec(cam->dir, ori);

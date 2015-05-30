@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/28 16:29:01 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/30 13:43:17 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -243,7 +243,6 @@ typedef struct				s_libx
 	t_obj_list_begin		spots;
 	t_obj_list_begin		obj;
 	t_pix					**pix;
-	t_texture				texture;
 }							t_libx;
 
 void						menu_rt(t_libx *mlx);
