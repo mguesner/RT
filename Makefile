@@ -61,6 +61,8 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/p_intersection.c\
 	  $(SRCDIR)/parser/p_inter_word.c\
 	  $(SRCDIR)/parser/p_sssphere.c\
+	  $(SRCDIR)/parser/p_triangle.c\
+	  $(SRCDIR)/parser/p_triangle_vector.c\
 	  $(SRCDIR)/parser/check_pars_err.c\
 	  $(SRCDIR)/matrice/get_rotate.c\
 	  $(SRCDIR)/matrice/do_rotate.c\
@@ -88,6 +90,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/specular.c\
 	  $(SRCDIR)/vec_reflex.c\
 	  $(SRCDIR)/interaction.c\
+	  $(SRCDIR)/triangle.c\
 	  mlx_src/mlx_init.c
 
 LIB =

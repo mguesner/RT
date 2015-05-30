@@ -178,6 +178,9 @@ void					p_cylinder42_vector(t_pars *e, t_lex **node);
 
 void					p_cone42(t_pars *e, t_lex **node);
 
+void					p_triangle(t_pars *e, t_lex **node);
+void					p_triangle_vector(t_pars *e, t_lex **node);
+
 void					p_intersection(t_pars *e, t_lex **node);
 void					p_inter_word(t_pars *e, t_lex **node);
 void					p_sssphere(t_pars *e, t_lex **node);

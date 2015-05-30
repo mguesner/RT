@@ -41,6 +41,12 @@ static void				p_begin_word2(t_pars *e, t_lex **node)
 		e->cur->type = INTERSECTION;
 		e->step = PINTERSECTION;
 	}
+	else if (!strcmp((*node)->value, "triangle"))
+	{
+		e->cur = ft_memalloc(sizeof(t_triangle));
+		e->cur->type = TRIANGLE;
+		e->step = PTRIANGLE;
+	}
 	else
 		add_err(e, UNKOBJ, (*node)->value);
 }

@@ -24,6 +24,8 @@ double	touch(t_obj *obj, t_vec *vec, t_point *origine)
 		return (dist_cone((t_cone *)obj, vec, origine));
 	else if (obj->type == CYLINDER)
 		return (dist_cylinder((t_cylinder *)obj, vec, origine));
+	else if (obj->type == TRIANGLE)
+		return (dist_triangle((t_triangle *)obj, vec, origine));
 	else
 		return (-1);
 }

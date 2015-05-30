@@ -9,7 +9,7 @@ light_source { <1000,0,0>
 }
 
 sphere { <2000,0,0>, 500 // coord centre et rayon
-         pigment { color rgb <1,0,0> }
+         pigment { color rgb <1,1,1> }
          finish {transparence 0.5
          refraction 2.0}
 }
