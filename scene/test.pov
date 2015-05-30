@@ -25,25 +25,7 @@ plane { <1,0,0>,4500 // coord centre et rayon
          finish {reflection 1}
 }
 
-plane { <0,1,0>,4500 // coord centre et rayon
-         pigment { color rgb <1,1,1> }
-         finish {reflection 1}
-}
 
-plane { <0,-1,0>,4500 // coord centre et rayon
-         pigment { color rgb <1,1,1> }
-         finish {reflection 1}
-}
-
-plane { <0,0,-1>,4500 // coord centre et rayon
-         pigment { color rgb <1,1,1> }
-         finish {reflection 1}
-}
-
-plane { <0,0,1>,4500 // coord centre et rayon
-         pigment { color rgb <1,1,1> }
-         finish {reflection 1}
-}
 
 
 

@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/28 16:25:12 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/30 13:18:22 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,6 @@ void	init_next_ray_reflect(t_vec *vec, t_point *p, t_pix *pix)
 void	init_next_ray_refract(t_vec *vec, t_point *p, t_pix *pix)
 {
 	t_vec	tmp;
-	// t_vec	prod_vec;
-	// double	angle;
-	// double	angle2;
-	// double	tab[3][3];
 
 	p->x = pix->inter.x;
 	p->y = pix->inter.y;
@@ -63,11 +59,7 @@ void	init_next_ray_refract(t_vec *vec, t_point *p, t_pix *pix)
 	vec->x += -tmp.x / pix->cur_obj->refraction;
 	vec->y += -tmp.y / pix->cur_obj->refraction;
 	vec->z += -tmp.z / pix->cur_obj->refraction;
-	// angle = acos(scalar(tmp, *vec));
-	// angle2 = asin((N1 / pix->cur_obj->refraction) * sin(angle));
-	// prod_vec = vector(tmp, *vec);
-	// get_rotate_angle(prod_vec, angle2 - angle, tab);
-	// *vec = normalize(do_rotate_vec(tab, prod_vec));
+	// *vec = normalize(*vec);
 }
 
 void	init_next_ray_transparence(t_point *p, t_pix *pix)
@@ -101,7 +93,7 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 	mlx->pix[pix]->pix_x = pix_x;
 	mlx->pix[pix]->pix_y = pix_y;
 	mlx->pix[pix]->first_obj = NULL;
-	while((reflect == 1 || reflect == -1) && nb_reflex < 15)
+	while((reflect == 1 || reflect == -1) && nb_reflex < 10)
 	{
 		nb_reflex++;
 		if (reflect != -1 && mlx->pix[pix]->cur_obj->reflection > 0.0)
@@ -111,7 +103,7 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 		else if (reflect != -1 && mlx->pix[pix]->cur_obj->transparence > 0.0)
 			init_next_ray_transparence(&cam_ori, mlx->pix[pix]);
 		dist = touch_in(&current_vec, cam_ori, mlx, pix);
-		if (dist == -1.0 && reflect != -1)
+		if (dist == -1.0 && mlx->pix[pix]->first_obj != NULL)
 			return ;
 		if (dist == -1.0)
 			set_all_null(mlx->pix[pix], &reflect);
