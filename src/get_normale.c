@@ -48,6 +48,8 @@ t_vec			get_normale(t_pix *pix, t_point inter)
 		return (((t_plane *)pix->cur_obj)->norm);
 	else if (pix->cur_obj->type == CYLINDER)
 		return (cylinder_norm(pix, inter));
-	else
+	else if (pix->cur_obj->type == CONE)
 		return (cone_norm(pix, inter));
+	else
+		return (normalize(vector(((t_triangle *)pix->cur_obj)->v, ((t_triangle *)pix->cur_obj)->u)));
 }
