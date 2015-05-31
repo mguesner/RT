@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/30 13:43:17 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/30 15:53:15 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,11 +200,13 @@ typedef struct				s_pix
 	t_obj					*cur_obj;
 	int						pix_x;
 	int						pix_y;
+	int						debug;
 	double					dist;
 	double					light_dist;
 	double					shadow_dist;
 	t_vec					pos_pix_vec;
 	t_point					inter;
+	t_point					inter2;
 	t_color					*color;
 	t_color					*color_specular;
 	t_obj					*in_shadow;
@@ -255,6 +257,7 @@ void						texture_func(t_pix *vec_dir);
 void						start(t_libx *mlx);
 double						touch(t_obj *obj, t_vec *vec, t_point *origine);
 double						touch2(t_obj *obj, t_vec vec, t_point origine);
+double						touch4(t_obj *obj, t_vec vec, t_point origine);
 double						dist_sphere(t_sphere *sphere
 	, t_vec *vec, t_point *o);
 double						dist_plane(t_plane *plane, t_vec *vec, t_point *o);
@@ -264,6 +267,8 @@ double						dist_cylinder(t_cylinder *cylinder
 	, t_vec *vec, t_point *o);
 double						dist_cylinder2(t_cylinder *cylinder
 	, t_vec *vec, t_point o);
+double						dist_cylinder4(t_cylinder *cylinder
+	, t_vec *v, t_point o);
 void						set_color_light(t_obj *light, t_pix *pix
 	, t_point inter, int nb_spots);
 

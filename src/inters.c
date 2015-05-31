@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inters.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/30 13:18:22 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/30 15:53:03 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,8 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 		{
 			mlx->pix[pix]->inter = do_rotate(mlx->pix[pix]->cur_obj->rot, translate(cam_ori,
 				vec_coef(current_vec, dist)));
+			mlx->pix[pix]->inter2 = translate(cam_ori,
+				vec_coef(current_vec, dist));
 			mlx->pix[pix]->dist = dist;
 			if (reflect == -1 && (mlx->pix[pix]->cur_obj->reflection > 0.0 || mlx->pix[pix]->cur_obj->transparence > 0.0))
 				mlx->pix[pix]->first_obj = mlx->pix[pix]->cur_obj;

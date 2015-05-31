@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/30 13:59:46 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/30 18:30:29 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ static void			set_color_shad(t_libx *m, t_pix *pix)
 	pix->color->r = pix->color->r * coef;
 }
 
+static int	is_identite(double rot[3][3])
+{
+	return (rot[0][0] == 1 && rot[0][1] == 0 && rot[0][2] == 0
+		&& rot[1][0] == 0 && rot[1][1] == 1 && rot[1][2] == 0
+		&& rot[2][0] == 0 && rot[2][1] == 0 && rot[2][2] == 1);
+}
+
 static int	shadow(t_obj *light, t_obj_list *tmp
 	, t_point inter, t_pix *vec_dir)
 {
@@ -64,17 +71,28 @@ static int	shadow(t_obj *light, t_obj_list *tmp
 	double		dist_to_light;
 	double		dist;
 
-	vec = make_vec(light->coord, inter);
-	vec2 = make_vec(light->coord, vec_dir->inter);
+	vec = make_vec(light->coord, vec_dir->inter2);
+	vec2 = make_vec(light->coord, inter);
 	dist_to_light = norme(vec);
 	vec = normalize(vec);
 	dist = -1.0;
 	while (tmp)
 	{
 		if (tmp->obj == vec_dir->cur_obj)
-			res = touch2(tmp->obj, vec2, vec_dir->inter);
+		{
+			res = touch2(tmp->obj, vec2, inter);
+			vec_dir->debug = 1;
+		}
+		else if (!is_identite(vec_dir->cur_obj->rot))
+		{
+			res = touch2(tmp->obj, vec, vec_dir->inter2);
+			vec_dir->debug = 2;
+		}
 		else
-			res = touch(tmp->obj, &vec, &inter);
+		{
+			res = touch(tmp->obj, &vec, &vec_dir->inter2);
+			vec_dir->debug = 0;
+		}
 		if (res > 0.001 && res < dist_to_light && ((dist == -1) || ((tmp->obj->transparence < vec_dir->shadow_obj->transparence))))
 		{
 			vec_dir->in_shadow = tmp->obj;
