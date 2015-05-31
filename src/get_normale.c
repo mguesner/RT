@@ -51,5 +51,5 @@ t_vec			get_normale(t_pix *pix, t_point inter)
 	else if (pix->cur_obj->type == CONE)
 		return (cone_norm(pix, inter));
 	else
-		return (normalize(vector(((t_triangle *)pix->cur_obj)->u, ((t_triangle *)pix->cur_obj)->v)));
+		return (normalize(vector(((t_triangle *)pix->cur_obj)->v, ((t_triangle *)pix->cur_obj)->u)));
 }

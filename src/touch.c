@@ -40,6 +40,8 @@ double	touch2(t_obj *obj, t_vec vec, t_point origine)
 		return (dist_cone2((t_cone *)obj, vec, origine));
 	else if (obj->type == CYLINDER)
 		return (dist_cylinder2((t_cylinder *)obj, &vec, origine));
+	else if (obj->type == TRIANGLE)
+		return (dist_triangle((t_triangle *)obj, &vec, &origine));
 	else
 		return (-1);
 }
