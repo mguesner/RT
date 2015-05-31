@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/30 14:39:21 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/31 16:05:31 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,30 +107,34 @@ int	mouse_press(int code, int x, int y, t_libx *mlx)
 					cam = mlx->cam;
 					t_point	ori = cam->coord;
 					t_vec	dir = make_vec(cam->dir, ori);
-					double	dist = norme(dir);
+					// double	dist = norme(dir);
 					dir = normalize(dir);
 					t_vec	norm = {1, 0, 0};
+					t_vec	up_vec = {0, 0, 1};
+					t_vec	right_vec = {0, -1, 0};
 					t_vec	axe = vector(dir, norm);
-					t_point	pix_bg = {dist, -(WIDTH / 2), (HEIGHT / 2)};
-					t_point	pix_hg = {dist, -(WIDTH / 2), -(HEIGHT / 2)};
-					t_point	pix_hd = {dist, (WIDTH / 2), -(HEIGHT / 2)};
 					if (!axe.x && !axe.y && !axe.z)
 					{
-						cam->pix_bg = pix_bg;
-						cam->pix_hg = pix_hg;
-						cam->pix_hd = pix_hd;
+						cam->up_vec = up_vec;
+						cam->right_vec = right_vec;
 					}
 					else
 					{
 						double	rot[3][3];
 						get_rotate(axe, scalar(dir, norm), rot);
-						cam->pix_bg = do_rotate(rot, pix_bg);
-						cam->pix_bg = translate(cam->pix_bg, *(t_vec *)(&cam->coord));
-						cam->pix_hg = do_rotate(rot, pix_hg);
-						cam->pix_hg = translate(cam->pix_hg, *(t_vec *)(&cam->coord));
-						cam->pix_hd = do_rotate(rot, pix_hd);
-						cam->pix_hd = translate(cam->pix_hd, *(t_vec *)(&cam->coord));
+						cam->up_vec = normalize(do_rotate_vec(rot, up_vec));
+						cam->right_vec = normalize(do_rotate_vec(rot, right_vec));
 					}
+					cam->pix_hg.x = cam->coord.x
+						+ (dir.x * VIEWPLANEDIST + cam->up_vec.x * (VIEWPLANEHEIGHT / 2))
+						- cam->right_vec.x * (VIEWPLANEWIDTH / 2);
+					cam->pix_hg.y = cam->coord.y
+						+ (dir.y * VIEWPLANEDIST + cam->up_vec.y * (VIEWPLANEHEIGHT / 2))
+						- cam->right_vec.y * (VIEWPLANEWIDTH / 2);
+					cam->pix_hg.z = cam->coord.z
+						+ (dir.z * VIEWPLANEDIST + cam->up_vec.z * (VIEWPLANEHEIGHT / 2))
+						- cam->right_vec.z * (VIEWPLANEWIDTH / 2);
+					// printf("haut gauche (%f, %f, %f)\n", cam->pix_hg.x, cam->pix_hg.y, cam->pix_hg.z);
 					mlx->superint = 0;
 					mlx->pix = precalc_vec_cam(cam);
 				}

@@ -1,9 +1,7 @@
 camera
 {
 	location <0,0,0> // la position de l'observateur
-	look_at <800,0,0>  // le point de vue
-	//right x*image_width/image_height	// aspect ratio
-	//angle 45 // l'angle de la caméra
+	look_at <1,0,0>  // le point de vue
 }
 
 light_source { <0,0,0>
@@ -20,7 +18,7 @@ light_source { <0,0,0>
 //}
 
 
-//sphere { <2030,750,400>, 100 // coord centre et rayon
+//sphere { <100,0,0>, 5 // coord centre et rayon
 //         pigment { color rgb <0,1,0> }
 //}
 
@@ -36,6 +34,6 @@ light_source { <0,0,0>
 //         pigment { color rgb <1,0.6,0> }
 //}
 
-cone_42 { <300, 0, 0>, 0.5, <0,0,1>   // coord, angle, direction
+cone_42 { <100, 0, 0>, 0.5, <0,0,1>   // coord, angle, direction
      pigment { color rgb <0.4,0.7,0> }
 }
