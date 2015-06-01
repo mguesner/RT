@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/28 14:09:09 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/30 13:33:39 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 13:15:28 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void						clean_mlx(t_libx *mlx)
 	while (tmp)
 	{
 		next = tmp->next;
+		if (tmp->obj->texture.imgv)
+			mlx_destroy_image(mlx->mlx, tmp->obj->texture.imgv);
 		ft_memdel((void **)&tmp->obj);
 		ft_memdel((void **)&tmp);
 		tmp = next;
