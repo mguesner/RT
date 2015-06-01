@@ -6,13 +6,15 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 16:39:54 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/01 11:32:08 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 12:52:20 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <dirent.h>
 #include <errno.h>
+
+typedef struct dirent	t_dirent;
 
 static int	ends_with(char *base, char *str)
 {
@@ -37,49 +39,50 @@ static void	clean_files(t_libx *mlx)
 		ft_memdel((void **)&(cur));
 		cur = next;
 	}
+	mlx->files = NULL;
+}
+
+static void	add_file(t_list **files, t_list **tmp, t_dirent *current)
+{
+	if (!(*files))
+	{
+		(*files) = ft_memalloc(sizeof(t_list));
+		(*files)->file = ft_strdup(current->d_name);
+		*tmp = *files;
+	}
+	else
+	{
+		(*tmp)->next = ft_memalloc(sizeof(t_list));
+		(*tmp)->next->file = ft_strdup(current->d_name);
+		*tmp = (*tmp)->next;
+	}
 }
 
 void		menu_rt(t_libx *mlx)
 {
 	DIR				*root;
-	struct dirent	*current;
+	t_dirent		*current;
 	int				y;
-	int				color;
-	t_list			*files;
 	t_list			*tmp;
 
-	y = 0;
 	if (!(root = opendir(mlx->current_dir)))
 		error(errno);
-	files = NULL;
+	if (mlx->files)
+		clean_files(mlx);
+	y = 0;
+	tmp = NULL;
 	while ((current = readdir(root)))
 	{
-		if (ft_strcmp(current->d_name, ".") && !(!ft_strcmp(current->d_name, "..")
+		if (ft_strcmp(current->d_name, ".")
+			&& !(!ft_strcmp(current->d_name, "..")
 			&& !ft_strcmp(mlx->current_dir, ".")) && (current->d_type == DT_DIR
 			|| ends_with(current->d_name, ".pov")))
 		{
-			if (!files)
-			{
-				files = ft_memalloc(sizeof(t_list));
-				files->file = ft_strdup(current->d_name);
-				tmp = files;
-			}
-			else
-			{
-				tmp->next = ft_memalloc(sizeof(t_list));
-				tmp->next->file = ft_strdup(current->d_name);
-				tmp = tmp->next;
-			}
-			if (current->d_type == DT_DIR && !(tmp->type = 0))
-				color = 0x00ff00;
-			else if ((tmp->type = 1))
-				color = 0xffffff;
-			mlx_string_put(mlx->mlx, mlx->window, 0, y, color, current->d_name);
+			add_file(&mlx->files, &tmp, current);
+			mlx_string_put(mlx->mlx, mlx->window, 0, y, (current->d_type
+		== DT_DIR && !(tmp->type = 0)) ? 0x00ff00 : 0xffffff, current->d_name);
 			y += 20;
 		}
 	}
-	if (mlx->files)
-		clean_files(mlx);
-	mlx->files = files;
 	closedir(root);
 }

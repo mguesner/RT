@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/18 14:34:10 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/06/01 11:24:44 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 12:52:49 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ t_vec			get_normale(t_pix *pix, t_point inter)
 		return (cone_norm(pix, inter));
 	else
 		return (normalize(vector(((t_triangle *)pix->cur_obj)->v
-			, ((t_triangle *)pix->cur_obj)->u)));
+		, ((t_triangle *)pix->cur_obj)->u)));
 }
