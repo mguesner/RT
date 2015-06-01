@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/30 14:39:21 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 11:26:11 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,20 +155,11 @@ int	mouse_press(int code, int x, int y, t_libx *mlx)
 	return (0);
 }
 
-
-
-// static void	usage(void)
-// {
-// 	ft_putstr("usage: ./RT [scene file]\n");
-// }
-
 int			main(void)
 {
 	t_libx				mlx;
 
 	ft_bzero(&mlx, sizeof(t_libx));
-	// if (argc != 2)
-	// 	usage();
 	mlx_struct_init(WIDTH, HEIGHT, "RT", &mlx);
 	menu_rt(&mlx);
 	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);

@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 14:01:21 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 15:15:35 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 12:29:38 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void					p_inter_word(t_pars *e, t_lex **node)
 {
-
 	char		*tmp;
 	t_f_parse	tools[NBSUBSTEP];
 
