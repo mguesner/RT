@@ -90,6 +90,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/get_normale.c\
 	  $(SRCDIR)/specular.c\
 	  $(SRCDIR)/vec_reflex.c\
+	  $(SRCDIR)/set_color_finish.c\
 	  $(SRCDIR)/interaction.c\
 	  $(SRCDIR)/triangle.c\
 	  mlx_src/mlx_init.c
