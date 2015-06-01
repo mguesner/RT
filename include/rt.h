@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/30 15:53:15 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 17:05:51 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,5 +284,11 @@ void						apply_specular(t_libx *mlx, t_pix *pix);
 void						vec_reflex(t_pix *pix);
 void						key_rotate_cam(int keycode, t_libx *mlx);
 void						key_translate_cam(int keycode, t_libx *mlx);
+void						set_finish_reflection_one(t_pix *vec_dir);
+void						set_finish_transparence_one(t_pix *vec_dir);
+void						set_finish_transparence(t_pix *vec_dir);
+void						set_finish_reflection(t_pix *vec_dir);
+void						set_original(t_pix *vec_dir);
+
 
 #endif
