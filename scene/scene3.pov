@@ -32,9 +32,9 @@ light_source { <2000,0,0>
 //         pigment { color rgb <1,0,0> }
 //}
 
-plane { <0,0,-1>,1000 // coord centre et rayon
-         pigment { color rgb <0.9,0.9,0.9> }
-}
+//plane { <0,0,-1>,1000 // coord centre et rayon
+//         pigment { color rgb <0.9,0.9,0.9> }
+//}
 
 cylinder_42 { <5000,-1500,1000>, <0,0.5,-0.5>, 500 // coord, direction, rayon
          pigment { color rgb <1,0,1> }
@@ -43,4 +43,5 @@ cylinder_42 { <5000,-1500,1000>, <0,0.5,-0.5>, 500 // coord, direction, rayon
 
 cone_42 { <5000,1500,0>, 0.2, <0,0.5,0.5>   // coord, angle, direction
      pigment { color rgb <0.4,0.7,0> }
+     refraction {2}
 }
