@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/30 15:53:03 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 11:25:21 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	init_next_ray_refract(t_vec *vec, t_point *p, t_pix *pix)
 	vec->x += -tmp.x / pix->cur_obj->refraction;
 	vec->y += -tmp.y / pix->cur_obj->refraction;
 	vec->z += -tmp.z / pix->cur_obj->refraction;
-	// *vec = normalize(*vec);
 }
 
 void	init_next_ray_transparence(t_point *p, t_pix *pix)

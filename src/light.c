@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/06/01 11:16:32 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 11:25:38 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ static void			set_color_shad(t_libx *m, t_pix *pix)
 
 	white = 255 * 3;
 	pix->is_in_shadow = 1;
-	coef = 0.2;//1.2 - (double)((pix->cur_obj->color.b
-		//+ pix->cur_obj->color.g + pix->cur_obj->color.r) / white);
+	coef = 0.2;
 	coef *= m->spots.size;
 	coef += pix->shadow_obj->transparence;
 	if (coef > 0.9)
@@ -54,13 +53,6 @@ static void			set_color_shad(t_libx *m, t_pix *pix)
 	pix->color->g = pix->color->g * coef;
 	pix->color->r = pix->color->r * coef;
 }
-
-// static int	is_identite(double rot[3][3])
-// {
-// 	return (rot[0][0] == 1 && rot[0][1] == 0 && rot[0][2] == 0
-// 		&& rot[1][0] == 0 && rot[1][1] == 1 && rot[1][2] == 0
-// 		&& rot[2][0] == 0 && rot[2][1] == 0 && rot[2][2] == 1);
-// }
 
 static int	shadow(t_obj *light, t_obj_list *tmp
 	, t_point inter, t_pix *vec_dir)

@@ -6,18 +6,22 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 16:39:54 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/30 13:20:12 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 11:32:08 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <dirent.h>
+#include <errno.h>
 
-static int	endsWith (char* base, char* str)
+static int	ends_with(char *base, char *str)
 {
-	int blen = strlen(base);
-	int slen = strlen(str);
-	return (blen >= slen) && (0 == strcmp(base + blen - slen, str));
+	int blen;
+	int slen;
+
+	blen = strlen(base);
+	slen = strlen(str);
+	return ((blen >= slen) && (0 == strcmp(base + blen - slen, str)));
 }
 
 static void	clean_files(t_libx *mlx)
@@ -45,11 +49,14 @@ void		menu_rt(t_libx *mlx)
 	t_list			*tmp;
 
 	y = 0;
-	root = opendir(mlx->current_dir);
+	if (!(root = opendir(mlx->current_dir)))
+		error(errno);
 	files = NULL;
 	while ((current = readdir(root)))
 	{
-		if (ft_strcmp(current->d_name, ".") && !(!ft_strcmp(current->d_name, "..") && !ft_strcmp(mlx->current_dir, ".")) && (current->d_type == DT_DIR || endsWith(current->d_name, ".pov")))
+		if (ft_strcmp(current->d_name, ".") && !(!ft_strcmp(current->d_name, "..")
+			&& !ft_strcmp(mlx->current_dir, ".")) && (current->d_type == DT_DIR
+			|| ends_with(current->d_name, ".pov")))
 		{
 			if (!files)
 			{
@@ -63,16 +70,10 @@ void		menu_rt(t_libx *mlx)
 				tmp->next->file = ft_strdup(current->d_name);
 				tmp = tmp->next;
 			}
-			if (current->d_type == DT_DIR)
-			{
-				tmp->type = 0;
+			if (current->d_type == DT_DIR && !(tmp->type = 0))
 				color = 0x00ff00;
-			}
-			else
-			{
-				tmp->type = 1;
+			else if ((tmp->type = 1))
 				color = 0xffffff;
-			}
 			mlx_string_put(mlx->mlx, mlx->window, 0, y, color, current->d_name);
 			y += 20;
 		}

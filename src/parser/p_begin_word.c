@@ -6,11 +6,23 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 13:32:35 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:43:26 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 12:31:14 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
+
+static void				p_begin_word3(t_pars *e, t_lex **node)
+{
+	if (!strcmp((*node)->value, "triangle"))
+	{
+		e->cur = ft_memalloc(sizeof(t_triangle));
+		e->cur->type = TRIANGLE;
+		e->step = PTRIANGLE;
+	}
+	else
+		add_err(e, UNKOBJ, (*node)->value);
+}
 
 static void				p_begin_word2(t_pars *e, t_lex **node)
 {
@@ -35,20 +47,8 @@ static void				p_begin_word2(t_pars *e, t_lex **node)
 		e->cur->type = CONE;
 		e->step = PCONE42;
 	}
-	else if (!strcmp((*node)->value, "intersection"))
-	{
-		e->cur = ft_memalloc(sizeof(t_intersection));
-		e->cur->type = INTERSECTION;
-		e->step = PINTERSECTION;
-	}
-	else if (!strcmp((*node)->value, "triangle"))
-	{
-		e->cur = ft_memalloc(sizeof(t_triangle));
-		e->cur->type = TRIANGLE;
-		e->step = PTRIANGLE;
-	}
 	else
-		add_err(e, UNKOBJ, (*node)->value);
+		p_begin_word3(e, node);
 }
 
 void					p_begin_word(t_pars *e, t_lex **node)
