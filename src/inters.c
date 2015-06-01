@@ -6,14 +6,13 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/06/01 13:36:20 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 14:22:44 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
 #include <stdio.h>
 #include <matrice.h>
-
 
 float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 {
@@ -39,75 +38,78 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 	return (dist);
 }
 
-void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
+void	inters2(int reflect, t_point *cam_ori, t_pix *cur_pix
+	, t_vec *current_vec)
 {
-	double		dist;
-	t_point		cam_ori;
-	t_vec		current_vec;
-	int			reflect;
-	int			nb_reflex;
-	t_pix		*cur_pix;
 	t_vec		tmp;
 
-	reflect = -1;
+	if (reflect != -1 && cur_pix->cur_obj->reflection > 0.0)
+	{
+		pointcpy(cam_ori, cur_pix->inter);
+		*current_vec = normalize(vec_sum(get_normale(cur_pix, *cam_ori)
+			, vec_sum(*current_vec, get_normale(cur_pix, *cam_ori))));
+	}
+	else if (reflect != -1 && cur_pix->cur_obj->refraction > 0.0
+		&& cur_pix->cur_obj->transparence > 0.0)
+	{
+		pointcpy(cam_ori, cur_pix->inter);
+		tmp = get_normale(cur_pix, *cam_ori);
+		current_vec->x += -tmp.x / cur_pix->cur_obj->refraction;
+		current_vec->y += -tmp.y / cur_pix->cur_obj->refraction;
+		current_vec->z += -tmp.z / cur_pix->cur_obj->refraction;
+	}
+	else if (reflect != -1 && cur_pix->cur_obj->transparence > 0.0)
+		pointcpy(cam_ori, cur_pix->inter);
+}
+
+int		inters3(double dist_ref[2], t_point cam_ori, t_pix *pix
+	, t_vec current_vec)
+{
+	if (dist_ref[0] == -1.0 && pix->first_obj != NULL)
+		return (1);
+	if (dist_ref[0] == -1.0)
+	{
+		pix->dist = -1.0;
+		pix->cur_obj = NULL;
+		return (1);
+	}
+	else
+	{
+		pix->inter2 = translate(cam_ori, vec_coef(current_vec, dist_ref[0]));
+		pix->inter = do_rotate(pix->cur_obj->rot
+			, pix->inter2);
+		pix->dist = dist_ref[0];
+		if (dist_ref[1] == -1 && (pix->cur_obj->reflection > 0.0
+			|| pix->cur_obj->transparence > 0.0))
+			pix->first_obj = pix->cur_obj;
+	}
+	if (!(pix->cur_obj->reflection > 0.0
+		|| pix->cur_obj->transparence > 0.0))
+		return (1);
+	return (0);
+}
+
+void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
+{
+	double		dist_ref[2];
+	t_point		cam_ori;
+	t_vec		current_vec;
+	int			nb_reflex;
+
+	dist_ref[1] = -1;
 	nb_reflex = 0;
-	cur_pix = mlx->pix[pix];
 	cam_ori = mlx->cam->coord;
-	current_vec = cur_pix->pos_pix_vec;
-	dist = -1.0;
-	cur_pix->pix_x = pix_x;
-	cur_pix->pix_y = pix_y;
-	cur_pix->first_obj = NULL;
-	while((reflect == 1 || reflect == -1) && nb_reflex < 10)
+	current_vec = mlx->pix[pix]->pos_pix_vec;
+	mlx->pix[pix]->pix_x = pix_x;
+	mlx->pix[pix]->pix_y = pix_y;
+	mlx->pix[pix]->first_obj = NULL;
+	while ((dist_ref[1] == 1 || dist_ref[1] == -1) && nb_reflex < 10)
 	{
 		nb_reflex++;
-		if (reflect != -1 && cur_pix->cur_obj->reflection > 0.0)
-		{
-			cam_ori.x = cur_pix->inter.x;
-			cam_ori.y = cur_pix->inter.y;
-			cam_ori.z = cur_pix->inter.z;
-			current_vec = vec_sum(current_vec, get_normale(cur_pix, cam_ori));
-			current_vec = normalize(vec_sum(get_normale(cur_pix, cam_ori), current_vec));
-		}
-		else if (reflect != -1 && cur_pix->cur_obj->refraction > 0.0 && cur_pix->cur_obj->transparence > 0.0)
-		{
-			cam_ori.x = cur_pix->inter.x;
-			cam_ori.y = cur_pix->inter.y;
-			cam_ori.z = cur_pix->inter.z;
-			tmp = get_normale(cur_pix, cam_ori);
-			current_vec.x += -tmp.x / cur_pix->cur_obj->refraction;
-			current_vec.y += -tmp.y / cur_pix->cur_obj->refraction;
-			current_vec.z += -tmp.z / cur_pix->cur_obj->refraction;
-		}
-		else if (reflect != -1 && cur_pix->cur_obj->transparence > 0.0)
-		{
-			cam_ori.x = cur_pix->inter.x;
-			cam_ori.y = cur_pix->inter.y;
-			cam_ori.z = cur_pix->inter.z;
-		}
-		dist = touch_in(&current_vec, cam_ori, mlx, pix);
-		if (dist == -1.0)
-		{
-			if (cur_pix->first_obj != NULL)
-			{
-				cur_pix->dist = -1.0;
-				cur_pix->cur_obj = NULL;
-			}
+		inters2(dist_ref[1], &cam_ori, mlx->pix[pix], &current_vec);
+		dist_ref[0] = touch_in(&current_vec, cam_ori, mlx, pix);
+		if (inters3(dist_ref, cam_ori, mlx->pix[pix], current_vec))
 			return ;
-		}
-		else
-		{
-			cur_pix->inter2 = translate(cam_ori,
-				vec_coef(current_vec, dist));
-			cur_pix->inter = do_rotate(cur_pix->cur_obj->rot, cur_pix->inter2);
-			cur_pix->dist = dist;
-			if (reflect == -1 && (cur_pix->cur_obj->reflection > 0.0 || cur_pix->cur_obj->transparence > 0.0))
-				cur_pix->first_obj = cur_pix->cur_obj;
-		}
-		if (dist != -1.0 && (cur_pix->cur_obj->reflection > 0.0 || cur_pix->cur_obj->transparence > 0.0))
-			reflect = 1;
-		else
-			return ;
+		dist_ref[1] = 1;
 	}
-	return ;
 }

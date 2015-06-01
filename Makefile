@@ -12,6 +12,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/vecteur/normalize.c\
 	  $(SRCDIR)/vecteur/vec_coef.c\
 	  $(SRCDIR)/vecteur/vec_sum.c\
+	  $(SRCDIR)/vecteur/pointcpy.c\
 	  $(SRCDIR)/color/brightening.c\
 	  $(SRCDIR)/color/color_diff.c\
 	  $(SRCDIR)/color/color_sum.c\
