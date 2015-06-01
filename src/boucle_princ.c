@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   boucle_princ.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 17:34:15 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/28 16:16:54 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/31 11:14:48 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+static void print_t_point(t_point t)
+{
+	printf("x: %f, y: %f, z :%f\n", t.x, t.y, t.z);
+}
 
 static void	*loop(void *arg)
 {
@@ -39,6 +44,10 @@ void		start(t_libx *mlx)
 	pthread_t	th[8];
 	int			count;
 
+	print_t_point(mlx->cam->pix_hg);
+	print_t_point(mlx->cam->pix_bg);
+	print_t_point(mlx->cam->pix_hd);
+	print_t_point(mlx->cam->coord);
 	count = 0;
 	mlx->current_pix = 0;
 	pthread_mutex_init(&(mlx->mutex), NULL);

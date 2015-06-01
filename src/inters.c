@@ -6,7 +6,7 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/30 13:18:22 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/31 12:14:29 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 	tmp = mlx->obj.begin;
 	while (tmp)
 	{
-		res = touch(tmp->obj, current_vec, &origin);
+		res = touch2(tmp->obj, *current_vec, origin);
 		if ((res) > 0.001)
 		{
-			if ((res < dist || dist == -1))
+			if (res < dist || dist == -1)
 			{
 				mlx->pix[pix]->cur_obj = tmp->obj;
 				dist = res;
@@ -41,6 +41,8 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 
 void	init_next_ray_reflect(t_vec *vec, t_point *p, t_pix *pix)
 {
+	// *vec = vec_sum(*vec, get_normale(pix, *p));
+	// *vec = normalize(vec_sum(get_normale(pix, *p), *vec));
 	p->x = pix->inter.x;
 	p->y = pix->inter.y;
 	p->z = pix->inter.z;

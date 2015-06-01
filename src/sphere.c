@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 15:47:03 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 13:59:28 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/30 17:28:32 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ double	dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o)
 			sphere->coord.y * o->y + sphere->coord.z * o->z) -
 		pow(sphere->radius, 2);
 	det = pow(b, 2) - 4.0 * a * c;
-	if (det > 0)
+	if (det > EPSILON)
 		return (dist_sphere2(det, a, b));
 	return (-1);
 }
