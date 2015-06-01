@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inters.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/06/01 14:22:44 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 17:14:18 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 	tmp = mlx->obj.begin;
 	while (tmp)
 	{
-		res = touch(tmp->obj, current_vec, &origin);
+		res = touch2(tmp->obj, *current_vec, origin);
 		if ((res) > 0.001)
 		{
 			if (res < dist || dist == -1)

@@ -6,14 +6,17 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/30 15:53:15 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/31 15:16:50 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 2000
+# define HEIGHT 1000
+# define VIEWPLANEDIST 50.0
+# define VIEWPLANEWIDTH 20.0
+# define VIEWPLANEHEIGHT 10.0
 # define TOTAL_PIX WIDTH * HEIGHT
 # define EPSILON 0.1E-7
 # define N1 1.0
@@ -77,8 +80,8 @@ typedef struct				s_camera
 	double					transparence;
 	double					refraction;
 	t_point					pix_hg;
-	t_point					pix_bg;
-	t_point					pix_hd;
+	t_vec					up_vec;
+	t_vec					right_vec;
 	t_point					dir;
 }							t_camera;
 

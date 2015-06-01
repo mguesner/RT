@@ -6,9 +6,10 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 14:32:16 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/30 13:43:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/31 15:11:55 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <rt.h>
 #include <stdlib.h>
@@ -17,22 +18,23 @@
 
 static t_point	calc_pos_pix(t_camera *cam, int posx, int posy)
 {
-	t_point	dir_vect_y;
-	t_point	dir_vect_x;
 	t_point	current_pix;
+	double	x_indent;
+	double	y_indent;
 
-	dir_vect_y.x = cam->pix_bg.x - cam->pix_hg.x;
-	dir_vect_y.y = cam->pix_bg.y - cam->pix_hg.y;
-	dir_vect_y.z = cam->pix_bg.z - cam->pix_hg.z;
-	dir_vect_x.x = cam->pix_hd.x - cam->pix_hg.x;
-	dir_vect_x.y = cam->pix_hd.y - cam->pix_hg.y;
-	dir_vect_x.z = cam->pix_hd.z - cam->pix_hg.z;
-	current_pix.x = cam->pix_hg.x +
-	((dir_vect_x.x / (double)WIDTH) * posx) + ((dir_vect_y.x / (double)HEIGHT) * posy);
-	current_pix.y = cam->pix_hg.y +
-	((dir_vect_x.y / (double)WIDTH) * posx) + ((dir_vect_y.y / (double)HEIGHT) * posy);
-	current_pix.z = cam->pix_hg.z +
-	((dir_vect_x.z / (double)WIDTH) * posx) + ((dir_vect_y.z / (double)HEIGHT) * posy);
+	x_indent = VIEWPLANEWIDTH / (double)WIDTH;
+	y_indent = VIEWPLANEHEIGHT / (double)HEIGHT;
+	current_pix.x = cam->pix_hg.x + cam->right_vec.x * x_indent * (double)posx - cam->up_vec.x * y_indent * (double)posy;
+	// printf("viewPlaneUpLeft(%f,%f,%f) + rightVec(%f,%f,%f)*xIndent(%f)*x(%f) - upVec(%f,%f,%f)*yIndent(%f)*y(%f) = "
+	// 	, cam->pix_hg.x, cam->pix_hg.y, cam->pix_hg.z
+	// 	, cam->right_vec.x, cam->right_vec.y, cam->right_vec.z
+	// 	, x_indent, (double)posx
+	// 	, cam->up_vec.x, cam->up_vec.y, cam->up_vec.z
+	// 	, y_indent, (double)posy);
+	current_pix.y = cam->pix_hg.y + cam->right_vec.y * x_indent * (double)posx - cam->up_vec.y * y_indent * (double)posy;
+
+	current_pix.z = cam->pix_hg.z + cam->right_vec.z * x_indent * (double)posx - cam->up_vec.z * y_indent * (double)posy;
+	// printf("(%f, %f, %f)\n", current_pix.x, current_pix.y, current_pix.z);
 	return (current_pix);
 }
 

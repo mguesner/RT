@@ -40,7 +40,7 @@ plane { <1,0,0>,1000 // coord centre et rayon
         texture { damier2 }
 }
 
-plane { <0,0,-1>,10000 // coord centre et rayon
+plane { <0,0,-1>,3000 // coord centre et rayon
          pigment { color rgb <1,1,1> }
          texture { damier2 }
          //finish {reflection 1.0}
