@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_color_light.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/14 12:55:34 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/26 13:17:32 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 16:35:57 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void			set_color_light(t_obj *light, t_pix *pix
 	pix->normale = get_normale(pix, inter);
 	vec_reflex(pix);
 	scal = fabs(scalar(pix->normale, dir));
-	coef = 0.2 - ((pix->cur_obj->color.b + pix->cur_obj->color.g
-		+ pix->cur_obj->color.r) / (255 * 3));
+	coef = 0.2;
 	coef *= nb_spots;
 	if (coef > 0.9)
 		coef = 0.9;
