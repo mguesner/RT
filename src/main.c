@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:41 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/30 13:44:16 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/05/30 14:39:21 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ int	mouse_press(int code, int x, int y, t_libx *mlx)
 		{
 			t_pix *current = mlx->pix[x + y * WIDTH];
 			if (current->cur_obj && current->in_shadow)
-				printf("Distance is %f,   you touch a %d dist to light = %f, and you are in shadow of %d at %f mm.\n", current->dist,current->cur_obj->type, current->light_dist ,current->in_shadow->type, current->shadow_dist);
+				printf("Distance is %f,   you touch a %d dist to light = %f, and you are in shadow of %d at %f mm. Debug : %d\n", current->dist,current->cur_obj->type, current->light_dist ,current->in_shadow->type, current->shadow_dist, current->debug);
 			else if (current->cur_obj)
 				printf("Distance is %f,   you touch a %d , and you are not in shadow\n", current->dist, current->cur_obj->type);
 			else
