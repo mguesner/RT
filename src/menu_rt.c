@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/27 16:39:54 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/01 12:52:20 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 13:08:53 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ static void	add_file(t_list **files, t_list **tmp, t_dirent *current)
 	{
 		(*files) = ft_memalloc(sizeof(t_list));
 		(*files)->file = ft_strdup(current->d_name);
+		(*files)->type = current->d_type == DT_DIR ? 0 : 1;
 		*tmp = *files;
 	}
 	else
 	{
 		(*tmp)->next = ft_memalloc(sizeof(t_list));
 		(*tmp)->next->file = ft_strdup(current->d_name);
+		(*tmp)->next->type = current->d_type == DT_DIR ? 0 : 1;
 		*tmp = (*tmp)->next;
 	}
 }
