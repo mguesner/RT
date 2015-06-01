@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 10:42:10 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/05/30 18:19:35 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/01 13:35:13 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,22 @@ void	texture_func(t_pix *vec_dir)
 	}
 	else if (vec_dir->cur_obj->type == PLANE) // Pour chaque type de plan.
 	{
-		if (fabs(vec_dir->inter.x) > 998.0 && fabs(vec_dir->inter.x) < 1001.0)
+		vec_dir->normale = get_normale(vec_dir, vec_dir->inter);
+		// printf("vec_dir->normale: %fx %fy %fz\n", vec_dir->normale.x, vec_dir->normale.y, vec_dir->normale.z);
+		if (fabs(vec_dir->normale.x) != 0.0)
 		{
 			u = fabs(fmod(vec_dir->inter.y / 6.0, (float)vec_dir->cur_obj->texture.width));
-			v = fabs(fmod(vec_dir->inter.z, (float)vec_dir->cur_obj->texture.height - 4.0));
+			v = fabs(fmod(vec_dir->inter.z, (float)vec_dir->cur_obj->texture.height - 8.0));
 		}
-		else if (fabs(vec_dir->inter.y) > 9998.0 && fabs(vec_dir->inter.y) < 10001.0)
+		else if (fabs(vec_dir->normale.y) != 0.0)
 		{
-			u = fabs(fmod(vec_dir->inter.z / 6.0, (float)vec_dir->cur_obj->texture.width));
-			v = fabs(fmod(vec_dir->inter.x, (float)vec_dir->cur_obj->texture.height - 8.0));
+			u = fabs(fmod(vec_dir->inter.x / 6.0, (float)vec_dir->cur_obj->texture.width));
+			v = fabs(fmod(vec_dir->inter.z, (float)vec_dir->cur_obj->texture.height - 8.0));
 		}
 		else
 		{
-			u = fabs(fmod(vec_dir->inter.x / 6.0, (float)vec_dir->cur_obj->texture.width));
-			v = fabs(fmod(vec_dir->inter.y, (float)vec_dir->cur_obj->texture.height - 4.0));
+			u = fabs(fmod(vec_dir->inter.y / 6.0, (float)vec_dir->cur_obj->texture.width));
+			v = fabs(fmod(vec_dir->inter.x, (float)vec_dir->cur_obj->texture.height - 8.0));
 		}
 		if ((int)u < vec_dir->cur_obj->texture.width && (int)v < vec_dir->cur_obj->texture.height)
 			add_texture_color(vec_dir, u, v);
