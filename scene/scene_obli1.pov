@@ -1,7 +1,7 @@
 camera
 {
 	location <0,0,0> // la position de l'observateur
-	look_at <0.1,0,0>  // le point de vue
+	look_at <1000,0,0>  // le point de vue
 }
 
 light_source { <2000,2000,-2000>
@@ -35,6 +35,6 @@ sphere { <4000,1500,330>, 300 // coord centre et rayon
          finish {specular 1}
 }
 
-cone_42 { <5000,1500,1000>, 0.5, <0,-0.5,0.5>   // coord, angle, direction
+cone_42 { <5000,1500,0>, 0.2, <0,0.5,-0.5>   // coord, angle, direction
      pigment { color rgb <0.4,0.7,0> }
 }
