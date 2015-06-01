@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 13:37:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 12:50:28 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 16:31:57 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void					p_closescope(t_pars *e, t_lex **node)
 	}
 	if (e->scope == 1)
 		e->substep = SSBEGIN;
-	e->err = 0;
+	if (e->err == e->scope - 1)
+		e->err = 0;
 }
