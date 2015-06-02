@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 09:15:08 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 14:41:03 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 13:55:01 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	lexer2(t_pars *e, int *offset, char *file, int size)
 		e->nb_line++;
 	else if (*offset < size && ft_isalpha(*(file + *offset)))
 		lex_word(file, e, offset, size);
-	else if (*offset < size && ft_isdigit(*(file + *offset)))
+	else if (*offset < size && (ft_isdigit(*(file + *offset)) || *(file + *offset) == '-'))
 		lex_value(file, e, offset, size);
 	else if (*offset < size && *(file + *offset) == '{' && (*offset)++)
 		add_lex_node(&e->lex_lst, OPENSCOPE, ft_strdup("{"), e->nb_line);

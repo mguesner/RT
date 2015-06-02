@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 16:17:32 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/01 11:24:38 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 14:02:33 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ double	dist_cone2(t_cone *cone, t_vec vec, t_point o)
 	double	a;
 	double	b;
 	double	c;
+	double	dist;
 	double	det;
 
 	a = pow(vec.x, 2) + pow(vec.y, 2) - pow(tan(cone->angle), 2)
@@ -39,7 +40,10 @@ double	dist_cone2(t_cone *cone, t_vec vec, t_point o)
 		- pow(((o.z - cone->coord.z)), 2) * pow(tan(cone->angle), 2);
 	det = pow(b, 2) - 4.0 * a * c;
 	if (det > EPSILON)
-		return (dist_sphere3(det, a, b));
+	{
+		dist = dist_sphere3(det, a, b);
+		return ((cone->limite1 == cone->limite2 || (vec.z * dist > cone->limite1 && vec.z * dist < cone->limite2)) ? dist : -1);
+	}
 	return (-1);
 }
 
@@ -48,6 +52,7 @@ double	dist_cone(t_cone *cone, t_vec *v, t_point *ori)
 	double	param[3];
 	double	det;
 	t_point	vec;
+	double	dist;
 	t_point	o;
 
 	vec = do_rotate(cone->rot, *(t_point *)v);
@@ -61,6 +66,9 @@ double	dist_cone(t_cone *cone, t_vec *v, t_point *ori)
 		- pow(((o.z - cone->coord.z)), 2) * pow(tan(cone->angle), 2);
 	det = pow(param[1], 2) - 4.0 * param[0] * param[2];
 	if (det > EPSILON)
-		return (dist_sphere3(det, param[0], param[1]));
+	{
+		dist = dist_sphere3(det, param[0], param[1]);
+		return ((cone->limite1 == cone->limite2 || (vec.z * dist > cone->limite1 && vec.z * dist < cone->limite2)) ? dist : -1);
+	}
 	return (-1);
 }
