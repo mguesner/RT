@@ -77,6 +77,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/clean_mlx.c\
 	  $(SRCDIR)/touch.c\
 	  $(SRCDIR)/light.c\
+	  $(SRCDIR)/light2.c\
 	  $(SRCDIR)/sphere.c\
 	  $(SRCDIR)/plane.c\
 	  $(SRCDIR)/inters.c\

@@ -26,7 +26,7 @@ t_texture texture_init(t_pars *e, char *name)
 	if (ret.imgv == NULL)
 	{
 		add_err(e, UNKOBJ, name);
-		return ret;
+		return (ret);
 	}
 	ret.data = mlx_get_data_addr(ret.imgv,
 		&(ret.bpp), &(ret.size_line),
