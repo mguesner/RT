@@ -10,15 +10,59 @@ light_source { <1000,0,0>
       color rgb<1,1,1>
 }
 
-plane { <0,0,-1>,6 // coord centre et rayon
-         pigment { color rgb <0.5,0.5,0> }
+sphere { <2000,130,1020>, 200 // coord centre et rayon
+         pigment { color rgb <1,0.8,0.70> }
 }
 
+sphere { <2000,-130,1020>, 200 // coord centre et rayon
+         pigment { color rgb <1,0.8,0.70> }
+}
 
-//cylinder_42 { <5000,0,0>, <1,0,0>, 200 // coord, direction, rayon
-//         pigment { color rgb <1,0.6,0> }
-//}
+sphere { <2000,130,893>, 80 // coord centre et rayon
+		pigment { color rgb <1,0.3,0.2> }
 
-//cone_42 { <5000, 0, 0>, 1, <0,1,0>   // coord, angle, direction
-//     pigment { color rgb <0.4,0.7,0> }
-//}
+}
+
+sphere { <2000,-130,893>, 80 // coord centre et rayon
+		pigment { color rgb <1,0.3,0.2> }
+}
+
+sphere { <2000,130,818>, 10 // coord centre et rayon
+		pigment { color rgb <1,0.3,0.2> }
+
+}
+
+sphere { <2000,-130,818>, 10 // coord centre et rayon
+		pigment { color rgb <1,0.3,0.2> }
+}
+
+plane { <0,0,1>,2000 // coord centre et rayon
+        pigment { color rgb <1,1,1> }
+
+}
+
+plane { <0,0,-1>,1000 // coord centre et rayon
+        pigment { color rgb <1,1,1> }
+}
+
+plane { <1,0,0>,4000 // coord centre et rayon
+        pigment { color rgb <1,1,1> }
+        finish {reflection 1}
+}
+
+plane { <-1,0,0>,4000 // coord centre et rayon
+        pigment { color rgb <1,1,1> }
+        finish {reflection 1}
+}
+
+plane { <0,1,0>,2000 // coord centre et rayon
+        pigment { color rgb <1,1,1> }
+
+}
+
+plane { <0,-1,0>,2000 // coord centre et rayon
+        pigment { color rgb <1,1,1> }
+
+}
+
+//254 | 195 | 172
