@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include <rt.h>
-#include <stdio.h>
 
 double dist_plane(t_plane *plane, t_vec *vec, t_point *o)
 {
