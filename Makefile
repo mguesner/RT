@@ -92,6 +92,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/vec_reflex.c\
 	  $(SRCDIR)/interaction.c\
 	  $(SRCDIR)/triangle.c\
+	  $(SRCDIR)/set_color_finish.c\
 	  mlx_src/mlx_init.c
 
 LIB =
