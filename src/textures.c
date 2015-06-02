@@ -6,7 +6,7 @@
 /*   By: aleung-c <aleung-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 10:42:10 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/02 12:14:05 by aleung-c         ###   ########.fr       */
+/*   Updated: 2015/06/02 15:35:50 by aleung-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static void		texture_sphere(t_pix *vec_dir, double u, double v)
 	t_vec		normale;
 
 	normale = normalize(make_vec(vec_dir->inter, vec_dir->cur_obj->coord));
-	u = 0.5 - (atan2((-normale.z), (-normale.x)) / (2.0 * M_PI));
-	v = 0.5 - 2.0 * (asin((normale.y)) / (2.0 * M_PI));
+	u = 0.5 - (atan2((-normale.z), (-normale.y)) / (2.0 * M_PI));
+	v = 0.5 - 2.0 * (asin((normale.x)) / (2.0 * M_PI));
 	u *= vec_dir->cur_obj->texture.width;
 	v *= vec_dir->cur_obj->texture.height;
 	add_texture_color(vec_dir, u, v);
