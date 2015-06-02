@@ -42,7 +42,9 @@ double	dist_cone2(t_cone *cone, t_vec vec, t_point o)
 	if (det > EPSILON)
 	{
 		dist = dist_sphere3(det, a, b);
-		return ((cone->limite1 == cone->limite2 || (vec.z * dist > cone->limite1 && vec.z * dist < cone->limite2)) ? dist : -1);
+		return ((cone->limite1 == cone->limite2 || \
+		(vec.z * dist > cone->limite1 && \
+		vec.z * dist < cone->limite2)) ? dist : -1);
 	}
 	return (-1);
 }
@@ -68,7 +70,9 @@ double	dist_cone(t_cone *cone, t_vec *v, t_point *ori)
 	if (det > EPSILON)
 	{
 		dist = dist_sphere3(det, param[0], param[1]);
-		return ((cone->limite1 == cone->limite2 || (vec.z * dist > cone->limite1 && vec.z * dist < cone->limite2)) ? dist : -1);
+		return ((cone->limite1 == cone->limite2 || \
+		(vec.z * dist > cone->limite1 && vec.z * \
+		dist < cone->limite2)) ? dist : -1);
 	}
 	return (-1);
 }

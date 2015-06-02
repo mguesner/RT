@@ -60,7 +60,9 @@ double	dist_cylinder2(t_cylinder *cylinder, t_vec *v, t_point o)
 	if (det > 0)
 	{
 		dist = dist_cylinder3(det, a, b);
-		return ((cylinder->limite1 == cylinder->limite2 || (v->z * dist > cylinder->limite1 && v->z * dist < cylinder->limite2)) ? dist : -1);
+		return ((cylinder->limite1 == cylinder->limite2 || \
+		(v->z * dist > cylinder->limite1 && v->z * \
+		dist < cylinder->limite2)) ? dist : -1);
 	}
 	return (-1);
 }
@@ -84,7 +86,9 @@ double	dist_cylinder(t_cylinder *cylinder, t_vec *v, t_point *ori)
 	if (det > 0)
 	{
 		dist = dist_cylinder3(det, param[0], param[1]);
-		return ((cylinder->limite1 == cylinder->limite2 || (vec.z * dist > cylinder->limite1 && vec.z * dist < cylinder->limite2)) ? dist : -1);
+		return ((cylinder->limite1 == cylinder->limite2 || \
+		(vec.z * dist > cylinder->limite1 && vec.z * \
+		dist < cylinder->limite2)) ? dist : -1);
 	}
 	return (-1);
 }

@@ -305,6 +305,7 @@ void						set_finish_transparence_one(t_pix *vec_dir);
 void						set_finish_transparence(t_pix *vec_dir);
 void						set_finish_reflection(t_pix *vec_dir);
 void						set_original(t_pix *vec_dir);
-void						shadow_subfunc(t_pix **vec_dir, double d[3], t_obj_list *tmp);
+void						shadow_subfunc(t_pix **vec_dir,
+	double d[3], t_obj_list *tmp);
 
 #endif
