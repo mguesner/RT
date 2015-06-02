@@ -6,9 +6,10 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:03:28 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/06/01 11:25:38 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 13:08:41 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include <rt.h>
 #include <stdio.h>
@@ -133,84 +134,19 @@ void				calc_lum(t_libx *mlx, t_pix *vec_dir)
 		texture_func(vec_dir);
 	else
 	{
-		if (vec_dir->first_obj != NULL && vec_dir->first_obj == vec_dir->cur_obj && vec_dir->first_obj->reflection > 0.0)
-		{
-			vec_dir->color->b = vec_dir->cur_obj->color.b *  (1.0 - vec_dir->first_obj->reflection);
-			if (vec_dir->color->b > 255)
-				vec_dir->color->b = 255;
-			else if (vec_dir->color->b < 0)
-				vec_dir->color->b = 0;
-			vec_dir->color->g =  vec_dir->cur_obj->color.g * (1.0 - vec_dir->first_obj->reflection);
-			if (vec_dir->color->g > 255)
-				vec_dir->color->g = 255;
-			else if (vec_dir->color->g < 0)
-				vec_dir->color->g = 0;
-			vec_dir->color->r =  vec_dir->cur_obj->color.r * (1.0 - vec_dir->first_obj->reflection);
-			if (vec_dir->color->r > 255)
-				vec_dir->color->r = 255;
-			else if (vec_dir->color->r < 0)
-				vec_dir->color->r = 0;
-		}
-		else if (vec_dir->first_obj != NULL && vec_dir->first_obj == vec_dir->cur_obj && vec_dir->first_obj->transparence > 0.0)
-		{
-			vec_dir->color->b = vec_dir->cur_obj->color.b *  (1.0 - vec_dir->first_obj->transparence);
-			if (vec_dir->color->b > 255)
-				vec_dir->color->b = 255;
-			else if (vec_dir->color->b < 0)
-				vec_dir->color->b = 0;
-			vec_dir->color->g =  vec_dir->cur_obj->color.g * (1.0 - vec_dir->first_obj->transparence);
-			if (vec_dir->color->g > 255)
-				vec_dir->color->g = 255;
-			else if (vec_dir->color->g < 0)
-				vec_dir->color->g = 0;
-			vec_dir->color->r =  vec_dir->cur_obj->color.r * (1.0 - vec_dir->first_obj->transparence);
-			if (vec_dir->color->r > 255)
-				vec_dir->color->r = 255;
-			else if (vec_dir->color->r < 0)
-				vec_dir->color->r = 0;
-		}
-		else if (vec_dir->first_obj != NULL && vec_dir->first_obj->transparence > 0.0)
-		{
-			vec_dir->color->b = vec_dir->cur_obj->color.b * (vec_dir->first_obj->transparence) + vec_dir->first_obj->color.b * (1.0 - vec_dir->first_obj->transparence);
-			if (vec_dir->color->b > 255)
-				vec_dir->color->b = 255;
-			else if (vec_dir->color->b < 0)
-				vec_dir->color->b = 0;
-			vec_dir->color->g = vec_dir->cur_obj->color.g * (vec_dir->first_obj->transparence) + vec_dir->first_obj->color.g * (1.0 - vec_dir->first_obj->transparence);
-			if (vec_dir->color->g > 255)
-				vec_dir->color->g = 255;
-			else if (vec_dir->color->g < 0)
-				vec_dir->color->g = 0;
-			vec_dir->color->r = vec_dir->cur_obj->color.r * (vec_dir->first_obj->transparence) + vec_dir->first_obj->color.r * (1.0 - vec_dir->first_obj->transparence);
-			if (vec_dir->color->r > 255)
-				vec_dir->color->r = 255;
-			else if (vec_dir->color->r < 0)
-				vec_dir->color->r = 0;
-		}
+		if (vec_dir->first_obj != NULL && vec_dir->first_obj
+			== vec_dir->cur_obj && vec_dir->first_obj->reflection > 0.0)
+			set_finish_reflection_one(vec_dir);
+		else if (vec_dir->first_obj != NULL && vec_dir->first_obj
+			== vec_dir->cur_obj && vec_dir->first_obj->transparence > 0.0)
+			set_finish_transparence_one(vec_dir);
+		else if (vec_dir->first_obj != NULL
+			&& vec_dir->first_obj->transparence > 0.0)
+			set_finish_transparence(vec_dir);
 		else if (vec_dir->first_obj != NULL)
-		{
-			vec_dir->color->b = vec_dir->cur_obj->color.b + vec_dir->first_obj->color.b * (1.0 - vec_dir->first_obj->reflection);
-			if (vec_dir->color->b > 255)
-				vec_dir->color->b = 255;
-			else if (vec_dir->color->b < 0)
-				vec_dir->color->b = 0;
-			vec_dir->color->g = vec_dir->cur_obj->color.g + vec_dir->first_obj->color.g * (1.0 - vec_dir->first_obj->reflection);
-			if (vec_dir->color->g > 255)
-				vec_dir->color->g = 255;
-			else if (vec_dir->color->g < 0)
-				vec_dir->color->g = 0;
-			vec_dir->color->r = vec_dir->cur_obj->color.r + vec_dir->first_obj->color.r * (1.0 - vec_dir->first_obj->reflection);
-			if (vec_dir->color->r > 255)
-				vec_dir->color->r = 255;
-			else if (vec_dir->color->r < 0)
-				vec_dir->color->r = 0;
-		}
+			set_finish_reflection(vec_dir);
 		else
-		{
-			vec_dir->color->b = vec_dir->cur_obj->color.b;
-			vec_dir->color->g = vec_dir->cur_obj->color.g;
-			vec_dir->color->r = vec_dir->cur_obj->color.r;
-		}
+			set_original(vec_dir);
 	}
 	vec_dir->is_in_shadow = 0;
 	calc_lum2(mlx, vec_dir);

@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/19 13:07:19 by aleung-c          #+#    #+#             */
-/*   Updated: 2015/06/01 15:46:09 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 13:12:56 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,3 @@ t_texture texture_init(t_pars *e, char *name)
 		&(ret.endian));
 	return (ret);
 }
-
-// void    getppx2(t_env *e, t_obj *obj)
-// {
-//     float    u;
-//     float    v;
-//     int        col;
-//     int        row;
-//     int        color;
-
-//     color = 0;
-//     u = 0.5 + (atan2((-e->normal.x), (-e->normal.y)) / M_PI);
-//     v = 0.5 - asin((e->normal.z)) / M_PI;
-//     col = (int)(u * obj->x_text);
-//     row = (int)(v * obj->y_text);
-//     ft_memcpy(&color,
-//         &(obj->data_texture[col * 4 + (row * obj->line_texture)]), 4);
-//     e->color[0] = (color >> 16) & 0xFF;
-//     e->color[1] = (color >> 8) & 0xFF;
-//     e->color[2] = (color & 0xFF);
-// }
