@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 14:15:53 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/14 15:00:42 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 14:31:25 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void				next(t_pars *e, char *value, int *i)
 		(*i)++;
 }
 
-void					fill_vector(t_pars *e, char *value, t_vec *vec)
+int						fill_vector(t_pars *e, char *value, t_vec *vec)
 {
 	int		i;
 
@@ -52,5 +52,9 @@ void					fill_vector(t_pars *e, char *value, t_vec *vec)
 	while (value[i] == ' ' || value[i] == '\t')
 		i++;
 	if (value[i] != '>')
+	{
 		add_err(e, BADARG, value);
+		return (0);
+	}
+	return (1);
 }

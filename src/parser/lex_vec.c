@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:15:25 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/15 14:10:38 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 14:17:38 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void					lex_vec(char *line, t_pars *e, int *offset, int size)
 	i = 0;
 	while (*offset + i < size && *(line + *offset + i) != '>')
 		i++;
+	if (*(line + *offset + i) != '>')
+		add_err(e, UNKOBJ, "");
 	i++;
 	if (!(value = ft_memalloc(i + 1)))
 		error(errno);

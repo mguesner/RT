@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 13:45:19 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/01 16:31:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 14:09:02 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void					add_err(t_pars *e, t_err_type err, char *line)
 
 	if (e->err)
 		return ;
-	e->err = e->scope;
+	e->err = e->scope != 0 ? e->scope : -1;
 	ft_memdel((void **)&e->cur);
 	if (!(node = ft_memalloc(sizeof(t_err))))
 		error(errno);

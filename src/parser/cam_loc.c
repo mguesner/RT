@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 15:37:12 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/13 16:29:54 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 14:32:00 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void					cam_loc(t_pars *e, t_lex **node)
 	else
 	{
 		*node = (*node)->next;
-		fill_vector(e, tmp->value, (t_vec *)&loc);
+		if (!fill_vector(e, tmp->value, (t_vec *)&loc))
+			return ;
 		if (e->cur)
 			e->cur->coord = loc;
 	}

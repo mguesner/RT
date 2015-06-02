@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:39:28 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/02 12:39:49 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 14:09:40 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parser(t_pars *e)
 	t_lex		*tmp;
 
 	tmp = e->lex_lst.begin;
-	while (tmp)
+	while (tmp && e->err != -1)
 	{
 		if (!e->err || tmp->token_type == OPENSCOPE
 			|| tmp->token_type == CLOSESCOPE)
