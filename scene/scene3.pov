@@ -1,7 +1,7 @@
 camera
 {
 	location <0,0,0> // la position de l'observateur
-	look_at <1000,0,0>  // le point de vue
+	look_at <  // le point de vue
 	//right x*image_width/image_height	// aspect ratio
 	//angle 45 // l'angle de la caméra
 }
@@ -44,5 +44,6 @@ light_source { <2000,0,0>
 
 cone_42 { <10000,0,0>, 0.1, <0,0.5,0>   // coord, angle, direction
      pigment { color rgb <0.4,0.7,0> }
-        end 1000 10000
+        end 1000 .10000
 }
+

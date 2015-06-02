@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/02 13:21:13 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 14:30:56 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void					add_err(t_pars *e, t_err_type err, char *line);
 
 void					parser(t_pars *e);
 
-void					fill_vector(t_pars *e, char *value, t_vec *vec);
+int						fill_vector(t_pars *e, char *value, t_vec *vec);
 void					p_openscope(t_pars *e, t_lex **node);
 void					p_closescope(t_pars *e, t_lex **node);
 void					p_pigment(t_pars *e, t_lex **node);
