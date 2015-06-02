@@ -22,13 +22,13 @@ void	set_finish_reflection_one(t_pix *vec_dir)
 		vec_dir->color->b = 255;
 	else if (vec_dir->color->b < 0)
 		vec_dir->color->b = 0;
-	vec_dir->color->g =  vec_dir->cur_obj->color.g *
+	vec_dir->color->g = vec_dir->cur_obj->color.g *
 	(1.0 - vec_dir->first_obj->reflection);
 	if (vec_dir->color->g > 255)
 		vec_dir->color->g = 255;
 	else if (vec_dir->color->g < 0)
 		vec_dir->color->g = 0;
-	vec_dir->color->r =  vec_dir->cur_obj->color.r *
+	vec_dir->color->r = vec_dir->cur_obj->color.r *
 	(1.0 - vec_dir->first_obj->reflection);
 	if (vec_dir->color->r > 255)
 		vec_dir->color->r = 255;
@@ -44,13 +44,13 @@ void	set_finish_transparence_one(t_pix *vec_dir)
 		vec_dir->color->b = 255;
 	else if (vec_dir->color->b < 0)
 		vec_dir->color->b = 0;
-	vec_dir->color->g =  vec_dir->cur_obj->color.g *
+	vec_dir->color->g = vec_dir->cur_obj->color.g *
 	(1.0 - vec_dir->first_obj->transparence);
 	if (vec_dir->color->g > 255)
 		vec_dir->color->g = 255;
 	else if (vec_dir->color->g < 0)
 		vec_dir->color->g = 0;
-	vec_dir->color->r =  vec_dir->cur_obj->color.r *
+	vec_dir->color->r = vec_dir->cur_obj->color.r *
 	(1.0 - vec_dir->first_obj->transparence);
 	if (vec_dir->color->r > 255)
 		vec_dir->color->r = 255;
