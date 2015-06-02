@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:38:11 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 13:21:13 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ void					p_spot_word(t_pars *e, t_lex **node);
 void					color(t_pars *e, t_lex **node);
 
 void					p_plane(t_pars *e, t_lex **node);
+void					p_limit(t_pars *e, t_lex **node);
 
 void					p_plane_word(t_pars *e, t_lex **node);
 void					p_plane_value(t_pars *e, t_lex **node);

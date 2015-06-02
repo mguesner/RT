@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inters.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/06/01 14:22:44 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 14:01:01 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 	mlx->pix[pix]->pix_x = pix_x;
 	mlx->pix[pix]->pix_y = pix_y;
 	mlx->pix[pix]->first_obj = NULL;
-	while ((dist_ref[1] == 1 || dist_ref[1] == -1) && nb_reflex < 10)
+	while ((dist_ref[1] == 1 || dist_ref[1] == -1) && nb_reflex < 20)
 	{
 		nb_reflex++;
 		inters2(dist_ref[1], &cam_ori, mlx->pix[pix], &current_vec);

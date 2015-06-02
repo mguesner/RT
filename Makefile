@@ -51,6 +51,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/p_sphere_vector.c\
 	  $(SRCDIR)/parser/spot_color.c\
 	  $(SRCDIR)/parser/p_spot.c\
+	  $(SRCDIR)/parser/p_limit.c\
 	  $(SRCDIR)/parser/p_spot_word.c\
 	  $(SRCDIR)/parser/add_obj_lst.c\
 	  $(SRCDIR)/parser/init_pars.c\

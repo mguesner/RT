@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lex_value.c                                        :+:      :+:    :+:   */
+/*   p_limit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/05/13 12:34:32 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/02 13:55:17 by mguesner         ###   ########.fr       */
+/*   Created: 2015/06/02 13:19:16 by mguesner          #+#    #+#             */
+/*   Updated: 2015/06/02 13:26:30 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <parser.h>
-#include <errno.h>
+#include <stdlib.h>
 
-void					lex_value(char *line, t_pars *e, int *offset, int size)
+void					p_limit(t_pars *e, t_lex **node)
 {
-	int		i;
-	char	*value;
-
-	i = 0;
-	if (*(line + *offset) == '-')
-		i++;
-	while (*offset + i < size && (ft_isdigit(*(line + *offset + i))
-		|| *(line + *offset + i) == '.'))
-		i++;
-	if (!(value = ft_memalloc(i + 1)))
-		error(errno);
-	ft_strncpy(value, line + *offset, i);
-	add_lex_node(&e->lex_lst, VALUE, value, e->nb_line);
-	*offset += i;
+	if (!(*node)->next || (*node)->next->token_type != VALUE)
+	{
+		add_err(e, BADARG, "");
+		return ;
+	}
+	*node = (*node)->next;
+	e->cur->limite1 = atof((*node)->value);
+	if (!(*node)->next)
+	{
+		add_err(e, BADARG, "");
+		return ;
+	}
+	if ((*node)->next->token_type == VALUE)
+	{
+		*node = (*node)->next;
+		e->cur->limite2 = atof((*node)->value);
+	}
 }
