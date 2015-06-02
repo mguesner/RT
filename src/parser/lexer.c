@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 09:15:08 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/02 14:10:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 15:06:04 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ static char	*get_symb(char c)
 
 static void	lexer2(t_pars *e, int *offset, char *file, int size)
 {
-	char			*tmp;
-
 	if (*offset < size && *(file + *offset) == '\n' && ++(*offset))
 		e->nb_line++;
 	else if (*offset < size && ft_isalpha(*(file + *offset)))
 		lex_word(file, e, offset, size);
-	else if (*offset < size && (ft_isdigit(*(file + *offset)) || *(file + *offset) == '-' || *(file + *offset) == '.'))
+	else if (*offset < size && (ft_isdigit(*(file + *offset))
+		|| *(file + *offset) == '-' || *(file + *offset) == '.'))
 		lex_value(file, e, offset, size);
 	else if (*offset < size && *(file + *offset) == '{' && (*offset)++)
 		add_lex_node(&e->lex_lst, OPENSCOPE, ft_strdup("{"), e->nb_line);
@@ -48,10 +47,7 @@ static void	lexer2(t_pars *e, int *offset, char *file, int size)
 		while (*offset < size && *(file + *offset) != '\n')
 			(*offset)++;
 	else
-	{
-		add_err(e, UNKSYMB, tmp = get_symb(*(file + *offset)));
-		ft_memdel((void **)&tmp);
-	}
+		add_err(e, UNKSYMB, get_symb(*(file + *offset)));
 }
 
 void		lexer(int fd, t_pars *e)
@@ -78,4 +74,5 @@ void		lexer(int fd, t_pars *e)
 	}
 	if (munmap(file, buf.st_size + 1) == -1 || close(fd))
 		error(errno);
+	close(fd);
 }

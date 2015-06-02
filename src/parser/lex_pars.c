@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 09:19:21 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/02 14:13:26 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 15:03:15 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,7 @@ void					lex_pars(char *file_name, t_libx *mlx)
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		error(errno);
 	lexer(fd, &e);
-	close(fd);
-	check_pars_err(e);
-	if (e.err_list.size)
+	if (e.err_list.size && check_pars_err(e))
 		exit(-1);
 	parser(&e);
 	check_pars_err(e);

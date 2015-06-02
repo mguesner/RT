@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/02 13:26:21 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 15:11:36 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,5 +307,6 @@ void						set_finish_reflection(t_pix *vec_dir);
 void						set_original(t_pix *vec_dir);
 void						shadow_subfunc(t_pix **vec_dir,
 	double d[3], t_obj_list *tmp);
+void						do_raytracing();
 
 #endif

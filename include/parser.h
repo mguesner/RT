@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/02 14:30:56 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 15:03:34 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,6 +186,6 @@ void					p_intersection(t_pars *e, t_lex **node);
 void					p_inter_word(t_pars *e, t_lex **node);
 void					p_sssphere(t_pars *e, t_lex **node);
 
-void					check_pars_err(t_pars e);
+int						check_pars_err(t_pars e);
 
 #endif
