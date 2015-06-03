@@ -43,7 +43,7 @@ sphere { <4200,1700,0>, 150 // coord centre et rayon
          texture { uranus }
 }
 
-sphere { <6000,2500,0>, 150 // coord centre et rayon
+sphere { <6000,1830,0>, 150 // coord centre et rayon
          pigment { color rgb <1,0,0> }
          texture { neptune }
 }

@@ -13,7 +13,7 @@
 #include <../include/rt.h>
 #include <stdlib.h>
 
-static int get_five(char *save, t_libx *m, int pos, int t)
+static int		get_five(char *save, t_libx *m, int pos, int t)
 {
 	int		i;
 	int		tot;
@@ -41,9 +41,9 @@ static int get_five(char *save, t_libx *m, int pos, int t)
 	return (tot);
 }
 
-static void	get_middle_color(char *save, int px, int py, t_libx *m)
+static void		get_middle_color(char *save, int px, int py, t_libx *m)
 {
-	int		pos;
+	int			pos;
 	double		one;
 	double		two;
 	double		three;
@@ -57,7 +57,7 @@ static void	get_middle_color(char *save, int px, int py, t_libx *m)
 	m->data[pos + 2] = three;
 }
 
-static char	*copy_to(t_libx *m)
+static char		*copy_to(t_libx *m)
 {
 	char	*save;
 	int		i;
@@ -68,7 +68,7 @@ static char	*copy_to(t_libx *m)
 	return (save);
 }
 
-void		antialiasing(t_libx *m)
+void			antialiasing(t_libx *m)
 {
 	char	*save;
 	int		px;
