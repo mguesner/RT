@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/06/02 15:11:36 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/03 11:27:35 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -308,5 +308,6 @@ void						set_original(t_pix *vec_dir);
 void						shadow_subfunc(t_pix **vec_dir,
 	double d[3], t_obj_list *tmp);
 void						do_raytracing();
+void						antialiasing(t_libx *m);
 
 #endif
