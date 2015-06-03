@@ -26,7 +26,7 @@ sphere { <250,250,1500>, 100 // coord centre et rayon
 
 sphere { <0,500,1300>, 200 // coord centre et rayon
          pigment { color rgb <1,1,1> }
-         finish {transparence 0.5
+         finish {transparence 0.95
          refraction 2.0}
 }
 
