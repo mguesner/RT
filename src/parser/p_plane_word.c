@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 14:25:29 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 15:05:23 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 14:09:48 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void					p_plane_word(t_pars *e, t_lex **node)
 		e->substep = SSTEXTURE;
 	else if (!strcmp(tmp, "finish"))
 		e->substep = SSFINISH;
+	else if (!strcmp(tmp, "end"))
+		p_limit(e, node);
 	else
 		add_err(e, UNKOBJ, tmp);
 }

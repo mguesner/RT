@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interaction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/25 13:44:46 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/26 15:20:20 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/03 15:35:01 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,11 @@ void		key_translate_cam(int keycode, t_libx *mlx)
 		mlx->cam->coord.x += 20;
 	else if (keycode == 69)
 		mlx->cam->coord.x -= 20;
+	else if (keycode == 3)
+	{
+		if (mlx->antialia == -1)
+			mlx->antialia = 1;
+		else
+			mlx->antialia = -1;
+	}
 }

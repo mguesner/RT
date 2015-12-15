@@ -6,13 +6,12 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/11 15:47:03 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/30 17:28:32 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 15:46:42 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <math.h>
-#include <stdio.h>
 
 double	dist_sphere2(double det, double a, double b)
 {
@@ -41,7 +40,7 @@ double	dist_sphere(t_sphere *sphere, t_vec *vec, t_point *o)
 			sphere->coord.y * o->y + sphere->coord.z * o->z) -
 		pow(sphere->radius, 2);
 	det = pow(b, 2) - 4.0 * a * c;
-	if (det > EPSILON)
+	if (det > 0)
 		return (dist_sphere2(det, a, b));
 	return (-1);
 }

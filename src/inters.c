@@ -6,14 +6,12 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/13 12:10:21 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/06/01 12:29:21 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 15:45:56 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
-#include <stdio.h>
 #include <matrice.h>
-
 
 float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 {
@@ -25,7 +23,7 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 	tmp = mlx->obj.begin;
 	while (tmp)
 	{
-		res = touch2(tmp->obj, *current_vec, origin);
+		res = touch(tmp->obj, current_vec, &origin);
 		if ((res) > 0.001)
 		{
 			if (res < dist || dist == -1)
@@ -39,90 +37,78 @@ float	touch_in(t_vec *current_vec, t_point origin, t_libx *mlx, int pix)
 	return (dist);
 }
 
-void	init_next_ray_reflect(t_vec *vec, t_point *p, t_pix *pix)
+void	inters2(int reflect, t_point *cam_ori, t_pix *cur_pix
+	, t_vec *current_vec)
 {
-	// *vec = vec_sum(*vec, get_normale(pix, *p));
-	// *vec = normalize(vec_sum(get_normale(pix, *p), *vec));
-	p->x = pix->inter.x;
-	p->y = pix->inter.y;
-	p->z = pix->inter.z;
-	*vec = vec_sum(*vec, get_normale(pix, *p));
-	*vec = normalize(vec_sum(get_normale(pix, *p), *vec));
+	t_vec		tmp;
+
+	if (reflect != -1 && cur_pix->cur_obj->reflection > 0.0)
+	{
+		pointcpy(cam_ori, cur_pix->inter);
+		*current_vec = normalize(vec_sum(get_normale(cur_pix, *cam_ori)
+			, vec_sum(*current_vec, get_normale(cur_pix, *cam_ori))));
+	}
+	else if (reflect != -1 && cur_pix->cur_obj->refraction > 0.0
+		&& cur_pix->cur_obj->transparence > 0.0)
+	{
+		pointcpy(cam_ori, cur_pix->inter);
+		tmp = get_normale(cur_pix, *cam_ori);
+		current_vec->x += -tmp.x / cur_pix->cur_obj->refraction;
+		current_vec->y += -tmp.y / cur_pix->cur_obj->refraction;
+		current_vec->z += -tmp.z / cur_pix->cur_obj->refraction;
+	}
+	else if (reflect != -1 && cur_pix->cur_obj->transparence > 0.0)
+		pointcpy(cam_ori, cur_pix->inter);
 }
 
-void	init_next_ray_refract(t_vec *vec, t_point *p, t_pix *pix)
+int		inters3(double dist_ref[2], t_point cam_ori, t_pix *pix
+	, t_vec current_vec)
 {
-	t_vec	tmp;
-
-	p->x = pix->inter.x;
-	p->y = pix->inter.y;
-	p->z = pix->inter.z;
-	tmp = get_normale(pix, *p);
-	vec->x += -tmp.x / pix->cur_obj->refraction;
-	vec->y += -tmp.y / pix->cur_obj->refraction;
-	vec->z += -tmp.z / pix->cur_obj->refraction;
-	// *vec = normalize(*vec);
-}
-
-void	init_next_ray_transparence(t_point *p, t_pix *pix)
-{
-	p->x = pix->inter.x;
-	p->y = pix->inter.y;
-	p->z = pix->inter.z;
-}
-
-void	set_all_null(t_pix *pix, int *reflect)
-{
-	pix->dist = -1.0;
-	pix->cur_obj = NULL;
-	pix->first_obj = NULL;
-	*reflect = 0;
+	if (dist_ref[0] == -1.0 && pix->first_obj != NULL)
+		return (1);
+	if (dist_ref[0] == -1.0)
+	{
+		pix->dist = -1.0;
+		pix->cur_obj = NULL;
+		return (1);
+	}
+	else
+	{
+		pix->inter2 = translate(cam_ori, vec_coef(current_vec, dist_ref[0]));
+		pix->inter = do_rotate(pix->cur_obj->rot
+			, pix->inter2);
+		pix->dist = dist_ref[0];
+		if (dist_ref[1] == -1 && (pix->cur_obj->reflection > 0.0
+			|| pix->cur_obj->transparence > 0.0))
+			pix->first_obj = pix->cur_obj;
+	}
+	if (!(pix->cur_obj->reflection > 0.0
+		|| pix->cur_obj->transparence > 0.0))
+		return (1);
+	return (0);
 }
 
 void	inters(t_libx *mlx, int pix, int pix_x, int pix_y)
 {
-	double		dist;
+	double		dist_ref[2];
 	t_point		cam_ori;
 	t_vec		current_vec;
-	int			reflect;
 	int			nb_reflex;
 
-	reflect = -1;
+	dist_ref[1] = -1;
 	nb_reflex = 0;
 	cam_ori = mlx->cam->coord;
 	current_vec = mlx->pix[pix]->pos_pix_vec;
-	dist = -1.0;
 	mlx->pix[pix]->pix_x = pix_x;
 	mlx->pix[pix]->pix_y = pix_y;
 	mlx->pix[pix]->first_obj = NULL;
-	while((reflect == 1 || reflect == -1) && nb_reflex < 10)
+	while ((dist_ref[1] == 1 || dist_ref[1] == -1) && nb_reflex < 20)
 	{
 		nb_reflex++;
-		if (reflect != -1 && mlx->pix[pix]->cur_obj->reflection > 0.0)
-			init_next_ray_reflect(&current_vec, &cam_ori, mlx->pix[pix]);
-		else if (reflect != -1 && mlx->pix[pix]->cur_obj->refraction > 0.0 && mlx->pix[pix]->cur_obj->transparence > 0.0)
-			init_next_ray_refract(&current_vec, &cam_ori, mlx->pix[pix]);
-		else if (reflect != -1 && mlx->pix[pix]->cur_obj->transparence > 0.0)
-			init_next_ray_transparence(&cam_ori, mlx->pix[pix]);
-		dist = touch_in(&current_vec, cam_ori, mlx, pix);
-		if (dist == -1.0 && mlx->pix[pix]->first_obj != NULL)
+		inters2(dist_ref[1], &cam_ori, mlx->pix[pix], &current_vec);
+		dist_ref[0] = touch_in(&current_vec, cam_ori, mlx, pix);
+		if (inters3(dist_ref, cam_ori, mlx->pix[pix], current_vec))
 			return ;
-		if (dist == -1.0)
-			set_all_null(mlx->pix[pix], &reflect);
-		else
-		{
-			mlx->pix[pix]->inter = do_rotate(mlx->pix[pix]->cur_obj->rot, translate(cam_ori,
-				vec_coef(current_vec, dist)));
-			mlx->pix[pix]->inter2 = translate(cam_ori,
-				vec_coef(current_vec, dist));
-			mlx->pix[pix]->dist = dist;
-			if (reflect == -1 && (mlx->pix[pix]->cur_obj->reflection > 0.0 || mlx->pix[pix]->cur_obj->transparence > 0.0))
-				mlx->pix[pix]->first_obj = mlx->pix[pix]->cur_obj;
-		}
-		if (dist != -1.0 && (mlx->pix[pix]->cur_obj->reflection > 0.0 || mlx->pix[pix]->cur_obj->transparence > 0.0))
-			reflect = 1;
-		else
-			reflect = 0;
+		dist_ref[1] = 1;
 	}
-	return ;
 }

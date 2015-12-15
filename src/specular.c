@@ -6,12 +6,11 @@
 /*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/22 13:49:57 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/26 14:14:41 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/06/03 15:46:38 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/rt.h"
-#include <stdio.h>
 
 void	specular2(double my_dot, t_pix *pix)
 {

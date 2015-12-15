@@ -12,6 +12,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/vecteur/normalize.c\
 	  $(SRCDIR)/vecteur/vec_coef.c\
 	  $(SRCDIR)/vecteur/vec_sum.c\
+	  $(SRCDIR)/vecteur/pointcpy.c\
 	  $(SRCDIR)/color/brightening.c\
 	  $(SRCDIR)/color/color_diff.c\
 	  $(SRCDIR)/color/color_sum.c\
@@ -50,6 +51,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/p_sphere_vector.c\
 	  $(SRCDIR)/parser/spot_color.c\
 	  $(SRCDIR)/parser/p_spot.c\
+	  $(SRCDIR)/parser/p_limit.c\
 	  $(SRCDIR)/parser/p_spot_word.c\
 	  $(SRCDIR)/parser/add_obj_lst.c\
 	  $(SRCDIR)/parser/init_pars.c\
@@ -75,6 +77,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/clean_mlx.c\
 	  $(SRCDIR)/touch.c\
 	  $(SRCDIR)/light.c\
+	  $(SRCDIR)/light2.c\
 	  $(SRCDIR)/sphere.c\
 	  $(SRCDIR)/plane.c\
 	  $(SRCDIR)/inters.c\
@@ -91,7 +94,9 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/vec_reflex.c\
 	  $(SRCDIR)/interaction.c\
 	  $(SRCDIR)/triangle.c\
-	  mlx_src/mlx_init.c
+	  $(SRCDIR)/set_color_finish.c\
+	  $(SRCDIR)/do_raytracing.c\
+	  $(SRCDIR)/mlx_init.c
 
 LIB =
 

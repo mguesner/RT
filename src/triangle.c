@@ -22,7 +22,7 @@ double	dist_triangle(t_triangle *triangle, t_vec *vec, t_point *o)
 
 	normale = normalize(vector(triangle->u, triangle->v));
 	d = -scalar(normale, *vec);
-	if (d < 0.0001 && d >  -0.0001)
+	if (d < 0.0001 && d > -0.0001)
 		return (-1.0);
 	w = make_vec(*o, triangle->coord);
 	a = -scalar(vector(w, triangle->v), *vec) / d;

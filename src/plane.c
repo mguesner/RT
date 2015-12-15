@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 11:07:35 by bsourd-b          #+#    #+#             */
-/*   Updated: 2015/05/31 11:34:39 by eruffieu         ###   ########.fr       */
+/*   Updated: 2015/05/26 13:17:45 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
-#include <stdio.h>
 
 double dist_plane(t_plane *plane, t_vec *vec, t_point *o)
 {

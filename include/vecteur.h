@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:12:58 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/08 10:38:54 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/01 13:57:44 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_vec					vec_sum(t_vec a, t_vec b);
 t_vec					vec_coef(t_vec v, double r);
 t_point					translate(t_point p, t_vec v);
 t_vec					make_vec(t_point a, t_point b);
+void					pointcpy(t_point *dst, t_point src);
 
 #endif

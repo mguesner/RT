@@ -6,7 +6,7 @@
 /*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/08 10:28:10 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/27 14:38:11 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/02 15:03:34 by mguesner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ void					add_err(t_pars *e, t_err_type err, char *line);
 
 void					parser(t_pars *e);
 
-void					fill_vector(t_pars *e, char *value, t_vec *vec);
+int						fill_vector(t_pars *e, char *value, t_vec *vec);
 void					p_openscope(t_pars *e, t_lex **node);
 void					p_closescope(t_pars *e, t_lex **node);
 void					p_pigment(t_pars *e, t_lex **node);
@@ -162,6 +162,7 @@ void					p_spot_word(t_pars *e, t_lex **node);
 void					color(t_pars *e, t_lex **node);
 
 void					p_plane(t_pars *e, t_lex **node);
+void					p_limit(t_pars *e, t_lex **node);
 
 void					p_plane_word(t_pars *e, t_lex **node);
 void					p_plane_value(t_pars *e, t_lex **node);
@@ -185,6 +186,6 @@ void					p_intersection(t_pars *e, t_lex **node);
 void					p_inter_word(t_pars *e, t_lex **node);
 void					p_sssphere(t_pars *e, t_lex **node);
 
-void					check_pars_err(t_pars e);
+int						check_pars_err(t_pars e);
 
 #endif

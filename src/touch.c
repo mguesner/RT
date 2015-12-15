@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   touch.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/12 10:32:06 by eruffieu          #+#    #+#             */
-/*   Updated: 2015/05/30 15:14:40 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/03 15:46:51 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rt.h>
 #include <vecteur.h>
-#include <stdio.h>
 
 double	touch(t_obj *obj, t_vec *vec, t_point *origine)
 {

@@ -3,20 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mguesner <mguesner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eruffieu <eruffieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/05/06 15:13:06 by mguesner          #+#    #+#             */
-/*   Updated: 2015/05/31 15:16:50 by mguesner         ###   ########.fr       */
+/*   Updated: 2015/06/03 15:43:27 by eruffieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RT_H
 # define RT_H
-# define WIDTH 2000
-# define HEIGHT 1000
-# define VIEWPLANEDIST 50.0
-# define VIEWPLANEWIDTH 20.0
-# define VIEWPLANEHEIGHT 10.0
+# define WIDTH 1920
+# define HEIGHT 1080
 # define TOTAL_PIX WIDTH * HEIGHT
 # define EPSILON 0.1E-7
 # define N1 1.0
@@ -27,8 +24,6 @@
 # include <mlx.h>
 # include <math.h>
 # include <limits.h>
-
-# include <stdio.h>
 
 typedef enum				e_obj_type
 {
@@ -66,6 +61,8 @@ typedef struct				s_obj
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	double					limite1;
+	double					limite2;
 }							t_obj;
 
 typedef struct				s_camera
@@ -79,9 +76,11 @@ typedef struct				s_camera
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	double					limite1;
+	double					limite2;
 	t_point					pix_hg;
-	t_vec					up_vec;
-	t_vec					right_vec;
+	t_point					pix_bg;
+	t_point					pix_hd;
 	t_point					dir;
 }							t_camera;
 
@@ -96,6 +95,8 @@ typedef struct				s_light
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	double					limite1;
+	double					limite2;
 }							t_light;
 
 typedef struct				s_plane
@@ -109,6 +110,8 @@ typedef struct				s_plane
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	double					limite1;
+	double					limite2;
 	t_vec					norm;
 }							t_plane;
 
@@ -123,6 +126,8 @@ typedef struct				s_sphere
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	double					limite1;
+	double					limite2;
 	double					radius;
 }							t_sphere;
 
@@ -137,6 +142,8 @@ typedef struct				s_cylinder
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	double					limite1;
+	double					limite2;
 	double					radius;
 	t_vec					dir;
 }							t_cylinder;
@@ -152,6 +159,8 @@ typedef struct				s_cone
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	double					limite1;
+	double					limite2;
 	double					angle;
 	t_vec					dir;
 }							t_cone;
@@ -167,6 +176,8 @@ typedef struct				s_triangle
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	double					limite1;
+	double					limite2;
 	t_vec					u;
 	t_vec					v;
 
@@ -248,6 +259,7 @@ typedef struct				s_libx
 	t_obj_list_begin		spots;
 	t_obj_list_begin		obj;
 	t_pix					**pix;
+	int						antialia;
 }							t_libx;
 
 void						menu_rt(t_libx *mlx);
@@ -287,5 +299,14 @@ void						apply_specular(t_libx *mlx, t_pix *pix);
 void						vec_reflex(t_pix *pix);
 void						key_rotate_cam(int keycode, t_libx *mlx);
 void						key_translate_cam(int keycode, t_libx *mlx);
+void						set_finish_reflection_one(t_pix *vec_dir);
+void						set_finish_transparence_one(t_pix *vec_dir);
+void						set_finish_transparence(t_pix *vec_dir);
+void						set_finish_reflection(t_pix *vec_dir);
+void						set_original(t_pix *vec_dir);
+void						shadow_subfunc(t_pix **vec_dir,
+	double d[3], t_obj_list *tmp);
+void						do_raytracing();
+void						antialiasing(t_libx *m);
 
 #endif
