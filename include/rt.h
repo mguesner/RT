@@ -229,6 +229,8 @@ typedef struct				s_pix
 	int						is_in_shadow;
 	t_obj					*first_obj;
 	t_obj					*shadow_obj;
+	t_obj					*map_first_obj;
+
 }							t_pix;
 
 typedef struct				s_list
@@ -308,5 +310,6 @@ void						shadow_subfunc(t_pix **vec_dir,
 	double d[3], t_obj_list *tmp);
 void						do_raytracing();
 void						antialiasing(t_libx *m);
+void						cshade(t_libx *m);
 
 #endif

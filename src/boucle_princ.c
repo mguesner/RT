@@ -53,7 +53,12 @@ void		start(t_libx *mlx)
 		count++;
 	}
 	if (mlx->antialia == 1)
-		antialiasing(mlx);
+	{
+		cshade(mlx);
+		count = 8;
+		while (count--)
+			antialiasing(mlx);
+	}
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 	ft_bzero(mlx->data, ((1079) * (mlx->size_line) + 1919 * (mlx->bpp / 8)));
 }

@@ -96,7 +96,8 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/triangle.c\
 	  $(SRCDIR)/set_color_finish.c\
 	  $(SRCDIR)/do_raytracing.c\
-	  $(SRCDIR)/mlx_init.c
+	  $(SRCDIR)/mlx_init.c\
+	  $(SRCDIR)/cell.c
 
 LIB =
 
