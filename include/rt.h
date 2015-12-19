@@ -266,6 +266,7 @@ typedef struct				s_libx
 	int						mblur;
 	int						sepia;
 	double					ref_dist_mblur;
+	double					ref_maxdist_mblur;
 }							t_libx;
 
 void						menu_rt(t_libx *mlx);
