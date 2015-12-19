@@ -23,8 +23,8 @@ perturbation de la couleur : un damier
  On peut définir un objet composé d'autres objets : cube
  Et il est possible de definir le meme objet composé mais a des positions et avec des orientations diverses
  Antialiasing -
- effet Cartoon
- motion blur
+ effet Cartoon -
+ motion blur -
  sepia ou autre filtre de couleur
  stereoscopie simple
  calcul multi thread -
