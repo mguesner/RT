@@ -265,6 +265,7 @@ typedef struct				s_libx
 	int						cshade;
 	int						mblur;
 	int						sepia;
+	double					ref_dist_mblur;
 }							t_libx;
 
 void						menu_rt(t_libx *mlx);
@@ -314,5 +315,6 @@ void						shadow_subfunc(t_pix **vec_dir,
 void						do_raytracing();
 void						antialiasing(t_libx *m);
 void						cshade(t_libx *m);
+void						blur(t_libx *m);
 
 #endif
