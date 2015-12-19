@@ -25,7 +25,7 @@ perturbation de la couleur : un damier
  Antialiasing -
  effet Cartoon -
  motion blur -
- sepia ou autre filtre de couleur
+ sepia ou autre filtre de couleur -
  stereoscopie simple
  calcul multi thread -
  c'est PARTICULIEREMENT rapide comme rendu -
