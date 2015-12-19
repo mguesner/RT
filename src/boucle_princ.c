@@ -54,11 +54,14 @@ void		start(t_libx *mlx)
 	}
 	if (mlx->antialia == 1)
 	{
-		cshade(mlx);
 		count = 8;
 		while (count--)
 			antialiasing(mlx);
 	}
+	if (mlx->cshade == 1)
+		cshade(mlx);
+	//if (mlx->mblur == 1)
+	//	blur(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 	ft_bzero(mlx->data, ((1079) * (mlx->size_line) + 1919 * (mlx->bpp / 8)));
 }

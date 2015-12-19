@@ -262,6 +262,9 @@ typedef struct				s_libx
 	t_obj_list_begin		obj;
 	t_pix					**pix;
 	int						antialia;
+	int						cshade;
+	int						mblur;
+	int						sepia;
 }							t_libx;
 
 void						menu_rt(t_libx *mlx);

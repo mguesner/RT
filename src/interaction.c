@@ -78,11 +78,12 @@ void		key_translate_cam(int keycode, t_libx *mlx)
 		mlx->cam->coord.x += 20;
 	else if (keycode == 69)
 		mlx->cam->coord.x -= 20;
-	else if (keycode == 3)
-	{
-		if (mlx->antialia == -1)
-			mlx->antialia = 1;
-		else
-			mlx->antialia = -1;
-	}
+	else if (keycode == 6)
+		mlx->antialia = (mlx->antialia == -1) ? 1 : -1;
+	else if (keycode == 7)
+		mlx->cshade = (mlx->cshade == -1) ? 1 : -1;
+	else if (keycode == 8)
+		mlx->mblur = (mlx->mblur == -1) ? 1 : -1;
+	else if (keycode == 9)
+		mlx->sepia = (mlx->sepia == -1) ? 1 : -1;
 }

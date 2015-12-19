@@ -41,6 +41,7 @@ int		expose_hook(t_libx *mlx)
 
 int		key_hook(int keycode, t_libx *mlx)
 {
+	// 6 7 8 9 11 45 46 
 	if (mlx->state == 0 && keycode == 53)
 		exit (0);
 	else if (mlx->state == 2)
@@ -56,7 +57,7 @@ int		key_hook(int keycode, t_libx *mlx)
 		}
 		else if ((keycode == 126 || keycode == 125 || keycode == 123 ||
 			keycode == 124 || keycode == 69 || keycode == 78 ||
-			keycode == 3) && (mlx->superint = 1))
+			keycode == 6 || keycode == 7 || keycode == 8 || keycode == 9) && (mlx->superint = 1))
 			key_translate_cam(keycode, mlx);
 		else if (keycode == 0 || keycode == 2 || keycode == 1 ||
 			keycode == 12 || keycode == 13 || keycode == 14)
@@ -103,6 +104,9 @@ int		main(void)
 	mlx_struct_init(WIDTH, HEIGHT, "RT", &mlx);
 	menu_rt(&mlx);
 	mlx.antialia = -1;
+	mlx.cshade = -1;
+	mlx.mblur = -1;
+	mlx.sepia = -1;
 	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
 	mlx_hook(mlx.window, 4, (1L << 2), mouse_press, &mlx);
