@@ -98,7 +98,8 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/do_raytracing.c\
 	  $(SRCDIR)/mlx_init.c\
 	  $(SRCDIR)/cell.c\
-	  $(SRCDIR)/blur.c
+	  $(SRCDIR)/blur.c\
+	  $(SRCDIR)/sepia.c
 
 LIB =
 

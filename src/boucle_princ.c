@@ -62,6 +62,8 @@ void		start(t_libx *mlx)
 		cshade(mlx);
 	if (mlx->mblur == 1)
 		blur(mlx);
+	if (mlx->sepia == 1)
+		sepia(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 	ft_bzero(mlx->data, ((1079) * (mlx->size_line) + 1919 * (mlx->bpp / 8)));
 }

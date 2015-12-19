@@ -317,5 +317,6 @@ void						do_raytracing();
 void						antialiasing(t_libx *m);
 void						cshade(t_libx *m);
 void						blur(t_libx *m);
+void						sepia(t_libx *m);
 
 #endif
