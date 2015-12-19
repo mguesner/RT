@@ -78,7 +78,7 @@ void			antialiasing(t_libx *m)
 	save = ft_memcpy(save, m->data, (1080 * (m->size_line) +
 		1920 * (m->bpp / 8)));
 	py = 2;
-	while (py < 1077)
+	while (py < 1079)
 	{
 		px = 0;
 		while (px < 1919)

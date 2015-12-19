@@ -15,12 +15,14 @@
 
 static int		diff_obj(t_obj *one, t_obj *two)
 {
+	if (!one || !two || !one->type || !two->type)
+		return (0);
 	if (one->type != two->type)
 		return (1);
-	else if (one->color.r != two->color.r || one->color.b != two->color.b
+	if (one->color.r != two->color.r || one->color.b != two->color.b
 		|| one->color.g != two->color.g)
 		return (1);
-	else if (one->coord.x != two->coord.x || one->coord.y != two->coord.y
+	if (one->coord.x != two->coord.x || one->coord.y != two->coord.y
 		|| one->coord.z != two->coord.z)
 		return (1);
 	return (0);
@@ -31,13 +33,13 @@ static int		compare_obj(t_libx *m, int pospix)
 	if (diff_obj(m->pix[pospix]->cur_obj,
 		m->pix[pospix - 1]->cur_obj))
 		return (1);
-	else if (diff_obj(m->pix[pospix]->cur_obj,
+	if (diff_obj(m->pix[pospix]->cur_obj,
 		m->pix[pospix + 1]->cur_obj))
 		return (1);
-	else if (diff_obj(m->pix[pospix]->cur_obj,
+	if (diff_obj(m->pix[pospix]->cur_obj,
 		m->pix[pospix + 1920]->cur_obj))
 		return (1);
-	else if (diff_obj(m->pix[pospix]->cur_obj,
+	if (diff_obj(m->pix[pospix]->cur_obj,
 		m->pix[pospix - 1920]->cur_obj))
 		return (1);
 	return (0);
@@ -73,7 +75,7 @@ void			cshade(t_libx *m)
 	int		py;
 
 	py = 3;
-	while (py < 1077)
+	while (py < 1079)
 	{
 		px = 0;
 		while (px < 1919)
