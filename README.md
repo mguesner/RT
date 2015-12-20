@@ -13,7 +13,7 @@
 
 - Perturbation de la normale : genre avec un sinus, ca donne l'impression d'avoir des vaguelettes
 
-- Perturbation de la couleur : un damier 
+- Perturbation de la couleur : un damier - OK
  
 - Perturbation de la couleur : un algo un peu plus complique pour changer la couleur de l'objet
  

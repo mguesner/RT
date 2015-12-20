@@ -37,6 +37,8 @@ static void		add_texture_color(t_pix *vec_dir, double u, double v)
 
 static void		texture_plane(t_pix *vec_dir, double u, double v)
 {
+	damier(vec_dir);
+	return ;
 	vec_dir->normale = get_normale(vec_dir, vec_dir->inter);
 	if (fabs(vec_dir->normale.x) != 0.0)
 	{
@@ -66,6 +68,8 @@ static void		texture_sphere(t_pix *vec_dir, double u, double v)
 {
 	t_vec		normale;
 
+		damier(vec_dir);
+	return ;
 	normale = normalize(make_vec(vec_dir->inter, vec_dir->cur_obj->coord));
 	u = 0.5 - (atan2((-normale.x), (-normale.y)) / (2.0 * M_PI));
 	v = 0.5 + 2.0 * (asin((normale.z)) / (2.0 * M_PI));
