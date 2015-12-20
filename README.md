@@ -63,7 +63,7 @@
 
 - C'est PARTICULIEREMENT rapide comme rendu - OK
 
-- Sauvegarde de l'image integree au RT
+- Sauvegarde de l'image integree au RT - OK
 
 - Il y a une interface sommaire - OK
 

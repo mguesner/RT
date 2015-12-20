@@ -17,6 +17,13 @@
 # define TOTAL_PIX WIDTH * HEIGHT
 # define EPSILON 0.1E-7
 # define N1 1.0
+# define BPP 32
+# define PLANES 1
+# define COMPRESSION 0
+# define PBS HEIGHT*WIDTH*BPP/8
+# define FILESIZE PBS+sizeof(t_bitmap)
+# define XPPM 0x130B
+# define YPPM 0x130B
 
 # include <vecteur.h>
 # include <color.h>
@@ -25,6 +32,40 @@
 # include <math.h>
 # include <limits.h>
 # include <stdlib.h>
+# include <stdint.h>
+
+# pragma pack(push,1)
+
+typedef struct				s_fileheader
+{
+	uint8_t					signature[2];
+	uint32_t				filesize;
+	uint32_t				reserved;
+	uint32_t				fileoffset_to_pixelarray;
+}							t_fileheader;
+
+typedef struct				s_bitmapinfoheader
+{
+	uint32_t				dibheadersize;
+	uint32_t				width;
+	uint32_t				height;
+	uint16_t				planes;
+	uint16_t				bitsperpixel;
+	uint32_t				compression;
+	uint32_t				imagesize;
+	uint32_t				ypixelpermeter;
+	uint32_t				xpixelpermeter;
+	uint32_t				numcolorspallette;
+	uint32_t				mostimpcolor;
+}							t_bitmapinfoheader;
+
+typedef struct				s_bitmap
+{
+	t_fileheader			fileheader;
+	t_bitmapinfoheader		bitmapinfoheader;
+}							t_bitmap;
+
+# pragma pack(pop)
 
 typedef enum				e_obj_type
 {
@@ -321,5 +362,6 @@ void						cshade(t_libx *m);
 void						blur(t_libx *m);
 void						sepia(t_libx *m);
 void						damier(t_pix *vec_dir);
+void						screenshot(t_libx *m);
 
 #endif
