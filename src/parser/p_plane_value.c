@@ -17,6 +17,11 @@ void					p_plane_value(t_pars *e, t_lex **node)
 {
 	t_point	p;
 
+	if (e->substep != SSBEGIN)
+	{
+		add_err(e, UNKOBJ, (*node)->value);
+		return ;
+	}
 	p.z = atof((*node)->value);
 	e->cur->coord = p;
 }

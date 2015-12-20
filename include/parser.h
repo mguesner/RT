@@ -50,6 +50,7 @@ typedef enum			e_substep
 	SSTEXTURE,
 	SSFINISH,
 	SSSPHERE,
+	SSDAMIER,
 	NBSUBSTEP
 }						t_substep;
 
@@ -164,6 +165,7 @@ void					color(t_pars *e, t_lex **node);
 
 void					p_plane(t_pars *e, t_lex **node);
 void					p_limit(t_pars *e, t_lex **node);
+void					p_damier(t_pars *e, t_lex **node);
 
 void					p_plane_word(t_pars *e, t_lex **node);
 void					p_plane_value(t_pars *e, t_lex **node);

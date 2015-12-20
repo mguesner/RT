@@ -27,6 +27,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/parser/fill_vector.c\
 	  $(SRCDIR)/parser/p_closescope.c\
 	  $(SRCDIR)/parser/p_openscope.c\
+	  $(SRCDIR)/parser/p_damier.c\
 	  $(SRCDIR)/parser/p_begin.c\
 	  $(SRCDIR)/parser/p_begin_word.c\
 	  $(SRCDIR)/parser/add_error_begin.c\
