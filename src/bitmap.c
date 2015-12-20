@@ -20,9 +20,9 @@ static void		write_file(t_libx *m, t_bitmap *pbitma)
 {
 	FILE		*fp;
 
-	fp = fopen("screenshot.bmp","wb");
-	fwrite (pbitma, 1, sizeof(t_bitmap),fp);
-	fwrite(m->data,1,PBS,fp);
+	fp = fopen("screenshot.bmp", "wb");
+	fwrite (pbitma, 1, sizeof(t_bitmap), fp);
+	fwrite(m->data, 1, PBS, fp);
 	fclose(fp);
 }
 
@@ -31,11 +31,11 @@ void			screenshot(t_libx *m)
 {
 	t_bitmap		*pbitma;
 
-	pbitma  = (t_bitmap*)calloc(1,sizeof(t_bitmap));
+	pbitma = (t_bitmap*)calloc(1, sizeof(t_bitmap));
 	strcpy((char *)pbitma->fileheader.signature, "BM");
 	pbitma->fileheader.filesize = FILESIZE;
 	pbitma->fileheader.fileoffset_to_pixelarray = sizeof(t_bitmap);
-	pbitma->bitmapinfoheader.dibheadersize =sizeof(t_bitmapinfoheader);
+	pbitma->bitmapinfoheader.dibheadersize = sizeof(t_bitmapinfoheader);
 	pbitma->bitmapinfoheader.width = WIDTH;
 	pbitma->bitmapinfoheader.height = HEIGHT;
 	pbitma->bitmapinfoheader.planes = PLANES;

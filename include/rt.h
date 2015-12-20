@@ -17,13 +17,13 @@
 # define TOTAL_PIX WIDTH * HEIGHT
 # define EPSILON 0.1E-7
 # define N1 1.0
-#define BPP 32
-#define PLANES 1
-#define COMPRESSION 0
-#define PBS HEIGHT*WIDTH*BPP/8
-#define FILESIZE PBS+sizeof(t_bitmap)
-#define XPPM 0x130B
-#define YPPM 0x130B
+# define BPP 32
+# define PLANES 1
+# define COMPRESSION 0
+# define PBS HEIGHT*WIDTH*BPP/8
+# define FILESIZE PBS+sizeof(t_bitmap)
+# define XPPM 0x130B
+# define YPPM 0x130B
 
 # include <vecteur.h>
 # include <color.h>
@@ -31,9 +31,9 @@
 # include <mlx.h>
 # include <math.h>
 # include <limits.h>
-#include <stdint.h>
+# include <stdint.h>
 
-#pragma pack(push,1)
+# pragma pack(push,1)
 
 typedef struct				s_fileheader
 {
@@ -64,7 +64,7 @@ typedef struct				s_bitmap
 	t_bitmapinfoheader		bitmapinfoheader;
 }							t_bitmap;
 
-#pragma pack(pop)
+# pragma pack(pop)
 
 typedef enum				e_obj_type
 {
