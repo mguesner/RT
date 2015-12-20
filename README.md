@@ -87,7 +87,7 @@
 +++ A AJOUTER AU PARSER +++
 
 - Lumière ambiante :
-Int entre 0 et 100 à mettre dans t_libx->ambient
+Int entre 0 et 100 à mettre dans t_libx->ambient - OK
 
 - Objet cube
 un point, un vecteur, une taille ?

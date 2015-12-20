@@ -6,12 +6,13 @@ camera
    //angle 45 // l'angle de la caméra
 }
 
-light_source { <1500,600,500>
+light_source { <5000,-1000,0>
       color rgb<1,1,1>
 }
 
 sphere { <3000,-1000,0>, 600 // coord centre et rayon
          pigment { color rgb <0,1,0> }
+         texture { gravas2 }
 }
 
 sphere { <6000,1000,0>, 600 // coord centre et rayon
