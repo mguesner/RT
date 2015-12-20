@@ -40,7 +40,7 @@ static void			set_color_shad(t_libx *m, t_pix *pix)
 
 	white = 255 * 3;
 	pix->is_in_shadow = 1;
-	coef = 0.2;
+	coef = m->cam->ambient / 100.;
 	coef *= m->spots.size;
 	coef += pix->shadow_obj->transparence;
 	if (coef > 0.9)
@@ -98,6 +98,7 @@ void				calc_lum2(t_libx *mlx, t_pix *vec_d)
 		if (!light_dist || (vec_d->shadow_obj
 			&& vec_d->shadow_obj->transparence != 0.0))
 		{
+			vec_d->coef = mlx->cam->ambient / 100.;
 			set_color_light(lights->obj, vec_d, vec_d->inter, mlx->spots.size);
 			if (!vec_d->is_in_shadow && vec_d->cur_obj->specular)
 				apply_specular(mlx, vec_d);
@@ -116,6 +117,8 @@ void				calc_lum(t_libx *mlx, t_pix *vec_dir)
 		return ;
 	if (vec_dir->cur_obj->texture.exist == 1)
 		texture_func(vec_dir);
+	else if (vec_dir->cur_obj->has_damier)
+		damier(vec_dir);
 	else
 	{
 		if (vec_dir->first_obj != NULL && vec_dir->first_obj

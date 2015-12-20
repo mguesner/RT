@@ -12,18 +12,11 @@
 
 #include <rt.h>
 
-static void		set_color1(t_pix *vec_dir)
+static void		put_color(t_pix *vec_dir, t_color color)
 {
-	vec_dir->color->b = 200;
-	vec_dir->color->g = 200;
-	vec_dir->color->r = 200;
-}
-
-static void		set_color2(t_pix *vec_dir)
-{
-	vec_dir->color->b = 50;
-	vec_dir->color->g = 50;
-	vec_dir->color->r = 50;
+	vec_dir->color->b = color.b;
+	vec_dir->color->g = color.g;
+	vec_dir->color->r = color.r;
 }
 
 static void		check(t_pix *vec_dir, int a, int b)
@@ -32,7 +25,7 @@ static void		check(t_pix *vec_dir, int a, int b)
 	int	a1;
 	int	b1;
 
-	l = 200;
+	l = vec_dir->cur_obj->damier.l;
 	if (a < 0)
 		a = abs(a - l);
 	if (b < 0)
@@ -40,9 +33,9 @@ static void		check(t_pix *vec_dir, int a, int b)
 	a1 = (int)(a % (2 * l));
 	b1 = (int)(b % (2 * l));
 	if ((a1 < l && b1 < l) || (a1 > l && b1 > l))
-		set_color2(vec_dir);
+		put_color(vec_dir, vec_dir->cur_obj->damier.color);
 	else
-		set_color1(vec_dir);
+		put_color(vec_dir, vec_dir->cur_obj->color);
 }
 
 void	damier(t_pix *vec_dir)

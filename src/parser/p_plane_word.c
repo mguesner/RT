@@ -20,6 +20,7 @@ void					p_plane_word(t_pars *e, t_lex **node)
 	tools[SSPIGMENT] = &p_pigment;
 	tools[SSTEXTURE] = &p_texture;
 	tools[SSFINISH] = &p_finish;
+	tools[SSDAMIER] = &p_damier;
 	if (e->substep != SSBEGIN)
 	{
 		tools[e->substep](e, node);
@@ -32,6 +33,8 @@ void					p_plane_word(t_pars *e, t_lex **node)
 		e->substep = SSTEXTURE;
 	else if (!strcmp(tmp, "finish"))
 		e->substep = SSFINISH;
+	else if (!strcmp(tmp, "damier"))
+		e->substep = SSDAMIER;
 	else if (!strcmp(tmp, "end"))
 		p_limit(e, node);
 	else

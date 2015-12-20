@@ -50,6 +50,7 @@ typedef enum			e_substep
 	SSTEXTURE,
 	SSFINISH,
 	SSSPHERE,
+	SSDAMIER,
 	NBSUBSTEP
 }						t_substep;
 
@@ -153,6 +154,7 @@ void					p_camera(t_pars *e, t_lex **node);
 void					p_camera_word(t_pars *e, t_lex **node);
 void					cam_loc(t_pars *e, t_lex **node);
 void					cam_look_at(t_pars *e, t_lex **node);
+void					cam_amb_light(t_pars *e, t_lex **node);
 void					add_error_camera(t_pars *e, t_lex **node);
 
 void					p_spot(t_pars *e, t_lex **node);
@@ -163,6 +165,7 @@ void					color(t_pars *e, t_lex **node);
 
 void					p_plane(t_pars *e, t_lex **node);
 void					p_limit(t_pars *e, t_lex **node);
+void					p_damier(t_pars *e, t_lex **node);
 
 void					p_plane_word(t_pars *e, t_lex **node);
 void					p_plane_value(t_pars *e, t_lex **node);

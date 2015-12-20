@@ -13,6 +13,7 @@
 #include <parser.h>
 #include <errno.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 static void				lex_pars2(t_obj_list *lst, t_libx *mlx)
 {
@@ -66,8 +67,10 @@ void					lex_pars(char *file_name, t_libx *mlx)
 	while (next)
 	{
 		next = next->next;
+	printf("%f, %f, %f\n", lst->obj->coord.x, lst->obj->coord.y, lst->obj->coord.z);
 		lex_pars2(lst, mlx);
 		lst = next;
 	}
+
 	clean_pars(&e);
 }

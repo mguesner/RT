@@ -80,6 +80,12 @@ typedef enum				e_obj_type
 	NBOBJTYPE
 }							t_obj_type;
 
+typedef struct				s_dam
+{
+	t_color					color;
+	double					l;
+}							t_dam;
+
 typedef struct				s_texture
 {
 	int						exist;
@@ -103,6 +109,8 @@ typedef struct				s_obj
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	int						has_damier;
+	t_dam					damier;
 	double					limite1;
 	double					limite2;
 }							t_obj;
@@ -118,8 +126,11 @@ typedef struct				s_camera
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	int						has_damier;
+	t_dam					damier;
 	double					limite1;
 	double					limite2;
+	int						ambient;
 	t_point					pix_hg;
 	t_point					pix_bg;
 	t_point					pix_hd;
@@ -137,6 +148,8 @@ typedef struct				s_light
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	int						has_damier;
+	t_dam					damier;
 	double					limite1;
 	double					limite2;
 }							t_light;
@@ -152,6 +165,8 @@ typedef struct				s_plane
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	int						has_damier;
+	t_dam					damier;
 	double					limite1;
 	double					limite2;
 	t_vec					norm;
@@ -168,6 +183,8 @@ typedef struct				s_sphere
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	int						has_damier;
+	t_dam					damier;
 	double					limite1;
 	double					limite2;
 	double					radius;
@@ -184,6 +201,8 @@ typedef struct				s_cylinder
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	int						has_damier;
+	t_dam					damier;
 	double					limite1;
 	double					limite2;
 	double					radius;
@@ -201,6 +220,8 @@ typedef struct				s_cone
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	int						has_damier;
+	t_dam					damier;
 	double					limite1;
 	double					limite2;
 	double					angle;
@@ -218,6 +239,8 @@ typedef struct				s_triangle
 	double					reflection;
 	double					transparence;
 	double					refraction;
+	int						has_damier;
+	t_dam					damier;
 	double					limite1;
 	double					limite2;
 	t_vec					u;
@@ -272,6 +295,7 @@ typedef struct				s_pix
 	t_obj					*first_obj;
 	t_obj					*shadow_obj;
 	t_obj					*map_first_obj;
+	double					coef;
 
 }							t_pix;
 

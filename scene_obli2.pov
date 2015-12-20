@@ -2,6 +2,7 @@ camera
 {
 	location <0,0,0> // la position de l'observateur
 	look_at <1000,0,0>  // le point de vue
+	ambient_light 0.15 //lumiere ambiant
 }
 
 light_source { <1500,200,-1900>
