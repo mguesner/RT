@@ -16,20 +16,13 @@
 #include <stdint.h>
 #include <string.h>
 
-static void		write_file(t_libx *m, t_bitmap *pbitma, uint8_t *pixelbuffer)
+static void		write_file(t_libx *m, t_bitmap *pbitma)
 {
 	FILE		*fp;
-	int			i;
 
 	fp = fopen("screenshot.bmp","wb");
 	fwrite (pbitma, 1, sizeof(t_bitmap),fp);
-	i = 0;
-	while (m->data[i])
-	{
-		pixelbuffer[i] = m->data[i];
-		i++;
-	}
-	fwrite(pixelbuffer,1,PBS,fp);
+	fwrite(m->data,1,PBS,fp);
 	fclose(fp);
 }
 
@@ -37,10 +30,8 @@ static void		write_file(t_libx *m, t_bitmap *pbitma, uint8_t *pixelbuffer)
 void			screenshot(t_libx *m)
 {
 	t_bitmap		*pbitma;
-	uint8_t			*pixelbuffer;
 
 	pbitma  = (t_bitmap*)calloc(1,sizeof(t_bitmap));
-	pixelbuffer = (uint8_t*)malloc(PBS);
 	strcpy((char *)pbitma->fileheader.signature, "BM");
 	pbitma->fileheader.filesize = FILESIZE;
 	pbitma->fileheader.fileoffset_to_pixelarray = sizeof(t_bitmap);
@@ -54,7 +45,6 @@ void			screenshot(t_libx *m)
 	pbitma->bitmapinfoheader.ypixelpermeter = YPPM;
 	pbitma->bitmapinfoheader.xpixelpermeter = XPPM;
 	pbitma->bitmapinfoheader.numcolorspallette = 0;
-	write_file(m, pbitma, pixelbuffer);
+	write_file(m, pbitma);
 	free(pbitma);
-	free(pixelbuffer);
 }

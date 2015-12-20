@@ -17,7 +17,7 @@
 # define TOTAL_PIX WIDTH * HEIGHT
 # define EPSILON 0.1E-7
 # define N1 1.0
-#define BPP 24
+#define BPP 32
 #define PLANES 1
 #define COMPRESSION 0
 #define PBS HEIGHT*WIDTH*BPP/8
