@@ -120,6 +120,7 @@ typedef struct				s_camera
 	double					refraction;
 	double					limite1;
 	double					limite2;
+	int						ambient;
 	t_point					pix_hg;
 	t_point					pix_bg;
 	t_point					pix_hd;

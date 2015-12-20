@@ -153,6 +153,7 @@ void					p_camera(t_pars *e, t_lex **node);
 void					p_camera_word(t_pars *e, t_lex **node);
 void					cam_loc(t_pars *e, t_lex **node);
 void					cam_look_at(t_pars *e, t_lex **node);
+void					cam_amb_light(t_pars *e, t_lex **node);
 void					add_error_camera(t_pars *e, t_lex **node);
 
 void					p_spot(t_pars *e, t_lex **node);

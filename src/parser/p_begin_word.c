@@ -57,6 +57,7 @@ void					p_begin_word(t_pars *e, t_lex **node)
 	{
 		e->cur = ft_memalloc(sizeof(t_camera));
 		e->cur->type = CAM;
+		((t_camera *)e->cur)->ambient = 20;
 		e->step = PCAMERA;
 	}
 	else if (!strcmp((*node)->value, "light_source"))

@@ -40,7 +40,7 @@ static void			set_color_shad(t_libx *m, t_pix *pix)
 
 	white = 255 * 3;
 	pix->is_in_shadow = 1;
-	coef = 0.2;
+	coef = m->cam->ambient / 100;
 	coef *= m->spots.size;
 	coef += pix->shadow_obj->transparence;
 	if (coef > 0.9)

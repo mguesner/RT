@@ -2,6 +2,7 @@ camera
 {
    location <0,0,0> // la position de l'observateur
    look_at <1000,0,0>  // le point de vue
+   ambient_light 0.5 //lumiere ambiant
    //right x*image_width/image_height  // aspect ratio
    //angle 45 // l'angle de la caméra
 }

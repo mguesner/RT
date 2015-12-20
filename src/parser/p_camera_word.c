@@ -21,6 +21,8 @@ void					p_camera_word(t_pars *e, t_lex **node)
 		cam_loc(e, node);
 	else if (!strcmp(tmp, "look_at"))
 		cam_look_at(e, node);
+	else if (!strcmp(tmp, "ambient_light"))
+		cam_amb_light(e, node);
 	else
 		add_err(e, UNKOBJ, tmp);
 }
