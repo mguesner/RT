@@ -6,10 +6,6 @@ camera
    //angle 45 // l'angle de la caméra
 }
 
-light_source { <0,0,1000>
-      color rgb<1,1,1>
-}
-
 sphere { <250,250,1500>, 100 // coord centre et rayon
          pigment { color rgb <0,1,0> }
          texture { jupitermap }

@@ -10,8 +10,6 @@ light_source { <1500,600,500>
       color rgb<1,1,1>
 }
 
-
-
 sphere { <3000,-1000,0>, 600 // coord centre et rayon
          pigment { color rgb <0,1,0> }
 }

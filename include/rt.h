@@ -252,6 +252,7 @@ typedef struct				s_libx
 	int						bpp;
 	int						size_line;
 	int						endian;
+	int						ambient;
 	int						width;
 	int						height;
 	int						current_pix;
