@@ -100,7 +100,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/cell.c\
 	  $(SRCDIR)/blur.c\
 	  $(SRCDIR)/sepia.c\
-	  $(SRCDIR)/damier.c
+	  $(SRCDIR)/damier.c\
 	  $(SRCDIR)/bitmap.c
 
 LIB =
