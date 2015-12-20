@@ -24,6 +24,7 @@
 # include <mlx.h>
 # include <math.h>
 # include <limits.h>
+# include <stdlib.h>
 
 typedef enum				e_obj_type
 {
@@ -319,5 +320,6 @@ void						antialiasing(t_libx *m);
 void						cshade(t_libx *m);
 void						blur(t_libx *m);
 void						sepia(t_libx *m);
+void						damier(t_pix *vec_dir);
 
 #endif

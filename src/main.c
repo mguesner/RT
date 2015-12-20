@@ -106,7 +106,6 @@ int		main(void)
 	mlx.antialia = -1;
 	mlx.cshade = -1;
 	mlx.mblur = -1;
-	mlx.sepia = -1;
 	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
 	mlx_hook(mlx.window, 4, (1L << 2), mouse_press, &mlx);
