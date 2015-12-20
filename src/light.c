@@ -98,6 +98,7 @@ void				calc_lum2(t_libx *mlx, t_pix *vec_d)
 		if (!light_dist || (vec_d->shadow_obj
 			&& vec_d->shadow_obj->transparence != 0.0))
 		{
+			vec_d->coef = mlx->cam->ambient / 100.;
 			set_color_light(lights->obj, vec_d, vec_d->inter, mlx->spots.size);
 			if (!vec_d->is_in_shadow && vec_d->cur_obj->specular)
 				apply_specular(mlx, vec_d);

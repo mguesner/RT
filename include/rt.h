@@ -295,6 +295,7 @@ typedef struct				s_pix
 	t_obj					*first_obj;
 	t_obj					*shadow_obj;
 	t_obj					*map_first_obj;
+	double					coef;
 
 }							t_pix;
 

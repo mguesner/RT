@@ -38,7 +38,7 @@ void			set_color_light(t_obj *light, t_pix *pix
 	pix->normale = get_normale(pix, inter);
 	vec_reflex(pix);
 	scal = fabs(scalar(pix->normale, dir));
-	coef = 0.2;
+	coef = pix->coef;
 	coef *= nb_spots;
 	if (coef > 0.9)
 		coef = 0.9;
