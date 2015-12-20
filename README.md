@@ -7,7 +7,7 @@
 
 - Vos objets ne tombent jamais dans le noir total. - OK
 
-- Si la lumiere d'ambiance est pas en dur dans le code mais reglable dans le fichier de conf.
+- Si la lumiere d'ambiance est pas en dur dans le code mais reglable dans le fichier de conf. - OK
 
 - On peut decouper basiquement les objets selon les axes x,y,z - OK
 
