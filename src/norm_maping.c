@@ -64,7 +64,7 @@ static t_vec		maping_plane(t_pix *pic, t_point inter, t_vec norm)
 
 t_vec	norm_maping(t_pix *pic, t_point inter, t_vec norm)
 {
-	if (pic->cur_obj->texture.exist == 1 && pix->cur_obj->type == PLANE)
+	if (pic->cur_obj->texture.exist == 1 && pic->cur_obj->type == PLANE)
 		return(maping_plane(pic, inter, norm));
 	return (norm);
 }
