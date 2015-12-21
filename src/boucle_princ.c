@@ -44,12 +44,17 @@ static void	post_process(t_libx *mlx)
 		while (count--)
 			antialiasing(mlx);
 	}
-	if (mlx->cshade == 1)
-		cshade(mlx);
 	if (mlx->mblur == 1)
 		blur(mlx);
 	if (mlx->sepia == 1)
-		sepia(mlx);	
+		sepia(mlx);
+	if (mlx->cshade == 1)
+		cshade(mlx);
+	if (mlx->screen == 1)
+	{
+		screenshot(mlx);
+		mlx->screen = -1;
+	}
 }
 
 void		start(t_libx *mlx)

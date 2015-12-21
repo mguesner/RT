@@ -86,4 +86,6 @@ void		key_translate_cam(int keycode, t_libx *mlx)
 		mlx->mblur = (mlx->mblur == -1) ? 1 : -1;
 	else if (keycode == 9)
 		mlx->sepia = (mlx->sepia == -1) ? 1 : -1;
+	else if (keycode == 11)
+		mlx->screen = (mlx->screen == -1) ? 1 : -1;
 }

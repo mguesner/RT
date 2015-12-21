@@ -332,6 +332,7 @@ typedef struct				s_libx
 	int						cshade;
 	int						mblur;
 	int						sepia;
+	int						screen;
 	double					ref_dist_mblur;
 	double					ref_maxdist_mblur;
 }							t_libx;
