@@ -62,9 +62,40 @@ static t_vec		maping_plane(t_pix *pic, t_point inter, t_vec norm)
 	return (apply_map(pic, norm, u, v));
 }
 
+static t_vec		maping_sphere(t_pix *pic, t_point inter, t_vec norm)
+{
+	double	u;
+	double	v;
+
+	(void)inter;
+	u = 0.5 - (atan2((-norm.x), (-norm.y)) / (2.0 * M_PI));
+	v = 0.5 + 2.0 * (asin((norm.z)) / (2.0 * M_PI));
+	u *= pic->cur_obj->texture.width;
+	v *= pic->cur_obj->texture.height;
+	return (apply_map(pic, norm, u, v));
+}
+
+static t_vec		maping_cylcone(t_pix *pic, t_point inter, t_vec norm)
+{
+	double	u;
+	double	v;
+
+	if (pic->cur_obj->type == CYLINDER || pic->cur_obj->type == CONE)
+	{
+		u = fabs(fmod(inter.y, (float)pic->cur_obj->texture.width));
+		v = fabs(fmod(inter.z, (float)pic->cur_obj->texture.height));
+		return (apply_map(pic, norm, u, v));
+	}
+	return (norm);
+}
+
 t_vec	norm_maping(t_pix *pic, t_point inter, t_vec norm)
 {
 	if (pic->cur_obj->texture.exist == 1 && pic->cur_obj->type == PLANE)
 		return(maping_plane(pic, inter, norm));
+	if (pic->cur_obj->texture.exist == 1 && pic->cur_obj->type == SPHERE)
+		return(maping_sphere(pic, inter, norm));
+	if (pic->cur_obj->texture.exist == 1)
+		return(maping_cylcone(pic, inter, norm));
 	return (norm);
 }
