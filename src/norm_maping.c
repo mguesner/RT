@@ -22,13 +22,13 @@ static t_vec		apply_map(t_pix *pic, t_vec norm, double u, double v)
 	pos = ((int)u * (pic->cur_obj->texture.bpp / 8)
 		+ (int)v * pic->cur_obj->texture.size_line);
 	tmp = (unsigned char)pic->cur_obj->texture.data[pos];
-	d = (tmp / 255.0) * 2 + 1;
+	d = (tmp / 255.0) * 2 - 1;
 	norm.x += d;
 	tmp = (unsigned char)pic->cur_obj->texture.data[pos + 1];
-	d = (tmp / 255.0) * 2 + 1;
+	d = (tmp / 255.0) * 2 - 1;
 	norm.y += d;
 	tmp = (unsigned char)pic->cur_obj->texture.data[pos + 2];
-	d = (tmp / 255.0) * 2 + 1;
+	d = (tmp / 255.0) * 2 - 1;
 	norm.z += d;
 	return (normalize(norm));
 }
