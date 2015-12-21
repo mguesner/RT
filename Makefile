@@ -104,7 +104,7 @@ SRC = $(SRCDIR)/vecteur/norme.c\
 	  $(SRCDIR)/sepia.c\
 	  $(SRCDIR)/damier.c\
 	  $(SRCDIR)/bitmap.c\
-	  $(SRCDIR)/perlin.c
+	  $(SRCDIR)/norm_maping.c
 
 LIB =
 
