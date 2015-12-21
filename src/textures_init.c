@@ -13,7 +13,7 @@
 #include <parser.h>
 #include <stdlib.h>
 
-t_texture texture_init(t_pars *e, char *name)
+t_texture	texture_init(t_pars *e, char *name)
 {
 	t_texture	ret;
 	char		*file_name;

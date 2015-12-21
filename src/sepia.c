@@ -34,7 +34,7 @@ static void		filter_pix(int px, int py, t_libx *m)
 	m->data[pos] = (char)out[0];
 	m->data[pos + 1] = (char)out[1];
 	m->data[pos + 2] = (char)out[2];
-}		
+}
 
 void			sepia(t_libx *m)
 {
@@ -52,5 +52,4 @@ void			sepia(t_libx *m)
 		}
 		py++;
 	}
-
 }

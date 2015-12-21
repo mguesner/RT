@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include <../include/rt.h>
 #include <stdlib.h>
 
@@ -50,9 +49,10 @@ static void		sweet(int px, int py, t_libx *m, char *save)
 
 	pospix = px + py * 1920;
 	pos = ((py) * (m->size_line) + px * (m->bpp / 8));
-	inc = (m->pix[pospix]->dist - m->ref_dist_mblur) * 8 / (m->ref_maxdist_mblur);
+	inc = (m->pix[pospix]->dist - m->ref_dist_mblur)
+		* 8 / (m->ref_maxdist_mblur);
 	while (inc > 0)
-	{                                          
+	{
 		m->data[pos] = get_five(save, m, pos, 0) / 5.0;
 		m->data[pos + 1] = get_five(save, m, pos, 1) / 5.0;
 		m->data[pos + 2] = get_five(save, m, pos, 2) / 5.0;
@@ -68,7 +68,7 @@ static char		*copy_to(t_libx *m)
 
 	i = (1080 * (m->size_line) + 1920 * (m->bpp / 8));
 	if (!(save = (char *)malloc(sizeof(char) * i + 1)))
-		exit (0);
+		exit(0);
 	px = 0;
 	m->ref_dist_mblur = 100000000000;
 	m->ref_maxdist_mblur = 0;

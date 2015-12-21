@@ -38,7 +38,7 @@ static void		check(t_pix *vec_dir, int a, int b)
 		put_color(vec_dir, vec_dir->cur_obj->color);
 }
 
-void	damier(t_pix *vec_dir)
+void			damier(t_pix *vec_dir)
 {
 	t_vec		normale;
 	double		u;
@@ -62,5 +62,5 @@ void	damier(t_pix *vec_dir)
 		u *= 4000;
 		v *= 4000;
 		check(vec_dir, u, v);
-	}                                                                                                                                                                                                                                                    
+	}
 }

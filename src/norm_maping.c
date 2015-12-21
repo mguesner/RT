@@ -16,7 +16,7 @@
 static t_vec		apply_map(t_pix *pic, t_vec norm, double u, double v)
 {
 	int				pos;
-	double 			d;
+	double			d;
 	unsigned char	tmp;
 
 	pos = ((int)u * (pic->cur_obj->texture.bpp / 8)
@@ -34,7 +34,7 @@ static t_vec		apply_map(t_pix *pic, t_vec norm, double u, double v)
 }
 
 static t_vec		maping_plane(t_pix *pic, t_point inter, t_vec norm)
-{	
+{
 	double	u;
 	double	v;
 
@@ -89,13 +89,13 @@ static t_vec		maping_cylcone(t_pix *pic, t_point inter, t_vec norm)
 	return (norm);
 }
 
-t_vec	norm_maping(t_pix *pic, t_point inter, t_vec norm)
+t_vec				norm_maping(t_pix *pic, t_point inter, t_vec norm)
 {
 	if (pic->cur_obj->texture.exist == 1 && pic->cur_obj->type == PLANE)
-		return(maping_plane(pic, inter, norm));
+		return (maping_plane(pic, inter, norm));
 	if (pic->cur_obj->texture.exist == 1 && pic->cur_obj->type == SPHERE)
-		return(maping_sphere(pic, inter, norm));
+		return (maping_sphere(pic, inter, norm));
 	if (pic->cur_obj->texture.exist == 1)
-		return(maping_cylcone(pic, inter, norm));
+		return (maping_cylcone(pic, inter, norm));
 	return (norm);
 }

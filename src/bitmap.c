@@ -21,11 +21,10 @@ static void		write_file(t_libx *m, t_bitmap *pbitma)
 	FILE		*fp;
 
 	fp = fopen("screenshot.bmp", "wb");
-	fwrite (pbitma, 1, sizeof(t_bitmap), fp);
+	fwrite(pbitma, 1, sizeof(t_bitmap), fp);
 	fwrite(m->data, 1, PBS, fp);
 	fclose(fp);
 }
-
 
 void			screenshot(t_libx *m)
 {

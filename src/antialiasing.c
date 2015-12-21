@@ -64,7 +64,7 @@ static char		*copy_to(t_libx *m)
 
 	i = (1080 * (m->size_line) + 1920 * (m->bpp / 8));
 	if (!(save = (char *)malloc(sizeof(char) * i + 1)))
-		exit (0);
+		exit(0);
 	return (save);
 }
 

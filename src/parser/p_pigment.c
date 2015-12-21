@@ -16,7 +16,7 @@ void					p_pigment(t_pars *e, t_lex **node)
 {
 	char	*tmp;
 	t_lex	*tmp_node;
-	
+
 	tmp_node = *node;
 	tmp = tmp_node->value;
 	if (!strcmp(tmp, "color") && tmp_node->next)

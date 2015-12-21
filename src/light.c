@@ -83,27 +83,26 @@ static int			shadow(t_obj *light, t_obj_list *tmp
 
 void				calc_lum2(t_libx *mlx, t_pix *vec_d)
 {
-	t_obj_list	*lights;
+	t_obj_list	*lts;
 	int			light_dist;
 
-	lights = mlx->spots.begin;
-	while (lights)
+	lts = mlx->spots.begin;
+	while (lts)
 	{
 		light_dist = 0;
 		if (vec_d->cur_obj->reflection <= 0.0)
-			light_dist = shadow(lights->obj, mlx->obj.begin
-				, vec_d->inter, vec_d);
+			light_dist = shadow(lts->obj, mlx->obj.begin, vec_d->inter, vec_d);
 		if (light_dist)
 			set_color_shad(mlx, vec_d);
 		if (!light_dist || (vec_d->shadow_obj
 			&& vec_d->shadow_obj->transparence != 0.0))
 		{
 			vec_d->coef = mlx->cam->ambient / 100.;
-			set_color_light(lights->obj, vec_d, vec_d->inter, mlx->spots.size);
+			set_color_light(lts->obj, vec_d, vec_d->inter, mlx->spots.size);
 			if (!vec_d->is_in_shadow && vec_d->cur_obj->specular)
 				apply_specular(mlx, vec_d);
 		}
-		lights = lights->next;
+		lts = lts->next;
 	}
 	if (vec_d->is_in_shadow || !vec_d->cur_obj->specular)
 		set_color(mlx, vec_d, 0);

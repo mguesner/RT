@@ -12,7 +12,7 @@
 
 #include <rt.h>
 
-double dist_plane(t_plane *plane, t_vec *vec, t_point *o)
+double	dist_plane(t_plane *plane, t_vec *vec, t_point *o)
 {
 	double	t;
 

@@ -53,7 +53,7 @@ static void		sweet(int px, int py, t_libx *m)
 	pospix = px + py * 1920;
 	pos = ((py) * (m->size_line) + px * (m->bpp / 8));
 	if (m->pix[pospix]->cur_obj && m->pix[pospix + 1]->cur_obj)
-	{                                          
+	{
 		if (compare_obj(m, pospix))
 		{
 			m->data[pos] = 0;
@@ -85,5 +85,4 @@ void			cshade(t_libx *m)
 		}
 		py++;
 	}
-
 }
