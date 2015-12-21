@@ -55,6 +55,8 @@ int		key_hook(int keycode, t_libx *mlx)
 			clean_mlx(mlx);
 			menu_rt(mlx);
 		}
+		if (keycode == 11)
+			screenshot(mlx);
 		else if ((keycode == 126 || keycode == 125 || keycode == 123 ||
 			keycode == 124 || keycode == 69 || keycode == 78 ||
 			keycode == 6 || keycode == 7 || keycode == 8 || keycode == 9) && (mlx->superint = 1))
@@ -106,6 +108,7 @@ int		main(void)
 	mlx.antialia = -1;
 	mlx.cshade = -1;
 	mlx.mblur = -1;
+	mlx.sepia = -1;
 	mlx_loop_hook(mlx.mlx, expose_hook, &mlx);
 	mlx_key_hook(mlx.window, key_hook, &mlx);
 	mlx_hook(mlx.window, 4, (1L << 2), mouse_press, &mlx);

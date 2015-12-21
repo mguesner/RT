@@ -33,6 +33,25 @@ static void	*loop(void *arg)
 	return (NULL);
 }
 
+static void	post_process(t_libx *mlx)
+{
+	int count;
+
+	count = 0;
+	if (mlx->antialia == 1)
+	{
+		count = 8;
+		while (count--)
+			antialiasing(mlx);
+	}
+	if (mlx->cshade == 1)
+		cshade(mlx);
+	if (mlx->mblur == 1)
+		blur(mlx);
+	if (mlx->sepia == 1)
+		sepia(mlx);	
+}
+
 void		start(t_libx *mlx)
 {
 	pthread_t	th[8];
@@ -52,18 +71,7 @@ void		start(t_libx *mlx)
 		pthread_join(th[count], NULL);
 		count++;
 	}
-	if (mlx->antialia == 1)
-	{
-		count = 8;
-		while (count--)
-			antialiasing(mlx);
-	}
-	if (mlx->cshade == 1)
-		cshade(mlx);
-	if (mlx->mblur == 1)
-		blur(mlx);
-	if (mlx->sepia == 1)
-		screenshot(mlx);
+	post_process(mlx);
 	mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 	ft_bzero(mlx->data, ((1079) * (mlx->size_line) + 1919 * (mlx->bpp / 8)));
 }
