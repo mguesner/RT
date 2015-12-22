@@ -98,13 +98,21 @@ typedef struct				s_texture
 	int						endian;
 }							t_texture;
 
+typedef struct				s_surf
+{
+	t_texture				texture;
+	t_texture				mapping;
+	t_point					offset;
+	t_point					etir;
+}							t_surf;
+
 typedef struct				s_obj
 {
 	t_obj_type				type;
 	t_point					coord;
 	t_color					color;
 	double					rot[3][3];
-	t_texture				texture;
+	t_surf					surf;
 	double					specular;
 	double					reflection;
 	double					transparence;
@@ -121,7 +129,7 @@ typedef struct				s_camera
 	t_point					coord;
 	t_color					color;
 	double					rot[3][3];
-	t_texture				texture;
+	t_surf					surf;
 	double					specular;
 	double					reflection;
 	double					transparence;
@@ -143,7 +151,7 @@ typedef struct				s_light
 	t_point					coord;
 	t_color					color;
 	double					rot[3][3];
-	t_texture				texture;
+	t_surf					surf;
 	double					specular;
 	double					reflection;
 	double					transparence;
@@ -160,7 +168,7 @@ typedef struct				s_plane
 	t_point					coord;
 	t_color					color;
 	double					rot[3][3];
-	t_texture				texture;
+	t_surf					surf;
 	double					specular;
 	double					reflection;
 	double					transparence;
@@ -178,7 +186,7 @@ typedef struct				s_sphere
 	t_point					coord;
 	t_color					color;
 	double					rot[3][3];
-	t_texture				texture;
+	t_surf					surf;
 	double					specular;
 	double					reflection;
 	double					transparence;
@@ -196,7 +204,7 @@ typedef struct				s_cylinder
 	t_point					coord;
 	t_color					color;
 	double					rot[3][3];
-	t_texture				texture;
+	t_surf					surf;
 	double					specular;
 	double					reflection;
 	double					transparence;
@@ -215,7 +223,7 @@ typedef struct				s_cone
 	t_point					coord;
 	t_color					color;
 	double					rot[3][3];
-	t_texture				texture;
+	t_surf					surf;
 	double					specular;
 	double					reflection;
 	double					transparence;
@@ -234,7 +242,7 @@ typedef struct				s_triangle
 	t_point					coord;
 	t_color					color;
 	double					rot[3][3];
-	t_texture				texture;
+	t_surf					surf;
 	double					specular;
 	double					reflection;
 	double					transparence;

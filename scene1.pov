@@ -8,12 +8,15 @@ camera
 }
 
 light_source { <0,0,1000>
-      color rgb<1,1,1>
+      color rgb <1,1,1>
 }
 
 sphere { <250,250,1500>, 100 // coord centre et rayon
          pigment { color rgb <0,1,0> }
-         texture { jupitermap }
+         texture { name jupitermap 
+         norme test 
+         offset <0,0,0>
+         etir <0,0,0>}
 }
 
 sphere { <0,500,1300>, 200 // coord centre et rayon

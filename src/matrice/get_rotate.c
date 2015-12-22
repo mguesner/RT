@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <RT.h>
+#include <rt.h>
 #define RAD(x) ((x / 180.0) * M_PI)
 
 void	get_rotate(t_vec axe, double cos, double rot[3][3])
