@@ -14,18 +14,18 @@
 
 static void		add_texture_color(t_pix *vec_dir, double u, double v)
 {
-	if ((int)u < (vec_dir->cur_obj->texture.width) &&
-		(int)v < (vec_dir->cur_obj->texture.height))
+	if ((int)u < (vec_dir->cur_obj->surf.texture.width) &&
+		(int)v < (vec_dir->cur_obj->surf.texture.height))
 	{
-		vec_dir->color->b = vec_dir->cur_obj->texture.data[(int)u
-			* (vec_dir->cur_obj->texture.bpp / 8) +
-			(int)v * vec_dir->cur_obj->texture.size_line];
-		vec_dir->color->g = vec_dir->cur_obj->texture.data[((int)u
-			* (vec_dir->cur_obj->texture.bpp / 8) +
-			(int)v * vec_dir->cur_obj->texture.size_line) + 1];
-		vec_dir->color->r = vec_dir->cur_obj->texture.data[((int)u
-			* (vec_dir->cur_obj->texture.bpp / 8) +
-			(int)v * vec_dir->cur_obj->texture.size_line) + 2];
+		vec_dir->color->b = vec_dir->cur_obj->surf.texture.data[(int)u
+			* (vec_dir->cur_obj->surf.texture.bpp / 8) +
+			(int)v * vec_dir->cur_obj->surf.texture.size_line];
+		vec_dir->color->g = vec_dir->cur_obj->surf.texture.data[((int)u
+			* (vec_dir->cur_obj->surf.texture.bpp / 8) +
+			(int)v * vec_dir->cur_obj->surf.texture.size_line) + 1];
+		vec_dir->color->r = vec_dir->cur_obj->surf.texture.data[((int)u
+			* (vec_dir->cur_obj->surf.texture.bpp / 8) +
+			(int)v * vec_dir->cur_obj->surf.texture.size_line) + 2];
 		vec_dir->color->b = vec_dir->color->b < 0 ?
 			255 + vec_dir->color->b : vec_dir->color->b;
 		vec_dir->color->r = vec_dir->color->r < 0 ?
@@ -41,23 +41,23 @@ static void		texture_plane(t_pix *vec_dir, double u, double v)
 	if (fabs(vec_dir->normale.x) != 0.0)
 	{
 		u = fabs(fmod(vec_dir->inter.y,
-			(float)vec_dir->cur_obj->texture.width));
+			(float)vec_dir->cur_obj->surf.texture.width));
 		v = fabs(fmod(vec_dir->inter.z,
-			(float)vec_dir->cur_obj->texture.height));
+			(float)vec_dir->cur_obj->surf.texture.height));
 	}
 	else if (fabs(vec_dir->normale.y) != 0.0)
 	{
 		u = fabs(fmod(vec_dir->inter.x,
-			(float)vec_dir->cur_obj->texture.width));
+			(float)vec_dir->cur_obj->surf.texture.width));
 		v = fabs(fmod(vec_dir->inter.z,
-			(float)vec_dir->cur_obj->texture.height));
+			(float)vec_dir->cur_obj->surf.texture.height));
 	}
 	else
 	{
 		u = fabs(fmod(vec_dir->inter.y,
-			(float)vec_dir->cur_obj->texture.width));
+			(float)vec_dir->cur_obj->surf.texture.width));
 		v = fabs(fmod(vec_dir->inter.x,
-			(float)vec_dir->cur_obj->texture.height));
+			(float)vec_dir->cur_obj->surf.texture.height));
 	}
 	add_texture_color(vec_dir, u, v);
 }
@@ -69,8 +69,8 @@ static void		texture_sphere(t_pix *vec_dir, double u, double v)
 	normale = normalize(make_vec(vec_dir->inter, vec_dir->cur_obj->coord));
 	u = 0.5 - (atan2((-normale.x), (-normale.y)) / (2.0 * M_PI));
 	v = 0.5 + 2.0 * (asin((normale.z)) / (2.0 * M_PI));
-	u *= vec_dir->cur_obj->texture.width;
-	v *= vec_dir->cur_obj->texture.height;
+	u *= vec_dir->cur_obj->surf.texture.width;
+	v *= vec_dir->cur_obj->surf.texture.height;
 	add_texture_color(vec_dir, u, v);
 }
 
@@ -88,17 +88,17 @@ void			texture_func(t_pix *vec_dir)
 	else if (vec_dir->cur_obj->type == CYLINDER)
 	{
 		u = fabs(fmod(vec_dir->inter.y,
-			(float)vec_dir->cur_obj->texture.width));
+			(float)vec_dir->cur_obj->surf.texture.width));
 		v = fabs(fmod(vec_dir->inter.z,
-			(float)vec_dir->cur_obj->texture.height));
+			(float)vec_dir->cur_obj->surf.texture.height));
 		add_texture_color(vec_dir, u, v);
 	}
 	else if (vec_dir->cur_obj->type == CONE)
 	{
 		u = fabs(fmod(vec_dir->inter.y,
-			(float)vec_dir->cur_obj->texture.width));
+			(float)vec_dir->cur_obj->surf.texture.width));
 		v = fabs(fmod(vec_dir->inter.z,
-			(float)vec_dir->cur_obj->texture.height));
+			(float)vec_dir->cur_obj->surf.texture.height));
 		add_texture_color(vec_dir, u, v);
 	}
 }

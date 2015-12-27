@@ -12,7 +12,7 @@ light_source { <5000,-1000,0>
 
 sphere { <3000,-1000,0>, 600 // coord centre et rayon
          pigment { color rgb <0,1,0> }
-         texture { gravas2 }
+         texture { name gravas2 }
 }
 
 sphere { <6000,1000,0>, 600 // coord centre et rayon

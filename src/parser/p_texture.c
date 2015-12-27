@@ -41,7 +41,7 @@ static t_point			get_point(t_pars *e, char *value)
 	int			i;
 
 	i = 0;
-	if (value[i] != '>')
+	if (value[i] != '<')
 		add_err(e, BADARG, value);
 	i++;
 	ret.x = atof(value + i);

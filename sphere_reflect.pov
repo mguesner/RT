@@ -107,5 +107,5 @@ sphere { <450,-200,175>, 25 // coord centre et rayon
 
 plane { <0,0,-1>,200 // plane mur sol
         // pigment { color rgb <0,1,0> }
-        texture { damier2 }
+        texture { name damier2 }
 }

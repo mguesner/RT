@@ -114,7 +114,7 @@ void				calc_lum(t_libx *mlx, t_pix *vec_dir)
 {
 	if (vec_dir->cur_obj == NULL)
 		return ;
-	if (vec_dir->cur_obj->texture.exist == 1)
+	if (vec_dir->cur_obj->surf.texture.exist == 1)
 		texture_func(vec_dir);
 	else if (vec_dir->cur_obj->has_damier)
 		damier(vec_dir);
