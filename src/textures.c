@@ -97,9 +97,9 @@ void			texture_func(t_pix *vec_dir)
 		texture_plane(vec_dir, u, v);
 	else if (vec_dir->cur_obj->type == CYLINDER || vec_dir->cur_obj->type == CONE)
 	{
-		u = fabs(fmod(vec_dir->inter.y,
+		u = fabs(fmod(vec_dir->inter.y * vec_dir->cur_obj->surf.etir.x,
 			(float)vec_dir->cur_obj->surf.texture.width));
-		v = fabs(fmod(vec_dir->inter.z,
+		v = fabs(fmod(vec_dir->inter.z * vec_dir->cur_obj->surf.etir.y,
 			(float)vec_dir->cur_obj->surf.texture.height));
 		add_texture_color(vec_dir, u, v);
 	}
