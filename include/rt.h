@@ -397,5 +397,7 @@ void						sepia(t_libx *m);
 void						damier(t_pix *vec_dir);
 void						screenshot(t_libx *m);
 t_vec						norm_maping(t_pix *pic, t_point inter, t_vec norm);
+void						perlin(t_pix *vec_dir);
+double 						getperl(double x, double y, double res);
 
 #endif
