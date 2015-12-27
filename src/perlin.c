@@ -34,7 +34,6 @@ static void		put_color(t_pix *vec_dir, float val)
 			255 + vec_dir->color->g : vec_dir->color->g;
 }
 
-
 void			perlin(t_pix *vec_dir)
 {
 	double		val;
@@ -56,7 +55,4 @@ void			perlin(t_pix *vec_dir)
 		val = getperl((int)fabs(vec_dir->inter.x), (int)fabs(vec_dir->inter.y),  100.0);
 		put_color(vec_dir, (val + 1) / 2);
 	}
-
 }
-
-
