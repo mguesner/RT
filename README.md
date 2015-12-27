@@ -35,13 +35,13 @@
 
 - On peut appliquer une texture sur les 4 objets - OK
 
-- On peut etirer (ou le contraire) une texture sur un objet - OK
+- On peut etirer (ou le contraire) une texture sur un objet - OK sauf sphere
 
 - On peut decaler une texture sur un objet - OK
 
 - Utilisation d'une lib autre que la minilibX et ses xpm pour charger les textures (jpeg, png, ...)
  
-- La texture sert a modifier la normale d'un objet (du bump mapping en gros)
+- La texture sert a modifier la normale d'un objet (du bump mapping en gros) - en cours
 
 - On peut définir un objet composé d'autres objets : verre
 
@@ -63,7 +63,7 @@
 
 - C'est PARTICULIEREMENT rapide comme rendu - OK
 
-- Sauvegarde de l'image integree au RT - OK
+- Sauvegarde de l'image integree au RT - à l'envers
 
 - Il y a une interface sommaire - OK
 

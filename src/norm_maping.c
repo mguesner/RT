@@ -40,23 +40,23 @@ static t_vec		maping_plane(t_pix *pic, t_point inter, t_vec norm)
 
 	if (fabs(norm.x) != 0.0)
 	{
-		u = fabs(fmod(inter.y,
+		u = fabs(fmod(inter.y * pic->cur_obj->surf.etir.x,
 			(float)pic->cur_obj->surf.mapping.width));
-		v = fabs(fmod(inter.z,
+		v = fabs(fmod(inter.z * pic->cur_obj->surf.etir.y,
 			(float)pic->cur_obj->surf.mapping.height));
 	}
 	else if (fabs(norm.y) != 0.0)
 	{
-		u = fabs(fmod(inter.x,
+		u = fabs(fmod(inter.x * pic->cur_obj->surf.etir.x,
 			(float)pic->cur_obj->surf.mapping.width));
-		v = fabs(fmod(inter.z,
+		v = fabs(fmod(inter.z * pic->cur_obj->surf.etir.y,
 			(float)pic->cur_obj->surf.mapping.height));
 	}
 	else
 	{
-		u = fabs(fmod(inter.y,
+		u = fabs(fmod(inter.y * pic->cur_obj->surf.etir.x,
 			(float)pic->cur_obj->surf.mapping.width));
-		v = fabs(fmod(inter.x,
+		v = fabs(fmod(inter.x * pic->cur_obj->surf.etir.y,
 			(float)pic->cur_obj->surf.mapping.height));
 	}
 	return (apply_map(pic, norm, u, v));
@@ -82,8 +82,10 @@ static t_vec		maping_cylcone(t_pix *pic, t_point inter, t_vec norm)
 
 	if (pic->cur_obj->type == CYLINDER || pic->cur_obj->type == CONE)
 	{
-		u = fabs(fmod(inter.y, (float)pic->cur_obj->surf.mapping.width));
-		v = fabs(fmod(inter.z, (float)pic->cur_obj->surf.mapping.height));
+		u = fabs(fmod(inter.y * pic->cur_obj->surf.etir.x,
+			(float)pic->cur_obj->surf.mapping.width));
+		v = fabs(fmod(inter.z * pic->cur_obj->surf.etir.y,
+			(float)pic->cur_obj->surf.mapping.height));
 		return (apply_map(pic, norm, u, v));
 	}
 	return (norm);

@@ -13,11 +13,7 @@ light_source { <0,0,1000>
 
 sphere { <250,250,1500>, 100 // coord centre et rayon
          pigment { color rgb <0,1,0> }
-         texture { name jupiter 
-         norme chestermap 
-         offset <100,100,0>
-         etir <0,0,0> 
-         }
+         texture { name jupiter }
 }
 
 sphere { <0,500,1300>, 200 // coord centre et rayon
@@ -33,7 +29,8 @@ cylinder_42{ <-250,-250,1500>, <1,0,0>, 100 // coord centre et rayon
 
 plane { <1,0,0>,1000 // coord centre et rayon
         // pigment { color rgb <0,1,0> }
-        texture { name damier2 }
+        texture { name damier2 
+         norme chestermap }
 }
 
 plane { <0,0,-1>,10000 // coord centre et rayon
