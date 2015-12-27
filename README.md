@@ -35,7 +35,7 @@
 
 - On peut appliquer une texture sur les 4 objets - OK
 
-- On peut etirer (ou le contraire) une texture sur un objet
+- On peut etirer (ou le contraire) une texture sur un objet - OK
 
 - On peut decaler une texture sur un objet - OK
 

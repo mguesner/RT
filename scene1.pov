@@ -38,6 +38,7 @@ plane { <1,0,0>,1000 // coord centre et rayon
 
 plane { <0,0,-1>,10000 // coord centre et rayon
          pigment { color rgb <1,1,1> }
-         texture { name damier2 }
+         texture { name damier2 
+         etir <0.2,0.2,0>}
          //finish {reflection 1.0}
 }

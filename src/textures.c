@@ -46,23 +46,23 @@ static void		texture_plane(t_pix *vec_dir, double u, double v)
 	vec_dir->normale = get_normale(vec_dir, vec_dir->inter);
 	if (fabs(vec_dir->normale.x) != 0.0)
 	{
-		u = fabs(fmod(vec_dir->inter.y,
+		u = fabs(fmod(vec_dir->inter.y * vec_dir->cur_obj->surf.etir.x,
 			(float)vec_dir->cur_obj->surf.texture.width));
-		v = fabs(fmod(vec_dir->inter.z,
+		v = fabs(fmod(vec_dir->inter.z * vec_dir->cur_obj->surf.etir.y,
 			(float)vec_dir->cur_obj->surf.texture.height));
 	}
 	else if (fabs(vec_dir->normale.y) != 0.0)
 	{
-		u = fabs(fmod(vec_dir->inter.x,
+		u = fabs(fmod(vec_dir->inter.x * vec_dir->cur_obj->surf.etir.x,
 			(float)vec_dir->cur_obj->surf.texture.width));
-		v = fabs(fmod(vec_dir->inter.z,
+		v = fabs(fmod(vec_dir->inter.z * vec_dir->cur_obj->surf.etir.y,
 			(float)vec_dir->cur_obj->surf.texture.height));
 	}
 	else
 	{
-		u = fabs(fmod(vec_dir->inter.y,
+		u = fabs(fmod(vec_dir->inter.y * vec_dir->cur_obj->surf.etir.x,
 			(float)vec_dir->cur_obj->surf.texture.width));
-		v = fabs(fmod(vec_dir->inter.x,
+		v = fabs(fmod(vec_dir->inter.x * vec_dir->cur_obj->surf.etir.y,
 			(float)vec_dir->cur_obj->surf.texture.height));
 	}
 	add_texture_color(vec_dir, u, v);
@@ -87,19 +87,15 @@ void			texture_func(t_pix *vec_dir)
 
 	u = 0.0;
 	v = 0.0;
+	if (vec_dir->cur_obj->surf.etir.x == 0)
+		vec_dir->cur_obj->surf.etir.x = 1;
+	if (vec_dir->cur_obj->surf.etir.y == 0)
+		vec_dir->cur_obj->surf.etir.y = 1;
 	if (vec_dir->cur_obj->type == SPHERE)
 		texture_sphere(vec_dir, u, v);
 	else if (vec_dir->cur_obj->type == PLANE)
 		texture_plane(vec_dir, u, v);
-	else if (vec_dir->cur_obj->type == CYLINDER)
-	{
-		u = fabs(fmod(vec_dir->inter.y,
-			(float)vec_dir->cur_obj->surf.texture.width));
-		v = fabs(fmod(vec_dir->inter.z,
-			(float)vec_dir->cur_obj->surf.texture.height));
-		add_texture_color(vec_dir, u, v);
-	}
-	else if (vec_dir->cur_obj->type == CONE)
+	else if (vec_dir->cur_obj->type == CYLINDER || vec_dir->cur_obj->type == CONE)
 	{
 		u = fabs(fmod(vec_dir->inter.y,
 			(float)vec_dir->cur_obj->surf.texture.width));
