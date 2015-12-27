@@ -14,18 +14,24 @@
 
 static void		add_texture_color(t_pix *vec_dir, double u, double v)
 {
+	int	x;
+	int y;
+
+	u  += vec_dir->cur_obj->surf.offset.x;
+	u = u > vec_dir->cur_obj->surf.texture.width ?
+		u - vec_dir->cur_obj->surf.texture.width : u;
+	v  += vec_dir->cur_obj->surf.offset.y;
+	v = v > vec_dir->cur_obj->surf.texture.height ?
+		v - vec_dir->cur_obj->surf.texture.width : v;
+	x = (int)u * (vec_dir->cur_obj->surf.texture.bpp / 8);
+	y = (int)v * vec_dir->cur_obj->surf.texture.size_line;
+
 	if ((int)u < (vec_dir->cur_obj->surf.texture.width) &&
 		(int)v < (vec_dir->cur_obj->surf.texture.height))
 	{
-		vec_dir->color->b = vec_dir->cur_obj->surf.texture.data[(int)u
-			* (vec_dir->cur_obj->surf.texture.bpp / 8) +
-			(int)v * vec_dir->cur_obj->surf.texture.size_line];
-		vec_dir->color->g = vec_dir->cur_obj->surf.texture.data[((int)u
-			* (vec_dir->cur_obj->surf.texture.bpp / 8) +
-			(int)v * vec_dir->cur_obj->surf.texture.size_line) + 1];
-		vec_dir->color->r = vec_dir->cur_obj->surf.texture.data[((int)u
-			* (vec_dir->cur_obj->surf.texture.bpp / 8) +
-			(int)v * vec_dir->cur_obj->surf.texture.size_line) + 2];
+		vec_dir->color->b = vec_dir->cur_obj->surf.texture.data[x + y];
+		vec_dir->color->g = vec_dir->cur_obj->surf.texture.data[x + y + 1];
+		vec_dir->color->r = vec_dir->cur_obj->surf.texture.data[x + y + 2];
 		vec_dir->color->b = vec_dir->color->b < 0 ?
 			255 + vec_dir->color->b : vec_dir->color->b;
 		vec_dir->color->r = vec_dir->color->r < 0 ?

@@ -15,7 +15,7 @@ sphere { <250,250,1500>, 100 // coord centre et rayon
          pigment { color rgb <0,1,0> }
          texture { name jupiter 
          norme chestermap 
-         offset <0,0,0>
+         offset <100,100,0>
          etir <0,0,0> 
          }
 }

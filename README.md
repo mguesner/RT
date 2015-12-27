@@ -37,7 +37,7 @@
 
 - On peut etirer (ou le contraire) une texture sur un objet
 
-- On peut decaler une texture sur un objet
+- On peut decaler une texture sur un objet - OK
 
 - Utilisation d'une lib autre que la minilibX et ses xpm pour charger les textures (jpeg, png, ...)
  
@@ -92,11 +92,11 @@ Int entre 0 et 100 à mettre dans t_libx->ambient - OK
 - Damier
 2 couleurs + une longueur- OK
 
-- Seconde texture dans les objets, norm_texture 
+- Seconde texture dans les objets, norm_texture - OK
 
-- Decalage texture (2 int)
+- Decalage texture (2 int) - OK
 
-- Etirage texture (2 int ?)
+- Etirage texture (2 int) - OK
 
 - Effet ondulé
 
