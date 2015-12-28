@@ -54,7 +54,7 @@ static t_point			get_point(t_pars *e, char *value)
 		i++;
 	if (value[i] != '>')
 		add_err(e, BADARG, value);
-	return ret;
+	return (ret);
 }
 
 void					p_texture(t_pars *e, t_lex **node)

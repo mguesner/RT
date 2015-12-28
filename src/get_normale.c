@@ -43,7 +43,8 @@ static t_vec	cone_norm(t_pix *pix, t_point inter)
 t_vec			get_normale(t_pix *pix, t_point inter)
 {
 	if (pix->cur_obj->type == SPHERE)
-		return (norm_maping(pix, inter, normalize(make_vec(inter, pix->cur_obj->coord))));
+		return (norm_maping(pix, inter,
+			normalize(make_vec(inter, pix->cur_obj->coord))));
 	else if (pix->cur_obj->type == PLANE)
 		return (norm_maping(pix, inter, ((t_plane *)pix->cur_obj)->norm));
 	else if (pix->cur_obj->type == CYLINDER)

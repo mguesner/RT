@@ -1,5 +1,5 @@
 /* ************************************************************************** */
-/*			                                                              */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   perlin.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -15,7 +15,6 @@
 static void		put_color(t_pix *vec_dir, float val)
 {
 	unsigned char	c;
-
 
 	c = (unsigned char)vec_dir->cur_obj->color.b;
 	c *= val;
@@ -42,17 +41,21 @@ void			perlin(t_pix *vec_dir)
 	{
 		vec_dir->normale = get_normale(vec_dir, vec_dir->inter);
 		if (fabs(vec_dir->normale.x) != 0.0)
-			val = getperl((int)fabs(vec_dir->inter.y), (int)fabs(vec_dir->inter.z),  100.0);
-
+			val = getperl((int)fabs(vec_dir->inter.y),
+			(int)fabs(vec_dir->inter.z), 100.0);
 		else if (fabs(vec_dir->normale.y) != 0.0)
-			val = getperl((int)fabs(vec_dir->inter.x), (int)fabs(vec_dir->inter.z),  100.0);
+			val = getperl((int)fabs(vec_dir->inter.x),
+				(int)fabs(vec_dir->inter.z), 100.0);
 		else
-			val = getperl((int)fabs(vec_dir->inter.y), (int)fabs(vec_dir->inter.x),  100.0);
+			val = getperl((int)fabs(vec_dir->inter.y),
+				(int)fabs(vec_dir->inter.x), 100.0);
 		put_color(vec_dir, (val + 1) / 2);
 	}
-	else if (vec_dir->cur_obj->type == CYLINDER || vec_dir->cur_obj->type == CONE)
+	else if (vec_dir->cur_obj->type == CYLINDER
+		|| vec_dir->cur_obj->type == CONE)
 	{
-		val = getperl((int)fabs(vec_dir->inter.x), (int)fabs(vec_dir->inter.y),  100.0);
+		val = getperl((int)fabs(vec_dir->inter.x),
+			(int)fabs(vec_dir->inter.y), 100.0);
 		put_color(vec_dir, (val + 1) / 2);
 	}
 }
