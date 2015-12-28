@@ -15,16 +15,20 @@ sphere { <550,48,-300>, 75 // coord centre et rayon
 }
 
 plane { <0,0,-1>,200 // plane mur sol
-        // pigment { color rgb <0,1,0> }
         texture { name damier2 }
 }
+
 cylinder_42 { <550,48,0>, <0,0,1>, 20 // coord, direction, rayon
          pigment { color rgb <0,0.6,0.6> }
          finish {refraction 10 transparence 1}
          end 150 2000
 }
 
-
+plane { <1,0,0>, -2000 // plane mur sol
+        texture { name semiblanc 
+        norme bump_circuits
+        }
+}
 
 // ------------- cube start ------------
 triangle { <500,0,150>, <0, 0.01, 0>, <0, 0, 0.01> // coord, u, v
@@ -61,6 +65,4 @@ triangle { <500,0,150>, <0.01, 0, 0>, <0, 0.01, 0> // coord, u, v
 triangle { <600,100,150>, <-0.01, 0, 0>, <0, -0.01, 0> // coord, u, v
 		 pigment { color rgb <0,1,0> }
 }
-
-
 // ----------------- cube end ------------
