@@ -18,7 +18,6 @@ cylinder_42 { <5000,-1500,1000>, <0,0.5,0.5>, 500 // coord, direction, rayon
 }
 
 plane { <-1,0,0>,6000 // coord centre et rayon
-         damier { color rgb <0,1,0> long 200 }
          pigment { color rgb <0,0,1> }
 }
 
