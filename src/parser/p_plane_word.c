@@ -34,15 +34,15 @@ static int				check(t_pars *e, t_lex **node)
 	if (e->substep != SSBEGIN)
 	{
 		tools[e->substep](e, node);
-		return 1;
+		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 void					p_plane_word(t_pars *e, t_lex **node)
 {
 	char		*tmp;
-	
+
 	if (check(e, node))
 		return ;
 	tmp = (*node)->value;
