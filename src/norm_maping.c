@@ -94,10 +94,11 @@ t_vec				norm_maping(t_pix *pic, t_point inter, t_vec norm)
 {
 	if (pic->cur_obj->surf.mapping.exist == 1 && pic->cur_obj->type == PLANE)
 		return (maping_plane(pic, inter, norm));
-	else if (pic->cur_obj->surf.mapping.exist == 1 && pic->cur_obj->type == SPHERE)
+	else if (pic->cur_obj->surf.mapping.exist == 1
+		&& pic->cur_obj->type == SPHERE)
 		return (maping_sphere(pic, inter, norm));
 	else if (pic->cur_obj->surf.mapping.exist == 1
 		&& (pic->cur_obj->type == CYLINDER || pic->cur_obj->type == CONE))
-	 	return (maping_cylcone(pic, inter, norm));
+		return (maping_cylcone(pic, inter, norm));
 	return (norm);
 }
