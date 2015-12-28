@@ -50,7 +50,7 @@ static void		sweet(int px, int py, t_libx *m, char *save)
 	pospix = px + py * 1920;
 	pos = ((py) * (m->size_line) + px * (m->bpp / 8));
 	inc = (m->pix[pospix]->dist - m->ref_dist_mblur)
-		* 8 / (m->ref_maxdist_mblur);
+		* 16 / (m->ref_maxdist_mblur);
 	while (inc > 0)
 	{
 		m->data[pos] = get_five(save, m, pos, 0) / 5.0;
