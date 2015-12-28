@@ -36,26 +36,28 @@ static void		put_color(t_pix *vec_dir, float val)
 void			perlin(t_pix *vec_dir)
 {
 	double		val;
+	double		res;
 
+	res = vec_dir->cur_obj->perlin;
 	if (vec_dir->cur_obj->type == PLANE)
 	{
 		vec_dir->normale = get_normale(vec_dir, vec_dir->inter);
 		if (fabs(vec_dir->normale.x) != 0.0)
 			val = getperl((int)fabs(vec_dir->inter.y),
-			(int)fabs(vec_dir->inter.z), 100.0);
+			(int)fabs(vec_dir->inter.z), res);
 		else if (fabs(vec_dir->normale.y) != 0.0)
 			val = getperl((int)fabs(vec_dir->inter.x),
-				(int)fabs(vec_dir->inter.z), 100.0);
+				(int)fabs(vec_dir->inter.z), res);
 		else
 			val = getperl((int)fabs(vec_dir->inter.y),
-				(int)fabs(vec_dir->inter.x), 100.0);
+				(int)fabs(vec_dir->inter.x), res);
 		put_color(vec_dir, (val + 1) / 2);
 	}
 	else if (vec_dir->cur_obj->type == CYLINDER
 		|| vec_dir->cur_obj->type == CONE)
 	{
 		val = getperl((int)fabs(vec_dir->inter.x),
-			(int)fabs(vec_dir->inter.y), 100.0);
+			(int)fabs(vec_dir->inter.y), res);
 		put_color(vec_dir, (val + 1) / 2);
 	}
 }

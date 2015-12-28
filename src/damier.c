@@ -44,7 +44,9 @@ void			damier(t_pix *vec_dir)
 	double		u;
 	double		v;
 
-	if (vec_dir->cur_obj->type == PLANE)
+	if (vec_dir->cur_obj->perlin != 0)
+		perlin(vec_dir);
+	else if (vec_dir->cur_obj->type == PLANE)
 	{
 		vec_dir->normale = get_normale(vec_dir, vec_dir->inter);
 		if (fabs(vec_dir->normale.x) != 0.0)

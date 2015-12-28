@@ -116,10 +116,8 @@ void				calc_lum(t_libx *mlx, t_pix *vec_dir)
 		return ;
 	if (vec_dir->cur_obj->surf.texture.exist == 1)
 		texture_func(vec_dir);
-	else if (vec_dir->cur_obj->has_damier)
+	else if (vec_dir->cur_obj->has_damier || vec_dir->cur_obj->perlin != 0)
 		damier(vec_dir);
-	// else if (vec_dir->cur_obj->type == PLANE)
-	// 	perlin(vec_dir);
 	else
 	{
 		if (vec_dir->first_obj != NULL && vec_dir->first_obj
