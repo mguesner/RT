@@ -19,10 +19,22 @@
 static void		write_file(t_libx *m, t_bitmap *pbitma)
 {
 	FILE		*fp;
+	int			x;
+	int			y;
 
 	fp = fopen("screenshot.bmp", "wb");
 	fwrite(pbitma, 1, sizeof(t_bitmap), fp);
-	fwrite(m->data, 1, PBS, fp);
+	y = 1080;
+	while (y > 0)
+	{
+		x = 0;
+		while (x < 1920 * m->bpp / 8)
+		{
+			fwrite(&m->data[(y * 1920 * m->bpp / 8) + x], 1, 1, fp);
+			x++;
+		}
+		y--;
+	}
 	fclose(fp);
 }
 
