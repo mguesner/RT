@@ -28,7 +28,6 @@ sphere { <1380,-60,130>, 45 // coord centre et rayon
 
 cone_42 { <1500,0,-200>, <0,0,1>, 0.4 // coord, direction, rayon
          pigment { color rgb <1,0,0> }
-         texture { name damier2 }
          end 300 600
 }
 
