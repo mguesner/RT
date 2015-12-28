@@ -12,6 +12,15 @@
 
 #include <parser.h>
 
+static void				p_perlin(t_pars *e, t_lex **node)
+{
+	(*node) = (*node)->next;
+	if (*node && (*node)->token_type != VALUE)
+		add_err(e, BADARG, (*node)->value);
+	else
+		e->cur->perlin = atof((*node)->value);
+}
+
 void					p_plane_word(t_pars *e, t_lex **node)
 {
 	char		*tmp;
@@ -37,6 +46,8 @@ void					p_plane_word(t_pars *e, t_lex **node)
 		e->substep = SSDAMIER;
 	else if (!strcmp(tmp, "end"))
 		p_limit(e, node);
+	else if (!strcmp(tmp, "perlin"))
+		p_perlin(e, node);
 	else
 		add_err(e, UNKOBJ, tmp);
 }

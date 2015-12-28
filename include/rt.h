@@ -121,6 +121,7 @@ typedef struct				s_obj
 	t_dam					damier;
 	double					limite1;
 	double					limite2;
+	double					perlin;
 }							t_obj;
 
 typedef struct				s_camera
@@ -138,6 +139,7 @@ typedef struct				s_camera
 	t_dam					damier;
 	double					limite1;
 	double					limite2;
+	double					perlin;
 	int						ambient;
 	t_point					pix_hg;
 	t_point					pix_bg;
@@ -160,6 +162,7 @@ typedef struct				s_light
 	t_dam					damier;
 	double					limite1;
 	double					limite2;
+	double					perlin;
 }							t_light;
 
 typedef struct				s_plane
@@ -177,6 +180,7 @@ typedef struct				s_plane
 	t_dam					damier;
 	double					limite1;
 	double					limite2;
+	double					perlin;
 	t_vec					norm;
 }							t_plane;
 
@@ -195,6 +199,7 @@ typedef struct				s_sphere
 	t_dam					damier;
 	double					limite1;
 	double					limite2;
+	double					perlin;
 	double					radius;
 }							t_sphere;
 
@@ -213,6 +218,7 @@ typedef struct				s_cylinder
 	t_dam					damier;
 	double					limite1;
 	double					limite2;
+	double					perlin;
 	double					radius;
 	t_vec					dir;
 }							t_cylinder;
@@ -232,6 +238,7 @@ typedef struct				s_cone
 	t_dam					damier;
 	double					limite1;
 	double					limite2;
+	double					perlin;
 	double					angle;
 	t_vec					dir;
 }							t_cone;
@@ -251,6 +258,7 @@ typedef struct				s_triangle
 	t_dam					damier;
 	double					limite1;
 	double					limite2;
+	double					perlin;
 	t_vec					u;
 	t_vec					v;
 
