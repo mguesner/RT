@@ -15,7 +15,9 @@
 static void				p_perlin(t_pars *e, t_lex **node)
 {
 	(*node) = (*node)->next;
-	if (*node && (*node)->token_type != VALUE)
+	if (!*node)
+		add_err(e, BADARG, "");
+	else if ((*node)->token_type != VALUE)
 		add_err(e, BADARG, (*node)->value);
 	else
 		e->cur->perlin = atof((*node)->value);
