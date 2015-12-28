@@ -47,8 +47,10 @@ void						clean_mlx(t_libx *mlx)
 	while (tmp)
 	{
 		next = tmp->next;
-		//if (tmp->obj->texture.imgv)
-		//	mlx_destroy_image(mlx->mlx, tmp->obj->texture.imgv);
+		if (tmp->obj->surf.texture.imgv)
+			mlx_destroy_image(mlx->mlx, tmp->obj->surf.texture.imgv);
+		if (tmp->obj->surf.mapping.imgv)
+			mlx_destroy_image(mlx->mlx, tmp->obj->surf.mapping.imgv);
 		ft_memdel((void **)&tmp->obj);
 		ft_memdel((void **)&tmp);
 		tmp = next;

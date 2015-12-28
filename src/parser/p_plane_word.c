@@ -23,9 +23,8 @@ static void				p_perlin(t_pars *e, t_lex **node)
 		e->cur->perlin = atof((*node)->value);
 }
 
-void					p_plane_word(t_pars *e, t_lex **node)
+static int				check(t_pars *e, t_lex **node)
 {
-	char		*tmp;
 	t_f_parse	tools[NBSUBSTEP];
 
 	tools[SSPIGMENT] = &p_pigment;
@@ -35,8 +34,17 @@ void					p_plane_word(t_pars *e, t_lex **node)
 	if (e->substep != SSBEGIN)
 	{
 		tools[e->substep](e, node);
-		return ;
+		return 1;
 	}
+	return 0;
+}
+
+void					p_plane_word(t_pars *e, t_lex **node)
+{
+	char		*tmp;
+	
+	if (check(e, node))
+		return ;
 	tmp = (*node)->value;
 	if (!strcmp(tmp, "pigment"))
 		e->substep = SSPIGMENT;

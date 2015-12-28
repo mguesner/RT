@@ -34,21 +34,18 @@ static void				p_begin_word2(t_pars *e, t_lex **node)
 		e->cur->rot[0][0] = 1;
 		e->cur->rot[1][1] = 1;
 		e->cur->rot[2][2] = 1;
-		e->cur->has_damier = 0;
 		e->step = PPLANE;
 	}
 	else if (!strcmp((*node)->value, "cylinder_42"))
 	{
 		e->cur = ft_memalloc(sizeof(t_cylinder));
 		e->cur->type = CYLINDER;
-		e->cur->has_damier = 0;
 		e->step = PCYLINDER42;
 	}
 	else if (!strcmp((*node)->value, "cone_42"))
 	{
 		e->cur = ft_memalloc(sizeof(t_cone));
 		e->cur->type = CONE;
-		e->cur->has_damier = 0;
 		e->step = PCONE42;
 	}
 	else
@@ -61,7 +58,6 @@ void					p_begin_word(t_pars *e, t_lex **node)
 	{
 		e->cur = ft_memalloc(sizeof(t_camera));
 		e->cur->type = CAM;
-		e->cur->has_damier = 0;
 		((t_camera *)e->cur)->ambient = 20;
 		e->step = PCAMERA;
 	}
@@ -69,14 +65,12 @@ void					p_begin_word(t_pars *e, t_lex **node)
 	{
 		e->cur = ft_memalloc(sizeof(t_light));
 		e->cur->type = LIGHT;
-		e->cur->has_damier = 0;
 		e->step = PSPOT;
 	}
 	else if (!strcmp((*node)->value, "sphere"))
 	{
 		e->cur = ft_memalloc(sizeof(t_sphere));
 		e->cur->type = SPHERE;
-		e->cur->has_damier = 0;
 		e->cur->rot[0][0] = 1;
 		e->cur->rot[1][1] = 1;
 		e->cur->rot[2][2] = 1;
