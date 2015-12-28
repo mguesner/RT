@@ -42,7 +42,7 @@ int		expose_hook(t_libx *mlx)
 int		key_hook(int keycode, t_libx *mlx)
 {
 	if (mlx->state == 0 && keycode == 53)
-		exit (0);
+		exit(0);
 	else if (mlx->state == 2)
 	{
 		if (keycode == 53)
@@ -53,10 +53,10 @@ int		key_hook(int keycode, t_libx *mlx)
 			mlx_put_image_to_window(mlx->mlx, mlx->window, mlx->img, 0, 0);
 			clean_mlx(mlx);
 			menu_rt(mlx);
-		}			
-		else if ((keycode == 126 || keycode == 125 || keycode == 123 ||
-			keycode == 124 || keycode == 69 || keycode == 78 ||
-			keycode == 6 || keycode == 7 || keycode == 8 || keycode == 9 || keycode == 11) && (mlx->superint = 1))
+		}
+		else if (((keycode > 122 && keycode < 127) || keycode == 69
+			|| keycode == 78 || (keycode > 5 && keycode < 12))
+			&& (mlx->superint = 1))
 			key_translate_cam(keycode, mlx);
 		else if (keycode == 0 || keycode == 2 || keycode == 1 ||
 			keycode == 12 || keycode == 13 || keycode == 14)

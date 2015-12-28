@@ -129,6 +129,7 @@ clean:
 	rm -rf $(OBJ)
 
 fclean: clean
+	make fclean -C libft
 	rm -rf $(NAME)
 
 re: fclean all
