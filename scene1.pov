@@ -29,6 +29,7 @@ cylinder_42{ <-250,-250,1500>, <1,0,0>, 100 // coord centre et rayon
 
 plane { <1,0,0>,1000 // coord centre et rayon
          pigment { color rgb <1,1,1> }
+         perlin 4
         texture { name brickwork
          norme brickworkmap
          //etir <0.2,0.2,0> 
@@ -38,6 +39,5 @@ plane { <1,0,0>,1000 // coord centre et rayon
 plane { <0,0,-1>,10000 // coord centre et rayon
          pigment { color rgb <1,1,1> }
          texture { name gravas
-         etir <0.1,0.1,0>}
-         //finish {reflection 1.0}
-}
+         etir <0.1,0.1,0>
+

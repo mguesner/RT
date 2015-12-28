@@ -17,5 +17,6 @@ void					p_openscope(t_pars *e, t_lex **node)
 	if (e->step == PBEGIN)
 		add_err(e, SCOPEMISS, (*node)->value);
 	e->scope++;
-	(void)node;
+	if (e->scope > 2)
+		add_err(e, SCOPEMISS, (*node)->value);
 }
