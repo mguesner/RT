@@ -40,23 +40,22 @@ plane { <1,0,0>,1000 // plane mur sol
 }
 
 plane { <-1,0,0>,1000 // plane mur plafond
-        // pigment { color rgb <0,1,0> }
-        texture { name damier2 }
+         pigment { color rgb <0.8,0.8,1> }
+         perlin 2000
 }
 
 
 plane { <0,0,1>,10000 // plane derriere
-         pigment { color rgb <1,1,1> }
-         texture { name damier2 }
-         //finish {reflection 1.0}
+         pigment { color rgb <0,0,0.6> }
+         perlin 2000
 }
 
 plane { <0,1,0>,1000 // plane mur gauche
-        // pigment { color rgb <0,1,0> }
-        texture { name damier2 }
+         pigment { color rgb <1,0.6,0.6> }
+         perlin 200
 }
 
 plane { <0,-1,0>,1000 // plane mur droit
-        // pigment { color rgb <0,1,0> }
-        texture { name damier2 }
+         pigment { color rgb <0.2,0.6,0.6> }
+         perlin 2
 }
