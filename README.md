@@ -17,7 +17,7 @@
  
 - Perturbation de la couleur : un algo un peu plus complique pour changer la couleur de l'objet - OK
  
-- Perturbation de la couleur : un algo super complexe, genre bruit de Perlin - en attente du parseur sinon OK sur plan
+- Perturbation de la couleur : un algo super complexe, genre bruit de Perlin - OK sur plan
 
 - Reflexion marche, on a bien un effet mirroir - OK
 
@@ -100,7 +100,7 @@ Int entre 0 et 100 à mettre dans t_libx->ambient - OK
 
 - Effet ondulé
 
-- Perlin (float dans obj)
+- Perlin (float dans obj) - OK
 
 - Objet cube
 un point, un vecteur, une taille ?
